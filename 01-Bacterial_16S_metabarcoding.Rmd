@@ -1,0 +1,24 @@
+--- 
+title: "Bacterial 16S metabarcoding"
+author: "Luca Lenzi and Matthew Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+``` 
+
+# Introduction
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
+``` 
+
+This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
+
+- Logging in to our teaching environment

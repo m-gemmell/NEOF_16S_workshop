@@ -1,0 +1,5 @@
+book_filename: "Bacterial 16S metabarcoding"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: FALSE
