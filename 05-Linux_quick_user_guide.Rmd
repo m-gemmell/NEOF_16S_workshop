@@ -79,20 +79,25 @@ zless RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
 
 Notice that each read is represented by 4 lines:
 
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/fastq_lines.png", auto_pdf = TRUE)
+``` 
 
+The first line is the read identifier. The second line is the sequence, and the fourth line is the quality score for this sequence. Qualities are in ASCII codes (in which a symbol represents a number: in this case the quality of the basecall).
 
-The first line is the read identifier. The second line is the sequence, and the fourth line is the
-quality score for this sequence. Qualities are in ASCII codes (in which a symbol represents a
-number: in this case the quality of the basecall).
 Note that the barcode sequence is displayed in the read header (but it may contain Ns).
-At this stage, you can get some information about your data. For instance, how many reads do
-you have? We can use the “grep” command to find every match to the pattern “^+$” (^=start of
-line, $=end of line, so match a line with a single “+” on it). There is only one line like this per read
-so the number of matches = the number of reads. The “-c” option makes grep return the count
-of the number of matches (rather than the matches themselves).
-zgrep -c “^+$” 1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-You should obtain:
-~/Metagenomics/RawReads$ zgrep -c “^+$”1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
 
+At this stage, you can get some information about your data. For instance, how many reads do you have? We can use the `grep` command to find every match to the pattern `^+$` (`^`=start of line, `$`=end of line, so match a line with a single `+` on it). There is only one line like this per read so the number of matches = the number of reads. The `-c` option makes grep return the count of the number of matches (rather than the matches themselves).
+
+```{bash, eval=FALSE}
+zgrep -c “^+$” 1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+```
+
+You should obtain:
+
+```{bash, eval=FALSE}
+~/Metagenomics/RawReads$ zgrep -c “^+$”1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+#result = 53731
+```
 
 

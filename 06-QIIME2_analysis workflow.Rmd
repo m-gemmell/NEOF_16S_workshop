@@ -1,0 +1,18 @@
+# QIIME2 analysis workflow
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+## Workflow
+
+The 'QIIME2' analysis workflow comprises of nine steps:
+
+1. Import sequences into QIIME2 artifact
+2. Trim the PCR primer sequences
+3. De-novo amplicon sequence variants identifications
+4. Assign a taxonomic classification to each ASV
+5. Make a phylogenetic tree of the identified ASVs
+6. Sequencing depth evaluation: rarefaction plot
+7. Sequencing controls evaluation: beta-diversity without normalisation
+8. Diversity analysis: alpha and beta
+9. Differential abundance analysis of ASVs across different conditions
