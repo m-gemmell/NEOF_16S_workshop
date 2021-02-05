@@ -1,106 +1,85 @@
-# Import sequences into QIIME2
+# Assign a taxonomic classification to each amplicon sequence variant
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
-The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt’.
+Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. Here, we use the `sk-learn` classifier to assign taxonomy based on the Greengenes database (DeSantis _et al_., 2006). 
 
-The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:
+Greengenes is a database containing quality-controlled microbial sequence data. Greengenes 16S rDNA sequences come from a large number of species which have been formatted for use in QIIME, by clustering the sequences at a given level of similarity (here, 99%). As for OTU-picking, the more stringent the similarity threshold, the more fine-grained the taxonomic designation (i.e. there are more Greengenes OTUs defined to the species level at 99% than at 97% similarity). The classifier maps the variant sequences, defined above, to OTU representative sequences from the Greengenes set.
 
-```{bash, eval}
-head –n 7 PairedEndFastqManifestPhred33.csv
-```
-
-sample-id,absolute-filepath,direction
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-
-In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.
-
-Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.
-
-An example
-
-/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-Should become (where XXX is equal to the number in your username):
-
-/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-The ‘metadata.file.txt’, is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.
+First, we need to import the Greengenes data into QIIME2 artifact objects.
 
 ```{bash, eval=FALSE}
-less metadata.file.txt
+qiime tools import \
+--input-path
+/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/rep_set/99_otus.fasta \
+ --output-path gg-13-8.99_otus.qza \
+ --type 'FeatureData[Sequence]'
+
+qiime tools import \
+--input-path
+/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
+ --output-path gg-13-8.99.taxa.qza \
+ --input-format HeaderlessTSVTaxonomyFormat \
+ --type 'FeatureData[Taxonomy]'
 ```
 
-Results:
+These steps will create two objects containing the sequences and their taxonomy, respectively, and should finish in less than 2 mins.
 
-sample-id BarcodeSequence Floor Location Place
-#q2:types categorical numeric categorical categorical
-K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance
-T CAGAGAGG-ACTGCATA 1 StudentHome Entrance
-1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance
-1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding
-1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance
-1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding
+The classifier tool we are going to use requires a training step to reach its optimum performance. The training is performed on a read set extracted from Greengenes representative sequences, including only the amplified region of interest.
 
-In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.
-
-To run QIIME2’s commands we first need to activate it:
+Note: Do not run the below command for this tutorial, see below command)
 
 ```{bash, eval=FALSE}
-source ~luca/Metagenetics_2019/qiime2_env.sh
+qiime feature-classifier extract-reads \
+--i-sequences gg-13-8.99_otus.qza \
+--p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA \
+--p-r-primer GGACTACHVGGGTWTCTAAT \
+# Creating reads of 250 bp as in our case
+--p-trunc-len 250 \
+--o-reads gg-13-8.99.ref.seqs.qza
 ```
 
-That will be the same as running the command `source activate qiime2-2019.1` in your own installation. Next run:
+Given that this step may require more than 14h to finish, we won’t be able to run on this occasion. Copy over premade result with the following command:
 
 ```{bash, eval=FALSE}
-source tab-qiime
+cp /pub39/tea/luca/Metagenetics_2019/gg-13-8.99.ref.seqs.qza .
 ```
 
-Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.
-
-When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.
-
-First, we will load all the read pairs into an artifact.
+To train the `sk-learn` classifier on this set of reads (approx. 25 mins):
 
 ```{bash, eval=FALSE}
-qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
- --input-path PairedEndFastqManifestPhred33.csv \
- --output-path paired-end-demux.qza \
- --input-format PairedEndFastqManifestPhred33
+qiime feature-classifier fit-classifier-naive-bayes \
+--i-reference-reads gg-13-8.99.ref.seqs.qza \
+ --i-reference-taxonomy gg-13-8.99.taxa.qza \
+ --o-classifier classifier.trained.qza
+```
+
+The command for the taxonomy assignment is (approx. 5 min):
+
+```{bash, eval=FALSE}
+qiime feature-classifier classify-sklearn \
+--i-classifier classifier.trained.qza \
+ # Default value for confidence
+ --p-confidence 0.7 \
+ --i-reads rep-seqs-dada2.qza \
+ --o-classification taxonomy.sklearn.qza
 ```
  
-This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’, the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).
-
-To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).
+To visualise the taxonomy-abundance bar-chart obtained, run (approx. 1 min):
 
 ```{bash, eval=FALSE}
-qiime demux summarize --i-data paired-end-demux.qza \
---o-visualization paired-end-demux.qzv
+qiime taxa barplot --i-table table-dada2.qza \
+ --i-taxonomy taxonomy.sklearn.qza \
+ --m-metadata-file metadata.file.txt \
+ --o-visualization taxa-bar-plots.dada2.qzv
 ```
-
-This next step is important! Make sure to open a new terminal and open chrome in it. For the rest of the day keep this terminal and chrome open (To open a new terminal look at page 11). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run:
-
-```{bash, eval=FALSE}
-chrome.sh
-```
-
-Then:
-
-- Type the following web-site: ‘view.qiime2.org’
-- Click on ‘Drag and drop or click here’ panel
-- You can browse now to find and select the file ‘paired-end-demux.qzv’
+ 
+Once you have loaded the file in the browser, you may specify the taxonomic level to look at, as well as a few sorting and colouring options.
 
 __Questions__: 
 
-- Are the sequences evenly distributed across samples?
-- Which sample has the lowest number of sequences? 
-- Is there any sample with a low final number of sequences? 
-- Are there any samples that can be excluded? 
-- What is the average sequence count per sample?
-- How is the overall quality for the sequences?
+- What is the most abundant taxon, at level 5, in the dataset? 
+- How do the samples compare to each other?
+
+If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some step and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.

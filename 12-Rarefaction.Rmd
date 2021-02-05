@@ -1,106 +1,45 @@
-# Import sequences into QIIME2
+#  Sequencing depth evaluation: rarefaction plot
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
-The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt’.
+The diversity detected depends, to an extent, on the sampling depth (i.e. an incompletely sampled community will appear less diverse than a fully sampled community). Therefore, to compare the diversity among samples of different sizes, we need to account for this. We can do this by rarefaction, or re-sampling, from the data. Equally sized subsamples are directly comparable among different samples. In addition, if we sample progressively smaller subsamples from a sample, we draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
-The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
 
-```{bash, eval}
-head –n 7 PairedEndFastqManifestPhred33.csv
-```
-
-sample-id,absolute-filepath,direction
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-
-In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.
-
-Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.
-
-An example
-
-/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-Should become (where XXX is equal to the number in your username):
-
-/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-The ‘metadata.file.txt’, is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metircs (observed variants, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’ evenness). You may want to exclude `--p-metrics faith_pd` for markers such as ITS.
 
 ```{bash, eval=FALSE}
-less metadata.file.txt
+qiime diversity alpha-rarefaction --i-table table-dada2.qza \
+ --i-phylogeny rooted-tree.qza \
+ # Min and max depth for the plot
+ --p-min-depth 5000 \
+ --p-max-depth 130000 \
+ # Evaluating diversity every 75 seqs depth
+ --p-steps 75 \
+ # Using average from 55 iterations for the diversity count
+ --p-iterations 55 \
+ --m-metadata-file metadata.file.txt \
+ --p-metrics simpson_e \
+ --p-metrics simpson \
+ --p-metrics shannon \
+ --p-metrics observed_otus \
+ --p-metrics faith_pd \
+ --o-visualization rarefaction-curve.qzv
 ```
 
-Results:
+The command will take approx. 10 min; the result is a visualisation artifact. From the loaded file, you can select the metric to visualize as well as the grouping (there is one non-numerical column in the metadata file).
 
-sample-id BarcodeSequence Floor Location Place
-#q2:types categorical numeric categorical categorical
-K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance
-T CAGAGAGG-ACTGCATA 1 StudentHome Entrance
-1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance
-1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding
-1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance
-1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding
+The visualization will have two plots. The top plot is an alpha rarefaction plot and is primarily used to determine if the richness of the samples has been fully observed or sequenced. If the lines in the plot appear to “level out” (i.e., approach a slope of zero) at some sampling depth along the xaxis, that suggests that collecting additional sequences beyond that sampling depth would not likely result in the observation of additional features. If the lines in a plot don’t level out, this may be because the richness of the samples hasn’t been fully observed yet (because too few sequences were collected), or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
 
-In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.
+The bottom plot in this visualization is important when grouping samples by metadata. It illustrates the number of samples that remain in each group when the feature table is rarefied to each sampling depth. If a given sampling depth (depth D) is larger than the total frequency of sample S (i.e., the number of sequences that were obtained for sample S), it is not possible to compute the diversity metric for sample S at sampling depth D. If many of the samples in a group have lower total frequencies than D, the average diversity presented for that group at D in the top plot will be unreliable because it will have been computed on relatively few samples. When grouping samples by metadata, it is therefore essential to look at the bottom plot to ensure that the data presented in the top plot is reliable.
 
-To run QIIME2’s commands we first need to activate it:
-
-```{bash, eval=FALSE}
-source ~luca/Metagenetics_2019/qiime2_env.sh
-```
-
-That will be the same as running the command `source activate qiime2-2019.1` in your own installation. Next run:
-
-```{bash, eval=FALSE}
-source tab-qiime
-```
-
-Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.
-
-When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.
-
-First, we will load all the read pairs into an artifact.
-
-```{bash, eval=FALSE}
-qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
- --input-path PairedEndFastqManifestPhred33.csv \
- --output-path paired-end-demux.qza \
- --input-format PairedEndFastqManifestPhred33
-```
- 
-This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’, the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).
-
-To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).
-
-```{bash, eval=FALSE}
-qiime demux summarize --i-data paired-end-demux.qza \
---o-visualization paired-end-demux.qzv
-```
-
-This next step is important! Make sure to open a new terminal and open chrome in it. For the rest of the day keep this terminal and chrome open (To open a new terminal look at page 11). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run:
-
-```{bash, eval=FALSE}
-chrome.sh
-```
-
-Then:
-
-- Type the following web-site: ‘view.qiime2.org’
-- Click on ‘Drag and drop or click here’ panel
-- You can browse now to find and select the file ‘paired-end-demux.qzv’
+Choose a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between losing sequencing depth within few samples or loosing entire samples. The best choice usually depends on the experimental design, if you have sample replicates you may lose a few of these without losing statistical power for the analysis, if not it may be choosing a lower threshold (and therefore loosing sequencing for the best sequenced samples you have …)
 
 __Questions__: 
 
-- Are the sequences evenly distributed across samples?
-- Which sample has the lowest number of sequences? 
-- Is there any sample with a low final number of sequences? 
-- Are there any samples that can be excluded? 
-- What is the average sequence count per sample?
-- How is the overall quality for the sequences?
+- Are any samples not fully sequenced? 
+- Choose a sampling depth (rarefaction threshold) to use for the alpha- and beta-diversity analysis, you can discuss with a class-mate.
