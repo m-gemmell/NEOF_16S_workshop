@@ -1,6 +1,6 @@
 # Assign a taxonomic classification to each amplicon sequence variant
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 
 
 Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. Here, we use the `sk-learn` classifier to assign taxonomy based on the Greengenes database (DeSantis _et al_., 2006). 

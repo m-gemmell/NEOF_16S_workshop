@@ -214,6 +214,9 @@ To include phylogenetic diversity metrics in the diversity analysis, such as Uni
 For some marker genes it is not possible to build phylogenetic tree (ITS is among these), and it is therefore important to know the properties of the marker in use. Consequently, it is not possible to use any diversity metrics that requires the phylogenetic distance as input.
 
 ## Data normalisation
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/normalisation.png", auto_pdf = TRUE)
+``` 
 
 Any further analyses to compare the identified ASVs among sample groups (either alpha- or beta-diversity or differential abundance) should account for the features of the abundance table that can cause erroneous results (Weiss et al., 2017). These features are:
 
@@ -241,6 +244,9 @@ a. The ‘rarefaction’ method, in the context of the alpha- and beta-diversity
 b. The ‘centered log-ratio transformation’ (clr-transformation) method, in the context of the differential abundance analysis.
 
 ## Alpha-diversity
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+``` 
 Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of species in the sample) and evenness (a measure of the relative abundance of different species that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
 ASVs).
 
@@ -350,4 +356,583 @@ Already there is useful information for us on the terminal window.
 To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
 
 <!--chapter:end:04-Cluster_Introduction.Rmd-->
+
+# Linux quick user guide
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+In the following parts of the practical exercise, descriptions of commands will be marked by hash character, `#`, these lines should not be typed in the terminal. e.g.
+
+```{bash, eval=FALSE}
+# description;
+```
+
+Commands directed to the bash terminal will be in red. e.g.
+
+```{bash, eval=FALSE}
+cat filename
+```
+
+Run the commands one after the other, from the command line.
+
+When a command’s length exceeds the width of the line available in the paragraph, the convention used in this document is to represent the ‘incompleteness of the command in the first line’ by ending it with a `\` sign. You may choose to split the command onto more than one line using this method in the shell or you may type the second line of the command straight after the first. In the former case, after typing the `\` and pressing ENTER, the prompt will show a `>` sign indicating it is waiting for more command. This prompt `>` is NOT reported in the command you have to type, so in any case this document showing a command line starting with the `>` sign please be careful to type it.
+
+## Accessing the data and navigating the command line.
+
+In Unix, everything works via commands on the command line. Also, the Unix environment consists of directories which may contain other directories and/or files. At any one time you are in a directory, which is within another directory and so on, and there are directories ‘below’ you, which you can move into. When you type pwd, you see the full path to your location, or “working directory” (e.g. /pub39/tea/luca/Metagenetics_2019). The directories are separated by “/”. The initial “/” is the root directory (the directory that contains everything else). When you first log in, you are in your home, the directory containing all the files and directories that you create. To make a directory, move into it, see where you are, what else is there and move up out of it, try these commands.
+
+```{bash eval=FALSE}
+mkdir adirectory
+cd adirectory
+pwd
+ls
+cd ..
+ls
+rm –r adirectory
+```
+
+Here, `cd` changes your directory (`..` means “jump up a level”) and `ls` lists the files and directories you can see (the `-l` option gives more information about each file/dir). You can delete a file or directory using the `rm` command, adding the `-r` option for a directory. Use these until you are comfortable navigating around.
+
+Now you need to obtain the raw data you will be analysing in this workshop. Create a main directory for the workshop and copy the directory of workshop data from its location (`/pub39/tea/luca/Metagenetics_2019/RawReads`) to your directory (`.`) using the `cp` command. The `-r` option allows you to copy an entire directory.
+
+```{bash eval=FALSE}
+cd ~
+mkdir Metagenetics
+cp -r ~luca/Metagenetics_2019/RawReads ./Metagenetics/RawReads
+cp ~luca/Metagenetics_2019/PairedEndFastqManifestPhred33.csv \
+./Metagenetics
+cp ~luca/Metagenetics_2019/metadata.file.txt \
+./Metagenetics
+```
+
+Take a look at the data files
+
+```{bash, eval=FALSE}
+ls -l Metagenetics/RawReads
+```
+
+Now navigate into the directory, where you will do the analyses
+
+```{bash, eval=FALSE}
+cd Metagenetics
+```
+
+Now you will explore the data you are going to analyse.
+
+It is important to get a feel for the data and how it should and shouldn’t look. If the data were generated by Illumina (HiSeq or MiSeq), they will be in __fastq__ format, a text format that can be easily viewed. If the data are Illumina (HiSeq or MiSeq) and were generated by the CGR, these are the raw files which are already demutliplexed using the software CASAVA but were NOT postprocessed to remove adapter sequences and low-quality bases (as per standard protocol prior to
+most analysis).
+
+If your data is paired-end (MiSeq data will be), then each sample has two data files. E.g.:
+
+- _1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz_
+- _1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz_
+
+In this case, the names denote sample 1, barcode _AAGAGGCA-GTAAGGAG_, lane 1 (L001), forward reads (R1) or reverse reads (R2), file 1 (001). Files are in fastq format and are often compressed with gzip (.gz).
+
+Files are typically very large. Hence you must be careful to handle them in the right way. They are usually too large to simply open in a text editor, so don’t try. Instead, you should use Unix commands and scripts to manipulate them. Ensure the Illumina reads are in fastq format by having a look. To view the top of the file, use the `head` command (`tail` is an equivalent command which lets you view the end of a file, while `less` and `more` allow you to scroll through the file). In here we will use the `zless` command which is able to open files compressed with gzip.
+
+```{bash, eval=FALSE}
+zless RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+```
+
+Notice that each read is represented by 4 lines:
+
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+knitr::include_graphics(path = "figures/fastq_lines.png", auto_pdf = TRUE)
+``` 
+
+The first line is the read identifier. The second line is the sequence, and the fourth line is the quality score for this sequence. Qualities are in ASCII codes (in which a symbol represents a number: in this case the quality of the basecall).
+
+Note that the barcode sequence is displayed in the read header (but it may contain Ns).
+
+At this stage, you can get some information about your data. For instance, how many reads do you have? We can use the `grep` command to find every match to the pattern `^+$` (`^`=start of line, `$`=end of line, so match a line with a single `+` on it). There is only one line like this per read so the number of matches = the number of reads. The `-c` option makes grep return the count of the number of matches (rather than the matches themselves).
+
+```{bash, eval=FALSE}
+zgrep -c “^+$” 1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+```
+
+You should obtain:
+
+```{bash, eval=FALSE}
+~/Metagenomics/RawReads$ zgrep -c “^+$”1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+#result = 53731
+```
+
+
+
+<!--chapter:end:05-Linux_quick_user_guide.Rmd-->
+
+# QIIME2 analysis workflow
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+## Workflow
+
+The 'QIIME2' analysis workflow comprises of nine steps:
+
+1. Import sequences into QIIME2 artifact
+2. Trim the PCR primer sequences
+3. De-novo amplicon sequence variants identifications
+4. Assign a taxonomic classification to each ASV
+5. Make a phylogenetic tree of the identified ASVs
+6. Sequencing depth evaluation: rarefaction plot
+7. Sequencing controls evaluation: beta-diversity without normalisation
+8. Diversity analysis: alpha and beta
+9. Differential abundance analysis of ASVs across different conditions
+
+<!--chapter:end:06-QIIME2_analysis_workflow.Rmd-->
+
+# Import sequences into QIIME2
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt’.
+
+The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:
+
+```{bash, eval=FALSE}
+head –n 7 PairedEndFastqManifestPhred33.csv
+```
+
+sample-id,absolute-filepath,direction
+1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+
+In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.
+
+Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.
+
+An example
+
+/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+
+Should become (where XXX is equal to the number in your username):
+
+/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+
+The ‘metadata.file.txt’, is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.
+
+```{bash, eval=FALSE}
+less metadata.file.txt
+```
+
+Results:
+
+sample-id BarcodeSequence Floor Location Place
+#q2:types categorical numeric categorical categorical
+K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance
+T CAGAGAGG-ACTGCATA 1 StudentHome Entrance
+1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance
+1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding
+1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance
+1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding
+
+In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.
+
+To run QIIME2’s commands we first need to activate it:
+
+```{bash, eval=FALSE}
+source ~luca/Metagenetics_2019/qiime2_env.sh
+```
+
+That will be the same as running the command `source activate qiime2-2019.1` in your own installation. Next run:
+
+```{bash, eval=FALSE}
+source tab-qiime
+```
+
+Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.
+
+When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.
+
+First, we will load all the read pairs into an artifact.
+
+```{bash, eval=FALSE}
+qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
+ --input-path PairedEndFastqManifestPhred33.csv \
+ --output-path paired-end-demux.qza \
+ --input-format PairedEndFastqManifestPhred33
+```
+ 
+This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’, the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).
+
+To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).
+
+```{bash, eval=FALSE}
+qiime demux summarize --i-data paired-end-demux.qza \
+--o-visualization paired-end-demux.qzv
+```
+
+This next step is important! Make sure to open a new terminal and open chrome in it. For the rest of the day keep this terminal and chrome open (To open a new terminal look at page 11). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run:
+
+```{bash, eval=FALSE}
+chrome.sh
+```
+
+Then:
+
+- Type the following web-site: ‘view.qiime2.org’
+- Click on ‘Drag and drop or click here’ panel
+- You can browse now to find and select the file ‘paired-end-demux.qzv’
+
+__Questions__: 
+
+- Are the sequences evenly distributed across samples?
+- Which sample has the lowest number of sequences? 
+- Is there any sample with a low final number of sequences? 
+- Are there any samples that can be excluded? 
+- What is the average sequence count per sample?
+- How is the overall quality for the sequences?
+
+<!--chapter:end:07-Import_sequences_into_QIIME2.Rmd-->
+
+# Trim the PCR primer sequences
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
+
+We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2 (approx. 5 min).
+
+```{bash, eval=FALSE}
+qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza
+ # Forward primer
+ --p-front-f NNNNNGTGCCAGCMGCCGCGGTAA \
+ # Reverse primer
+ --p-front-r GGACTACHVGGGTWTCTAAT \
+--o-trimmed-sequences paired-end-demux.trim.qza
+```
+
+To visualise the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact (approx. 2 mins).
+
+```{bash, eval=FALSE}
+qiime demux summarize --i-data paired-end-demux.trim.qza \
+--o-visualization paired-end-demux.trim.qzv
+```
+
+If you are working with ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
+
+Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
+
+__Questions__: 
+
+- Are the sequences evenly distributed across samples?
+- Which sample has the lowest number of sequences? 
+- Are there any samples that can be excluded? 
+- What is the average sequence count per sample? 
+- How is the oveerall quality for the sequences? 
+- Which truncating lengths would you chose for R1 and R2?
+
+<!--chapter:end:08-Trim_PCR_sequences.Rmd-->
+
+# De-novo amplicon sequence variants identification
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
+
+```{bash, eval=FALSE}
+qiime dada2 denoise-paired \
+--i-demultiplexed-seqs paired-end-demux.trim.qza \
+# Truncates R1 sequences after the 220 nt length
+--p-trunc-len-f 220 \
+# Truncates R2 sequences after the 220 nt length
+--p-trunc-len-r 220 \
+# Object containing the identified variants
+--o-representative-sequences rep-seqs-dada2.qza \
+# Object containing abundance table for the identified variants
+--o-table table-dada2.qza \
+--o-denoising-stats dada2-stats.qza \
+--verbose
+```
+
+This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
+
+```{bash, eval=FALSE}
+cp ~luca/Metagenetics_2019/table-dada2.qza .
+cp ~luca/Metagenetics_2019/rep-seqs-dada2.qza .
+cp ~luca/Metagenetics_2019/dada2-stats.qza .
+```
+
+The `rep-seqs-dada2.qza` artifact contains the identified sequence variants and the `tabledada2.qza` artifact contains their abundance data. The `dada2-stats.qza` artifact summarises the statistics after the main denoising steps.
+
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If in your one of your future projects this step is taking too long, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
+
+In the case of a marker gene with very variable amplicon sequence length, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be use instead the above dada2 command.
+
+To visualise the result, run:
+
+```{bash, eval=FALSE}
+qiime feature-table summarize --i-table table-dada2.qza \
+ --o-visualization table-dada2.qzv \
+ --m-sample-metadata-file metadata.file.txt
+```
+ 
+And load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
+
+```{bash, eval=FALSE}
+qiime metadata tabulate --m-input dada2-stats.qza \
+ --o-visualization dada2-stats.qzv
+```
+ 
+And load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.
+
+__Questions__: 
+
+- In which denoising step were most of the sequences lost?
+- Are enough sequences left to proceed with the analysis? 
+- How many variants (also called ‘features’) have been identified? 
+- How are the variants distributed across samples? 
+- How many sequences are ‘rare’ (represented in few samples or in low number)?
+
+<!--chapter:end:09-ASV_identification.Rmd-->
+
+# Assign a taxonomic classification to each amplicon sequence variant
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
+``` 
+
+Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. Here, we use the `sk-learn` classifier to assign taxonomy based on the Greengenes database (DeSantis _et al_., 2006). 
+
+Greengenes is a database containing quality-controlled microbial sequence data. Greengenes 16S rDNA sequences come from a large number of species which have been formatted for use in QIIME, by clustering the sequences at a given level of similarity (here, 99%). As for OTU-picking, the more stringent the similarity threshold, the more fine-grained the taxonomic designation (i.e. there are more Greengenes OTUs defined to the species level at 99% than at 97% similarity). The classifier maps the variant sequences, defined above, to OTU representative sequences from the Greengenes set.
+
+First, we need to import the Greengenes data into QIIME2 artifact objects.
+
+```{bash, eval=FALSE}
+qiime tools import \
+--input-path
+/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/rep_set/99_otus.fasta \
+ --output-path gg-13-8.99_otus.qza \
+ --type 'FeatureData[Sequence]'
+
+qiime tools import \
+--input-path
+/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
+ --output-path gg-13-8.99.taxa.qza \
+ --input-format HeaderlessTSVTaxonomyFormat \
+ --type 'FeatureData[Taxonomy]'
+```
+
+These steps will create two objects containing the sequences and their taxonomy, respectively, and should finish in less than 2 mins.
+
+The classifier tool we are going to use requires a training step to reach its optimum performance. The training is performed on a read set extracted from Greengenes representative sequences, including only the amplified region of interest.
+
+Note: Do not run the below command for this tutorial, see below command)
+
+```{bash, eval=FALSE}
+qiime feature-classifier extract-reads \
+--i-sequences gg-13-8.99_otus.qza \
+--p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA \
+--p-r-primer GGACTACHVGGGTWTCTAAT \
+# Creating reads of 250 bp as in our case
+--p-trunc-len 250 \
+--o-reads gg-13-8.99.ref.seqs.qza
+```
+
+Given that this step may require more than 14h to finish, we won’t be able to run on this occasion. Copy over premade result with the following command:
+
+```{bash, eval=FALSE}
+cp /pub39/tea/luca/Metagenetics_2019/gg-13-8.99.ref.seqs.qza .
+```
+
+To train the `sk-learn` classifier on this set of reads (approx. 25 mins):
+
+```{bash, eval=FALSE}
+qiime feature-classifier fit-classifier-naive-bayes \
+--i-reference-reads gg-13-8.99.ref.seqs.qza \
+ --i-reference-taxonomy gg-13-8.99.taxa.qza \
+ --o-classifier classifier.trained.qza
+```
+
+The command for the taxonomy assignment is (approx. 5 min):
+
+```{bash, eval=FALSE}
+qiime feature-classifier classify-sklearn \
+--i-classifier classifier.trained.qza \
+ # Default value for confidence
+ --p-confidence 0.7 \
+ --i-reads rep-seqs-dada2.qza \
+ --o-classification taxonomy.sklearn.qza
+```
+ 
+To visualise the taxonomy-abundance bar-chart obtained, run (approx. 1 min):
+
+```{bash, eval=FALSE}
+qiime taxa barplot --i-table table-dada2.qza \
+ --i-taxonomy taxonomy.sklearn.qza \
+ --m-metadata-file metadata.file.txt \
+ --o-visualization taxa-bar-plots.dada2.qzv
+```
+ 
+Once you have loaded the file in the browser, you may specify the taxonomic level to look at, as well as a few sorting and colouring options.
+
+__Questions__: 
+
+- What is the most abundant taxon, at level 5, in the dataset? 
+- How do the samples compare to each other?
+
+If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some step and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.
+
+<!--chapter:end:10-Taxonomic_assignment.Rmd-->
+
+# Make a phylogenetic tree of the identified ASVs
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
+``` 
+
+To obtain the phylogenetic tree the steps are:
+
+1. Alignment of the sequence variants with MAFFT
+2. Masking out the uninformative sequences with MASK
+3. Creation of the un-rooted tree with FASTTREE
+4. Creation of the rooted tree
+
+The rooted tree will be used to compute phylogenetical aware alpha- and beta-diversity metrics such as Faith’s Phylogenetical Distance (Faith’s PD) and UniFrac distances, for any marker for which this is possible (therefore excluding ITS among others).
+
+The commands are the following:
+
+```{bash, eval=FALSE}
+qiime alignment mafft --i-sequences rep-seqs-dada2.qza \
+--o-alignment aligned-rep-seqs.qza
+
+qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+--o-masked-alignment masked-aligned-rep-seqs.qza
+
+qiime phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza \
+--o-tree unrooted-tree.qza
+
+qiime phylogeny midpoint-root --i-tree unrooted-tree.qza \
+--o-rooted-tree rooted-tree.qza
+```
+
+All these steps should finish in approx. 3 min, the final artifact for later use is ‘rooted-tree.qza’ 
+
+<!--chapter:end:11-Phylogentic_tree.Rmd-->
+
+#  Sequencing depth evaluation: rarefaction plot
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+The diversity detected depends, to an extent, on the sampling depth (i.e. an incompletely sampled community will appear less diverse than a fully sampled community). Therefore, to compare the diversity among samples of different sizes, we need to account for this. We can do this by rarefaction, or re-sampling, from the data. Equally sized subsamples are directly comparable among different samples. In addition, if we sample progressively smaller subsamples from a sample, we draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
+
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metircs (observed variants, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’ evenness). You may want to exclude `--p-metrics faith_pd` for markers such as ITS.
+
+```{bash, eval=FALSE}
+qiime diversity alpha-rarefaction --i-table table-dada2.qza \
+ --i-phylogeny rooted-tree.qza \
+ # Min and max depth for the plot
+ --p-min-depth 5000 \
+ --p-max-depth 130000 \
+ # Evaluating diversity every 75 seqs depth
+ --p-steps 75 \
+ # Using average from 55 iterations for the diversity count
+ --p-iterations 55 \
+ --m-metadata-file metadata.file.txt \
+ --p-metrics simpson_e \
+ --p-metrics simpson \
+ --p-metrics shannon \
+ --p-metrics observed_otus \
+ --p-metrics faith_pd \
+ --o-visualization rarefaction-curve.qzv
+```
+
+The command will take approx. 10 min; the result is a visualisation artifact. From the loaded file, you can select the metric to visualize as well as the grouping (there is one non-numerical column in the metadata file).
+
+The visualization will have two plots. The top plot is an alpha rarefaction plot and is primarily used to determine if the richness of the samples has been fully observed or sequenced. If the lines in the plot appear to “level out” (i.e., approach a slope of zero) at some sampling depth along the xaxis, that suggests that collecting additional sequences beyond that sampling depth would not likely result in the observation of additional features. If the lines in a plot don’t level out, this may be because the richness of the samples hasn’t been fully observed yet (because too few sequences were collected), or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
+
+The bottom plot in this visualization is important when grouping samples by metadata. It illustrates the number of samples that remain in each group when the feature table is rarefied to each sampling depth. If a given sampling depth (depth D) is larger than the total frequency of sample S (i.e., the number of sequences that were obtained for sample S), it is not possible to compute the diversity metric for sample S at sampling depth D. If many of the samples in a group have lower total frequencies than D, the average diversity presented for that group at D in the top plot will be unreliable because it will have been computed on relatively few samples. When grouping samples by metadata, it is therefore essential to look at the bottom plot to ensure that the data presented in the top plot is reliable.
+
+Choose a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between losing sequencing depth within few samples or loosing entire samples. The best choice usually depends on the experimental design, if you have sample replicates you may lose a few of these without losing statistical power for the analysis, if not it may be choosing a lower threshold (and therefore loosing sequencing for the best sequenced samples you have …)
+
+__Questions__: 
+
+- Are any samples not fully sequenced? 
+- Choose a sampling depth (rarefaction threshold) to use for the alpha- and beta-diversity analysis, you can discuss with a class-mate.
+
+<!--chapter:end:12-Rarefaction.Rmd-->
+
+# Sequencing controls evaluation: beta-diversity without normalisation
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+The current protocols for metagenetic experiments strongly suggest to always include positive and negative controls for any stage of the lab processing of the samples (including the sequencing). It is therefore likely that in your design you will have negative controls (to explore the microbiome derived by the kits used, the so-called ‘kit-ome’) and positive controls (mock or known communities, to investigate biases from the lab protocols or the bioinformatics pipeline).
+
+To investigate if the controls (especially the negatives) show contaminations and or suspicious similarity with the samples under investigation, it is a good practice to investigate beta-diversities before proceeding with the rarefaction step. That is because the rarefaction will probably exclude most of the negative controls containing not as many reads as the samples in analysis.
+
+In the experimental design used for this practical there are no controls. However, it may be good to look at the diversity before rarefaction to compare with the same after rarefaction. The following commands are used to obtain the Principal Coordinate Analysis (PCoA) for the beta-diversity using the ‘bray-curtis’ distance.
+
+```{bash, eval=FALSE}
+qiime diversity beta \
+--i-table table-dada2.qza \
+--p-metric braycurtis \
+--o-distance-matrix dada2.braycurtis.notNorm.diversity.qza
+ 
+qiime diversity pcoa \
+--i-distance-matrix dada2.braycurtis.notNorm.diversity.qza \
+--o-pcoa dada2.braycurtis.notNorm.diversity.pcoa.qza
+ 
+qiime emperor plot \
+--i-pcoa dada2.braycurtis.notNorm.diversity.pcoa.qza \
+--m-metadata-file metadata.file.txt \
+--o-visualization dada2.braycurtis.notNorm.diversity.pcoa.qzv
+```
+
+These steps will take approx. 2 min. The final `dada2.braycurtis.notNorm.diversity.pcoa.qzv` artifact contains the first 3 axes for the PCoA analysis. It is possible to colour the samples by each metadata category group, to highlight if a specific metadata may have an effect on the diversity.
+
+<!--chapter:end:13-Sequencing_controls_evaluation.Rmd-->
+
+# Diversity analysis
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+<!--chapter:end:14-Diversity_analysis.Rmd-->
+
+# Differential abundance analysis
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+
+<!--chapter:end:15-Differential_abundance.Rmd-->
+
+# Final consideration
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+
+<!--chapter:end:16-Final_consideration.Rmd-->
+
+# Resources
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+
+<!--chapter:end:17-Resources.Rmd-->
+
+# Appendix
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+``` 
+
+
+<!--chapter:end:18-Appendix.Rmd-->
 

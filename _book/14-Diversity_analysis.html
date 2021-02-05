@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <title>Chapter 14 Diversity analysis | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 14 Diversity analysis | Bacterial 16S metabarcoding" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="Chapter 14 Diversity analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="Chapter 14 Diversity analysis | Bacterial 16S metabarcoding" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="03-Intro_to_qiime2.html"/>
-<link rel="next" href="05-Linux_quick_user_guide.html"/>
+<link rel="prev" href="13-Sequencing_controls_evaluation.html"/>
+<link rel="next" href="15-Differential_abundance.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -202,73 +202,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cluster-introduction" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Cluster Introduction</h1>
+<div id="diversity-analysis" class="section level1" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Diversity analysis</h1>
 <p><img src="figures/cluster.png" width="20%" style="display: block; margin: auto;" /></p>
-<div id="logon-instructions" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Logon instructions</h2>
-<p>For this workshop we will be using Virtual Network Computing (VNC). You will log onto our machines so you can access our VNC desktops.</p>
-<p><strong>Prior to loging in you will need to know the following key:</strong></p>
-<p><img src="figures/f8_key.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>The VNC will be set to full screen by default. <strong>F8</strong> will bring up a menu in the VNC that will allow you to disable full screen.</p>
-<p><img src="figures/fullscreen_button.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>Follow the below instructions to log in to our Linux teaching VNC:</p>
-<p><strong>Windows</strong></p>
-<ol style="list-style-type: decimal">
-<li>Go to the following link: <a href="http://ada01.liv.ac.uk/pcvnc.exe" class="uri">http://ada01.liv.ac.uk/pcvnc.exe</a></li>
-<li>Save the file as “pcvnc.exe”</li>
-<li>Run the file</li>
-<li>Enter your password when the prompt appears</li>
-</ol>
-<p><strong>Mac</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
-<ul>
-<li><code>curl -s http://ada01.liv.ac.uk/MacVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p><strong>Linux</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
-<ul>
-<li><code>curl -s http://ada01.liv.ac.uk/LinuxVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p>You will now be in a logged-in Linux VNC desktop with two terminals. You will see something like below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-<img src="figures/logon_pic.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>If the VNC is taking up to much space of your screen you can move it so alot of it is off the screen. Ensure you can see one whole terminal.</p>
-<p>These instructions will not work outside of this workshop. If your workplace has its own Linux cluster please ask your cluster manager for a user guide. If you would like to install your own Linux OS on your desktop or laptop we would recommend Ubuntu.</p>
-<p>The following link is a guide to install Ubuntu:<br />
-<a href="https://www.ubuntu.com/download/desktop/install-ubuntu-desktop" class="uri">https://www.ubuntu.com/download/desktop/install-ubuntu-desktop</a>.<br />
-If you use a USB you need to create a bootable USB stick. The following link will assist:<br />
-<a href="https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows" class="uri">https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows</a></p>
-</div>
-<div id="the-terminal-window" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> The Terminal Window</h2>
-<p>In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
-<img src="figures/terminal_window.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Already there is useful information for us on the terminal window.</p>
-<ul>
-<li><strong>nsc006</strong>: This is the login name, also known as the username. In this case nsc006 is a demonstrator’s account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.</li>
-<li><strong>gauss03</strong>: This is the machine name the user is logged into.</li>
-<li><strong>~</strong>: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others <strong>‘~’</strong> is a shortcut to the user’s home directory.</li>
-<li>Everything after the <strong>‘$’</strong> is where commands are typed into the terminal. This is also referred to as the command line.</li>
-</ul>
-<p>To open a new terminal window, right click on the main screen, choose <code>Applications</code> -&gt; <code>Shell</code> -&gt; <code>bash</code></p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="03-Intro_to_qiime2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="05-Linux_quick_user_guide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="13-Sequencing_controls_evaluation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="15-Differential_abundance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

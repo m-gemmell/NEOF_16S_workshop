@@ -7,7 +7,7 @@ The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest�
 
 The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:
 
-```{bash, eval}
+```{bash, eval=FALSE}
 head –n 7 PairedEndFastqManifestPhred33.csv
 ```
 

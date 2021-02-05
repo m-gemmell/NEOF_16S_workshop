@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <title>Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="03-Intro_to_qiime2.html"/>
-<link rel="next" href="05-Linux_quick_user_guide.html"/>
+<link rel="prev" href="06-QIIME2_analysis_workflow.html"/>
+<link rel="next" href="08-Trim_PCR_sequences.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -202,73 +202,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cluster-introduction" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Cluster Introduction</h1>
+<div id="import-sequences-into-qiime2" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Import sequences into QIIME2</h1>
 <p><img src="figures/cluster.png" width="20%" style="display: block; margin: auto;" /></p>
-<div id="logon-instructions" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Logon instructions</h2>
-<p>For this workshop we will be using Virtual Network Computing (VNC). You will log onto our machines so you can access our VNC desktops.</p>
-<p><strong>Prior to loging in you will need to know the following key:</strong></p>
-<p><img src="figures/f8_key.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>The VNC will be set to full screen by default. <strong>F8</strong> will bring up a menu in the VNC that will allow you to disable full screen.</p>
-<p><img src="figures/fullscreen_button.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>Follow the below instructions to log in to our Linux teaching VNC:</p>
-<p><strong>Windows</strong></p>
-<ol style="list-style-type: decimal">
-<li>Go to the following link: <a href="http://ada01.liv.ac.uk/pcvnc.exe" class="uri">http://ada01.liv.ac.uk/pcvnc.exe</a></li>
-<li>Save the file as “pcvnc.exe”</li>
-<li>Run the file</li>
-<li>Enter your password when the prompt appears</li>
-</ol>
-<p><strong>Mac</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
+<p>The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt.’</p>
+<p>The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="07-Import_sequences_into_QIIME2.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> –n 7 PairedEndFastqManifestPhred33.csv</span></code></pre></div>
+<p>sample-id,absolute-filepath,direction
+1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse</p>
+<p>In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.</p>
+<p>Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.</p>
+<p>An example</p>
+<p>/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</p>
+<p>Should become (where XXX is equal to the number in your username):</p>
+<p>/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</p>
+<p>The ‘metadata.file.txt,’ is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="07-Import_sequences_into_QIIME2.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> metadata.file.txt</span></code></pre></div>
+<p>Results:</p>
+<p>sample-id BarcodeSequence Floor Location Place
+#q2:types categorical numeric categorical categorical
+K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance
+T CAGAGAGG-ACTGCATA 1 StudentHome Entrance
+1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance
+1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding
+1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance
+1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding</p>
+<p>In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.</p>
+<p>To run QIIME2’s commands we first need to activate it:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="07-Import_sequences_into_QIIME2.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~luca/Metagenetics_2019/qiime2_env.sh</span></code></pre></div>
+<p>That will be the same as running the command <code>source activate qiime2-2019.1</code> in your own installation. Next run:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="07-Import_sequences_into_QIIME2.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> tab-qiime</span></code></pre></div>
+<p>Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.</p>
+<p>When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.</p>
+<p>First, we will load all the read pairs into an artifact.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="07-Import_sequences_into_QIIME2.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import --type <span class="st">&#39;SampleData[PairedEndSequencesWithQuality]&#39;</span> <span class="kw">\</span></span>
+<span id="cb14-2"><a href="07-Import_sequences_into_QIIME2.html#cb14-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-path</span> PairedEndFastqManifestPhred33.csv <span class="kw">\</span></span>
+<span id="cb14-3"><a href="07-Import_sequences_into_QIIME2.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--output-path</span> paired-end-demux.qza <span class="kw">\</span></span>
+<span id="cb14-4"><a href="07-Import_sequences_into_QIIME2.html#cb14-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-format</span> PairedEndFastqManifestPhred33</span></code></pre></div>
+<p>This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza,’ the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).</p>
+<p>To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="07-Import_sequences_into_QIIME2.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> demux summarize --i-data paired-end-demux.qza <span class="kw">\</span></span>
+<span id="cb15-2"><a href="07-Import_sequences_into_QIIME2.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> paired-end-demux.qzv</span></code></pre></div>
+<p>This next step is important! Make sure to open a new terminal and open chrome in it. For the rest of the day keep this terminal and chrome open (To open a new terminal look at page 11). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome,’ run:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="07-Import_sequences_into_QIIME2.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">chrome.sh</span></span></code></pre></div>
+<p>Then:</p>
 <ul>
-<li><code>curl -s http://ada01.liv.ac.uk/MacVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p><strong>Linux</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
-<ul>
-<li><code>curl -s http://ada01.liv.ac.uk/LinuxVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p>You will now be in a logged-in Linux VNC desktop with two terminals. You will see something like below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-<img src="figures/logon_pic.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>If the VNC is taking up to much space of your screen you can move it so alot of it is off the screen. Ensure you can see one whole terminal.</p>
-<p>These instructions will not work outside of this workshop. If your workplace has its own Linux cluster please ask your cluster manager for a user guide. If you would like to install your own Linux OS on your desktop or laptop we would recommend Ubuntu.</p>
-<p>The following link is a guide to install Ubuntu:<br />
-<a href="https://www.ubuntu.com/download/desktop/install-ubuntu-desktop" class="uri">https://www.ubuntu.com/download/desktop/install-ubuntu-desktop</a>.<br />
-If you use a USB you need to create a bootable USB stick. The following link will assist:<br />
-<a href="https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows" class="uri">https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows</a></p>
-</div>
-<div id="the-terminal-window" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> The Terminal Window</h2>
-<p>In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
-<img src="figures/terminal_window.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Already there is useful information for us on the terminal window.</p>
-<ul>
-<li><strong>nsc006</strong>: This is the login name, also known as the username. In this case nsc006 is a demonstrator’s account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.</li>
-<li><strong>gauss03</strong>: This is the machine name the user is logged into.</li>
-<li><strong>~</strong>: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others <strong>‘~’</strong> is a shortcut to the user’s home directory.</li>
-<li>Everything after the <strong>‘$’</strong> is where commands are typed into the terminal. This is also referred to as the command line.</li>
+<li>Type the following web-site: ‘view.qiime2.org’</li>
+<li>Click on ‘Drag and drop or click here’ panel</li>
+<li>You can browse now to find and select the file ‘paired-end-demux.qzv’</li>
 </ul>
-<p>To open a new terminal window, right click on the main screen, choose <code>Applications</code> -&gt; <code>Shell</code> -&gt; <code>bash</code></p>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>Are the sequences evenly distributed across samples?</li>
+<li>Which sample has the lowest number of sequences?</li>
+<li>Is there any sample with a low final number of sequences?</li>
+<li>Are there any samples that can be excluded?</li>
+<li>What is the average sequence count per sample?</li>
+<li>How is the overall quality for the sequences?</li>
+</ul>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="03-Intro_to_qiime2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="05-Linux_quick_user_guide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="06-QIIME2_analysis_workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="08-Trim_PCR_sequences.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

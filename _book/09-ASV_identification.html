@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <title>Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="03-Intro_to_qiime2.html"/>
-<link rel="next" href="05-Linux_quick_user_guide.html"/>
+<link rel="prev" href="08-Trim_PCR_sequences.html"/>
+<link rel="next" href="10-Taxonomic_assignment.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -202,73 +202,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cluster-introduction" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Cluster Introduction</h1>
+<div id="de-novo-amplicon-sequence-variants-identification" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> De-novo amplicon sequence variants identification</h1>
 <p><img src="figures/cluster.png" width="20%" style="display: block; margin: auto;" /></p>
-<div id="logon-instructions" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Logon instructions</h2>
-<p>For this workshop we will be using Virtual Network Computing (VNC). You will log onto our machines so you can access our VNC desktops.</p>
-<p><strong>Prior to loging in you will need to know the following key:</strong></p>
-<p><img src="figures/f8_key.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>The VNC will be set to full screen by default. <strong>F8</strong> will bring up a menu in the VNC that will allow you to disable full screen.</p>
-<p><img src="figures/fullscreen_button.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>Follow the below instructions to log in to our Linux teaching VNC:</p>
-<p><strong>Windows</strong></p>
-<ol style="list-style-type: decimal">
-<li>Go to the following link: <a href="http://ada01.liv.ac.uk/pcvnc.exe" class="uri">http://ada01.liv.ac.uk/pcvnc.exe</a></li>
-<li>Save the file as “pcvnc.exe”</li>
-<li>Run the file</li>
-<li>Enter your password when the prompt appears</li>
-</ol>
-<p><strong>Mac</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
+<p>We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don’t run this command, see below command):</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="09-ASV_identification.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="kw">\</span></span>
+<span id="cb19-2"><a href="09-ASV_identification.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-demultiplexed-seqs</span> paired-end-demux.trim.qza <span class="kw">\</span></span>
+<span id="cb19-3"><a href="09-ASV_identification.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R1 sequences after the 220 nt length</span></span>
+<span id="cb19-4"><a href="09-ASV_identification.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-f</span> 220 <span class="kw">\</span></span>
+<span id="cb19-5"><a href="09-ASV_identification.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R2 sequences after the 220 nt length</span></span>
+<span id="cb19-6"><a href="09-ASV_identification.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-r</span> 220 <span class="kw">\</span></span>
+<span id="cb19-7"><a href="09-ASV_identification.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing the identified variants</span></span>
+<span id="cb19-8"><a href="09-ASV_identification.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-representative-sequences</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
+<span id="cb19-9"><a href="09-ASV_identification.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing abundance table for the identified variants</span></span>
+<span id="cb19-10"><a href="09-ASV_identification.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb19-11"><a href="09-ASV_identification.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-denoising-stats</span> dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb19-12"><a href="09-ASV_identification.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--verbose</span></span></code></pre></div>
+<p>This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="09-ASV_identification.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/table-dada2.qza .</span>
+<span id="cb20-2"><a href="09-ASV_identification.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/rep-seqs-dada2.qza .</span>
+<span id="cb20-3"><a href="09-ASV_identification.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/dada2-stats.qza .</span></code></pre></div>
+<p>The <code>rep-seqs-dada2.qza</code> artifact contains the identified sequence variants and the <code>tabledada2.qza</code> artifact contains their abundance data. The <code>dada2-stats.qza</code> artifact summarises the statistics after the main denoising steps.</p>
+<p>This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If in your one of your future projects this step is taking too long, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.</p>
+<p>In the case of a marker gene with very variable amplicon sequence length, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: <code>--p-trunc-len-f 0</code> and <code>--p-trunc-len-r 0</code>. To exclude the low quality tails the <code>--p-trunc-q 20</code> option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the <code>qiime dada2 denoise-single</code> should be use instead the above dada2 command.</p>
+<p>To visualise the result, run:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="09-ASV_identification.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize --i-table table-dada2.qza <span class="kw">\</span></span>
+<span id="cb21-2"><a href="09-ASV_identification.html#cb21-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> table-dada2.qzv <span class="kw">\</span></span>
+<span id="cb21-3"><a href="09-ASV_identification.html#cb21-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--m-sample-metadata-file</span> metadata.file.txt</span></code></pre></div>
+<p>And load the obtained <code>table-dada2.qzv</code> into the ‘view.qiime2.org’ website.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="09-ASV_identification.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate --m-input dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb22-2"><a href="09-ASV_identification.html#cb22-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> dada2-stats.qzv</span></code></pre></div>
+<p>And load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.</p>
+<p><strong>Questions</strong>:</p>
 <ul>
-<li><code>curl -s http://ada01.liv.ac.uk/MacVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p><strong>Linux</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
-<ul>
-<li><code>curl -s http://ada01.liv.ac.uk/LinuxVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p>You will now be in a logged-in Linux VNC desktop with two terminals. You will see something like below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-<img src="figures/logon_pic.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>If the VNC is taking up to much space of your screen you can move it so alot of it is off the screen. Ensure you can see one whole terminal.</p>
-<p>These instructions will not work outside of this workshop. If your workplace has its own Linux cluster please ask your cluster manager for a user guide. If you would like to install your own Linux OS on your desktop or laptop we would recommend Ubuntu.</p>
-<p>The following link is a guide to install Ubuntu:<br />
-<a href="https://www.ubuntu.com/download/desktop/install-ubuntu-desktop" class="uri">https://www.ubuntu.com/download/desktop/install-ubuntu-desktop</a>.<br />
-If you use a USB you need to create a bootable USB stick. The following link will assist:<br />
-<a href="https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows" class="uri">https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows</a></p>
-</div>
-<div id="the-terminal-window" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> The Terminal Window</h2>
-<p>In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
-<img src="figures/terminal_window.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Already there is useful information for us on the terminal window.</p>
-<ul>
-<li><strong>nsc006</strong>: This is the login name, also known as the username. In this case nsc006 is a demonstrator’s account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.</li>
-<li><strong>gauss03</strong>: This is the machine name the user is logged into.</li>
-<li><strong>~</strong>: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others <strong>‘~’</strong> is a shortcut to the user’s home directory.</li>
-<li>Everything after the <strong>‘$’</strong> is where commands are typed into the terminal. This is also referred to as the command line.</li>
+<li>In which denoising step were most of the sequences lost?</li>
+<li>Are enough sequences left to proceed with the analysis?</li>
+<li>How many variants (also called ‘features’) have been identified?</li>
+<li>How are the variants distributed across samples?</li>
+<li>How many sequences are ‘rare’ (represented in few samples or in low number)?</li>
 </ul>
-<p>To open a new terminal window, right click on the main screen, choose <code>Applications</code> -&gt; <code>Shell</code> -&gt; <code>bash</code></p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="03-Intro_to_qiime2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="05-Linux_quick_user_guide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="08-Trim_PCR_sequences.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="10-Taxonomic_assignment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

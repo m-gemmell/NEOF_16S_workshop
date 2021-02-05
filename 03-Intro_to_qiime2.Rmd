@@ -155,13 +155,18 @@ a. The ‘rarefaction’ method, in the context of the alpha- and beta-diversity
 b. The ‘centered log-ratio transformation’ (clr-transformation) method, in the context of the differential abundance analysis.
 
 ## Alpha-diversity
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+``` 
 Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of species in the sample) and evenness (a measure of the relative abundance of different species that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
 ASVs).
 
 The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation of the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
-
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+``` 
 Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform nMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:

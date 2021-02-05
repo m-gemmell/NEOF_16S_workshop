@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <title>Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Cluster Introduction | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="03-Intro_to_qiime2.html"/>
-<link rel="next" href="05-Linux_quick_user_guide.html"/>
+<link rel="prev" href="09-ASV_identification.html"/>
+<link rel="next" href="11-Phylogentic_tree.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -202,73 +202,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cluster-introduction" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Cluster Introduction</h1>
-<p><img src="figures/cluster.png" width="20%" style="display: block; margin: auto;" /></p>
-<div id="logon-instructions" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Logon instructions</h2>
-<p>For this workshop we will be using Virtual Network Computing (VNC). You will log onto our machines so you can access our VNC desktops.</p>
-<p><strong>Prior to loging in you will need to know the following key:</strong></p>
-<p><img src="figures/f8_key.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>The VNC will be set to full screen by default. <strong>F8</strong> will bring up a menu in the VNC that will allow you to disable full screen.</p>
-<p><img src="figures/fullscreen_button.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>Follow the below instructions to log in to our Linux teaching VNC:</p>
-<p><strong>Windows</strong></p>
-<ol style="list-style-type: decimal">
-<li>Go to the following link: <a href="http://ada01.liv.ac.uk/pcvnc.exe" class="uri">http://ada01.liv.ac.uk/pcvnc.exe</a></li>
-<li>Save the file as “pcvnc.exe”</li>
-<li>Run the file</li>
-<li>Enter your password when the prompt appears</li>
-</ol>
-<p><strong>Mac</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
+<div id="assign-a-taxonomic-classification-to-each-amplicon-sequence-variant" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Assign a taxonomic classification to each amplicon sequence variant</h1>
+<p><img src="figures/classification.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. Here, we use the <code>sk-learn</code> classifier to assign taxonomy based on the Greengenes database (DeSantis <em>et al</em>., 2006).</p>
+<p>Greengenes is a database containing quality-controlled microbial sequence data. Greengenes 16S rDNA sequences come from a large number of species which have been formatted for use in QIIME, by clustering the sequences at a given level of similarity (here, 99%). As for OTU-picking, the more stringent the similarity threshold, the more fine-grained the taxonomic designation (i.e. there are more Greengenes OTUs defined to the species level at 99% than at 97% similarity). The classifier maps the variant sequences, defined above, to OTU representative sequences from the Greengenes set.</p>
+<p>First, we need to import the Greengenes data into QIIME2 artifact objects.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="10-Taxonomic_assignment.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="kw">\</span></span>
+<span id="cb23-2"><a href="10-Taxonomic_assignment.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--input-path</span></span>
+<span id="cb23-3"><a href="10-Taxonomic_assignment.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/rep_set/99_otus.fasta</span> <span class="kw">\</span></span>
+<span id="cb23-4"><a href="10-Taxonomic_assignment.html#cb23-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--output-path</span> gg-13-8.99_otus.qza <span class="kw">\</span></span>
+<span id="cb23-5"><a href="10-Taxonomic_assignment.html#cb23-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">--type</span> <span class="st">&#39;FeatureData[Sequence]&#39;</span></span>
+<span id="cb23-6"><a href="10-Taxonomic_assignment.html#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="10-Taxonomic_assignment.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="kw">\</span></span>
+<span id="cb23-8"><a href="10-Taxonomic_assignment.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--input-path</span></span>
+<span id="cb23-9"><a href="10-Taxonomic_assignment.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt</span> <span class="kw">\</span></span>
+<span id="cb23-10"><a href="10-Taxonomic_assignment.html#cb23-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">--output-path</span> gg-13-8.99.taxa.qza <span class="kw">\</span></span>
+<span id="cb23-11"><a href="10-Taxonomic_assignment.html#cb23-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-format</span> HeaderlessTSVTaxonomyFormat <span class="kw">\</span></span>
+<span id="cb23-12"><a href="10-Taxonomic_assignment.html#cb23-12" aria-hidden="true" tabindex="-1"></a> <span class="ex">--type</span> <span class="st">&#39;FeatureData[Taxonomy]&#39;</span></span></code></pre></div>
+<p>These steps will create two objects containing the sequences and their taxonomy, respectively, and should finish in less than 2 mins.</p>
+<p>The classifier tool we are going to use requires a training step to reach its optimum performance. The training is performed on a read set extracted from Greengenes representative sequences, including only the amplified region of interest.</p>
+<p>Note: Do not run the below command for this tutorial, see below command)</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="10-Taxonomic_assignment.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier extract-reads <span class="kw">\</span></span>
+<span id="cb24-2"><a href="10-Taxonomic_assignment.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-sequences</span> gg-13-8.99_otus.qza <span class="kw">\</span></span>
+<span id="cb24-3"><a href="10-Taxonomic_assignment.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-f-primer</span> NNNNNGTGCCAGCMGCCGCGGTAA <span class="kw">\</span></span>
+<span id="cb24-4"><a href="10-Taxonomic_assignment.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-r-primer</span> GGACTACHVGGGTWTCTAAT <span class="kw">\</span></span>
+<span id="cb24-5"><a href="10-Taxonomic_assignment.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating reads of 250 bp as in our case</span></span>
+<span id="cb24-6"><a href="10-Taxonomic_assignment.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len</span> 250 <span class="kw">\</span></span>
+<span id="cb24-7"><a href="10-Taxonomic_assignment.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-reads</span> gg-13-8.99.ref.seqs.qza</span></code></pre></div>
+<p>Given that this step may require more than 14h to finish, we won’t be able to run on this occasion. Copy over premade result with the following command:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="10-Taxonomic_assignment.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/luca/Metagenetics_2019/gg-13-8.99.ref.seqs.qza .</span></code></pre></div>
+<p>To train the <code>sk-learn</code> classifier on this set of reads (approx. 25 mins):</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="10-Taxonomic_assignment.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier fit-classifier-naive-bayes <span class="kw">\</span></span>
+<span id="cb26-2"><a href="10-Taxonomic_assignment.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-reference-reads</span> gg-13-8.99.ref.seqs.qza <span class="kw">\</span></span>
+<span id="cb26-3"><a href="10-Taxonomic_assignment.html#cb26-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--i-reference-taxonomy</span> gg-13-8.99.taxa.qza <span class="kw">\</span></span>
+<span id="cb26-4"><a href="10-Taxonomic_assignment.html#cb26-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-classifier</span> classifier.trained.qza</span></code></pre></div>
+<p>The command for the taxonomy assignment is (approx. 5 min):</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="10-Taxonomic_assignment.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="kw">\</span></span>
+<span id="cb27-2"><a href="10-Taxonomic_assignment.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-classifier</span> classifier.trained.qza <span class="kw">\</span></span>
+<span id="cb27-3"><a href="10-Taxonomic_assignment.html#cb27-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Default value for confidence</span></span>
+<span id="cb27-4"><a href="10-Taxonomic_assignment.html#cb27-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-confidence</span> 0.7 <span class="kw">\</span></span>
+<span id="cb27-5"><a href="10-Taxonomic_assignment.html#cb27-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">--i-reads</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
+<span id="cb27-6"><a href="10-Taxonomic_assignment.html#cb27-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-classification</span> taxonomy.sklearn.qza</span></code></pre></div>
+<p>To visualise the taxonomy-abundance bar-chart obtained, run (approx. 1 min):</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="10-Taxonomic_assignment.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot --i-table table-dada2.qza <span class="kw">\</span></span>
+<span id="cb28-2"><a href="10-Taxonomic_assignment.html#cb28-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--i-taxonomy</span> taxonomy.sklearn.qza <span class="kw">\</span></span>
+<span id="cb28-3"><a href="10-Taxonomic_assignment.html#cb28-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
+<span id="cb28-4"><a href="10-Taxonomic_assignment.html#cb28-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> taxa-bar-plots.dada2.qzv</span></code></pre></div>
+<p>Once you have loaded the file in the browser, you may specify the taxonomic level to look at, as well as a few sorting and colouring options.</p>
+<p><strong>Questions</strong>:</p>
 <ul>
-<li><code>curl -s http://ada01.liv.ac.uk/MacVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p><strong>Linux</strong></p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal</li>
-<li>Run the following command in the terminal
-<ul>
-<li><code>curl -s http://ada01.liv.ac.uk/LinuxVNC.sh | KEY=&lt;password&gt; bash</code></li>
-<li>&lt;password&gt; is replaced with your password</li>
-</ul></li>
-</ol>
-<p>You will now be in a logged-in Linux VNC desktop with two terminals. You will see something like below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-<img src="figures/logon_pic.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>If the VNC is taking up to much space of your screen you can move it so alot of it is off the screen. Ensure you can see one whole terminal.</p>
-<p>These instructions will not work outside of this workshop. If your workplace has its own Linux cluster please ask your cluster manager for a user guide. If you would like to install your own Linux OS on your desktop or laptop we would recommend Ubuntu.</p>
-<p>The following link is a guide to install Ubuntu:<br />
-<a href="https://www.ubuntu.com/download/desktop/install-ubuntu-desktop" class="uri">https://www.ubuntu.com/download/desktop/install-ubuntu-desktop</a>.<br />
-If you use a USB you need to create a bootable USB stick. The following link will assist:<br />
-<a href="https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows" class="uri">https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows</a></p>
-</div>
-<div id="the-terminal-window" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> The Terminal Window</h2>
-<p>In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
-<img src="figures/terminal_window.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Already there is useful information for us on the terminal window.</p>
-<ul>
-<li><strong>nsc006</strong>: This is the login name, also known as the username. In this case nsc006 is a demonstrator’s account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.</li>
-<li><strong>gauss03</strong>: This is the machine name the user is logged into.</li>
-<li><strong>~</strong>: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others <strong>‘~’</strong> is a shortcut to the user’s home directory.</li>
-<li>Everything after the <strong>‘$’</strong> is where commands are typed into the terminal. This is also referred to as the command line.</li>
+<li>What is the most abundant taxon, at level 5, in the dataset?</li>
+<li>How do the samples compare to each other?</li>
 </ul>
-<p>To open a new terminal window, right click on the main screen, choose <code>Applications</code> -&gt; <code>Shell</code> -&gt; <code>bash</code></p>
+<p>If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some step and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="03-Intro_to_qiime2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="05-Linux_quick_user_guide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="09-ASV_identification.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="11-Phylogentic_tree.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

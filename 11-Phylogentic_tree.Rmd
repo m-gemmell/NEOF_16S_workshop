@@ -1,6 +1,6 @@
 # Make a phylogenetic tree of the identified ASVs
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
 To obtain the phylogenetic tree the steps are:
