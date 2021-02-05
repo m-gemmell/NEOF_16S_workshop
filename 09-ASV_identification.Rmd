@@ -1,106 +1,60 @@
-# Import sequences into QIIME2
+# De-novo amplicon sequence variants identification
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
-The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt’.
-
-The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:
-
-```{bash, eval}
-head –n 7 PairedEndFastqManifestPhred33.csv
-```
-
-sample-id,absolute-filepath,direction
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-
-In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.
-
-Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.
-
-An example
-
-/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-Should become (where XXX is equal to the number in your username):
-
-/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-The ‘metadata.file.txt’, is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.
+We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
 
 ```{bash, eval=FALSE}
-less metadata.file.txt
+qiime dada2 denoise-paired \
+--i-demultiplexed-seqs paired-end-demux.trim.qza \
+# Truncates R1 sequences after the 220 nt length
+--p-trunc-len-f 220 \
+# Truncates R2 sequences after the 220 nt length
+--p-trunc-len-r 220 \
+# Object containing the identified variants
+--o-representative-sequences rep-seqs-dada2.qza \
+# Object containing abundance table for the identified variants
+--o-table table-dada2.qza \
+--o-denoising-stats dada2-stats.qza \
+--verbose
 ```
 
-Results:
-
-sample-id BarcodeSequence Floor Location Place
-#q2:types categorical numeric categorical categorical
-K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance
-T CAGAGAGG-ACTGCATA 1 StudentHome Entrance
-1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance
-1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding
-1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance
-1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding
-
-In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.
-
-To run QIIME2’s commands we first need to activate it:
+This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
 
 ```{bash, eval=FALSE}
-source ~luca/Metagenetics_2019/qiime2_env.sh
+cp ~luca/Metagenetics_2019/table-dada2.qza .
+cp ~luca/Metagenetics_2019/rep-seqs-dada2.qza .
+cp ~luca/Metagenetics_2019/dada2-stats.qza .
 ```
 
-That will be the same as running the command `source activate qiime2-2019.1` in your own installation. Next run:
+The `rep-seqs-dada2.qza` artifact contains the identified sequence variants and the `tabledada2.qza` artifact contains their abundance data. The `dada2-stats.qza` artifact summarises the statistics after the main denoising steps.
+
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If in your one of your future projects this step is taking too long, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
+
+In the case of a marker gene with very variable amplicon sequence length, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be use instead the above dada2 command.
+
+To visualise the result, run:
 
 ```{bash, eval=FALSE}
-source tab-qiime
-```
-
-Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.
-
-When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.
-
-First, we will load all the read pairs into an artifact.
-
-```{bash, eval=FALSE}
-qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
- --input-path PairedEndFastqManifestPhred33.csv \
- --output-path paired-end-demux.qza \
- --input-format PairedEndFastqManifestPhred33
+qiime feature-table summarize --i-table table-dada2.qza \
+ --o-visualization table-dada2.qzv \
+ --m-sample-metadata-file metadata.file.txt
 ```
  
-This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’, the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).
-
-To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).
+And load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
 
 ```{bash, eval=FALSE}
-qiime demux summarize --i-data paired-end-demux.qza \
---o-visualization paired-end-demux.qzv
+qiime metadata tabulate --m-input dada2-stats.qza \
+ --o-visualization dada2-stats.qzv
 ```
-
-This next step is important! Make sure to open a new terminal and open chrome in it. For the rest of the day keep this terminal and chrome open (To open a new terminal look at page 11). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run:
-
-```{bash, eval=FALSE}
-chrome.sh
-```
-
-Then:
-
-- Type the following web-site: ‘view.qiime2.org’
-- Click on ‘Drag and drop or click here’ panel
-- You can browse now to find and select the file ‘paired-end-demux.qzv’
+ 
+And load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.
 
 __Questions__: 
 
-- Are the sequences evenly distributed across samples?
-- Which sample has the lowest number of sequences? 
-- Is there any sample with a low final number of sequences? 
-- Are there any samples that can be excluded? 
-- What is the average sequence count per sample?
-- How is the overall quality for the sequences?
+- In which denoising step were most of the sequences lost?
+- Are enough sequences left to proceed with the analysis? 
+- How many variants (also called ‘features’) have been identified? 
+- How are the variants distributed across samples? 
+- How many sequences are ‘rare’ (represented in few samples or in low number)?
