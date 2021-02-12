@@ -1,6 +1,6 @@
 # Sequencing controls evaluation: beta-diversity without normalisation
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/control.png", auto_pdf = TRUE)
 ``` 
 
 The current protocols for metagenetic experiments strongly suggest to always include positive and negative controls for any stage of the lab processing of the samples (including the sequencing). It is therefore likely that in your design you will have negative controls (to explore the microbiome derived by the kits used, the so-called ‘kit-ome’) and positive controls (mock or known communities, to investigate biases from the lab protocols or the bioinformatics pipeline).

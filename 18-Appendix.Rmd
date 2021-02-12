@@ -1,6 +1,6 @@
 # Appendix
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/appendix.png", auto_pdf = TRUE)
 ``` 
 
 ## Alpha diversity metrics

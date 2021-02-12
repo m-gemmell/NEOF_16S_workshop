@@ -1,6 +1,6 @@
 # Final consideration
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ``` 
 
 Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, the following are points you can consider.

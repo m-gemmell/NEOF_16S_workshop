@@ -1,6 +1,6 @@
 # Resources
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
 ``` 
 
 ## Suggested readings

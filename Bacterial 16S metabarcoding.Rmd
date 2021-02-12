@@ -869,8 +869,8 @@ __Questions__:
 <!--chapter:end:12-Rarefaction.Rmd-->
 
 # Sequencing controls evaluation: beta-diversity without normalisation
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/control.png", auto_pdf = TRUE)
 ``` 
 
 The current protocols for metagenetic experiments strongly suggest to always include positive and negative controls for any stage of the lab processing of the samples (including the sequencing). It is therefore likely that in your design you will have negative controls (to explore the microbiome derived by the kits used, the so-called ‘kit-ome’) and positive controls (mock or known communities, to investigate biases from the lab protocols or the bioinformatics pipeline).
@@ -901,7 +901,7 @@ These steps will take approx. 2 min. The final `dada2.braycurtis.notNorm.diversi
 
 # Diversity analysis
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ``` 
 
 Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the “Shannon” metric, the number of observed species and Faith’s phylogenetic distance (Shannon,
@@ -912,7 +912,8 @@ Beta diversity is diversity among different communities. There are many possible
 QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2019.1/plugins/available/diversity/).
 
 ```{bash, eval=FALSE}
-qiime diversity core-metrics-phylogenetic --i-table table-dada2.qza \
+qiime diversity core-metrics-phylogenetic \
+--i-table table-dada2.qza \
 --i-phylogeny rooted-tree.qza \
 # Chosen final sampling depth
 --p-sampling-depth 30000 \
@@ -983,8 +984,8 @@ __Questions__:
 <!--chapter:end:14-Diversity_analysis.Rmd-->
 
 # Differential abundance analysis
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 
 
 The ANCOM method to identify the differentially abundant taxa, is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
@@ -1041,7 +1042,7 @@ __Questions__:
 
 # Final consideration
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ``` 
 
 Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, the following are points you can consider.
@@ -1062,7 +1063,7 @@ If you have still time available you can try to repeat the analysis using differ
 
 # Resources
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
 ``` 
 
 ## Suggested readings
@@ -1204,7 +1205,7 @@ Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2
 
 # Appendix
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/appendix.png", auto_pdf = TRUE)
 ``` 
 
 ## Alpha diversity metrics

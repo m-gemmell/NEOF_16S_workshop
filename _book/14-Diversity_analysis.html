@@ -219,17 +219,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="diversity-analysis" class="section level1" number="14">
 <h1><span class="header-section-number">Chapter 14</span> Diversity analysis</h1>
-<p><img src="figures/cluster.png" width="20%" style="display: block; margin: auto;" /></p>
+<p><img src="figures/diversity.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the “Shannon” metric, the number of observed species and Faith’s phylogenetic distance (Shannon,
 1948, Faith, 1992).</p>
 <p>Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated), including weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957).</p>
 <p>QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (<a href="https://docs.qiime2.org/2019.1/plugins/available/diversity/" class="uri">https://docs.qiime2.org/2019.1/plugins/available/diversity/</a>).</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Diversity_analysis.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity core-metrics-phylogenetic --i-table table-dada2.qza <span class="kw">\</span></span>
-<span id="cb32-2"><a href="14-Diversity_analysis.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
-<span id="cb32-3"><a href="14-Diversity_analysis.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen final sampling depth</span></span>
-<span id="cb32-4"><a href="14-Diversity_analysis.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-sampling-depth</span> 30000 <span class="kw">\</span></span>
-<span id="cb32-5"><a href="14-Diversity_analysis.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-dir</span> dada2-diversity-30000 <span class="kw">\</span></span>
-<span id="cb32-6"><a href="14-Diversity_analysis.html#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Diversity_analysis.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity core-metrics-phylogenetic <span class="kw">\</span></span>
+<span id="cb32-2"><a href="14-Diversity_analysis.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb32-3"><a href="14-Diversity_analysis.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
+<span id="cb32-4"><a href="14-Diversity_analysis.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen final sampling depth</span></span>
+<span id="cb32-5"><a href="14-Diversity_analysis.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-sampling-depth</span> 30000 <span class="kw">\</span></span>
+<span id="cb32-6"><a href="14-Diversity_analysis.html#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-dir</span> dada2-diversity-30000 <span class="kw">\</span></span>
+<span id="cb32-7"><a href="14-Diversity_analysis.html#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt</span></code></pre></div>
 <p>This command will produce (in approx. 1 min) all the results within the directory specified with the <code>--output-dir</code>. The artifact <code>rarefied_table.qza</code> is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains the artefact for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (<code>emperor.qzv</code> files).</p>
 <p>In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: <code>qiime diversity core-metrics</code>, which lacks the
 <code>--i-phylogeny</code> options.</p>
