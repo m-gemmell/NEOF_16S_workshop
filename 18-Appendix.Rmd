@@ -3,3 +3,46 @@
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
+## Alpha diversity metrics
+
+### Observed species
+
+The observed number of species is defined as the number of distinct OTUs within a sample.
+
+### PD (phylogenetic diversity)
+
+The PD metric represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value therefore indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.
+
+### Shannon
+
+Shannon's index accounts for both abundance and evenness of the species present. The proportion of species i relative to the total number of species (pi) is calculated, and then multiplied by the natural logarithm of this proportion (lnpi). The resulting product is summed across species, and multiplied by -1.
+
+### Weighted and unweighted UniFrac distances
+
+The UniFrac metric is a phylogenetic distance measure between two samples and is defined as “the sum of the unshared branch lengths between two samples divided by the total branch length (shared + unshared) of two samples” (Lozupone and Knight, 2005). This results in calculating the fraction of the branch length unique to each sample (ie. the higher this value is, the more dissimilar two samples are).
+
+Unweighted UniFrac distances consider only OTU presence/absence whilst weighted UniFrac distances take into account OTU abundance and weigh branches accordingly (Lozupone and Knight, 2005; Lozupone et al., 2007).
+
+### Bray-Curtis
+
+The Bray-Curtis metric is a dissimilarity measure that can quantify the level of difference between two samples. Two identical samples would have a Bray-Curtis measure of 0.
+
+There are two definitions of the Bray-Curtis metric currently used in the literature. The ‘Faith method’ (Faith, 1987) is defined by the following formula:
+
+CBC = 1 – ( 2a / (b + c) )
+
+Where:
+
+- a = # OTUs present in both samples
+- b = # OTUs present only in sample 1
+- c = # OTUs present only in sample 2
+
+The second definition of the Bray-Curtis metric is often known as the ‘Magurran method’ (Magurran, 1988) and is defined by the following formula:
+
+CN = 2jN / (Na + Nb)
+
+Where:
+
+- Na = the total number of individuals in site A
+- Nb = the total number of individuals in site B
+- 2jN = the sum of the lower of the two abundances for species found in both sites

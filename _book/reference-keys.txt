@@ -34,4 +34,13 @@ diversity-analysis
 differential-abundance-analysis
 final-consideration
 resources
+suggested-readings
+other-useful-resources
+references
 appendix
+alpha-diversity-metrics
+observed-species
+pd-phylogenetic-diversity
+shannon
+weighted-and-unweighted-unifrac-distances
+bray-curtis

@@ -253,7 +253,9 @@ ASVs).
 The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation of the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
-
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+``` 
 Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform nMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:
@@ -359,7 +361,7 @@ To open a new terminal window, right click on the main screen, choose `Applicati
 
 # Linux quick user guide
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/linux_beginner.png", auto_pdf = TRUE)
 ``` 
 
 In the following parts of the practical exercise, descriptions of commands will be marked by hash character, `#`, these lines should not be typed in the terminal. e.g.
@@ -465,7 +467,7 @@ You should obtain:
 
 # QIIME2 analysis workflow
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ``` 
 
 ## Workflow
@@ -902,6 +904,82 @@ These steps will take approx. 2 min. The final `dada2.braycurtis.notNorm.diversi
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
+Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the “Shannon” metric, the number of observed species and Faith’s phylogenetic distance (Shannon,
+1948, Faith, 1992).
+
+Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated), including weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957).
+
+QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2019.1/plugins/available/diversity/).
+
+```{bash, eval=FALSE}
+qiime diversity core-metrics-phylogenetic --i-table table-dada2.qza \
+--i-phylogeny rooted-tree.qza \
+# Chosen final sampling depth
+--p-sampling-depth 30000 \
+--output-dir dada2-diversity-30000 \
+--m-metadata-file metadata.file.txt
+```
+
+This command will produce (in approx. 1 min) all the results within the directory specified with the `--output-dir`. The artifact `rarefied_table.qza` is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains the artefact for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (`emperor.qzv` files).
+
+In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
+`--i-phylogeny` options.
+
+__Questions__: 
+
++ Looking at the beta-diversity plot, one metrics of your choice, is there any metadata category reflecting the distribution of the samples in the plot? 
++ If you choose a different metric, do you get a different plot/results?
++ Does a different sampling-depth does give a different result?
+
+Considering the alpha-diversity results for each metric, we need to explore if there is a group (within the metadata category) showing a higher diversity than the other groups, with a statistical significance and not by chance given the high number of data we are dealing with. The QIIME2 pipeline offers two alternative choices: for categorical or numerical metadata. In the first case a Kruskall-Wallis test will be used to compare the alpha-diversity distribution among the groups
+within the specified metadata category; in the second case, a ranked Spearman test will be used instead.
+
+```{bash, eval=FALSE}
+cd dada2-diversity-30000
+# For the Kruskal-Wallis
+qiime diversity alpha-group-significance \
+--i-alpha-diversity shannon_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization shannon-group-significance.kw.qzv
+# For the ranked Spearman
+qiime diversity alpha-correlation \
+--i-alpha-diversity shannon_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization shannon-group-significance.rs.qzv
+```
+
+Both scripts should finish within a few seconds, giving a visualisation artifact including plots and statistical results.
+
+__Questions__:
+
++ Is there any category (for one or more metadata category) showing a higher/lower alpha-diversity compared with the other? 
++ Is the p-value for this comparison significant (all the pvalues are corrected for false-discovery rate)? 
++ If you choose a different metric do you get different results? (Please look at both the Kruskal-Wallis and Ranked Spearman results!)
+
+Having identified a metadata category (co-variate) that potentially explain the distribution in the beta-diversity ordination plot obtained using a specific metric, it is now important to investigate, again, if that separation has a statistical significance or if it may have just be originated by chance. We will use the ‘permanova’ test (you can choose ‘anosim’ as alternative) to compare the grouping for a specific metadata category with the obtained distance metrics (at 999 permutations).
+
+```{bash, eval=FALSE}
+qiime diversity beta-group-significance \
+--i-distance-matrix weighted_unifrac_distance_matrix.qza \
+--m-metadata-file ../metadata.file.txt \
+# Select one specific metadata column
+--m-metadata-column Location \
+# prmanova default, anosim as alternative choice
+--p-method permanova \
+--p-pairwise \
+--p-permutations 999 \
+--o-visualization weighted-unifrac-significance.location.qzv
+```
+
+The script should finish within a few seconds, giving a visualisation artifact including plots and statistical results.
+
+__Questions__:
+
++ Does the chosen grouping information result in statistical differences between two or more groups (as before the p-values are corrected for false-discovery rate)? 
++ Does using ‘anosim’ instead of ‘permanova’ change the result? 
++ And using a different ordination metric? 
++ What about choosing a different grouping (metadata category)?
+
 <!--chapter:end:14-Diversity_analysis.Rmd-->
 
 # Differential abundance analysis
@@ -909,6 +987,55 @@ knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
+The ANCOM method to identify the differentially abundant taxa, is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
+
+The steps to carry this out are:
+
+1. Collapse ASVs into taxa-bar-plots
+2. Add pseudo-count to the abundance table to convert ‘0’ to ‘1’
+3. Run ANCOM selecting a categorical metadata to test
+
+If you are still in ‘dada2-diversity-30000’ folder, please remember to move out:
+
+```{bash, eval=FALSE}
+cd ..
+```
+
+First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.
+
+```{bash, eval=FALSE}
+qiime taxa collapse \
+--i-table table-dada2.qza \
+--i-taxonomy taxonomy.sklearn.qza \
+--p-level 5 \
+--o-collapsed-table comp-ancom-table-l5.qza
+```
+
+Add pseudo-count to the abundance table to convert ‘0’ to ‘1’. This is required as ANCOM will fail with abundance values of 0.
+
+```{bash, eval=FALSE}
+qiime composition add-pseudocount \
+--i-table comp-ancom-table-l5.qza \
+--p-pseudocount 1 \
+--o-composition-table comp-ancom-table-l5-pse.qza
+```
+
+Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between StudentCorridor, StudentHome, Corridor and Toilet.
+
+```{bash, eval=FALSE}
+qiime composition ancom \
+--i-table comp-ancom-table-l5-pse.qza \
+--m-metadata-file metadata.file.txt \
+--m-metadata-column Location \
+--o-visualization l5-ancom-Location.qzv
+```
+
+__Questions__: 
+
++ Which families are discovered as biomarkers? 
++ Investigating these families, does this make sense? 
++ Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
++ Does changing the metadata category let you infer something different?
 
 <!--chapter:end:15-Differential_abundance.Rmd-->
 
@@ -917,6 +1044,19 @@ knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
+Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, the following are points you can consider.
+
+Are there any missing taxa you know should be there? These taxa may be present but not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis. The failure could also be right at the beginning of the project design. It is worth checking if the PCR primers you are using can amplify these species. Are the primers known to impose bias on the community you are amplifying? Are the primers unable to amplify some taxon whose 16S rRNA sequences are too distant from the rest of the community? The literature may be able to help you on this topic.
+
+If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:
+
++ Functional analysis (PiCrust). We will cover this later!
++ Inferring ecological interaction networks (SPIEC-EASI)
++ More statistical analyses with STAMP
++ Or you can import your results in R to post analyse them with Phyloseq
+
+__CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!__
+If you have still time available you can try to repeat the analysis using different setting to compare the results (remember to use a different name for the output compared to what you used before), as an alternative you can read the suggested reading.
 
 <!--chapter:end:16-Final_consideration.Rmd-->
 
@@ -925,6 +1065,140 @@ knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
+## Suggested readings
+
+The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2019.1/tutorials/).
+
+The QIIME scripts collection (http://qiime.org/scripts/index.html) includes many other useful scripts that we have not described, each script with its own description and tips for using it. We encourage you to explore this resource.
+
+A large resource containing links to literature on how easy it is to introduce bias into microbiome studies:
+
+http://www.opiniomics.org/the-unbearable-madness-of-microbiome/
+
+Diversity of 16S rRNA Genes within Individual Prokaryotic Genomes Anna Y. Pei, William E. Oberdorf, Carlos W. Nossa, Ankush Agarwal, Pooja Chokshi, Erika A. Gerz, Zhida Jin, Peng Lee, Liying Yang, Michael Poles, Stuart M. Brown, Steven Sotero, Todd DeSantis, Eoin Brodie, Karen Nelson, and Zhiheng Pei (2010) APPLIED AND ENVIRONMENTAL MICROBIOLOGY.
+
+http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2893482/
+
+Analysis, Optimization and Verification of Illumina- Generated 16S rRNA Gene Amplicon Surveys Michael C. Nelson, Hilary G. Morrison, Jacquelynn Benjamino, Sharon L. Grim, Joerg Graf. (2014) PlosONE
+
+http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094249
+
+Interpreting 16S metagenomic data without clustering to achieve sub-OTU resolution Mikhail Tikhonov, Robert W Leach and Ned S Wingreen (2015) ISME
+http://www.nature.com/ismej/journal/v9/n1/full/ismej2014117a.html
+
+De novo clustering methods outperform reference-based methods for assigning 16S rRNA gene sequences to operational taxonomic units Sarah L. Westcott and Patrick D. Schloss (2015) PeerJ
+
+http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4675110/
+
+https://www.uab.edu/medicine/camac/images/10-A-Kumar_slide_show.pdf
+
+Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible. Paul J. McMurdie, Susan Holmes (2014) Plos ONE.
+
+http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531
+
+http://compbio.ucsd.edu/wp-content/uploads/2016/10/20170712_microbiome_16s_tutorial_noninteractive.pdf
+
+Normalization and microbial differential abundance strategies depend upon data characteristics. Sophie Weiss, Zhenjiang Zech Xu, Shyamal Peddada, Amnon Amir, Kyle Bittinger, Antonio Gonzalez, Catherine Lozupone, Jesse R. Zaneveld, Yoshiki Vázquez-Baeza, Amanda Birmingham, Embriette R. Hyde and Rob Knight (2017) Microbiome
+
+https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-017-0237-y
+
+Application of multivariate statiastical techniques in microbial ecology. Paliy O, Shankar V (2016) Molecular Ecology
+
+http://onlinelibrary.wiley.com/doi/10.1111/mec.13536/abstract
+
+Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. Benjamin J Callahan, Paul J McMurdie & Susan P Holmes (2017).
+
+https://www.nature.com/articles/ismej2017119
+Optimizing taxonomic classification of marker gene amplicon sequences Nicholas A Bokulich, Benjamin D Kaehler, Jai Ram Rideout, Matthew Dillon, Evan Bolyen, Rob Knight, Gavin A. Huttley, J. Gregory Caporaso
+
+https://peerj.com/preprints/3208/
+
+Denoising the Denoisers: An independent evaluation of microbiome 3 sequence error-correction methods. Nearing Jacob, Douglas Gavin, Comeau Andre, Langille Morngan
+
+https://peerj.com/preprints/26566.pdf
+
+Compositional data analysis of the microbiome: fundamentals, tools, and challenges. Tsilimigras, M.C. and Fodor, A.A.
+
+https://www.sciencedirect.com/science/article/pii/S1047279716300722
+
+## Other useful resources
+
+A list of very useful site to look at for questions, suggestion and protocols
+
+QIIME2 forum: https://forum.qiime2.org
+
+SEQanswers: http://seqanswers.com
+
+ResearchGate: https://www.researchgate.net/topics
+
+## References
+
+- Aitchison J., (1982). The statistical analysis of compositional data. Journal of the Royal Statistical Society. Series B (Methodological), pp.139-177.
+- Caporaso, J. G. et al. Global patterns of 16S rRNA diversity at a depth of millions of sequences per sample. Proc Natl Acad Sci USA 108, 4516–4522 (2011)
+- Gloor GB, Macklaim JM, Pawlowsky-Glahn V, and Egozcue, JJ. (2017). Microbiome datasets are compositional: and this is not optional. Frontiers in microbiology, 8, p.2224.
+- Hugerth, L.W. and Andersson, A.F., 2017. Analysing microbial community composition through amplicon sequencing: from sampling to hypothesis testing. Frontiers in microbiology, 8, p.1561.
+- Pollock J, Glendinning L, Wisedchanwet T, and Watson M. The madness of microbiome: Attempting to find consensus “best practice” for 16S microbiome studies. (2018) Appl Env Microbiology
+- Rivers, A.R., Weber, K.C., Gardner, T.G., Liu, S. and Armstrong, S.D., 2018. ITSxpress: Software to rapidly trim internally transcribed spacer sequences with quality scores for marker gene analysis. F1000Research, 7.
+- Shannon, C.E., 1948. A mathematical theory of communication. Bell system technical journal, 27(3), pp.379-423.
+- Weiss S, Zech Xu ZZ, Peddada S, Amir A, Bittinger K, Gonzalez A, Lozupone C, Zaneveld JR, Vázquez-Baeza Y, Birmingham A, Hydev ER, and Knight R. Normalization and microbial differential abundance strategies depend upon data characteristics. (2017) Microbiome. 3;5(1):27
+- Werner JJ, Koren O, Hugenholtz P, DeSantis TZ, Walters WA, Caporaso JG, Angenent LT, Knight R, Ley RE. Impact of training sets on classification of high-throughput bacterial 16s rRNA gene surveys. (2012) ISME J. 6(1):94-103.
+- Yarza, P., Yilmaz, P., Pruesse, E., Glöckner, F.O., Ludwig, W., Schleifer, K.H., Whitman, W.B., Euzéby, J., Amann, R. and Rosselló-Móra, R., 2014. Uniting the classification of cultured and uncultured bacteria and archaea using 16S rRNA gene sequences. Nature Reviews Microbiology, 12(9), p.635.
+
+__Cutadapt__
+
+Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet.journal, 17(1):10-12, May 2011.
+
+__QIIME2 (Quantative Insights Into Microbial Ecology)__
+
+Bolyen E, Rideout JR, Dillon MR, Bokulich NA, Abnet C, Al-Ghalith GA, Alexander H, Alm EJ, Arumugam M, Asnicar F, Bai Y, Bisanz JE, Bittinger K, Brejnrod A, Brislawn CJ, Titus Brown C, Callahan BJ,Caraballo-Rodríguez AM, Chase J, Cope E, Da Silva R, Dorrestein PC, Douglas GM, Durall DM, Duvallet C, Edwardson CF, Ernst M, Estaki M, Fouquier J, Gauglitz JM, Gibson DL, Gonzalez A, Gorlick K, Guo J, Hillmann B, Holmes S, Holste H, Huttenhower C, Huttley G, Janssen S, Jarmusch AK, Jiang L, Kaehler B, Kang K, Keefe CR, Keim P, Kelley ST, Knights D, Koester I, Kosciolek T, Kreps J, Langille MGI, Lee J, Ley R, Liu Y, Loftfield E, Lozupone C, Maher M, Marotz C, Martin BD, McDonald D, McIver LJ, Melnik AV, Metcalf JL, Morgan SC, Morton J, Naimey AT, Navas-Molina JA, Nothias LF, Orchanian SB, Pearson T, Peoples SL, Petras D, Preuss ML, Pruesse E, Rasmussen LB, Rivers A, Robeson MS, Rosenthal P, Segata N, Shaffer M, Shiffer A, Sinha R, Song SJ, Spear JR, Swafford AD, Thompson LR, Torres PJ, Trinh P, Tripathi A, Turnbaugh PJ, Ul-Hasan S, van der Hooft JJJ, Vargas F, Vázquez-Baeza Y, Vogtmann E, von Hippel M, Walters W, Wan Y, Wang M, Warren J, Weber KC, Williamson CHD, Willis AD, Xu ZZ, Zaneveld JR, Zhang Y, Knight R, Caporaso JG (2018) QIIME 2: Reproducible, interactive, scalable, and extensible microbiome data science. PeerJ pre-prints
+
+https://peerj.com/preprints/27295/
+
+__BLAST__
+
+Altschul S.F., Gish W., Miller W., Myers E.W. and Lipman D.J. (1990). Basic local alignment search tool. J. Mol. Biol. 215: 403-410. 
+
+http://blast.ncbi.nlm.nih.gov/Blast.cgi
+
+__Bray-Curtis__
+
+Bray, J. R. and J. T. Curtis. (1957). An ordination of upland forest communities of southern Wisconsin. Ecological Monographs 27:325-349 
+
+__Chao1__
+
+Chao, A. 1984. Non-parametric estimation of the number of classes in a population. Scandinavian Journal ofStatistics, 11:265-270. Colwell, R.K. and Coddington, J.A. 1994. Estimating terrestrial biodiversity through extrapolation. Philosophical Transactions of the Royal Society B: Biological Sciences, 345:101-118.
+
+__DADA2__
+
+Callahan BJ, McMurdie PJ, Rosen MJ, Han AW, Johnson AJA. DADA2: High-resolution sample inference from Illumina amplicon data. Nat Methods. 2016. 13, 581-583.
+
+__GNEISS__
+
+Morton JT, Sanders J, Quinn RA, McDonald D, Gonzalez A, Vázquez-Baeza Y, Navas-Molina JA, Song SJ, Metcalf JL, Hyde ER, Lladser M, Dorrestein PC, Knight R. (2017). Balance Trees Reveal Microbial Niche Differentiation mSystem 17;2(1)
+
+__Greengenes__
+
+DeSantis, T. Z., P. Hugenholtz, N. Larsen, M. Rojas, E. L. Brodie, K. Keller, T. Huber, D. Dalevi, P. Hu, and G. L. Andersen. (2006). Greengenes, a Chimera-Checked 16S rRNA Gene Database and Workbench Compatible with ARB. Appl Environ Microbiol 72:5069-72. 
+
+__Faith’s Phylogenetic Diversity (PD)__
+
+Faith. 1992. Conservation evaluation and phylogenetic diversity. Biological Conservation 61: 1-10
+
+Faith DP and Baker AM. Phylogenetic diversity (PD) and biodiversity conservation: some bioinformatics challenges (2006) Evol. Bioinform. 2: 121–128.
+
+__UniFrac__
+
+Lozupone, C.; Knight, R. (2005). "UniFrac: A New Phylogenetic Method for Comparing Microbial Communities". Applied and Environmental Microbiology 71 (12): 8228–8235
+
+http://bmf.colorado.edu/unifrac/
+
+__UniFrac__
+
+Lozupone, Hamady, Kelley & Knight. (2007). "Quantitative and qualitative (beta) diversity measures lead to different insights into factors that structure microbial communities." Appl Environ Microbiol 73 (5): 1576-85
+
+__ANCOM__
+
+Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2015). Analysis of composition of microbiomes: a novel method for studying microbial composition. Microbial ecology in health and disease, 26(1), p.27663.
 
 <!--chapter:end:17-Resources.Rmd-->
 
@@ -933,6 +1207,49 @@ knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
 
+## Alpha diversity metrics
+
+### Observed species
+
+The observed number of species is defined as the number of distinct OTUs within a sample.
+
+### PD (phylogenetic diversity)
+
+The PD metric represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value therefore indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.
+
+### Shannon
+
+Shannon's index accounts for both abundance and evenness of the species present. The proportion of species i relative to the total number of species (pi) is calculated, and then multiplied by the natural logarithm of this proportion (lnpi). The resulting product is summed across species, and multiplied by -1.
+
+### Weighted and unweighted UniFrac distances
+
+The UniFrac metric is a phylogenetic distance measure between two samples and is defined as “the sum of the unshared branch lengths between two samples divided by the total branch length (shared + unshared) of two samples” (Lozupone and Knight, 2005). This results in calculating the fraction of the branch length unique to each sample (ie. the higher this value is, the more dissimilar two samples are).
+
+Unweighted UniFrac distances consider only OTU presence/absence whilst weighted UniFrac distances take into account OTU abundance and weigh branches accordingly (Lozupone and Knight, 2005; Lozupone et al., 2007).
+
+### Bray-Curtis
+
+The Bray-Curtis metric is a dissimilarity measure that can quantify the level of difference between two samples. Two identical samples would have a Bray-Curtis measure of 0.
+
+There are two definitions of the Bray-Curtis metric currently used in the literature. The ‘Faith method’ (Faith, 1987) is defined by the following formula:
+
+CBC = 1 – ( 2a / (b + c) )
+
+Where:
+
+- a = # OTUs present in both samples
+- b = # OTUs present only in sample 1
+- c = # OTUs present only in sample 2
+
+The second definition of the Bray-Curtis metric is often known as the ‘Magurran method’ (Magurran, 1988) and is defined by the following formula:
+
+CN = 2jN / (Na + Nb)
+
+Where:
+
+- Na = the total number of individuals in site A
+- Nb = the total number of individuals in site B
+- 2jN = the sum of the lower of the two abundances for species found in both sites
 
 <!--chapter:end:18-Appendix.Rmd-->
 

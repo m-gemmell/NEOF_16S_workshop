@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-02-05" />
+<meta name="date" content="2021-02-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,8 +180,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
 <li class="chapter" data-level="15" data-path="15-Differential_abundance.html"><a href="15-Differential_abundance.html"><i class="fa fa-check"></i><b>15</b> Differential abundance analysis</a></li>
 <li class="chapter" data-level="16" data-path="16-Final_consideration.html"><a href="16-Final_consideration.html"><i class="fa fa-check"></i><b>16</b> Final consideration</a></li>
-<li class="chapter" data-level="17" data-path="17-Resources.html"><a href="17-Resources.html"><i class="fa fa-check"></i><b>17</b> Resources</a></li>
-<li class="chapter" data-level="18" data-path="18-Appendix.html"><a href="18-Appendix.html"><i class="fa fa-check"></i><b>18</b> Appendix</a></li>
+<li class="chapter" data-level="17" data-path="17-Resources.html"><a href="17-Resources.html"><i class="fa fa-check"></i><b>17</b> Resources</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="17-Resources.html"><a href="17-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>17.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Resources.html"><a href="17-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>17.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="17.3" data-path="17-Resources.html"><a href="17-Resources.html#references"><i class="fa fa-check"></i><b>17.3</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="18-Appendix.html"><a href="18-Appendix.html"><i class="fa fa-check"></i><b>18</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="18-Appendix.html"><a href="18-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>18.1</b> Alpha diversity metrics</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="18-Appendix.html"><a href="18-Appendix.html#observed-species"><i class="fa fa-check"></i><b>18.1.1</b> Observed species</a></li>
+<li class="chapter" data-level="18.1.2" data-path="18-Appendix.html"><a href="18-Appendix.html#pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>18.1.2</b> PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="18.1.3" data-path="18-Appendix.html"><a href="18-Appendix.html#shannon"><i class="fa fa-check"></i><b>18.1.3</b> Shannon</a></li>
+<li class="chapter" data-level="18.1.4" data-path="18-Appendix.html"><a href="18-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>18.1.4</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="18.1.5" data-path="18-Appendix.html"><a href="18-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>18.1.5</b> Bray-Curtis</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -205,6 +220,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="final-consideration" class="section level1" number="16">
 <h1><span class="header-section-number">Chapter 16</span> Final consideration</h1>
 <p><img src="figures/cluster.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no,’ the following are points you can consider.</p>
+<p>Are there any missing taxa you know should be there? These taxa may be present but not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis. The failure could also be right at the beginning of the project design. It is worth checking if the PCR primers you are using can amplify these species. Are the primers known to impose bias on the community you are amplifying? Are the primers unable to amplify some taxon whose 16S rRNA sequences are too distant from the rest of the community? The literature may be able to help you on this topic.</p>
+<p>If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:</p>
+<ul>
+<li>Functional analysis (PiCrust). We will cover this later!</li>
+<li>Inferring ecological interaction networks (SPIEC-EASI)</li>
+<li>More statistical analyses with STAMP</li>
+<li>Or you can import your results in R to post analyse them with Phyloseq</li>
+</ul>
+<p><strong>CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!</strong>
+If you have still time available you can try to repeat the analysis using different setting to compare the results (remember to use a different name for the output compared to what you used before), as an alternative you can read the suggested reading.</p>
 
 </div>
             </section>

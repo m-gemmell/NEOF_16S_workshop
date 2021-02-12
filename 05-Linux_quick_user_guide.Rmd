@@ -1,6 +1,6 @@
 # Linux quick user guide
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/linux_beginner.png", auto_pdf = TRUE)
 ``` 
 
 In the following parts of the practical exercise, descriptions of commands will be marked by hash character, `#`, these lines should not be typed in the terminal. e.g.
