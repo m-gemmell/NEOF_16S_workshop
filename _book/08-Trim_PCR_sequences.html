@@ -219,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="trim-the-pcr-primer-sequences" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Trim the PCR primer sequences</h1>
-<p><img src="figures/cluster.png" width="20%" style="display: block; margin: auto;" /></p>
+<p><img src="figures/prepare.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.</p>
 <p>We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2 (approx. 5 min).</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="08-Trim_PCR_sequences.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza</span>

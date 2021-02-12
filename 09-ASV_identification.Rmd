@@ -1,6 +1,6 @@
 # De-novo amplicon sequence variants identification
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 ``` 
 
 We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
