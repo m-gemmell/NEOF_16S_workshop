@@ -1,0 +1,40 @@
+# Trim the PCR primer sequences
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
+``` 
+
+Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
+
+We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2 (approx. 5 min).
+
+__MG__
+(Update this to include that people can cat the file primers_seqs.fasta to copy and paster the primer sequences)
+
+```{bash, eval=FALSE}
+qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza
+ # Forward primer
+ --p-front-f NNNNNGTGCCAGCMGCCGCGGTAA \
+ # Reverse primer
+ --p-front-r GGACTACHVGGGTWTCTAAT \
+--o-trimmed-sequences paired-end-demux.trim.qza
+```
+
+To visualise the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact (approx. 2 mins).
+
+```{bash, eval=FALSE}
+qiime demux summarize --i-data paired-end-demux.trim.qza \
+--o-visualization paired-end-demux.trim.qzv
+```
+
+If you are working with ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
+
+Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
+
+__Questions__: 
+
+- Are the sequences evenly distributed across samples?
+- Which sample has the lowest number of sequences? 
+- Are there any samples that can be excluded? 
+- What is the average sequence count per sample? 
+- How is the oveerall quality for the sequences? 
+- Which truncating lengths would you chose for R1 and R2?

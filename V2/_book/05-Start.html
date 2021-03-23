@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Linux quick user guide | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 5 Linux quick user guide | Bacterial 16S metabarcoding" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Linux quick user guide | Bacterial 16S metabarcoding" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Linux quick user guide | Bacterial 16S metabarcoding" />
+  
+  
+  
+
+<meta name="author" content="Luca Lenzi and Matthew Gemmell" />
+
+
+<meta name="date" content="2021-03-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="04-Cluster_Introduction.html"/>
+<link rel="next" href="06-QIIME2_analysis_workflow.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a>Illumina QC</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="01-Bacterial_16S_metabarcoding.html"><a href="01-Bacterial_16S_metabarcoding.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="02-Background.html"><a href="02-Background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-Background.html"><a href="02-Background.html#s-rrna"><i class="fa fa-check"></i><b>2.1</b> 16S rRNA</a></li>
+<li class="chapter" data-level="2.2" data-path="02-Background.html"><a href="02-Background.html#its-and-other-possible-marker-genes"><i class="fa fa-check"></i><b>2.2</b> ITS and other possible marker genes</a></li>
+<li class="chapter" data-level="2.3" data-path="02-Background.html"><a href="02-Background.html#amplicon-sequencing"><i class="fa fa-check"></i><b>2.3</b> Amplicon sequencing</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html"><i class="fa fa-check"></i><b>3</b> Introduction to QIIME2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#artifacts"><i class="fa fa-check"></i><b>3.1</b> Artifacts</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#workflow"><i class="fa fa-check"></i><b>3.2</b> Workflow</a></li>
+<li class="chapter" data-level="3.3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#prepare-the-sequence-dataset"><i class="fa fa-check"></i><b>3.3</b> Prepare the sequence dataset</a></li>
+<li class="chapter" data-level="3.4" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#amplicon-sequence-variants-identification"><i class="fa fa-check"></i><b>3.4</b> Amplicon Sequence Variants identification</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#otus"><i class="fa fa-check"></i><b>3.4.1</b> OTUs</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#build-phylogenetic-tree"><i class="fa fa-check"></i><b>3.6</b> Build phylogenetic tree</a></li>
+<li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
+<li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
+<li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
+<li class="chapter" data-level="3.10" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#differentially-abundant-analysis"><i class="fa fa-check"></i><b>3.10</b> Differentially Abundant Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html"><i class="fa fa-check"></i><b>4</b> Cluster Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#logon-instructions"><i class="fa fa-check"></i><b>4.1</b> Logon instructions</a></li>
+<li class="chapter" data-level="4.2" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#the-terminal-window"><i class="fa fa-check"></i><b>4.2</b> The Terminal Window</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-Linux_quick_user_guide.html"><a href="05-Linux_quick_user_guide.html"><i class="fa fa-check"></i><b>5</b> Linux quick user guide</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-Linux_quick_user_guide.html"><a href="05-Linux_quick_user_guide.html#accessing-the-data-and-navigating-the-command-line."><i class="fa fa-check"></i><b>5.1</b> Accessing the data and navigating the command line.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Import sequences into QIIME2</a></li>
+<li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
+<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
+<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a></li>
+<li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a></li>
+<li class="chapter" data-level="13" data-path="13-Sequencing_controls_evaluation.html"><a href="13-Sequencing_controls_evaluation.html"><i class="fa fa-check"></i><b>13</b> Sequencing controls evaluation: beta-diversity without normalisation</a></li>
+<li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Differential_abundance.html"><a href="15-Differential_abundance.html"><i class="fa fa-check"></i><b>15</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="16" data-path="16-Final_consideration.html"><a href="16-Final_consideration.html"><i class="fa fa-check"></i><b>16</b> Final consideration</a></li>
+<li class="chapter" data-level="17" data-path="17-Resources.html"><a href="17-Resources.html"><i class="fa fa-check"></i><b>17</b> Resources</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="17-Resources.html"><a href="17-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>17.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Resources.html"><a href="17-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>17.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="17.3" data-path="17-Resources.html"><a href="17-Resources.html#references"><i class="fa fa-check"></i><b>17.3</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="18-Appendix.html"><a href="18-Appendix.html"><i class="fa fa-check"></i><b>18</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="18-Appendix.html"><a href="18-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>18.1</b> Alpha diversity metrics</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="18-Appendix.html"><a href="18-Appendix.html#observed-species"><i class="fa fa-check"></i><b>18.1.1</b> Observed species</a></li>
+<li class="chapter" data-level="18.1.2" data-path="18-Appendix.html"><a href="18-Appendix.html#pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>18.1.2</b> PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="18.1.3" data-path="18-Appendix.html"><a href="18-Appendix.html#shannon"><i class="fa fa-check"></i><b>18.1.3</b> Shannon</a></li>
+<li class="chapter" data-level="18.1.4" data-path="18-Appendix.html"><a href="18-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>18.1.4</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="18.1.5" data-path="18-Appendix.html"><a href="18-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>18.1.5</b> Bray-Curtis</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bacterial 16S metabarcoding</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linux-quick-user-guide" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Linux quick user guide</h1>
+<p><img src="figures/linux_beginner.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>In the following parts of the practical exercise, descriptions of commands will be marked by hash character, <code>#</code>, these lines should not be typed in the terminal. e.g.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="05-Linux_quick_user_guide.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># description;</span></span></code></pre></div>
+<p>Commands directed to the bash terminal will be in red. e.g.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="05-Linux_quick_user_guide.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> filename</span></code></pre></div>
+<p>Run the commands one after the other, from the command line.</p>
+<p>When a command’s length exceeds the width of the line available in the paragraph, the convention used in this document is to represent the ‘incompleteness of the command in the first line’ by ending it with a <code>\</code> sign. You may choose to split the command onto more than one line using this method in the shell or you may type the second line of the command straight after the first. In the former case, after typing the <code>\</code> and pressing ENTER, the prompt will show a <code>&gt;</code> sign indicating it is waiting for more command. This prompt <code>&gt;</code> is NOT reported in the command you have to type, so in any case this document showing a command line starting with the <code>&gt;</code> sign please be careful to type it.</p>
+<div id="accessing-the-data-and-navigating-the-command-line." class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Accessing the data and navigating the command line.</h2>
+<p>In Unix, everything works via commands on the command line. Also, the Unix environment consists of directories which may contain other directories and/or files. At any one time you are in a directory, which is within another directory and so on, and there are directories ‘below’ you, which you can move into. When you type pwd, you see the full path to your location, or “working directory” (e.g. /pub39/tea/luca/Metagenetics_2019). The directories are separated by “/.” The initial “/” is the root directory (the directory that contains everything else). When you first log in, you are in your home, the directory containing all the files and directories that you create. To make a directory, move into it, see where you are, what else is there and move up out of it, try these commands.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="05-Linux_quick_user_guide.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> adirectory</span>
+<span id="cb3-2"><a href="05-Linux_quick_user_guide.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> adirectory</span>
+<span id="cb3-3"><a href="05-Linux_quick_user_guide.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb3-4"><a href="05-Linux_quick_user_guide.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb3-5"><a href="05-Linux_quick_user_guide.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb3-6"><a href="05-Linux_quick_user_guide.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
+<span id="cb3-7"><a href="05-Linux_quick_user_guide.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> –r adirectory</span></code></pre></div>
+<p>Here, <code>cd</code> changes your directory (<code>..</code> means “jump up a level”) and <code>ls</code> lists the files and directories you can see (the <code>-l</code> option gives more information about each file/dir). You can delete a file or directory using the <code>rm</code> command, adding the <code>-r</code> option for a directory. Use these until you are comfortable navigating around.</p>
+<p>Now you need to obtain the raw data you will be analysing in this workshop. Create a main directory for the workshop and copy the directory of workshop data from its location (<code>/pub39/tea/luca/Metagenetics_2019/RawReads</code>) to your directory (<code>.</code>) using the <code>cp</code> command. The <code>-r</code> option allows you to copy an entire directory.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="05-Linux_quick_user_guide.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~</span>
+<span id="cb4-2"><a href="05-Linux_quick_user_guide.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> Metagenetics</span>
+<span id="cb4-3"><a href="05-Linux_quick_user_guide.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> -r ~luca/Metagenetics_2019/RawReads ./Metagenetics/RawReads</span>
+<span id="cb4-4"><a href="05-Linux_quick_user_guide.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/PairedEndFastqManifestPhred33.csv <span class="kw">\</span></span>
+<span id="cb4-5"><a href="05-Linux_quick_user_guide.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./Metagenetics</span></span>
+<span id="cb4-6"><a href="05-Linux_quick_user_guide.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/metadata.file.txt <span class="kw">\</span></span>
+<span id="cb4-7"><a href="05-Linux_quick_user_guide.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">./Metagenetics</span></span></code></pre></div>
+<p>Take a look at the data files</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="05-Linux_quick_user_guide.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> -l Metagenetics/RawReads</span></code></pre></div>
+<p>Now navigate into the directory, where you will do the analyses</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="05-Linux_quick_user_guide.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Metagenetics</span></code></pre></div>
+<p>Now you will explore the data you are going to analyse.</p>
+<p>It is important to get a feel for the data and how it should and shouldn’t look. If the data were generated by Illumina (HiSeq or MiSeq), they will be in <strong>fastq</strong> format, a text format that can be easily viewed. If the data are Illumina (HiSeq or MiSeq) and were generated by the CGR, these are the raw files which are already demutliplexed using the software CASAVA but were NOT postprocessed to remove adapter sequences and low-quality bases (as per standard protocol prior to
+most analysis).</p>
+<p>If your data is paired-end (MiSeq data will be), then each sample has two data files. E.g.:</p>
+<ul>
+<li><em>1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</em></li>
+<li><em>1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz</em></li>
+</ul>
+<p>In this case, the names denote sample 1, barcode <em>AAGAGGCA-GTAAGGAG</em>, lane 1 (L001), forward reads (R1) or reverse reads (R2), file 1 (001). Files are in fastq format and are often compressed with gzip (.gz).</p>
+<p>Files are typically very large. Hence you must be careful to handle them in the right way. They are usually too large to simply open in a text editor, so don’t try. Instead, you should use Unix commands and scripts to manipulate them. Ensure the Illumina reads are in fastq format by having a look. To view the top of the file, use the <code>head</code> command (<code>tail</code> is an equivalent command which lets you view the end of a file, while <code>less</code> and <code>more</code> allow you to scroll through the file). In here we will use the <code>zless</code> command which is able to open files compressed with gzip.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="05-Linux_quick_user_guide.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">zless</span> RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</span></code></pre></div>
+<p>Notice that each read is represented by 4 lines:</p>
+<p><img src="figures/fastq_lines.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>The first line is the read identifier. The second line is the sequence, and the fourth line is the quality score for this sequence. Qualities are in ASCII codes (in which a symbol represents a number: in this case the quality of the basecall).</p>
+<p>Note that the barcode sequence is displayed in the read header (but it may contain Ns).</p>
+<p>At this stage, you can get some information about your data. For instance, how many reads do you have? We can use the <code>grep</code> command to find every match to the pattern <code>^+$</code> (<code>^</code>=start of line, <code>$</code>=end of line, so match a line with a single <code>+</code> on it). There is only one line like this per read so the number of matches = the number of reads. The <code>-c</code> option makes grep return the count of the number of matches (rather than the matches themselves).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="05-Linux_quick_user_guide.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">zgrep</span> -c “^+$” 1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</span></code></pre></div>
+<p>You should obtain:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="05-Linux_quick_user_guide.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/Metagenomics/RawReads</span>$ <span class="fu">zgrep</span> -c “^+$”1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</span>
+<span id="cb9-2"><a href="05-Linux_quick_user_guide.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#result = 53731</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="04-Cluster_Introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="06-QIIME2_analysis_workflow.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+# De-novo amplicon sequence variants identification
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
+``` 
+
+We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
+
+```{bash, eval=FALSE}
+qiime dada2 denoise-paired \
+--i-demultiplexed-seqs paired-end-demux.trim.qza \
+# Truncates R1 sequences after the 220 nt length
+--p-trunc-len-f 220 \
+# Truncates R2 sequences after the 220 nt length
+--p-trunc-len-r 220 \
+# Object containing the identified variants
+--o-representative-sequences rep-seqs-dada2.qza \
+# Object containing abundance table for the identified variants
+--o-table table-dada2.qza \
+--o-denoising-stats dada2-stats.qza \
+--verbose
+```
+
+This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
+
+```{bash, eval=FALSE}
+cp ~luca/Metagenetics_2019/table-dada2.qza .
+cp ~luca/Metagenetics_2019/rep-seqs-dada2.qza .
+cp ~luca/Metagenetics_2019/dada2-stats.qza .
+```
+
+The `rep-seqs-dada2.qza` artifact contains the identified sequence variants and the `tabledada2.qza` artifact contains their abundance data. The `dada2-stats.qza` artifact summarises the statistics after the main denoising steps.
+
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If in your one of your future projects this step is taking too long, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
+
+In the case of a marker gene with very variable amplicon sequence length, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be use instead the above dada2 command.
+
+To visualise the result, run:
+
+```{bash, eval=FALSE}
+qiime feature-table summarize --i-table table-dada2.qza \
+ --o-visualization table-dada2.qzv \
+ --m-sample-metadata-file metadata.file.txt
+```
+ 
+And load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
+
+```{bash, eval=FALSE}
+qiime metadata tabulate --m-input dada2-stats.qza \
+ --o-visualization dada2-stats.qzv
+```
+ 
+And load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.
+
+__Questions__: 
+
+- In which denoising step were most of the sequences lost?
+- Are enough sequences left to proceed with the analysis? 
+- How many variants (also called ‘features’) have been identified? 
+- How are the variants distributed across samples? 
+- How many sequences are ‘rare’ (represented in few samples or in low number)?

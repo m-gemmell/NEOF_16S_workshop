@@ -1,0 +1,54 @@
+# Differential abundance analysis
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
+``` 
+
+The ANCOM method to identify the differentially abundant taxa, is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
+
+The steps to carry this out are:
+
+1. Collapse ASVs into taxa-bar-plots
+2. Add pseudo-count to the abundance table to convert ‘0’ to ‘1’
+3. Run ANCOM selecting a categorical metadata to test
+
+If you are still in ‘dada2-diversity-30000’ folder, please remember to move out:
+
+```{bash, eval=FALSE}
+cd ..
+```
+
+First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.
+
+```{bash, eval=FALSE}
+qiime taxa collapse \
+--i-table table-dada2.qza \
+--i-taxonomy taxonomy.sklearn.qza \
+--p-level 5 \
+--o-collapsed-table comp-ancom-table-l5.qza
+```
+
+Add pseudo-count to the abundance table to convert ‘0’ to ‘1’. This is required as ANCOM will fail with abundance values of 0.
+
+```{bash, eval=FALSE}
+qiime composition add-pseudocount \
+--i-table comp-ancom-table-l5.qza \
+--p-pseudocount 1 \
+--o-composition-table comp-ancom-table-l5-pse.qza
+```
+
+Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between StudentCorridor, StudentHome, Corridor and Toilet.
+
+```{bash, eval=FALSE}
+qiime composition ancom \
+--i-table comp-ancom-table-l5-pse.qza \
+--m-metadata-file metadata.file.txt \
+--m-metadata-column Location \
+--o-visualization l5-ancom-Location.qzv
+```
+
+__Questions__: 
+
++ Which families are discovered as biomarkers? 
++ Investigating these families, does this make sense? 
++ Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
++ Does changing the metadata category let you infer something different?

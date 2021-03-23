@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 14 Diversity analysis | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 14 Diversity analysis | Bacterial 16S metabarcoding" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 14 Diversity analysis | Bacterial 16S metabarcoding" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 14 Diversity analysis | Bacterial 16S metabarcoding" />
+  
+  
+  
+
+<meta name="author" content="Luca Lenzi and Matthew Gemmell" />
+
+
+<meta name="date" content="2021-03-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="13-Sequencing_controls_evaluation.html"/>
+<link rel="next" href="15-Differential_abundance.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a>Illumina QC</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="01-Bacterial_16S_metabarcoding.html"><a href="01-Bacterial_16S_metabarcoding.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="02-Background.html"><a href="02-Background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-Background.html"><a href="02-Background.html#s-rrna"><i class="fa fa-check"></i><b>2.1</b> 16S rRNA</a></li>
+<li class="chapter" data-level="2.2" data-path="02-Background.html"><a href="02-Background.html#its-and-other-possible-marker-genes"><i class="fa fa-check"></i><b>2.2</b> ITS and other possible marker genes</a></li>
+<li class="chapter" data-level="2.3" data-path="02-Background.html"><a href="02-Background.html#amplicon-sequencing"><i class="fa fa-check"></i><b>2.3</b> Amplicon sequencing</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html"><i class="fa fa-check"></i><b>3</b> Introduction to QIIME2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#artifacts"><i class="fa fa-check"></i><b>3.1</b> Artifacts</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#workflow"><i class="fa fa-check"></i><b>3.2</b> Workflow</a></li>
+<li class="chapter" data-level="3.3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#prepare-the-sequence-dataset"><i class="fa fa-check"></i><b>3.3</b> Prepare the sequence dataset</a></li>
+<li class="chapter" data-level="3.4" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#amplicon-sequence-variants-identification"><i class="fa fa-check"></i><b>3.4</b> Amplicon Sequence Variants identification</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#otus"><i class="fa fa-check"></i><b>3.4.1</b> OTUs</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#build-phylogenetic-tree"><i class="fa fa-check"></i><b>3.6</b> Build phylogenetic tree</a></li>
+<li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
+<li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
+<li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
+<li class="chapter" data-level="3.10" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#differentially-abundant-analysis"><i class="fa fa-check"></i><b>3.10</b> Differentially Abundant Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html"><i class="fa fa-check"></i><b>4</b> Cluster Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#logon-instructions"><i class="fa fa-check"></i><b>4.1</b> Logon instructions</a></li>
+<li class="chapter" data-level="4.2" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#the-terminal-window"><i class="fa fa-check"></i><b>4.2</b> The Terminal Window</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-Linux_quick_user_guide.html"><a href="05-Linux_quick_user_guide.html"><i class="fa fa-check"></i><b>5</b> Linux quick user guide</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-Linux_quick_user_guide.html"><a href="05-Linux_quick_user_guide.html#accessing-the-data-and-navigating-the-command-line."><i class="fa fa-check"></i><b>5.1</b> Accessing the data and navigating the command line.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Import sequences into QIIME2</a></li>
+<li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
+<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
+<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a></li>
+<li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a></li>
+<li class="chapter" data-level="13" data-path="13-Sequencing_controls_evaluation.html"><a href="13-Sequencing_controls_evaluation.html"><i class="fa fa-check"></i><b>13</b> Sequencing controls evaluation: beta-diversity without normalisation</a></li>
+<li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Differential_abundance.html"><a href="15-Differential_abundance.html"><i class="fa fa-check"></i><b>15</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="16" data-path="16-Final_consideration.html"><a href="16-Final_consideration.html"><i class="fa fa-check"></i><b>16</b> Final consideration</a></li>
+<li class="chapter" data-level="17" data-path="17-Resources.html"><a href="17-Resources.html"><i class="fa fa-check"></i><b>17</b> Resources</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="17-Resources.html"><a href="17-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>17.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Resources.html"><a href="17-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>17.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="17.3" data-path="17-Resources.html"><a href="17-Resources.html#references"><i class="fa fa-check"></i><b>17.3</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="18-Appendix.html"><a href="18-Appendix.html"><i class="fa fa-check"></i><b>18</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="18-Appendix.html"><a href="18-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>18.1</b> Alpha diversity metrics</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="18-Appendix.html"><a href="18-Appendix.html#observed-species"><i class="fa fa-check"></i><b>18.1.1</b> Observed species</a></li>
+<li class="chapter" data-level="18.1.2" data-path="18-Appendix.html"><a href="18-Appendix.html#pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>18.1.2</b> PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="18.1.3" data-path="18-Appendix.html"><a href="18-Appendix.html#shannon"><i class="fa fa-check"></i><b>18.1.3</b> Shannon</a></li>
+<li class="chapter" data-level="18.1.4" data-path="18-Appendix.html"><a href="18-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>18.1.4</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="18.1.5" data-path="18-Appendix.html"><a href="18-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>18.1.5</b> Bray-Curtis</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bacterial 16S metabarcoding</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="diversity-analysis" class="section level1" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Diversity analysis</h1>
+<p><img src="figures/diversity.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the “Shannon” metric, the number of observed species and Faith’s phylogenetic distance (Shannon,
+1948, Faith, 1992).</p>
+<p>Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated), including weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957).</p>
+<p>QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (<a href="https://docs.qiime2.org/2019.1/plugins/available/diversity/" class="uri">https://docs.qiime2.org/2019.1/plugins/available/diversity/</a>).</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Diversity_analysis.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity core-metrics-phylogenetic <span class="kw">\</span></span>
+<span id="cb32-2"><a href="14-Diversity_analysis.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb32-3"><a href="14-Diversity_analysis.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
+<span id="cb32-4"><a href="14-Diversity_analysis.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen final sampling depth</span></span>
+<span id="cb32-5"><a href="14-Diversity_analysis.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-sampling-depth</span> 30000 <span class="kw">\</span></span>
+<span id="cb32-6"><a href="14-Diversity_analysis.html#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-dir</span> dada2-diversity-30000 <span class="kw">\</span></span>
+<span id="cb32-7"><a href="14-Diversity_analysis.html#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt</span></code></pre></div>
+<p>This command will produce (in approx. 1 min) all the results within the directory specified with the <code>--output-dir</code>. The artifact <code>rarefied_table.qza</code> is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains the artefact for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (<code>emperor.qzv</code> files).</p>
+<p>In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: <code>qiime diversity core-metrics</code>, which lacks the
+<code>--i-phylogeny</code> options.</p>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>Looking at the beta-diversity plot, one metrics of your choice, is there any metadata category reflecting the distribution of the samples in the plot?</li>
+<li>If you choose a different metric, do you get a different plot/results?</li>
+<li>Does a different sampling-depth does give a different result?</li>
+</ul>
+<p>Considering the alpha-diversity results for each metric, we need to explore if there is a group (within the metadata category) showing a higher diversity than the other groups, with a statistical significance and not by chance given the high number of data we are dealing with. The QIIME2 pipeline offers two alternative choices: for categorical or numerical metadata. In the first case a Kruskall-Wallis test will be used to compare the alpha-diversity distribution among the groups
+within the specified metadata category; in the second case, a ranked Spearman test will be used instead.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="14-Diversity_analysis.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> dada2-diversity-30000</span>
+<span id="cb33-2"><a href="14-Diversity_analysis.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For the Kruskal-Wallis</span></span>
+<span id="cb33-3"><a href="14-Diversity_analysis.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-group-significance <span class="kw">\</span></span>
+<span id="cb33-4"><a href="14-Diversity_analysis.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alpha-diversity</span> shannon_vector.qza <span class="kw">\</span></span>
+<span id="cb33-5"><a href="14-Diversity_analysis.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
+<span id="cb33-6"><a href="14-Diversity_analysis.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> shannon-group-significance.kw.qzv</span>
+<span id="cb33-7"><a href="14-Diversity_analysis.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For the ranked Spearman</span></span>
+<span id="cb33-8"><a href="14-Diversity_analysis.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-correlation <span class="kw">\</span></span>
+<span id="cb33-9"><a href="14-Diversity_analysis.html#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alpha-diversity</span> shannon_vector.qza <span class="kw">\</span></span>
+<span id="cb33-10"><a href="14-Diversity_analysis.html#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
+<span id="cb33-11"><a href="14-Diversity_analysis.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> shannon-group-significance.rs.qzv</span></code></pre></div>
+<p>Both scripts should finish within a few seconds, giving a visualisation artifact including plots and statistical results.</p>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>Is there any category (for one or more metadata category) showing a higher/lower alpha-diversity compared with the other?</li>
+<li>Is the p-value for this comparison significant (all the pvalues are corrected for false-discovery rate)?</li>
+<li>If you choose a different metric do you get different results? (Please look at both the Kruskal-Wallis and Ranked Spearman results!)</li>
+</ul>
+<p>Having identified a metadata category (co-variate) that potentially explain the distribution in the beta-diversity ordination plot obtained using a specific metric, it is now important to investigate, again, if that separation has a statistical significance or if it may have just be originated by chance. We will use the ‘permanova’ test (you can choose ‘anosim’ as alternative) to compare the grouping for a specific metadata category with the obtained distance metrics (at 999 permutations).</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="14-Diversity_analysis.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity beta-group-significance <span class="kw">\</span></span>
+<span id="cb34-2"><a href="14-Diversity_analysis.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-distance-matrix</span> weighted_unifrac_distance_matrix.qza <span class="kw">\</span></span>
+<span id="cb34-3"><a href="14-Diversity_analysis.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
+<span id="cb34-4"><a href="14-Diversity_analysis.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one specific metadata column</span></span>
+<span id="cb34-5"><a href="14-Diversity_analysis.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-column</span> Location <span class="kw">\</span></span>
+<span id="cb34-6"><a href="14-Diversity_analysis.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># prmanova default, anosim as alternative choice</span></span>
+<span id="cb34-7"><a href="14-Diversity_analysis.html#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-method</span> permanova <span class="kw">\</span></span>
+<span id="cb34-8"><a href="14-Diversity_analysis.html#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-pairwise</span> <span class="kw">\</span></span>
+<span id="cb34-9"><a href="14-Diversity_analysis.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-permutations</span> 999 <span class="kw">\</span></span>
+<span id="cb34-10"><a href="14-Diversity_analysis.html#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> weighted-unifrac-significance.location.qzv</span></code></pre></div>
+<p>The script should finish within a few seconds, giving a visualisation artifact including plots and statistical results.</p>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>Does the chosen grouping information result in statistical differences between two or more groups (as before the p-values are corrected for false-discovery rate)?</li>
+<li>Does using ‘anosim’ instead of ‘permanova’ change the result?</li>
+<li>And using a different ordination metric?</li>
+<li>What about choosing a different grouping (metadata category)?</li>
+</ul>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="13-Sequencing_controls_evaluation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="15-Differential_abundance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

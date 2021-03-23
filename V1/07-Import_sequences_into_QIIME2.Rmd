@@ -1,0 +1,113 @@
+# Import sequences into QIIME2
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
+``` 
+
+The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt’.
+
+The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:
+
+```{bash, eval=FALSE}
+head –n 7 PairedEndFastqManifestPhred33.csv
+```
+
+sample-id,absolute-filepath,direction
+1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
+1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
+
+In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.
+
+Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.
+
+An example
+
+/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+
+Should become (where XXX is equal to the number in your username):
+
+/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+
+The ‘metadata.file.txt’, is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.
+
+```{bash, eval=FALSE}
+less metadata.file.txt
+```
+
+Results:
+
+sample-id BarcodeSequence Floor Location Place
+
+#q2:types categorical numeric categorical categorical
+
+K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance
+
+T CAGAGAGG-ACTGCATA 1 StudentHome Entrance
+
+1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance
+
+1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding
+
+1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance
+
+1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding
+
+In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.
+
+To run QIIME2’s commands we first need to activate it:
+
+```{bash, eval=FALSE}
+source ~luca/Metagenetics_2019/qiime2_env.sh
+```
+
+That will be the same as running the command `source activate qiime2-2019.1` in your own installation. Next run:
+
+```{bash, eval=FALSE}
+source tab-qiime
+```
+
+Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.
+
+When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.
+
+First, we will load all the read pairs into an artifact.
+
+```{bash, eval=FALSE}
+qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
+ --input-path PairedEndFastqManifestPhred33.csv \
+ --output-path paired-end-demux.qza \
+ --input-format PairedEndFastqManifestPhred33
+```
+ 
+This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’, the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).
+
+To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).
+
+```{bash, eval=FALSE}
+qiime demux summarize --i-data paired-end-demux.qza \
+--o-visualization paired-end-demux.qzv
+```
+
+This next step is important! Make sure to open a new terminal and open chrome in it. For the rest of the day keep this terminal and chrome open (To open a new terminal look at page 11). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run:
+
+```{bash, eval=FALSE}
+chrome.sh
+```
+
+Then:
+
+- Type the following web-site: ‘view.qiime2.org’
+- Click on ‘Drag and drop or click here’ panel
+- You can browse now to find and select the file ‘paired-end-demux.qzv’
+
+__Questions__: 
+
+- Are the sequences evenly distributed across samples?
+- Which sample has the lowest number of sequences? 
+- Is there any sample with a low final number of sequences? 
+- Are there any samples that can be excluded? 
+- What is the average sequence count per sample?
+- How is the overall quality for the sequences?

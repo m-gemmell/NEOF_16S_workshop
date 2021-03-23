@@ -1,0 +1,31 @@
+# Make a phylogenetic tree of the identified ASVs
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
+``` 
+
+To obtain the phylogenetic tree the steps are:
+
+1. Alignment of the sequence variants with MAFFT
+2. Masking out the uninformative sequences with MASK
+3. Creation of the un-rooted tree with FASTTREE
+4. Creation of the rooted tree
+
+The rooted tree will be used to compute phylogenetical aware alpha- and beta-diversity metrics such as Faith’s Phylogenetical Distance (Faith’s PD) and UniFrac distances, for any marker for which this is possible (therefore excluding ITS among others).
+
+The commands are the following:
+
+```{bash, eval=FALSE}
+qiime alignment mafft --i-sequences rep-seqs-dada2.qza \
+--o-alignment aligned-rep-seqs.qza
+
+qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+--o-masked-alignment masked-aligned-rep-seqs.qza
+
+qiime phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza \
+--o-tree unrooted-tree.qza
+
+qiime phylogeny midpoint-root --i-tree unrooted-tree.qza \
+--o-rooted-tree rooted-tree.qza
+```
+
+All these steps should finish in approx. 3 min, the final artifact for later use is ‘rooted-tree.qza’ 
