@@ -18,3 +18,11 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 9. Differential abundance analysis of ASVs across different conditions
 
 ## Activate environment
+You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
+
+```{bash eval=FALSE}
+. useqiime2
+```
+
+Prior to running QIIME2 commands you would need to create and then activate a QIIME2 conda in your own computer/cluster. Below is a link to a quick start guide for QIIME2:
+https://docs.qiime2.org/2021.2/getting-started/

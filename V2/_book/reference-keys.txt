@@ -21,10 +21,14 @@ logon-instructions
 the-terminal-window
 data
 pairedendfastqmanifestphred33.csv
-accessing-the-data-and-navigating-the-command-line.
+metadata.file.txt
+primers_seqs.fasta
 qiime2-analysis-workflow
 workflow-1
-import-sequences-into-qiime2
+activate-environment
+metadata-validation-and-sequence-import
+metadata-validation
+sequence-import
 trim-the-pcr-primer-sequences
 de-novo-amplicon-sequence-variants-identification
 assign-a-taxonomic-classification-to-each-amplicon-sequence-variant

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding" />
+  <title>Chapter 7 Metadata validation and Sequence import | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 7 Metadata validation and Sequence import | Bacterial 16S metabarcoding" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="Chapter 7 Metadata validation and Sequence import | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Import sequences into QIIME2 | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="Chapter 7 Metadata validation and Sequence import | Bacterial 16S metabarcoding" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-19" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,13 +165,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#pairedendfastqmanifestphred33.csv"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#accessing-the-data-and-navigating-the-command-line."><i class="fa fa-check"></i><b>5.2</b> Accessing the data and navigating the command line.</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Import sequences into QIIME2</a></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Metadata validation and Sequence import</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#metadata-validation"><i class="fa fa-check"></i><b>7.1</b> Metadata validation</a></li>
+<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#sequence-import"><i class="fa fa-check"></i><b>7.2</b> Sequence import</a></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
 <li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
@@ -218,56 +224,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="import-sequences-into-qiime2" class="section level1" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Import sequences into QIIME2</h1>
+<div id="metadata-validation-and-sequence-import" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Metadata validation and Sequence import</h1>
+<div id="metadata-validation" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Metadata validation</h2>
+<p><img src="figures/true_or_false.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>The first step we will carry out is to validate our metadata file. This will inform us if our metadata file is in the correct format or not.</p>
+</div>
+<div id="sequence-import" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Sequence import</h2>
 <p><img src="figures/import.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt.’</p>
-<p>The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="07-Import_sequences_into_QIIME2.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> –n 7 PairedEndFastqManifestPhred33.csv</span></code></pre></div>
-<p>sample-id,absolute-filepath,direction
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse</p>
-<p>In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.</p>
-<p>Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.</p>
-<p>An example</p>
-<p>/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</p>
-<p>Should become (where XXX is equal to the number in your username):</p>
-<p>/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz</p>
-<p>The ‘metadata.file.txt,’ is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="07-Import_sequences_into_QIIME2.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> metadata.file.txt</span></code></pre></div>
-<p>Results:</p>
-<p>sample-id BarcodeSequence Floor Location Place</p>
-<p>#q2:types categorical numeric categorical categorical</p>
-<p>K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance</p>
-<p>T CAGAGAGG-ACTGCATA 1 StudentHome Entrance</p>
-<p>1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance</p>
-<p>1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding</p>
-<p>1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance</p>
-<p>1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding</p>
-<p>In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.</p>
-<p>To run QIIME2’s commands we first need to activate it:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="07-Import_sequences_into_QIIME2.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~luca/Metagenetics_2019/qiime2_env.sh</span></code></pre></div>
-<p>That will be the same as running the command <code>source activate qiime2-2019.1</code> in your own installation. Next run:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="07-Import_sequences_into_QIIME2.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> tab-qiime</span></code></pre></div>
-<p>Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.</p>
-<p>When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.</p>
-<p>First, we will load all the read pairs into an artifact.</p>
+<p>Now it is time to import our read pairs into a QIIME2 artifact.</p>
 <p><strong>Note</strong>: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="07-Import_sequences_into_QIIME2.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import --type <span class="st">&#39;SampleData[PairedEndSequencesWithQuality]&#39;</span> <span class="kw">\</span></span>
-<span id="cb17-2"><a href="07-Import_sequences_into_QIIME2.html#cb17-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-path</span> PairedEndFastqManifestPhred33.csv <span class="kw">\</span></span>
-<span id="cb17-3"><a href="07-Import_sequences_into_QIIME2.html#cb17-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--output-path</span> paired-end-demux.qza <span class="kw">\</span></span>
-<span id="cb17-4"><a href="07-Import_sequences_into_QIIME2.html#cb17-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-format</span> PairedEndFastqManifestPhred33</span></code></pre></div>
-<p>This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza,’ the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).</p>
-<p>To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="07-Import_sequences_into_QIIME2.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> demux summarize --i-data paired-end-demux.qza <span class="kw">\</span></span>
-<span id="cb18-2"><a href="07-Import_sequences_into_QIIME2.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> paired-end-demux.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="07-Import_sequences_into_QIIME2.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import --type <span class="st">&#39;SampleData[PairedEndSequencesWithQuality]&#39;</span> <span class="kw">\</span></span>
+<span id="cb6-2"><a href="07-Import_sequences_into_QIIME2.html#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-path</span> PairedEndFastqManifestPhred33.csv <span class="kw">\</span></span>
+<span id="cb6-3"><a href="07-Import_sequences_into_QIIME2.html#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--output-path</span> paired-end-demux.qza <span class="kw">\</span></span>
+<span id="cb6-4"><a href="07-Import_sequences_into_QIIME2.html#cb6-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-format</span> PairedEndFastqManifestPhred33</span></code></pre></div>
+<p>This command will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza.’</p>
+<p>The “demux” part of the file name indicates that the samples are already demultiplexed (i.e. sequences have benn sperarated by samples). Additonally, QIIME2 artifacts use “-” as word seperators in file names. This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.</p>
+<p>To visualise the samples loaded, the following command will create a visualisation artifact.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="07-Import_sequences_into_QIIME2.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> demux summarize --i-data paired-end-demux.qza <span class="kw">\</span></span>
+<span id="cb7-2"><a href="07-Import_sequences_into_QIIME2.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> paired-end-demux.qzv</span></code></pre></div>
 <p><strong>Chrome</strong></p>
 <p>This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose <code>Applications</code> -&gt; <code>Shell</code> -&gt; <code>bash</code>). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome,’ run:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="07-Import_sequences_into_QIIME2.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">chrome.sh</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="07-Import_sequences_into_QIIME2.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">chrome.sh</span></span></code></pre></div>
 <p>Form now on leave the terminal you ran the above command on alone.</p>
 <p>Then:</p>
 <ul>
@@ -285,6 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>How is the overall quality for the sequences?</li>
 </ul>
 
+</div>
 </div>
             </section>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-19" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,13 +165,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#pairedendfastqmanifestphred33.csv"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#accessing-the-data-and-navigating-the-command-line."><i class="fa fa-check"></i><b>5.2</b> Accessing the data and navigating the command line.</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Import sequences into QIIME2</a></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Metadata validation and Sequence import</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#metadata-validation"><i class="fa fa-check"></i><b>7.1</b> Metadata validation</a></li>
+<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#sequence-import"><i class="fa fa-check"></i><b>7.2</b> Sequence import</a></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
 <li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
@@ -222,32 +228,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 9</span> De-novo amplicon sequence variants identification</h1>
 <p><img src="figures/clusters.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don’t run this command, see below command):</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="09-ASV_identification.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="kw">\</span></span>
-<span id="cb22-2"><a href="09-ASV_identification.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-demultiplexed-seqs</span> paired-end-demux.trim.qza <span class="kw">\</span></span>
-<span id="cb22-3"><a href="09-ASV_identification.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R1 sequences after the 220 nt length</span></span>
-<span id="cb22-4"><a href="09-ASV_identification.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-f</span> 220 <span class="kw">\</span></span>
-<span id="cb22-5"><a href="09-ASV_identification.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R2 sequences after the 220 nt length</span></span>
-<span id="cb22-6"><a href="09-ASV_identification.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-r</span> 220 <span class="kw">\</span></span>
-<span id="cb22-7"><a href="09-ASV_identification.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing the identified variants</span></span>
-<span id="cb22-8"><a href="09-ASV_identification.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-representative-sequences</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
-<span id="cb22-9"><a href="09-ASV_identification.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing abundance table for the identified variants</span></span>
-<span id="cb22-10"><a href="09-ASV_identification.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-table</span> table-dada2.qza <span class="kw">\</span></span>
-<span id="cb22-11"><a href="09-ASV_identification.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-denoising-stats</span> dada2-stats.qza <span class="kw">\</span></span>
-<span id="cb22-12"><a href="09-ASV_identification.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--verbose</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="09-ASV_identification.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="kw">\</span></span>
+<span id="cb11-2"><a href="09-ASV_identification.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-demultiplexed-seqs</span> paired-end-demux.trim.qza <span class="kw">\</span></span>
+<span id="cb11-3"><a href="09-ASV_identification.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R1 sequences after the 220 nt length</span></span>
+<span id="cb11-4"><a href="09-ASV_identification.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-f</span> 220 <span class="kw">\</span></span>
+<span id="cb11-5"><a href="09-ASV_identification.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R2 sequences after the 220 nt length</span></span>
+<span id="cb11-6"><a href="09-ASV_identification.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-r</span> 220 <span class="kw">\</span></span>
+<span id="cb11-7"><a href="09-ASV_identification.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing the identified variants</span></span>
+<span id="cb11-8"><a href="09-ASV_identification.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-representative-sequences</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
+<span id="cb11-9"><a href="09-ASV_identification.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing abundance table for the identified variants</span></span>
+<span id="cb11-10"><a href="09-ASV_identification.html#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb11-11"><a href="09-ASV_identification.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-denoising-stats</span> dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb11-12"><a href="09-ASV_identification.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--verbose</span></span></code></pre></div>
 <p>This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="09-ASV_identification.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/table-dada2.qza .</span>
-<span id="cb23-2"><a href="09-ASV_identification.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/rep-seqs-dada2.qza .</span>
-<span id="cb23-3"><a href="09-ASV_identification.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/dada2-stats.qza .</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="09-ASV_identification.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/table-dada2.qza .</span>
+<span id="cb12-2"><a href="09-ASV_identification.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/rep-seqs-dada2.qza .</span>
+<span id="cb12-3"><a href="09-ASV_identification.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/dada2-stats.qza .</span></code></pre></div>
 <p>The <code>rep-seqs-dada2.qza</code> artifact contains the identified sequence variants and the <code>tabledada2.qza</code> artifact contains their abundance data. The <code>dada2-stats.qza</code> artifact summarises the statistics after the main denoising steps.</p>
 <p>This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If in your one of your future projects this step is taking too long, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.</p>
 <p>In the case of a marker gene with very variable amplicon sequence length, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: <code>--p-trunc-len-f 0</code> and <code>--p-trunc-len-r 0</code>. To exclude the low quality tails the <code>--p-trunc-q 20</code> option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the <code>qiime dada2 denoise-single</code> should be use instead the above dada2 command.</p>
 <p>To visualise the result, run:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="09-ASV_identification.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize --i-table table-dada2.qza <span class="kw">\</span></span>
-<span id="cb24-2"><a href="09-ASV_identification.html#cb24-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> table-dada2.qzv <span class="kw">\</span></span>
-<span id="cb24-3"><a href="09-ASV_identification.html#cb24-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--m-sample-metadata-file</span> metadata.file.txt</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="09-ASV_identification.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize --i-table table-dada2.qza <span class="kw">\</span></span>
+<span id="cb13-2"><a href="09-ASV_identification.html#cb13-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> table-dada2.qzv <span class="kw">\</span></span>
+<span id="cb13-3"><a href="09-ASV_identification.html#cb13-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--m-sample-metadata-file</span> metadata.file.txt</span></code></pre></div>
 <p>And load the obtained <code>table-dada2.qzv</code> into the ‘view.qiime2.org’ website.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="09-ASV_identification.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate --m-input dada2-stats.qza <span class="kw">\</span></span>
-<span id="cb25-2"><a href="09-ASV_identification.html#cb25-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> dada2-stats.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="09-ASV_identification.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate --m-input dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb14-2"><a href="09-ASV_identification.html#cb14-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> dada2-stats.qzv</span></code></pre></div>
 <p>And load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.</p>
 <p><strong>Questions</strong>:</p>
 <ul>

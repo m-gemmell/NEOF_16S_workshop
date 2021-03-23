@@ -255,8 +255,8 @@ ASVs).
 The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation of the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform nMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
@@ -272,12 +272,16 @@ As discussed for the alpha-diversity, before proceeding with the beta-diversity 
 The choice of the beta-diversity distance metric to use will strongly affect the results, it therefore common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes, for example the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
 ## Differentially Abundant Analysis
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
+``` 
 
 The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).
 
 QIIME2 supports two normalisation methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the value in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
 
-Examples of questions to answer
+Examples of questions to answer:
+
 - Are there differences in taxa at various levels of taxonomy?
 - What are the most abundant ASVs (or species)?
 - What are the rare ASVs present (either real or still retained sequencing error)?
@@ -327,7 +331,7 @@ To open a new terminal window, right click on the main screen, choose `Applicati
 
 # Data
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/linux_beginner.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/data_files.png", auto_pdf = TRUE)
 ``` 
 
 Prior to starting analysis you will need three files. To acquire these three files run the following commands.
@@ -350,132 +354,81 @@ ls
 ```
 
 ## PairedEndFastqManifestPhred33.csv
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/manifest.png", auto_pdf = TRUE)
+``` 
 
 This "manifest" file contains three columns that are separated by commas (.csv = comma separated values). This is vital for importing your sequencing data into QIIME2.
 
 Each column has a header and contains the following information:
 
 1. sample-id
-   - Info
+   - User specified sample-id. 
+   - This is how the sample will be named in all downstream QIIME2 files.
+   - These must match the sample ids in the metadata file.
+   - Recommendations for sample ids/identifiers can be found lower down in this bookdown page.
 2. absolute-filepath
+   - Full path of sequencing file.
 3. direction
+   - Direction of the sequencing reads
+   - For paired end reads this will be "forward" (R1) or "reverse" (R2).
+   
+For paired end read datasets there will be two lines for each sample. One for the forward read file and one for the reverse read file. These two lines must have the same sample-id.
+
+Have a look at the top 7 lines of our "manifest" file.
+
+```{bash, eval=FALSE}
+head –n 7 PairedEndFastqManifestPhred33.csv
+```
 
 This file will be used in chapter 7.
 
-- PairedEndFastqManifestPhred33.csv
-   - This file contains three columns that are separated by commas (.csv = comma separated values). This is vital for importing your sequencing data into QIIME2. More info on this file in chapter 7.
-- metadata.file.txt
-   - This file contains metadata. This file contains columns seperated by tabs. It is vital that the "sample-id" column contains the same info as the "sample-id" column in "PairedEndFastqManifestPhred33.csv". More info on this file in chpater 7.
-
-- primers_seqs.fasta
-
-
-##Command
-
-```{bash eval=FALSE}
-cd ~
-mkdir Metagenetics
-cd Metagenetics
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_5/* .
-```
-
-
-In the following parts of the practical exercise, descriptions of commands will be marked by hash character, `#`, these lines should not be typed in the terminal. e.g.
-
-```{bash, eval=FALSE}
-# description;
-```
-
-Commands directed to the bash terminal will be in red. e.g.
-
-```{bash, eval=FALSE}
-cat filename
-```
-
-Run the commands one after the other, from the command line.
-
-When a command’s length exceeds the width of the line available in the paragraph, the convention used in this document is to represent the ‘incompleteness of the command in the first line’ by ending it with a `\` sign. You may choose to split the command onto more than one line using this method in the shell or you may type the second line of the command straight after the first. In the former case, after typing the `\` and pressing ENTER, the prompt will show a `>` sign indicating it is waiting for more command. This prompt `>` is NOT reported in the command you have to type, so in any case this document showing a command line starting with the `>` sign please be careful to type it.
-
-## Accessing the data and navigating the command line.
-
-In Unix, everything works via commands on the command line. Also, the Unix environment consists of directories which may contain other directories and/or files. At any one time you are in a directory, which is within another directory and so on, and there are directories ‘below’ you, which you can move into. When you type pwd, you see the full path to your location, or “working directory” (e.g. /pub39/tea/luca/Metagenetics_2019). The directories are separated by “/”. The initial “/” is the root directory (the directory that contains everything else). When you first log in, you are in your home, the directory containing all the files and directories that you create. To make a directory, move into it, see where you are, what else is there and move up out of it, try these commands.
-
-```{bash eval=FALSE}
-mkdir adirectory
-cd adirectory
-pwd
-ls
-cd ..
-ls
-rm –r adirectory
-```
-
-Here, `cd` changes your directory (`..` means “jump up a level”) and `ls` lists the files and directories you can see (the `-l` option gives more information about each file/dir). You can delete a file or directory using the `rm` command, adding the `-r` option for a directory. Use these until you are comfortable navigating around.
-
-Now you need to obtain the raw data you will be analysing in this workshop. Create a main directory for the workshop and copy the directory of workshop data from its location (`/pub39/tea/luca/Metagenetics_2019/RawReads`) to your directory (`.`) using the `cp` command. The `-r` option allows you to copy an entire directory.
-
-```{bash eval=FALSE}
-cd ~
-mkdir Metagenetics
-cd Metagenetics
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_5/* .
-```
-
-Take a look at the contents of your current directory. There should be the following files:
-
-
-
-```{bash, eval=FALSE}
-ls
-```
-
-Now navigate into the directory, where you will do the analyses
-
-```{bash, eval=FALSE}
-cd Metagenetics
-```
-
-Now you will explore the data you are going to analyse.
-
-It is important to get a feel for the data and how it should and shouldn’t look. If the data were generated by Illumina (HiSeq or MiSeq), they will be in __fastq__ format, a text format that can be easily viewed. If the data are Illumina (HiSeq or MiSeq) and were generated by the CGR, these are the raw files which are already demutliplexed using the software CASAVA but were NOT postprocessed to remove adapter sequences and low-quality bases (as per standard protocol prior to
-most analysis).
-
-If your data is paired-end (MiSeq data will be), then each sample has two data files. E.g.:
-
-- _1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz_
-- _1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz_
-
-In this case, the names denote sample 1, barcode _AAGAGGCA-GTAAGGAG_, lane 1 (L001), forward reads (R1) or reverse reads (R2), file 1 (001). Files are in fastq format and are often compressed with gzip (.gz).
-
-Files are typically very large. Hence you must be careful to handle them in the right way. They are usually too large to simply open in a text editor, so don’t try. Instead, you should use Unix commands and scripts to manipulate them. Ensure the Illumina reads are in fastq format by having a look. To view the top of the file, use the `head` command (`tail` is an equivalent command which lets you view the end of a file, while `less` and `more` allow you to scroll through the file). In here we will use the `zless` command which is able to open files compressed with gzip.
-
-```{bash, eval=FALSE}
-zless RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-```
-
-Notice that each read is represented by 4 lines:
-
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/fastq_lines.png", auto_pdf = TRUE)
+## metadata.file.txt
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/tags.png", auto_pdf = TRUE)
 ``` 
 
-The first line is the read identifier. The second line is the sequence, and the fourth line is the quality score for this sequence. Qualities are in ASCII codes (in which a symbol represents a number: in this case the quality of the basecall).
+This file contains metadata. It consists of columns separated by tabs. 
 
-Note that the barcode sequence is displayed in the read header (but it may contain Ns).
+It is vital that the "sample-id" column contains the same info as the "sample-id" column in "PairedEndFastqManifestPhred33.csv".
 
-At this stage, you can get some information about your data. For instance, how many reads do you have? We can use the `grep` command to find every match to the pattern `^+$` (`^`=start of line, `$`=end of line, so match a line with a single `+` on it). There is only one line like this per read so the number of matches = the number of reads. The `-c` option makes grep return the count of the number of matches (rather than the matches themselves).
+This file can contain as many columns as you would like (minimum of 2). The first column must be the "sample-id" column.
+
+The first 2 rows must be:
+
+1. Headers
+   - Name of metadata fields.
+   - These are chosen by the user (except the sample-id column). Make sure to these are informative and concise.
+   - We suggest to only use letters and not to use spaces.
+2. Column type
+   - The value "#q2:types" must be used for the 1st column.
+   - For all other columns the value must be:
+      - "categorical": For catergorical metadata.This will be the most common choice.
+      - "numeric": For numerical metadata. 
+      
+Have a look at the top 10 lines of the metadata file:
 
 ```{bash, eval=FALSE}
-zgrep -c “^+$” 1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
+head metadata.file.txt
 ```
+   
+For more information on QIIME2 metadata please see: https://docs.qiime2.org/2021.2/tutorials/metadata/
 
-You should obtain:
+The above link includes:
 
-```{bash, eval=FALSE}
-#result = 53731
-```
+- Metadata Formatting Requirements
+- Info on empy rows
+- Recommendations for identifiers
+- Info on column types and number formatting
+- More
 
+## primers_seqs.fasta
 
+This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for PCR trimming step (chapter 8) and the classifier training step (chapter 10).
+
+This file has been provided so you can copy and paste the sequences from within the webVNC. It is never advisable to try to type sequences.
+
+For your own studies you will need to ask the lab that carried out the sequencing preparation for the primer sequences.
 
 <!--chapter:end:05-Data.Rmd-->
 
@@ -498,84 +451,34 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 8. Diversity analysis: alpha and beta
 9. Differential abundance analysis of ASVs across different conditions
 
+## Activate environment
+You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
+
+```{bash eval=FALSE}
+. useqiime2
+```
+
+Prior to running QIIME2 commands you would need to create and then activate a QIIME2 conda in your own computer/cluster. Below is a link to a quick start guide for QIIME2:
+https://docs.qiime2.org/2021.2/getting-started/
+
 <!--chapter:end:06-QIIME2_analysis_workflow.Rmd-->
 
-# Import sequences into QIIME2
+# Metadata validation and Sequence import
+
+## Metadata validation
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/true_or_false.png", auto_pdf = TRUE)
+``` 
+
+The first step we will carry out is to validate our metadata file. This will inform us if our metadata file is in the correct format or not.
+
+
+## Sequence import
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
 
-The input files for the QIIME2 pipeline are two text files, (a) the ‘manifest’ file and (b) the ‘metadata.file.txt’.
-
-The ‘manifest file’ is a file listing the absolute path for the sequence files. The head of the manifest file we are going to use, is:
-
-```{bash, eval=FALSE}
-head –n 7 PairedEndFastqManifestPhred33.csv
-```
-
-sample-id,absolute-filepath,direction
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K1MB,/pub39/tea/luca/Metagenetics_2019/RawReads/1K1MB_CGAGGCTG-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R1_001.fastq.gz,forward
-1K2E,/pub39/tea/luca/Metagenetics_2019/RawReads/1K2E_AGGCAGAA-GTAAGGAG_L001_R2_001.fastq.gz,reverse
-
-In the manifest, each filed is separated by a comma ‘,’ character. The first column represents the identifier for the sample that will be used everywhere in the following analysis. The second column is the full path for the sequence file, and the third column is the orientation for the sequences in the file. If you wish to perform the pairing within DADA2, each sample will be represented by two lines: for R1 and R2.
-
-Please note, before starting the import step you have to edit the manifest file and the paths for the sequence files to match the actual path from your home folder.
-
-An example
-
-/pub39/tea/luca/Metagenetics_2019/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-Should become (where XXX is equal to the number in your username):
-
-/pub39/tea/nscXXX/Metagenetics/RawReads/1K1E_AAGAGGCA-GTAAGGAG_L001_R1_001.fastq.gz
-
-The ‘metadata.file.txt’, is a text table (each field separated by a ‘TAB’ character) listing all the information for each sample.
-
-```{bash, eval=FALSE}
-less metadata.file.txt
-```
-
-Results:
-
-sample-id BarcodeSequence Floor Location Place
-
-#q2:types categorical numeric categorical categorical
-
-K2 CTCTCTAC-ACTGCATA 1 StudentCorridor Entrance
-
-T CAGAGAGG-ACTGCATA 1 StudentHome Entrance
-
-1K1E AAGAGGCA-GTAAGGAG 1 Corridor Entrance
-
-1K1MB CGAGGCTG-GTAAGGAG 1 Corridor MainBuilding
-
-1K2E AGGCAGAA-GTAAGGAG 1 Corridor Entrance
-
-1K2M CGTACTAG-GTAAGGAG 1 Corridor MainBuilding
-
-In this file, you may want to include as much information as you can on the data, please note that if a column contains only numbers QIIME2 scripts will consider it as numerical, such as days, depths or weights (as opposed to categorical such as sex, location or barcodes). To force QIIME2 to interpret the column as you want, it is possible to specify the type of value in the second line of the file, as in this example.
-
-To run QIIME2’s commands we first need to activate it:
-
-```{bash, eval=FALSE}
-source ~luca/Metagenetics_2019/qiime2_env.sh
-```
-
-That will be the same as running the command `source activate qiime2-2019.1` in your own installation. Next run:
-
-```{bash, eval=FALSE}
-source tab-qiime
-```
-
-Please, remember to run the 2 above commands on any new terminal window (or bash shell) you are going to open for the practical.
-
-When running the commands/scripts marked in red, please ensure you are in “Metagenetics” directory.
-
-First, we will load all the read pairs into an artifact.
+Now it is time to import our read pairs into a QIIME2 artifact.
 
 __Note__: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.
 
@@ -586,9 +489,11 @@ qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
  --input-format PairedEndFastqManifestPhred33
 ```
  
-This will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’, the name refers to the fact that samples in here are already demultiplexed (will takes approx. 1 min).
+This command will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’. 
 
-To visualise the samples loaded, the following command will create a visualisation artifact associated to the main sample artifact (approx. 30 sec).
+The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have benn sperarated by samples). Additonally, QIIME2 artifacts use "-" as word seperators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
+
+To visualise the samples loaded, the following command will create a visualisation artifact.
 
 ```{bash, eval=FALSE}
 qiime demux summarize --i-data paired-end-demux.qza \
@@ -631,8 +536,7 @@ Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the
 
 We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2 (approx. 5 min).
 
-__MG__
-(Update this to include that people can cat the file primers_seqs.fasta to copy and paster the primer sequences)
+__Note__: You can copy and paste the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
 ```{bash, eval=FALSE}
 qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza

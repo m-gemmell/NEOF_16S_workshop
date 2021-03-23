@@ -7,8 +7,7 @@ Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the
 
 We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2 (approx. 5 min).
 
-__MG__
-(Update this to include that people can cat the file primers_seqs.fasta to copy and paster the primer sequences)
+__Note__: You can copy and paste the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
 ```{bash, eval=FALSE}
 qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza

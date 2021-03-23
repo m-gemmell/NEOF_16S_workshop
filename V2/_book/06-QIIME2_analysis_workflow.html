@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-19" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,13 +165,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#pairedendfastqmanifestphred33.csv"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#accessing-the-data-and-navigating-the-command-line."><i class="fa fa-check"></i><b>5.2</b> Accessing the data and navigating the command line.</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Import sequences into QIIME2</a></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Metadata validation and Sequence import</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#metadata-validation"><i class="fa fa-check"></i><b>7.1</b> Metadata validation</a></li>
+<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#sequence-import"><i class="fa fa-check"></i><b>7.2</b> Sequence import</a></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
 <li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
@@ -235,6 +241,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Diversity analysis: alpha and beta</li>
 <li>Differential abundance analysis of ASVs across different conditions</li>
 </ol>
+</div>
+<div id="activate-environment" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Activate environment</h2>
+<p>You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="06-QIIME2_analysis_workflow.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span> <span class="ex">useqiime2</span></span></code></pre></div>
+<p>Prior to running QIIME2 commands you would need to create and then activate a QIIME2 conda in your own computer/cluster. Below is a link to a quick start guide for QIIME2:
+<a href="https://docs.qiime2.org/2021.2/getting-started/" class="uri">https://docs.qiime2.org/2021.2/getting-started/</a></p>
 
 </div>
 </div>

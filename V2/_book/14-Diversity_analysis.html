@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-19" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,13 +165,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#pairedendfastqmanifestphred33.csv"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#accessing-the-data-and-navigating-the-command-line."><i class="fa fa-check"></i><b>5.2</b> Accessing the data and navigating the command line.</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Import sequences into QIIME2</a></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Metadata validation and Sequence import</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#metadata-validation"><i class="fa fa-check"></i><b>7.1</b> Metadata validation</a></li>
+<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#sequence-import"><i class="fa fa-check"></i><b>7.2</b> Sequence import</a></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
 <li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
@@ -225,13 +231,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 1948, Faith, 1992).</p>
 <p>Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated), including weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957).</p>
 <p>QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (<a href="https://docs.qiime2.org/2019.1/plugins/available/diversity/" class="uri">https://docs.qiime2.org/2019.1/plugins/available/diversity/</a>).</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="14-Diversity_analysis.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity core-metrics-phylogenetic <span class="kw">\</span></span>
-<span id="cb35-2"><a href="14-Diversity_analysis.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
-<span id="cb35-3"><a href="14-Diversity_analysis.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
-<span id="cb35-4"><a href="14-Diversity_analysis.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen final sampling depth</span></span>
-<span id="cb35-5"><a href="14-Diversity_analysis.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-sampling-depth</span> 30000 <span class="kw">\</span></span>
-<span id="cb35-6"><a href="14-Diversity_analysis.html#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-dir</span> dada2-diversity-30000 <span class="kw">\</span></span>
-<span id="cb35-7"><a href="14-Diversity_analysis.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="14-Diversity_analysis.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity core-metrics-phylogenetic <span class="kw">\</span></span>
+<span id="cb24-2"><a href="14-Diversity_analysis.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb24-3"><a href="14-Diversity_analysis.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
+<span id="cb24-4"><a href="14-Diversity_analysis.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Chosen final sampling depth</span></span>
+<span id="cb24-5"><a href="14-Diversity_analysis.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-sampling-depth</span> 30000 <span class="kw">\</span></span>
+<span id="cb24-6"><a href="14-Diversity_analysis.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-dir</span> dada2-diversity-30000 <span class="kw">\</span></span>
+<span id="cb24-7"><a href="14-Diversity_analysis.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt</span></code></pre></div>
 <p>This command will produce (in approx. 1 min) all the results within the directory specified with the <code>--output-dir</code>. The artifact <code>rarefied_table.qza</code> is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains the artefact for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (<code>emperor.qzv</code> files).</p>
 <p>In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: <code>qiime diversity core-metrics</code>, which lacks the
 <code>--i-phylogeny</code> options.</p>
@@ -243,17 +249,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Considering the alpha-diversity results for each metric, we need to explore if there is a group (within the metadata category) showing a higher diversity than the other groups, with a statistical significance and not by chance given the high number of data we are dealing with. The QIIME2 pipeline offers two alternative choices: for categorical or numerical metadata. In the first case a Kruskall-Wallis test will be used to compare the alpha-diversity distribution among the groups
 within the specified metadata category; in the second case, a ranked Spearman test will be used instead.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="14-Diversity_analysis.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> dada2-diversity-30000</span>
-<span id="cb36-2"><a href="14-Diversity_analysis.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For the Kruskal-Wallis</span></span>
-<span id="cb36-3"><a href="14-Diversity_analysis.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-group-significance <span class="kw">\</span></span>
-<span id="cb36-4"><a href="14-Diversity_analysis.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alpha-diversity</span> shannon_vector.qza <span class="kw">\</span></span>
-<span id="cb36-5"><a href="14-Diversity_analysis.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
-<span id="cb36-6"><a href="14-Diversity_analysis.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> shannon-group-significance.kw.qzv</span>
-<span id="cb36-7"><a href="14-Diversity_analysis.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For the ranked Spearman</span></span>
-<span id="cb36-8"><a href="14-Diversity_analysis.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-correlation <span class="kw">\</span></span>
-<span id="cb36-9"><a href="14-Diversity_analysis.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alpha-diversity</span> shannon_vector.qza <span class="kw">\</span></span>
-<span id="cb36-10"><a href="14-Diversity_analysis.html#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
-<span id="cb36-11"><a href="14-Diversity_analysis.html#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> shannon-group-significance.rs.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="14-Diversity_analysis.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> dada2-diversity-30000</span>
+<span id="cb25-2"><a href="14-Diversity_analysis.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For the Kruskal-Wallis</span></span>
+<span id="cb25-3"><a href="14-Diversity_analysis.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-group-significance <span class="kw">\</span></span>
+<span id="cb25-4"><a href="14-Diversity_analysis.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alpha-diversity</span> shannon_vector.qza <span class="kw">\</span></span>
+<span id="cb25-5"><a href="14-Diversity_analysis.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
+<span id="cb25-6"><a href="14-Diversity_analysis.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> shannon-group-significance.kw.qzv</span>
+<span id="cb25-7"><a href="14-Diversity_analysis.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For the ranked Spearman</span></span>
+<span id="cb25-8"><a href="14-Diversity_analysis.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-correlation <span class="kw">\</span></span>
+<span id="cb25-9"><a href="14-Diversity_analysis.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alpha-diversity</span> shannon_vector.qza <span class="kw">\</span></span>
+<span id="cb25-10"><a href="14-Diversity_analysis.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
+<span id="cb25-11"><a href="14-Diversity_analysis.html#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> shannon-group-significance.rs.qzv</span></code></pre></div>
 <p>Both scripts should finish within a few seconds, giving a visualisation artifact including plots and statistical results.</p>
 <p><strong>Questions</strong>:</p>
 <ul>
@@ -262,16 +268,16 @@ within the specified metadata category; in the second case, a ranked Spearman te
 <li>If you choose a different metric do you get different results? (Please look at both the Kruskal-Wallis and Ranked Spearman results!)</li>
 </ul>
 <p>Having identified a metadata category (co-variate) that potentially explain the distribution in the beta-diversity ordination plot obtained using a specific metric, it is now important to investigate, again, if that separation has a statistical significance or if it may have just be originated by chance. We will use the ‘permanova’ test (you can choose ‘anosim’ as alternative) to compare the grouping for a specific metadata category with the obtained distance metrics (at 999 permutations).</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="14-Diversity_analysis.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity beta-group-significance <span class="kw">\</span></span>
-<span id="cb37-2"><a href="14-Diversity_analysis.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-distance-matrix</span> weighted_unifrac_distance_matrix.qza <span class="kw">\</span></span>
-<span id="cb37-3"><a href="14-Diversity_analysis.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
-<span id="cb37-4"><a href="14-Diversity_analysis.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one specific metadata column</span></span>
-<span id="cb37-5"><a href="14-Diversity_analysis.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-column</span> Location <span class="kw">\</span></span>
-<span id="cb37-6"><a href="14-Diversity_analysis.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># prmanova default, anosim as alternative choice</span></span>
-<span id="cb37-7"><a href="14-Diversity_analysis.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-method</span> permanova <span class="kw">\</span></span>
-<span id="cb37-8"><a href="14-Diversity_analysis.html#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-pairwise</span> <span class="kw">\</span></span>
-<span id="cb37-9"><a href="14-Diversity_analysis.html#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-permutations</span> 999 <span class="kw">\</span></span>
-<span id="cb37-10"><a href="14-Diversity_analysis.html#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> weighted-unifrac-significance.location.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="14-Diversity_analysis.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity beta-group-significance <span class="kw">\</span></span>
+<span id="cb26-2"><a href="14-Diversity_analysis.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-distance-matrix</span> weighted_unifrac_distance_matrix.qza <span class="kw">\</span></span>
+<span id="cb26-3"><a href="14-Diversity_analysis.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> ../metadata.file.txt <span class="kw">\</span></span>
+<span id="cb26-4"><a href="14-Diversity_analysis.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select one specific metadata column</span></span>
+<span id="cb26-5"><a href="14-Diversity_analysis.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-column</span> Location <span class="kw">\</span></span>
+<span id="cb26-6"><a href="14-Diversity_analysis.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># prmanova default, anosim as alternative choice</span></span>
+<span id="cb26-7"><a href="14-Diversity_analysis.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-method</span> permanova <span class="kw">\</span></span>
+<span id="cb26-8"><a href="14-Diversity_analysis.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-pairwise</span> <span class="kw">\</span></span>
+<span id="cb26-9"><a href="14-Diversity_analysis.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-permutations</span> 999 <span class="kw">\</span></span>
+<span id="cb26-10"><a href="14-Diversity_analysis.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> weighted-unifrac-significance.location.qzv</span></code></pre></div>
 <p>The script should finish within a few seconds, giving a visualisation artifact including plots and statistical results.</p>
 <p><strong>Questions</strong>:</p>
 <ul>

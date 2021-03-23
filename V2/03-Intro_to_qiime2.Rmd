@@ -162,8 +162,8 @@ ASVs).
 The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation of the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform nMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
@@ -179,12 +179,16 @@ As discussed for the alpha-diversity, before proceeding with the beta-diversity 
 The choice of the beta-diversity distance metric to use will strongly affect the results, it therefore common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes, for example the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
 ## Differentially Abundant Analysis
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
+``` 
 
 The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).
 
 QIIME2 supports two normalisation methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the value in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
 
-Examples of questions to answer
+Examples of questions to answer:
+
 - Are there differences in taxa at various levels of taxonomy?
 - What are the most abundant ASVs (or species)?
 - What are the rare ASVs present (either real or still retained sequencing error)?
