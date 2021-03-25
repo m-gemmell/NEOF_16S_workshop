@@ -3,29 +3,73 @@
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
-To obtain the phylogenetic tree the steps are:
+In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS among others).
 
 1. Alignment of the sequence variants with MAFFT
 2. Masking out the uninformative sequences with MASK
 3. Creation of the un-rooted tree with FASTTREE
 4. Creation of the rooted tree
 
-The rooted tree will be used to compute phylogenetical aware alpha- and beta-diversity metrics such as Faith’s Phylogenetical Distance (Faith’s PD) and UniFrac distances, for any marker for which this is possible (therefore excluding ITS among others).
 
-The commands are the following:
+## MAFFT alignment
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
+``` 
+The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
 
 ```{bash, eval=FALSE}
 qiime alignment mafft --i-sequences rep-seqs-dada2.qza \
 --o-alignment aligned-rep-seqs.qza
+```
 
+## Masking
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
+``` 
+After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
+
+The following default options are chosen (no need to look at this it is only for your interest):
+
+- `--p-max-gap-frequency 1.0`
+   - This option is provided with a number from 0-1.
+   - This determines the relative frequency of gap characters in an aligned column for the column to be retained.
+   - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
+   - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
+- `--p-min-conservation 0.4`
+   - This option is provided with a number from 0-1.
+   - This is the minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
+   - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
+      - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
+      - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
+
+```{bash, eval=FALSE}
 qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+--p-max-gap-frequency 1.0 \
+--p-min-conservation 0.4 \
 --o-masked-alignment masked-aligned-rep-seqs.qza
+```
 
+## Un-rooted tree creation with FASTTREE
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
+``` 
+Create an un-rooted maximum-likelihood tree from our masked alignment.
+
+```{bash, eval=FALSE}
 qiime phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza \
 --o-tree unrooted-tree.qza
+```
 
-qiime phylogeny midpoint-root --i-tree unrooted-tree.qza \
+## Rooted tree creation
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/tree_rooted.png", auto_pdf = TRUE)
+``` 
+Finally the un-rooted tree is rooted.
+
+```{bash, eval=FALSE}
+qiime phylogeny midpoint-root \
+--i-tree unrooted-tree.qza \
 --o-rooted-tree rooted-tree.qza
 ```
 
-All these steps should finish in approx. 3 min, the final artifact for later use is ‘rooted-tree.qza’ 
+All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .

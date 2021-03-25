@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-23" />
+<meta name="date" content="2021-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,15 +173,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
 <li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Metadata validation and Sequence import</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#metadata-validation"><i class="fa fa-check"></i><b>7.1</b> Metadata validation</a></li>
-<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#sequence-import"><i class="fa fa-check"></i><b>7.2</b> Sequence import</a></li>
-</ul></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
-<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
+<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
+<li class="chapter" data-level="9.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#visualise-dada2-output"><i class="fa fa-check"></i><b>9.2</b> Visualise DADA2 output</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#table-dada2.qzv"><i class="fa fa-check"></i><b>9.2.1</b> table-dada2.qzv</a></li>
+<li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
-<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a></li>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking</a></li>
+<li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a></li>
 <li class="chapter" data-level="13" data-path="13-Sequencing_controls_evaluation.html"><a href="13-Sequencing_controls_evaluation.html"><i class="fa fa-check"></i><b>13</b> Sequencing controls evaluation: beta-diversity without normalisation</a></li>
 <li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
@@ -227,7 +237,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="de-novo-amplicon-sequence-variants-identification" class="section level1" number="9">
 <h1><span class="header-section-number">Chapter 9</span> De-novo amplicon sequence variants identification</h1>
 <p><img src="figures/clusters.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don’t run this command, see below command):</p>
+<p>We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples.</p>
+<div id="dada2-denoising" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> DADA2 denoising</h2>
+<p>To perform the variant sequence identification step with DADA2, the command is (don’t run this command, see below command):</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="09-ASV_identification.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="kw">\</span></span>
 <span id="cb11-2"><a href="09-ASV_identification.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-demultiplexed-seqs</span> paired-end-demux.trim.qza <span class="kw">\</span></span>
 <span id="cb11-3"><a href="09-ASV_identification.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R1 sequences after the 220 nt length</span></span>
@@ -241,29 +254,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-11"><a href="09-ASV_identification.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-denoising-stats</span> dada2-stats.qza <span class="kw">\</span></span>
 <span id="cb11-12"><a href="09-ASV_identification.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--verbose</span></span></code></pre></div>
 <p>This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="09-ASV_identification.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/table-dada2.qza .</span>
-<span id="cb12-2"><a href="09-ASV_identification.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/rep-seqs-dada2.qza .</span>
-<span id="cb12-3"><a href="09-ASV_identification.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~luca/Metagenetics_2019/dada2-stats.qza .</span></code></pre></div>
-<p>The <code>rep-seqs-dada2.qza</code> artifact contains the identified sequence variants and the <code>tabledada2.qza</code> artifact contains their abundance data. The <code>dada2-stats.qza</code> artifact summarises the statistics after the main denoising steps.</p>
-<p>This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If in your one of your future projects this step is taking too long, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.</p>
-<p>In the case of a marker gene with very variable amplicon sequence length, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: <code>--p-trunc-len-f 0</code> and <code>--p-trunc-len-r 0</code>. To exclude the low quality tails the <code>--p-trunc-q 20</code> option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the <code>qiime dada2 denoise-single</code> should be use instead the above dada2 command.</p>
-<p>To visualise the result, run:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="09-ASV_identification.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize --i-table table-dada2.qza <span class="kw">\</span></span>
-<span id="cb13-2"><a href="09-ASV_identification.html#cb13-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> table-dada2.qzv <span class="kw">\</span></span>
-<span id="cb13-3"><a href="09-ASV_identification.html#cb13-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--m-sample-metadata-file</span> metadata.file.txt</span></code></pre></div>
-<p>And load the obtained <code>table-dada2.qzv</code> into the ‘view.qiime2.org’ website.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="09-ASV_identification.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate --m-input dada2-stats.qza <span class="kw">\</span></span>
-<span id="cb14-2"><a href="09-ASV_identification.html#cb14-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> dada2-stats.qzv</span></code></pre></div>
-<p>And load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="09-ASV_identification.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Copy the files from the specified directory your working directory</span></span>
+<span id="cb12-2"><a href="09-ASV_identification.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_9/* ~/Metagenetics</span></code></pre></div>
+<p>Through the above command you will now have the following three files:</p>
+<ul>
+<li><code>rep-seqs-dada2.qza</code>: Artifact containing the identified sequence variants.</li>
+<li><code>tabledada2.qza</code>: Artifact containing their ASV abundance table.</li>
+<li><code>dada2-stats.qza</code>: Artifact which summarises the statistics after the main denoising steps.</li>
+</ul>
+<p>This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.</p>
+<p>In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: <code>--p-trunc-len-f 0</code> and <code>--p-trunc-len-r 0</code>. To exclude the low quality tails the <code>--p-trunc-q 20</code> option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the <code>qiime dada2 denoise-single</code> should be use instead the above dada2 command.</p>
+</div>
+<div id="visualise-dada2-output" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Visualise DADA2 output</h2>
+<p><img src="figures/qiime2view.png" width="20%" style="display: block; margin: auto;" /></p>
+<div id="table-dada2.qzv" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> table-dada2.qzv</h3>
+<p><img src="figures/table.png" width="15%" style="display: block; margin: auto;" />
+To visualise information on the ASV table we will run:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="09-ASV_identification.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="kw">\</span></span>
+<span id="cb13-2"><a href="09-ASV_identification.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb13-3"><a href="09-ASV_identification.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> table-dada2.qzv <span class="kw">\</span></span>
+<span id="cb13-4"><a href="09-ASV_identification.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-sample-metadata-file</span> metadata.file.txt</span></code></pre></div>
+<p>Now load the obtained <code>table-dada2.qzv</code> into the ‘view.qiime2.org’ website.</p>
+<p><strong>Tip</strong>: Click on the big grey “Drag and drop or click here” box on the website. Then on the pop up window click “HOME” on the top right. From your home you can naigate to “Metagenetics” and choose your file.</p>
+<p>The page opened with <code>table-dada2.qzv</code> contains 3 tabs:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Overview</strong>: An overview page with various information.
+<ul>
+<li><strong>Table summary</strong>
+<ul>
+<li><strong>Number of samples</strong></li>
+<li><strong>Number of features</strong>: In this case features are ASVs. If this was a taxa table features would be the number of taxa.</li>
+<li><strong>Total frequency</strong>: Total number of sequences (i.e. total abundance across all samples and ASVs).</li>
+</ul></li>
+<li><strong>Frequency per sample</strong>: Summary of number of sequences.
+<ul>
+<li><strong>IQR table</strong>: Table showing the Interquartile range of sample frequencies.</li>
+<li><strong>Histogram of frequency per sample</strong>: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies. The vertical dark blue lines on the x axis represent the specific frequencies of samples (1 vertical line per sample).</li>
+</ul></li>
+<li><strong>Frequency per feature</strong>: Summary of number of sequences per feature (ASV/taxa).
+<ul>
+<li><strong>IQR table</strong>: Table showing the Interquartile range of feature frequencies.</li>
+<li><strong>Histogram of frequency per sample</strong>: This shows a rough view of the number of features (y axis) with different frequencies (x axis). Note that the scales are logarithmic. The left side of the plot shows how many rare ASVs there are (ASVs represented by a low amount of sequences, i.e. low abundance ASVs). The right side of the plot shows the amount of high abundance ASVs.</li>
+</ul></li>
+</ul></li>
+<li><strong>Interactive Sample Detail</strong>: This interactive section allows you to explore sampling depth. Experiment using the Plot Controls.
+<ul>
+<li><strong>Plot</strong>: This shows the number of samples per metadata category.</li>
+<li><strong>Feature count table</strong>: Table showing feature count per sample.</li>
+<li><strong>Plot Controls</strong>: Controls to change and update the plot and table.
+<ul>
+<li><strong>Save as..</strong>: Controls to save the current plot.</li>
+<li><strong>Metadata Category</strong>: This allows you to change the values on the x axis of the plot.</li>
+<li><strong>Sampling Depth</strong>: Choosing a sampling depth will update the following.
+<ul>
+<li><strong>Plot</strong>: The plot will be updated to grey out the tops of the bars by removing samples with a depth lower than the chosen sampling depth.</li>
+<li><strong>Feature count table</strong>: Samples with a lower depth than the sampling depth will be highlighted red.</li>
+<li><strong>Plot Controls</strong>: Below the controls is a section of text showing the number of features and samples reatined by the chosen sampling depth.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Feature detail</strong>: This is a table with 3 columns.
+<ul>
+<li>1st column: This is the ASV id. This ID represnets the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.</li>
+<li><strong>Frequency</strong>: Number of sequences representing the ASV acorss all samples. I.e. the total abundance of the ASV.</li>
+<li><strong># of Samples Observed in</strong>: Number of samples the ASVs was detected in.</li>
+</ul></li>
+</ol>
 <p><strong>Questions</strong>:</p>
 <ul>
-<li>In which denoising step were most of the sequences lost?</li>
-<li>Are enough sequences left to proceed with the analysis?</li>
-<li>How many variants (also called ‘features’) have been identified?</li>
-<li>How are the variants distributed across samples?</li>
-<li>How many sequences are ‘rare’ (represented in few samples or in low number)?</li>
+<li>How many ASVs were detected in the dataset?</li>
+<li>What is the median and mean number of sequences per samples (to 1 decimal place)?</li>
+<li>What is the minimum and maximum number of sequences per ASV?</li>
+<li>How many samples have &gt;10,000 sequences?</li>
+<li>Are there more Corridor samples or Toilet samples (based on Location metadata category)?</li>
+<li>How many sequences represents the second most abundant ASV?</li>
 </ul>
+</div>
+<div id="dada2-stats.qzv" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> dada2-stats.qzv</h3>
+<p><img src="figures/filter.png" width="15%" style="display: block; margin: auto;" />
+Next we’ll look at the denoising stats.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="09-ASV_identification.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="kw">\</span></span>
+<span id="cb14-2"><a href="09-ASV_identification.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-input</span> dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb14-3"><a href="09-ASV_identification.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> dada2-stats.qzv</span></code></pre></div>
+<p>Load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.</p>
+<p>Open the <code>dada2-stats.qzv</code> visualisation with QIIME2 view.</p>
+<p>You will now see a denoising stats table with the following columns:</p>
+<ul>
+<li><strong>sample-id</strong></li>
+<li><strong>input</strong>: Number of sequence pairs the sample started with prior to the denoising steps.</li>
+<li><strong>filtered</strong>: Number of sequence pairs retained after user specified filtering (e.g. <code>--p-trunc-len-f 220</code> will truncate forward reads but alos remove sequence pairs where the forward length is shorter than 220).</li>
+<li><strong>percentage of input passed filter</strong>: Percentage of input reads that passed the filtering step.</li>
+<li><strong>denoised</strong>: Number of filtered sequence pairs that were successfully denoised.</li>
+<li><strong>merged</strong>: Number of filtered and denoised paired sequences that were successfully merged (forward and reverse read merged into one sequence).</li>
+<li><strong>percentage of input merged</strong>: Percentage of input reads that passed the filtering, denoising, and merging steps.</li>
+<li><strong>non-chimeric</strong>: Number of filtered, denoised, and merged sequences retained after chimera removal. This is the final number of sequences per sample.</li>
+<li><strong>percentage of input non-chimeric</strong>: Percentage of input reads retained at the end.</li>
+</ul>
+<p>This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not hae enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.</p>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>In which DADA2 step were most of the sequences lost?</li>
+<li>If this was a real study would there be enough sequences left for optimal analysis?</li>
+</ul>
+<p>A high percentage of sequences were detected as chimeric. In normal studies this would be worrying and may indicate a por sequencing run. However, it is fine for this tutorial as it is only practice data.</p>
 
+</div>
+</div>
 </div>
             </section>
 

@@ -454,8 +454,10 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 ## Activate environment
 You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
 
+__Note__: Ensure you include the dot and space at the start `. ` before `useqiime2-2021.2`
+
 ```{bash eval=FALSE}
-. useqiime2
+. useqiime2-2021.2
 ```
 
 Prior to running QIIME2 commands you would need to create and then activate a QIIME2 conda in your own computer/cluster. Below is a link to a quick start guide for QIIME2:
@@ -463,17 +465,7 @@ https://docs.qiime2.org/2021.2/getting-started/
 
 <!--chapter:end:06-QIIME2_analysis_workflow.Rmd-->
 
-# Metadata validation and Sequence import
-
-## Metadata validation
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/true_or_false.png", auto_pdf = TRUE)
-``` 
-
-The first step we will carry out is to validate our metadata file. This will inform us if our metadata file is in the correct format or not.
-
-
-## Sequence import
+# Sequence import
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
@@ -513,16 +505,25 @@ Form now on leave the terminal you ran the above command on alone.
 Then:
 
 - Type the following web-site: ‘view.qiime2.org’
-- Click on ‘Drag and drop or click here’ panel
-- You can browse now to find and select the file ‘paired-end-demux.qzv’
+- Click on ‘Drag and drop or click here’ grey box
+- You can browse now to find and select the file ‘paired-end-demux.qzv’. Tip: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+
+The visulaisation will have two tabs:
+
+1. __Overview__: This contains 3 main sections relating to the sequence count of samples.
+   - __Demultiplexxed sequence counts summary__: Summary table of number of sequences per sample divided by forward and reverse reads.
+   - __Read frequency histograms__: Forward and Reverse reads histograms showing the how many samples have various numbers of sequences. 
+   - __Per-sample sequence counts__: Table showing the number of forward and reverse reads in samples.
+2. __Interactive Quality Plots__: Contains similar information as fastQC analysis.
+   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random smapling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
+   - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 __Questions__: 
 
 - Are the sequences evenly distributed across samples?
 - Which sample has the lowest number of sequences? 
-- Is there any sample with a low final number of sequences? 
-- Are there any samples that can be excluded? 
-- What is the average sequence count per sample?
+- Is there any sample with a low final number of sequences (<20k)? 
+- What is the mean sequence count per sample?
 - How is the overall quality for the sequences?
 
 <!--chapter:end:07-Import_sequences_into_QIIME2.Rmd-->
@@ -534,7 +535,7 @@ knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 
 Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
 
-We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2 (approx. 5 min).
+We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2.
 
 __Note__: You can copy and paste the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
@@ -547,12 +548,18 @@ qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza
 --o-trimmed-sequences paired-end-demux.trim.qza
 ```
 
-To visualise the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact (approx. 2 mins).
+To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact.
 
 ```{bash, eval=FALSE}
 qiime demux summarize --i-data paired-end-demux.trim.qza \
 --o-visualization paired-end-demux.trim.qzv
 ```
+
+Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’ website.
+
+__Remember to use the same chrome window!__ You can click the QIIME2 view logo on the top right of the previous `paired-end-demux.qzv` page and click "leave" on the "Do you want to leave this site?" pop-up. Now you will be on the QIIME2 view homepage.
+
+This visualisation contains the same sections as `paired-end-demux.qzv` but contains information on the PCR trimmed data.
 
 If you are working with ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
 
@@ -562,10 +569,9 @@ __Questions__:
 
 - Are the sequences evenly distributed across samples?
 - Which sample has the lowest number of sequences? 
-- Are there any samples that can be excluded? 
 - What is the average sequence count per sample? 
-- How is the oveerall quality for the sequences? 
-- Which truncating lengths would you chose for R1 and R2?
+- How is the overall quality for the sequences? 
+- Which truncating lengths would you chose for R1 and R2? This choice is base don teh quality across the length of the read plus the total length of our V4 amplicon.
 
 <!--chapter:end:08-Trim_PCR_sequences.Rmd-->
 
@@ -574,7 +580,11 @@ __Questions__:
 knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 ``` 
 
-We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
+We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. 
+
+## DADA2 denoising
+
+To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
 
 ```{bash, eval=FALSE}
 qiime dada2 denoise-paired \
@@ -594,41 +604,116 @@ qiime dada2 denoise-paired \
 This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
 
 ```{bash, eval=FALSE}
-cp ~luca/Metagenetics_2019/table-dada2.qza .
-cp ~luca/Metagenetics_2019/rep-seqs-dada2.qza .
-cp ~luca/Metagenetics_2019/dada2-stats.qza .
+#Copy the files from the specified directory your working directory
+cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 ```
 
-The `rep-seqs-dada2.qza` artifact contains the identified sequence variants and the `tabledada2.qza` artifact contains their abundance data. The `dada2-stats.qza` artifact summarises the statistics after the main denoising steps.
+Through the above command you will now have the following three files:
 
-This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If in your one of your future projects this step is taking too long, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
+- `rep-seqs-dada2.qza`: Artifact containing the identified sequence variants.
+- `tabledada2.qza`: Artifact containing their ASV abundance table. 
+- `dada2-stats.qza`: Artifact which summarises the statistics after the main denoising steps.
 
-In the case of a marker gene with very variable amplicon sequence length, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be use instead the above dada2 command.
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
-To visualise the result, run:
+In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be use instead the above dada2 command.
+
+## Visualise DADA2 output
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/qiime2view.png", auto_pdf = TRUE)
+``` 
+
+### table-dada2.qzv
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/table.png", auto_pdf = TRUE)
+``` 
+To visualise information on the ASV table we will run:
 
 ```{bash, eval=FALSE}
-qiime feature-table summarize --i-table table-dada2.qza \
- --o-visualization table-dada2.qzv \
- --m-sample-metadata-file metadata.file.txt
+qiime feature-table summarize \
+--i-table table-dada2.qza \
+--o-visualization table-dada2.qzv \
+--m-sample-metadata-file metadata.file.txt
 ```
  
-And load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
+Now load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
+
+__Tip__: Click on the big grey "Drag and drop or click here" box on the website. Then on the pop up window click "HOME" on the top right. From your home you can naigate to "Metagenetics" and choose your file.
+
+The page opened with `table-dada2.qzv` contains 3 tabs:
+
+1. __Overview__: An overview page with various information.
+   - __Table summary__
+      - __Number of samples__
+      - __Number of features__: In this case features are ASVs. If this was a taxa table features would be the number of taxa.
+      - __Total frequency__: Total number of sequences (i.e. total abundance across all samples and ASVs).
+   - __Frequency per sample__: Summary of number of sequences.
+      - __IQR table__: Table showing the Interquartile range of sample frequencies.
+      - __Histogram of frequency per sample__: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies. The vertical dark blue lines on the x axis represent the specific frequencies of samples (1 vertical line per sample).
+   - __Frequency per feature__: Summary of number of sequences per feature (ASV/taxa).
+      - __IQR table__: Table showing the Interquartile range of feature frequencies.
+      - __Histogram of frequency per sample__: This shows a rough view of the number of features (y axis) with different frequencies (x axis). Note that the scales are logarithmic. The left side of the plot shows how many rare ASVs there are (ASVs represented by a low amount of sequences, i.e. low abundance ASVs). The right side of the plot shows the amount of high abundance ASVs.
+2. __Interactive Sample Detail__: This interactive section allows you to explore sampling depth. Experiment using the Plot Controls.
+   - __Plot__: This shows the number of samples per metadata category.
+   - __Feature count table__: Table showing feature count per sample.
+   - __Plot Controls__: Controls to change and update the plot and table.
+      - __Save as..__: Controls to save the current plot.
+      - __Metadata Category__: This allows you to change the values on the x axis of the plot.
+      - __Sampling Depth__: Choosing a sampling depth will update the following.
+         - __Plot__: The plot will be updated to grey out the tops of the bars by removing samples with a depth lower than the chosen sampling depth.
+         - __Feature count table__: Samples with a lower depth than the sampling depth will be highlighted red.
+         - __Plot Controls__: Below the controls is a section of text showing the number of features and samples reatined by the chosen sampling depth.
+3. __Feature detail__: This is a table with 3 columns.
+   - 1st column: This is the ASV id. This ID represnets the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.
+   - __Frequency__: Number of sequences representing the ASV acorss all samples. I.e. the total abundance of the ASV.
+   - __# of Samples Observed in__: Number of samples the ASVs was detected in.
+
+__Questions__:
+
+- How many ASVs were detected in the dataset?
+- What is the median and mean number of sequences per samples (to 1 decimal place)?
+- What is the minimum and maximum number of sequences per ASV?
+- How many samples have >10,000 sequences?
+- Are there more Corridor samples or Toilet samples (based on Location metadata category)?
+- How many sequences represents the second most abundant ASV?
+
+### dada2-stats.qzv
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/filter.png", auto_pdf = TRUE)
+``` 
+Next we'll look at the denoising stats.
 
 ```{bash, eval=FALSE}
-qiime metadata tabulate --m-input dada2-stats.qza \
- --o-visualization dada2-stats.qzv
+qiime metadata tabulate \
+--m-input dada2-stats.qza \
+--o-visualization dada2-stats.qzv
 ```
  
-And load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.
+Load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.
+
+Open the `dada2-stats.qzv` visualisation with QIIME2 view.
+
+You will now see a denoising stats table with the following columns:
+
+- __sample-id__
+- __input__: Number of sequence pairs the sample started with prior to the denoising steps.
+- __filtered__: Number of sequence pairs retained after user specified filtering (e.g. `--p-trunc-len-f 220` will truncate forward reads but alos remove sequence pairs where the forward length is shorter than 220).
+- __percentage of input passed filter__: Percentage of input reads that passed the filtering step.
+- __denoised__: Number of filtered sequence pairs that were successfully denoised.
+- __merged__: Number of filtered and denoised paired sequences that were successfully merged (forward and reverse read merged into one sequence).
+- __percentage of input merged__: Percentage of input reads that passed the filtering, denoising, and merging steps.
+- __non-chimeric__: Number of filtered, denoised, and merged sequences retained after chimera removal. This is the final number of sequences per sample.
+- __percentage of input non-chimeric__: Percentage of input reads retained at the end.
+
+This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not hae enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.
 
 __Questions__: 
 
-- In which denoising step were most of the sequences lost?
-- Are enough sequences left to proceed with the analysis? 
-- How many variants (also called ‘features’) have been identified? 
-- How are the variants distributed across samples? 
-- How many sequences are ‘rare’ (represented in few samples or in low number)?
+- In which DADA2 step were most of the sequences lost?
+- If this was a real study would there be enough sequences left for optimal analysis? 
+
+
+A high percentage of sequences were detected as chimeric. In normal studies this would be worrying and may indicate a por sequencing run. However, it is fine for this tutorial as it is only practice data.
 
 <!--chapter:end:09-ASV_identification.Rmd-->
 
@@ -639,28 +724,26 @@ knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 
 Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. Here, we use the `sk-learn` classifier to assign taxonomy based on the Greengenes database (DeSantis _et al_., 2006). 
 
-Greengenes is a database containing quality-controlled microbial sequence data. Greengenes 16S rDNA sequences come from a large number of species which have been formatted for use in QIIME, by clustering the sequences at a given level of similarity (here, 99%). As for OTU-picking, the more stringent the similarity threshold, the more fine-grained the taxonomic designation (i.e. there are more Greengenes OTUs defined to the species level at 99% than at 97% similarity). The classifier maps the variant sequences, defined above, to OTU representative sequences from the Greengenes set.
+Greengenes is a database containing quality-controlled microbial sequence data. Greengenes 16S rDNA sequences come from a large number of species which have been formatted for use in QIIME, by clustering the sequences at a given level of similarity (here, 99%). As for OTU-picking, the more stringent the similarity threshold, the more fine-grained the taxonomic designation (i.e. there are more Greengenes OTUs defined to the species level at 99% than at 97% similarity). The classifier maps the variant sequences to OTU representative sequences from the Greengenes set.
 
-First, we need to import the Greengenes data into QIIME2 artifact objects.
+First, we need to import the Greengenes data into QIIME2 artifacts. These steps will create two objects containing the sequences and their taxonomy, respectively.
 
 ```{bash, eval=FALSE}
-qiime tools import \
---input-path
-/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/rep_set/99_otus.fasta \
- --output-path gg-13-8.99_otus.qza \
- --type 'FeatureData[Sequence]'
+qiime tools import --input-path \
+/pub39/tea/matthew/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta \
+--output-path gg-13-8.99_otus.qza \
+--type 'FeatureData[Sequence]'
 
-qiime tools import \
---input-path
-/pub39/tea/luca/Metagenetics_2019/db/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
- --output-path gg-13-8.99.taxa.qza \
- --input-format HeaderlessTSVTaxonomyFormat \
- --type 'FeatureData[Taxonomy]'
+qiime tools import --input-path \
+/pub39/tea/matthew/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
+--output-path gg-13-8.99.taxa.qza \
+--input-format HeaderlessTSVTaxonomyFormat \
+--type 'FeatureData[Taxonomy]'
 ```
 
-These steps will create two objects containing the sequences and their taxonomy, respectively, and should finish in less than 2 mins.
+We require a classifier training step to reach optimum assignment performance.
 
-The classifier tool we are going to use requires a training step to reach its optimum performance. The training is performed on a read set extracted from Greengenes representative sequences, including only the amplified region of interest.
+Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences.
 
 Note: Do not run the below command for this tutorial, see below command)
 
@@ -669,54 +752,54 @@ qiime feature-classifier extract-reads \
 --i-sequences gg-13-8.99_otus.qza \
 --p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA \
 --p-r-primer GGACTACHVGGGTWTCTAAT \
-# Creating reads of 250 bp as in our case
+# Creating reads of 250 bp as our intial read length was 250bp
 --p-trunc-len 250 \
 --o-reads gg-13-8.99.ref.seqs.qza
 ```
 
-Given that this step may require more than 14h to finish, we won’t be able to run on this occasion. Copy over premade result with the following command:
+Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:
 
 ```{bash, eval=FALSE}
-cp /pub39/tea/luca/Metagenetics_2019/gg-13-8.99.ref.seqs.qza .
+cp /pub39/tea/matthew/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
 ```
 
-To train the `sk-learn` classifier on this set of reads (approx. 25 mins):
+Now we train the classifier on this set of extracted reads (approx. 25 mins):
 
 ```{bash, eval=FALSE}
 qiime feature-classifier fit-classifier-naive-bayes \
 --i-reference-reads gg-13-8.99.ref.seqs.qza \
- --i-reference-taxonomy gg-13-8.99.taxa.qza \
- --o-classifier classifier.trained.qza
+--i-reference-taxonomy gg-13-8.99.taxa.qza \
+--o-classifier classifier.trained.qza
 ```
 
-The command for the taxonomy assignment is (approx. 5 min):
+With our trained classifier we can assign taxonomic assignments to the ASV represenative sequences:
 
 ```{bash, eval=FALSE}
 qiime feature-classifier classify-sklearn \
 --i-classifier classifier.trained.qza \
- # Default value for confidence
- --p-confidence 0.7 \
- --i-reads rep-seqs-dada2.qza \
- --o-classification taxonomy.sklearn.qza
+# Default value for confidence
+--p-confidence 0.7 \
+--i-reads rep-seqs-dada2.qza \
+--o-classification taxonomy.sklearn.qza
 ```
  
-To visualise the taxonomy-abundance bar-chart obtained, run (approx. 1 min):
+Create a taxonomy-abundance bar-chart visualisation artifact:
 
 ```{bash, eval=FALSE}
 qiime taxa barplot --i-table table-dada2.qza \
- --i-taxonomy taxonomy.sklearn.qza \
- --m-metadata-file metadata.file.txt \
- --o-visualization taxa-bar-plots.dada2.qzv
+--i-taxonomy taxonomy.sklearn.qza \
+--m-metadata-file metadata.file.txt \
+--o-visualization taxa-bar-plots.dada2.qzv
 ```
  
-Once you have loaded the file in the browser, you may specify the taxonomic level to look at, as well as a few sorting and colouring options.
+Once you have loaded the file in the browser you'll see an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.
 
 __Questions__: 
 
 - What is the most abundant taxon, at level 5, in the dataset? 
 - How do the samples compare to each other?
 
-If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some step and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.
+If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.
 
 <!--chapter:end:10-Taxonomic_assignment.Rmd-->
 
@@ -725,32 +808,76 @@ If you have sequenced any samples with known composition (e.g. mock community), 
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
-To obtain the phylogenetic tree the steps are:
+In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS among others).
 
 1. Alignment of the sequence variants with MAFFT
 2. Masking out the uninformative sequences with MASK
 3. Creation of the un-rooted tree with FASTTREE
 4. Creation of the rooted tree
 
-The rooted tree will be used to compute phylogenetical aware alpha- and beta-diversity metrics such as Faith’s Phylogenetical Distance (Faith’s PD) and UniFrac distances, for any marker for which this is possible (therefore excluding ITS among others).
 
-The commands are the following:
+## MAFFT alignment
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
+``` 
+The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
 
 ```{bash, eval=FALSE}
 qiime alignment mafft --i-sequences rep-seqs-dada2.qza \
 --o-alignment aligned-rep-seqs.qza
+```
 
+## Masking
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
+``` 
+After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
+
+The following default options are chosen (no need to look at this it is only for your interest):
+
+- `--p-max-gap-frequency 1.0`
+   - This option is provided with a number from 0-1.
+   - This determines the relative frequency of gap characters in an aligned column for the column to be retained.
+   - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
+   - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
+- `--p-min-conservation 0.4`
+   - This option is provided with a number from 0-1.
+   - This is the minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
+   - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
+      - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
+      - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
+
+```{bash, eval=FALSE}
 qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+--p-max-gap-frequency 1.0 \
+--p-min-conservation 0.4 \
 --o-masked-alignment masked-aligned-rep-seqs.qza
+```
 
+## Un-rooted tree creation with FASTTREE
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
+``` 
+Create an un-rooted maximum-likelihood tree from our masked alignment.
+
+```{bash, eval=FALSE}
 qiime phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza \
 --o-tree unrooted-tree.qza
+```
 
-qiime phylogeny midpoint-root --i-tree unrooted-tree.qza \
+## Rooted tree creation
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/tree_rooted.png", auto_pdf = TRUE)
+``` 
+Finally the un-rooted tree is rooted.
+
+```{bash, eval=FALSE}
+qiime phylogeny midpoint-root \
+--i-tree unrooted-tree.qza \
 --o-rooted-tree rooted-tree.qza
 ```
 
-All these steps should finish in approx. 3 min, the final artifact for later use is ‘rooted-tree.qza’ 
+All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .
 
 <!--chapter:end:11-Phylogentic_tree.Rmd-->
 

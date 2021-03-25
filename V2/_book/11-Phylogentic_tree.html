@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-23" />
+<meta name="date" content="2021-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,15 +173,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
 <li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Metadata validation and Sequence import</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#metadata-validation"><i class="fa fa-check"></i><b>7.1</b> Metadata validation</a></li>
-<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#sequence-import"><i class="fa fa-check"></i><b>7.2</b> Sequence import</a></li>
-</ul></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
-<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
+<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
+<li class="chapter" data-level="9.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#visualise-dada2-output"><i class="fa fa-check"></i><b>9.2</b> Visualise DADA2 output</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#table-dada2.qzv"><i class="fa fa-check"></i><b>9.2.1</b> table-dada2.qzv</a></li>
+<li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
-<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a></li>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking</a></li>
+<li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a></li>
 <li class="chapter" data-level="13" data-path="13-Sequencing_controls_evaluation.html"><a href="13-Sequencing_controls_evaluation.html"><i class="fa fa-check"></i><b>13</b> Sequencing controls evaluation: beta-diversity without normalisation</a></li>
 <li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
@@ -227,28 +237,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="make-a-phylogenetic-tree-of-the-identified-asvs" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Make a phylogenetic tree of the identified ASVs</h1>
 <p><img src="figures/phylo_tree.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>To obtain the phylogenetic tree the steps are:</p>
+<p>In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS among others).</p>
 <ol style="list-style-type: decimal">
 <li>Alignment of the sequence variants with MAFFT</li>
 <li>Masking out the uninformative sequences with MASK</li>
 <li>Creation of the un-rooted tree with FASTTREE</li>
 <li>Creation of the rooted tree</li>
 </ol>
-<p>The rooted tree will be used to compute phylogenetical aware alpha- and beta-diversity metrics such as Faith’s Phylogenetical Distance (Faith’s PD) and UniFrac distances, for any marker for which this is possible (therefore excluding ITS among others).</p>
-<p>The commands are the following:</p>
+<div id="mafft-alignment" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> MAFFT alignment</h2>
+<p><img src="figures/dna_alignment.png" width="20%" style="display: block; margin: auto;" />
+The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="11-Phylogentic_tree.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mafft --i-sequences rep-seqs-dada2.qza <span class="kw">\</span></span>
-<span id="cb21-2"><a href="11-Phylogentic_tree.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-alignment</span> aligned-rep-seqs.qza</span>
-<span id="cb21-3"><a href="11-Phylogentic_tree.html#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="11-Phylogentic_tree.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mask --i-alignment aligned-rep-seqs.qza <span class="kw">\</span></span>
-<span id="cb21-5"><a href="11-Phylogentic_tree.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-masked-alignment</span> masked-aligned-rep-seqs.qza</span>
-<span id="cb21-6"><a href="11-Phylogentic_tree.html#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="11-Phylogentic_tree.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza <span class="kw">\</span></span>
-<span id="cb21-8"><a href="11-Phylogentic_tree.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-tree</span> unrooted-tree.qza</span>
-<span id="cb21-9"><a href="11-Phylogentic_tree.html#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="11-Phylogentic_tree.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny midpoint-root --i-tree unrooted-tree.qza <span class="kw">\</span></span>
-<span id="cb21-11"><a href="11-Phylogentic_tree.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-rooted-tree</span> rooted-tree.qza</span></code></pre></div>
-<p>All these steps should finish in approx. 3 min, the final artifact for later use is ‘rooted-tree.qza’</p>
+<span id="cb21-2"><a href="11-Phylogentic_tree.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-alignment</span> aligned-rep-seqs.qza</span></code></pre></div>
+</div>
+<div id="masking" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Masking</h2>
+<p><img src="figures/mask.png" width="15%" style="display: block; margin: auto;" />
+After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.</p>
+<p>The following default options are chosen (no need to look at this it is only for your interest):</p>
+<ul>
+<li><code>--p-max-gap-frequency 1.0</code>
+<ul>
+<li>This option is provided with a number from 0-1.</li>
+<li>This determines the relative frequency of gap characters in an aligned column for the column to be retained.</li>
+<li>0.0 = Columns consisting of &lt;=0% gaps will be retained. I.e. a column must have no gaps to be retained.</li>
+<li>1.0 = Columns consisting of &lt;=100% gaps will be retained. I.e. no column will be removed based on number of gaps.</li>
+</ul></li>
+<li><code>--p-min-conservation 0.4</code>
+<ul>
+<li>This option is provided with a number from 0-1.</li>
+<li>This is the minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.</li>
+<li>0.4 = A column will be retained if it contains at least one character that is present in at least 40% of the sequences.
+<ul>
+<li>E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will <strong>not</strong> be retained.</li>
+<li>A column consisting of 40% A, 20% G, 20% C, and 20% T <strong>will</strong> be retained.</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="11-Phylogentic_tree.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mask --i-alignment aligned-rep-seqs.qza <span class="kw">\</span></span>
+<span id="cb22-2"><a href="11-Phylogentic_tree.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-max-gap-frequency</span> 1.0 <span class="kw">\</span></span>
+<span id="cb22-3"><a href="11-Phylogentic_tree.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-min-conservation</span> 0.4 <span class="kw">\</span></span>
+<span id="cb22-4"><a href="11-Phylogentic_tree.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-masked-alignment</span> masked-aligned-rep-seqs.qza</span></code></pre></div>
+</div>
+<div id="un-rooted-tree-creation-with-fasttree" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Un-rooted tree creation with FASTTREE</h2>
+<p><img src="figures/tree_unrooted.png" width="15%" style="display: block; margin: auto;" />
+Create an un-rooted maximum-likelihood tree from our masked alignment.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="11-Phylogentic_tree.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza <span class="kw">\</span></span>
+<span id="cb23-2"><a href="11-Phylogentic_tree.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-tree</span> unrooted-tree.qza</span></code></pre></div>
+</div>
+<div id="rooted-tree-creation" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> Rooted tree creation</h2>
+<p><img src="figures/tree_rooted.png" width="15%" style="display: block; margin: auto;" />
+Finally the un-rooted tree is rooted.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="11-Phylogentic_tree.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny midpoint-root <span class="kw">\</span></span>
+<span id="cb24-2"><a href="11-Phylogentic_tree.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-tree</span> unrooted-tree.qza <span class="kw">\</span></span>
+<span id="cb24-3"><a href="11-Phylogentic_tree.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-rooted-tree</span> rooted-tree.qza</span></code></pre></div>
+<p>All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .</p>
 
+</div>
 </div>
             </section>
 

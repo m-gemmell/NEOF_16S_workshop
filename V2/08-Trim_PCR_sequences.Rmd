@@ -5,7 +5,7 @@ knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 
 Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
 
-We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2 (approx. 5 min).
+We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2.
 
 __Note__: You can copy and paste the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
@@ -18,12 +18,18 @@ qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza
 --o-trimmed-sequences paired-end-demux.trim.qza
 ```
 
-To visualise the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact (approx. 2 mins).
+To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact.
 
 ```{bash, eval=FALSE}
 qiime demux summarize --i-data paired-end-demux.trim.qza \
 --o-visualization paired-end-demux.trim.qzv
 ```
+
+Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’ website.
+
+__Remember to use the same chrome window!__ You can click the QIIME2 view logo on the top right of the previous `paired-end-demux.qzv` page and click "leave" on the "Do you want to leave this site?" pop-up. Now you will be on the QIIME2 view homepage.
+
+This visualisation contains the same sections as `paired-end-demux.qzv` but contains information on the PCR trimmed data.
 
 If you are working with ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
 
@@ -33,7 +39,6 @@ __Questions__:
 
 - Are the sequences evenly distributed across samples?
 - Which sample has the lowest number of sequences? 
-- Are there any samples that can be excluded? 
 - What is the average sequence count per sample? 
-- How is the oveerall quality for the sequences? 
-- Which truncating lengths would you chose for R1 and R2?
+- How is the overall quality for the sequences? 
+- Which truncating lengths would you chose for R1 and R2? This choice is base don teh quality across the length of the read plus the total length of our V4 amplicon.

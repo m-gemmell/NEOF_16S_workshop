@@ -1,14 +1,4 @@
-# Metadata validation and Sequence import
-
-## Metadata validation
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/true_or_false.png", auto_pdf = TRUE)
-``` 
-
-The first step we will carry out is to validate our metadata file. This will inform us if our metadata file is in the correct format or not.
-
-
-## Sequence import
+# Sequence import
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
@@ -48,14 +38,23 @@ Form now on leave the terminal you ran the above command on alone.
 Then:
 
 - Type the following web-site: ‘view.qiime2.org’
-- Click on ‘Drag and drop or click here’ panel
-- You can browse now to find and select the file ‘paired-end-demux.qzv’
+- Click on ‘Drag and drop or click here’ grey box
+- You can browse now to find and select the file ‘paired-end-demux.qzv’. Tip: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+
+The visulaisation will have two tabs:
+
+1. __Overview__: This contains 3 main sections relating to the sequence count of samples.
+   - __Demultiplexxed sequence counts summary__: Summary table of number of sequences per sample divided by forward and reverse reads.
+   - __Read frequency histograms__: Forward and Reverse reads histograms showing the how many samples have various numbers of sequences. 
+   - __Per-sample sequence counts__: Table showing the number of forward and reverse reads in samples.
+2. __Interactive Quality Plots__: Contains similar information as fastQC analysis.
+   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random smapling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
+   - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 __Questions__: 
 
 - Are the sequences evenly distributed across samples?
 - Which sample has the lowest number of sequences? 
-- Is there any sample with a low final number of sequences? 
-- Are there any samples that can be excluded? 
-- What is the average sequence count per sample?
+- Is there any sample with a low final number of sequences (<20k)? 
+- What is the mean sequence count per sample?
 - How is the overall quality for the sequences?

@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-23" />
+<meta name="date" content="2021-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -173,15 +173,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
 <li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Metadata validation and Sequence import</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#metadata-validation"><i class="fa fa-check"></i><b>7.1</b> Metadata validation</a></li>
-<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#sequence-import"><i class="fa fa-check"></i><b>7.2</b> Sequence import</a></li>
-</ul></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
-<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a></li>
+<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
+<li class="chapter" data-level="9.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#visualise-dada2-output"><i class="fa fa-check"></i><b>9.2</b> Visualise DADA2 output</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#table-dada2.qzv"><i class="fa fa-check"></i><b>9.2.1</b> table-dada2.qzv</a></li>
+<li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
-<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a></li>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking</a></li>
+<li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a></li>
 <li class="chapter" data-level="13" data-path="13-Sequencing_controls_evaluation.html"><a href="13-Sequencing_controls_evaluation.html"><i class="fa fa-check"></i><b>13</b> Sequencing controls evaluation: beta-diversity without normalisation</a></li>
 <li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
@@ -231,22 +241,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/rarefaction_example.png" width="80%" style="display: block; margin: auto;" />
 Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.</p>
 <p>Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metircs (observed variants, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’ evenness). You may want to exclude <code>--p-metrics faith_pd</code> for markers such as ITS.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="12-Rarefaction.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-rarefaction --i-table table-dada2.qza <span class="kw">\</span></span>
-<span id="cb22-2"><a href="12-Rarefaction.html#cb22-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
-<span id="cb22-3"><a href="12-Rarefaction.html#cb22-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Min and max depth for the plot</span></span>
-<span id="cb22-4"><a href="12-Rarefaction.html#cb22-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-min-depth</span> 5000 <span class="kw">\</span></span>
-<span id="cb22-5"><a href="12-Rarefaction.html#cb22-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-max-depth</span> 130000 <span class="kw">\</span></span>
-<span id="cb22-6"><a href="12-Rarefaction.html#cb22-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Evaluating diversity every 75 seqs depth</span></span>
-<span id="cb22-7"><a href="12-Rarefaction.html#cb22-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-steps</span> 75 <span class="kw">\</span></span>
-<span id="cb22-8"><a href="12-Rarefaction.html#cb22-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># Using average from 55 iterations for the diversity count</span></span>
-<span id="cb22-9"><a href="12-Rarefaction.html#cb22-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-iterations</span> 55 <span class="kw">\</span></span>
-<span id="cb22-10"><a href="12-Rarefaction.html#cb22-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
-<span id="cb22-11"><a href="12-Rarefaction.html#cb22-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> simpson_e <span class="kw">\</span></span>
-<span id="cb22-12"><a href="12-Rarefaction.html#cb22-12" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> simpson <span class="kw">\</span></span>
-<span id="cb22-13"><a href="12-Rarefaction.html#cb22-13" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> shannon <span class="kw">\</span></span>
-<span id="cb22-14"><a href="12-Rarefaction.html#cb22-14" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> observed_otus <span class="kw">\</span></span>
-<span id="cb22-15"><a href="12-Rarefaction.html#cb22-15" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> faith_pd <span class="kw">\</span></span>
-<span id="cb22-16"><a href="12-Rarefaction.html#cb22-16" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> rarefaction-curve.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="12-Rarefaction.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-rarefaction --i-table table-dada2.qza <span class="kw">\</span></span>
+<span id="cb25-2"><a href="12-Rarefaction.html#cb25-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
+<span id="cb25-3"><a href="12-Rarefaction.html#cb25-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Min and max depth for the plot</span></span>
+<span id="cb25-4"><a href="12-Rarefaction.html#cb25-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-min-depth</span> 5000 <span class="kw">\</span></span>
+<span id="cb25-5"><a href="12-Rarefaction.html#cb25-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-max-depth</span> 130000 <span class="kw">\</span></span>
+<span id="cb25-6"><a href="12-Rarefaction.html#cb25-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Evaluating diversity every 75 seqs depth</span></span>
+<span id="cb25-7"><a href="12-Rarefaction.html#cb25-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-steps</span> 75 <span class="kw">\</span></span>
+<span id="cb25-8"><a href="12-Rarefaction.html#cb25-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># Using average from 55 iterations for the diversity count</span></span>
+<span id="cb25-9"><a href="12-Rarefaction.html#cb25-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-iterations</span> 55 <span class="kw">\</span></span>
+<span id="cb25-10"><a href="12-Rarefaction.html#cb25-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
+<span id="cb25-11"><a href="12-Rarefaction.html#cb25-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> simpson_e <span class="kw">\</span></span>
+<span id="cb25-12"><a href="12-Rarefaction.html#cb25-12" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> simpson <span class="kw">\</span></span>
+<span id="cb25-13"><a href="12-Rarefaction.html#cb25-13" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> shannon <span class="kw">\</span></span>
+<span id="cb25-14"><a href="12-Rarefaction.html#cb25-14" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> observed_otus <span class="kw">\</span></span>
+<span id="cb25-15"><a href="12-Rarefaction.html#cb25-15" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-metrics</span> faith_pd <span class="kw">\</span></span>
+<span id="cb25-16"><a href="12-Rarefaction.html#cb25-16" aria-hidden="true" tabindex="-1"></a> <span class="ex">--o-visualization</span> rarefaction-curve.qzv</span></code></pre></div>
 <p>The command will take approx. 10 min; the result is a visualisation artifact. From the loaded file, you can select the metric to visualize as well as the grouping (there is one non-numerical column in the metadata file).</p>
 <p>The visualization will have two plots. The top plot is an alpha rarefaction plot and is primarily used to determine if the richness of the samples has been fully observed or sequenced. If the lines in the plot appear to “level out” (i.e., approach a slope of zero) at some sampling depth along the xaxis, that suggests that collecting additional sequences beyond that sampling depth would not likely result in the observation of additional features. If the lines in a plot don’t level out, this may be because the richness of the samples hasn’t been fully observed yet (because too few sequences were collected), or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).</p>
 <p>The bottom plot in this visualization is important when grouping samples by metadata. It illustrates the number of samples that remain in each group when the feature table is rarefied to each sampling depth. If a given sampling depth (depth D) is larger than the total frequency of sample S (i.e., the number of sequences that were obtained for sample S), it is not possible to compute the diversity metric for sample S at sampling depth D. If many of the samples in a group have lower total frequencies than D, the average diversity presented for that group at D in the top plot will be unreliable because it will have been computed on relatively few samples. When grouping samples by metadata, it is therefore essential to look at the bottom plot to ensure that the data presented in the top plot is reliable.</p>
