@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-25" />
+<meta name="date" content="2021-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
-<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Phylogenetic tree construction</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment</a></li>
 <li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking</a></li>
@@ -279,10 +279,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-2"><a href="10-Taxonomic_assignment.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-taxonomy</span> taxonomy.sklearn.qza <span class="kw">\</span></span>
 <span id="cb20-3"><a href="10-Taxonomic_assignment.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
 <span id="cb20-4"><a href="10-Taxonomic_assignment.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> taxa-bar-plots.dada2.qzv</span></code></pre></div>
-<p>Once you have loaded the file in the browser you’ll see an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.</p>
+<p>The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.</p>
 <p><strong>Questions</strong>:</p>
 <ul>
-<li>What is the most abundant taxon, at level 5, in the dataset?</li>
+<li>What is the most abundant taxon, at taxonomic level 5, in the dataset (note: taxa are ordered form most to least abundant in the legend)?</li>
 <li>How do the samples compare to each other?</li>
 </ul>
 <p>If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.</p>

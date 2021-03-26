@@ -1,15 +1,9 @@
-# Make a phylogenetic tree of the identified ASVs
+# Phylogenetic tree construction
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
 In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS among others).
-
-1. Alignment of the sequence variants with MAFFT
-2. Masking out the uninformative sequences with MASK
-3. Creation of the un-rooted tree with FASTTREE
-4. Creation of the rooted tree
-
 
 ## MAFFT alignment
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }

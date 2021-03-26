@@ -73,11 +73,11 @@ qiime taxa barplot --i-table table-dada2.qza \
 --o-visualization taxa-bar-plots.dada2.qzv
 ```
  
-Once you have loaded the file in the browser you'll see an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.
+The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.
 
 __Questions__: 
 
-- What is the most abundant taxon, at level 5, in the dataset? 
+- What is the most abundant taxon, at taxonomic level 5, in the dataset (note: taxa are ordered form most to least abundant in the legend)? 
 - How do the samples compare to each other?
 
 If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.

@@ -3,14 +3,27 @@
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ``` 
 
-The diversity detected depends, to an extent, on the sampling depth (i.e. an incompletely sampled community will appear less diverse than a fully sampled community). Therefore, to compare the diversity among samples of different sizes, we need to account for this. We can do this by rarefaction, or re-sampling, from the data. Equally sized subsamples are directly comparable among different samples. In addition, if we sample progressively smaller subsamples from a sample, we draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
+
+To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction. 
+This is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
+
+For example, if we rarefy to a depth of 2000 for all samples:
+
+- Samples with depths of <2000 will be removed.
+- Samples with depths of 2000 will be unchanged.
+- Samples with depths of >2000 will have all reads removed except for a random subsample of 2000.
+
+Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample smaller subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
 ``` 
 Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
 
-Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metircs (observed variants, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’ evenness). You may want to exclude `--p-metrics faith_pd` for markers such as ITS.
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics (observed variants, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’ evenness). 
+
+You may want to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_pd` for markers such as ITS where you will not create a phylogenetic tree.
 
 ```{bash, eval=FALSE}
 qiime diversity alpha-rarefaction --i-table table-dada2.qza \
@@ -26,7 +39,7 @@ qiime diversity alpha-rarefaction --i-table table-dada2.qza \
  --p-metrics simpson_e \
  --p-metrics simpson \
  --p-metrics shannon \
- --p-metrics observed_otus \
+ --p-metrics observed_features \
  --p-metrics faith_pd \
  --o-visualization rarefaction-curve.qzv
 ```

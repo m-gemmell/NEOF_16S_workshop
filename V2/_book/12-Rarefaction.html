@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-25" />
+<meta name="date" content="2021-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
-<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Make a phylogenetic tree of the identified ASVs</a>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Phylogenetic tree construction</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment</a></li>
 <li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking</a></li>
@@ -237,7 +237,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sequencing-depth-evaluation-rarefaction-plot" class="section level1" number="12">
 <h1><span class="header-section-number">Chapter 12</span> Sequencing depth evaluation: rarefaction plot</h1>
 <p><img src="figures/rarefaction.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>The diversity detected depends, to an extent, on the sampling depth (i.e. an incompletely sampled community will appear less diverse than a fully sampled community). Therefore, to compare the diversity among samples of different sizes, we need to account for this. We can do this by rarefaction, or re-sampling, from the data. Equally sized subsamples are directly comparable among different samples. In addition, if we sample progressively smaller subsamples from a sample, we draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled).</p>
+<p>The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community.</p>
+<p>To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction.
+This is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.</p>
+<p>For example, if we rarefy to a depth of 2000 for all samples:</p>
+<ul>
+<li>Samples with depths of &lt;2000 will be removed.</li>
+<li>Samples with depths of 2000 will be unchanged.</li>
+<li>Samples with depth &gt;2000 will have all reads removed except for a random subsample of 2000.</li>
+</ul>
+<p>Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample smaller subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled).</p>
 <p><img src="figures/rarefaction_example.png" width="80%" style="display: block; margin: auto;" />
 Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.</p>
 <p>Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metircs (observed variants, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’ evenness). You may want to exclude <code>--p-metrics faith_pd</code> for markers such as ITS.</p>

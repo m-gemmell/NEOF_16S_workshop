@@ -34,7 +34,7 @@ visualise-dada2-output
 table-dada2.qzv
 dada2-stats.qzv
 assign-a-taxonomic-classification-to-each-amplicon-sequence-variant
-make-a-phylogenetic-tree-of-the-identified-asvs
+phylogenetic-tree-construction
 mafft-alignment
 masking
 un-rooted-tree-creation-with-fasttree
