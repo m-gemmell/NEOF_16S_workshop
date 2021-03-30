@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Sequencing controls evaluation: beta-diversity without normalisation | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 13 Sequencing controls evaluation: beta-diversity without normalisation | Bacterial 16S metabarcoding" />
+  <title>Chapter 14 Differential abundance analysis | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 14 Differential abundance analysis | Bacterial 16S metabarcoding" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Sequencing controls evaluation: beta-diversity without normalisation | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="Chapter 14 Differential abundance analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Sequencing controls evaluation: beta-diversity without normalisation | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="Chapter 14 Differential abundance analysis | Bacterial 16S metabarcoding" />
   
   
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-29" />
+<meta name="date" content="2021-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="12-Rarefaction.html"/>
-<link rel="next" href="14-Diversity_analysis.html"/>
+<link rel="prev" href="13-Diversity_analysis.html"/>
+<link rel="next" href="15-Final_consideration.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -192,34 +192,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
 <li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a></li>
-<li class="chapter" data-level="13" data-path="13-Sequencing_controls_evaluation.html"><a href="13-Sequencing_controls_evaluation.html"><i class="fa fa-check"></i><b>13</b> Sequencing controls evaluation: beta-diversity without normalisation</a></li>
-<li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
-<li class="chapter" data-level="15" data-path="15-Differential_abundance.html"><a href="15-Differential_abundance.html"><i class="fa fa-check"></i><b>15</b> Differential abundance analysis</a></li>
-<li class="chapter" data-level="16" data-path="16-Final_consideration.html"><a href="16-Final_consideration.html"><i class="fa fa-check"></i><b>16</b> Final consideration</a></li>
-<li class="chapter" data-level="17" data-path="17-Resources.html"><a href="17-Resources.html"><i class="fa fa-check"></i><b>17</b> Resources</a>
+<li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="17-Resources.html"><a href="17-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>17.1</b> Suggested readings</a></li>
-<li class="chapter" data-level="17.2" data-path="17-Resources.html"><a href="17-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>17.2</b> Other useful resources</a></li>
-<li class="chapter" data-level="17.3" data-path="17-Resources.html"><a href="17-Resources.html#references"><i class="fa fa-check"></i><b>17.3</b> References</a></li>
+<li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command</a></li>
+<li class="chapter" data-level="12.2" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-visualisation"><i class="fa fa-check"></i><b>12.2</b> Rarefaction visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="18-Appendix.html"><a href="18-Appendix.html"><i class="fa fa-check"></i><b>18</b> Appendix</a>
+<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a></li>
+<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
+<li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="18-Appendix.html"><a href="18-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>18.1</b> Alpha diversity metrics</a>
-<ul>
-<li class="chapter" data-level="18.1.1" data-path="18-Appendix.html"><a href="18-Appendix.html#observed-features"><i class="fa fa-check"></i><b>18.1.1</b> Observed features</a></li>
-<li class="chapter" data-level="18.1.2" data-path="18-Appendix.html"><a href="18-Appendix.html#evenness"><i class="fa fa-check"></i><b>18.1.2</b> Evenness</a></li>
-<li class="chapter" data-level="18.1.3" data-path="18-Appendix.html"><a href="18-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>18.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
-<li class="chapter" data-level="18.1.4" data-path="18-Appendix.html"><a href="18-Appendix.html#simpson"><i class="fa fa-check"></i><b>18.1.4</b> Simpson</a></li>
-<li class="chapter" data-level="18.1.5" data-path="18-Appendix.html"><a href="18-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>18.1.5</b> Simpson evenness measure (simpson_e)</a></li>
-<li class="chapter" data-level="18.1.6" data-path="18-Appendix.html"><a href="18-Appendix.html#shannon"><i class="fa fa-check"></i><b>18.1.6</b> Shannon</a></li>
+<li class="chapter" data-level="16.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>16.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>16.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="16.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>16.3</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="18-Appendix.html"><a href="18-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>18.2</b> Beta diversity metrics</a>
+<li class="chapter" data-level="17" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>17</b> Appendix</a>
 <ul>
-<li class="chapter" data-level="18.2.1" data-path="18-Appendix.html"><a href="18-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>18.2.1</b> Weighted and unweighted UniFrac distances</a></li>
-<li class="chapter" data-level="18.2.2" data-path="18-Appendix.html"><a href="18-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>18.2.2</b> Bray-Curtis</a></li>
+<li class="chapter" data-level="17.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>17.1</b> Alpha diversity metrics</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>17.1.1</b> Observed features</a></li>
+<li class="chapter" data-level="17.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>17.1.2</b> Evenness</a></li>
+<li class="chapter" data-level="17.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>17.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="17.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>17.1.4</b> Simpson</a></li>
+<li class="chapter" data-level="17.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>17.1.5</b> Simpson evenness measure (simpson_e)</a></li>
+<li class="chapter" data-level="17.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>17.1.6</b> Shannon</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="18-Appendix.html"><a href="18-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>18.3</b> Diversity Resources</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>17.2</b> Beta diversity metrics</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>17.2.1</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="17.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>17.2.2</b> Bray-Curtis</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>17.3</b> Diversity Resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -241,30 +244,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sequencing-controls-evaluation-beta-diversity-without-normalisation" class="section level1" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Sequencing controls evaluation: beta-diversity without normalisation</h1>
-<p><img src="figures/control.png" width="10%" style="display: block; margin: auto;" /></p>
-<p>Current protocols for metagenetic experiments strongly suggest to always include positive and negative controls. It is therefore likely that in your design you will have:</p>
+<div id="differential-abundance-analysis-1" class="section level1" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Differential abundance analysis</h1>
+<p><img src="figures/comparison.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>The ANCOM method to identify the differentially abundant taxa, is a complex method requiring different steps, for the description of the script used please refer to the script page (<a href="https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/" class="uri">https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/</a>) and the ANCOM paper (<a href="https://www.ncbi.nlm.nih.gov/pubmed/26028277" class="uri">https://www.ncbi.nlm.nih.gov/pubmed/26028277</a>) .</p>
+<p>The steps to carry this out are:</p>
+<ol style="list-style-type: decimal">
+<li>Collapse ASVs into taxa-bar-plots</li>
+<li>Add pseudo-count to the abundance table to convert ‘0’ to ‘1’</li>
+<li>Run ANCOM selecting a categorical metadata to test</li>
+</ol>
+<p>If you are still in ‘dada2-diversity-30000’ folder, please remember to move out:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="14-Differential_abundance.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<p>First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="14-Differential_abundance.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="kw">\</span></span>
+<span id="cb30-2"><a href="14-Differential_abundance.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb30-3"><a href="14-Differential_abundance.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-taxonomy</span> taxonomy.sklearn.qza <span class="kw">\</span></span>
+<span id="cb30-4"><a href="14-Differential_abundance.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-level</span> 5 <span class="kw">\</span></span>
+<span id="cb30-5"><a href="14-Differential_abundance.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-collapsed-table</span> comp-ancom-table-l5.qza</span></code></pre></div>
+<p>Add pseudo-count to the abundance table to convert ‘0’ to ‘1.’ This is required as ANCOM will fail with abundance values of 0.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="14-Differential_abundance.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="kw">\</span></span>
+<span id="cb31-2"><a href="14-Differential_abundance.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> comp-ancom-table-l5.qza <span class="kw">\</span></span>
+<span id="cb31-3"><a href="14-Differential_abundance.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-pseudocount</span> 1 <span class="kw">\</span></span>
+<span id="cb31-4"><a href="14-Differential_abundance.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-composition-table</span> comp-ancom-table-l5-pse.qza</span></code></pre></div>
+<p>Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between StudentCorridor, StudentHome, Corridor and Toilet.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Differential_abundance.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="kw">\</span></span>
+<span id="cb32-2"><a href="14-Differential_abundance.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> comp-ancom-table-l5-pse.qza <span class="kw">\</span></span>
+<span id="cb32-3"><a href="14-Differential_abundance.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
+<span id="cb32-4"><a href="14-Differential_abundance.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-column</span> Location <span class="kw">\</span></span>
+<span id="cb32-5"><a href="14-Differential_abundance.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> l5-ancom-Location.qzv</span></code></pre></div>
+<p><strong>Questions</strong>:</p>
 <ul>
-<li>Negative controls to explore the microbiome derived by the kits used, the so-called ‘kit-ome’</li>
-<li>Positive controls (mock or known communities) to investigate biases from the lab protocols or the bioinformatics pipeline).</li>
+<li>Which families are discovered as biomarkers?</li>
+<li>Investigating these families, does this make sense?</li>
+<li>Do you get any genera as biomarkers that do not belong to families discovered as biomarkers?</li>
+<li>Does changing the metadata category let you infer something different?</li>
 </ul>
-<p>To investigate if the controls (especially the negatives) show contaminations and or suspicious similarity with the samples under investigation, it is a good practice to investigate beta-diversities before proceeding with the rarefaction step. This is because the rarefaction will probably exclude most of the negative controls as they generally consist of a low number of sequences.</p>
-<p>In the experimental design used for this practical there are no controls. However, it may be good to look at the diversity before rarefaction to compare with the same after rarefaction. The following commands are used to obtain the Principal Coordinate Analysis (PCoA) for the beta-diversity using the ‘bray-curtis’ distance.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="13-Sequencing_controls_evaluation.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity beta <span class="kw">\</span></span>
-<span id="cb26-2"><a href="13-Sequencing_controls_evaluation.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
-<span id="cb26-3"><a href="13-Sequencing_controls_evaluation.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-metric</span> braycurtis <span class="kw">\</span></span>
-<span id="cb26-4"><a href="13-Sequencing_controls_evaluation.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-distance-matrix</span> dada2.braycurtis.notNorm.diversity.qza</span>
-<span id="cb26-5"><a href="13-Sequencing_controls_evaluation.html#cb26-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb26-6"><a href="13-Sequencing_controls_evaluation.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity pcoa <span class="kw">\</span></span>
-<span id="cb26-7"><a href="13-Sequencing_controls_evaluation.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-distance-matrix</span> dada2.braycurtis.notNorm.diversity.qza <span class="kw">\</span></span>
-<span id="cb26-8"><a href="13-Sequencing_controls_evaluation.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-pcoa</span> dada2.braycurtis.notNorm.diversity.pcoa.qza</span>
-<span id="cb26-9"><a href="13-Sequencing_controls_evaluation.html#cb26-9" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb26-10"><a href="13-Sequencing_controls_evaluation.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> emperor plot <span class="kw">\</span></span>
-<span id="cb26-11"><a href="13-Sequencing_controls_evaluation.html#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-pcoa</span> dada2.braycurtis.notNorm.diversity.pcoa.qza <span class="kw">\</span></span>
-<span id="cb26-12"><a href="13-Sequencing_controls_evaluation.html#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
-<span id="cb26-13"><a href="13-Sequencing_controls_evaluation.html#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> dada2.braycurtis.notNorm.diversity.pcoa.qzv</span></code></pre></div>
-<p>The final <code>dada2.braycurtis.notNorm.diversity.pcoa.qzv</code> artifact contains the first 3 axes for the PCoA analysis. It is possible to colour the samples by each metadata category group, to highlight if a specific metadata may have an effect on the diversity.</p>
 
 </div>
             </section>
@@ -272,8 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="12-Rarefaction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="14-Diversity_analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="13-Diversity_analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="15-Final_consideration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -40,7 +40,8 @@ masking
 un-rooted-tree-creation-with-fasttree
 rooted-tree-creation
 sequencing-depth-evaluation-rarefaction-plot
-sequencing-controls-evaluation-beta-diversity-without-normalisation
+rarefaction-command
+rarefaction-visualisation
 diversity-analysis
 differential-abundance-analysis-1
 final-consideration

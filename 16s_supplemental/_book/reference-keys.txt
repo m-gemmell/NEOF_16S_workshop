@@ -6,8 +6,9 @@ abundance-table-export
 taxonomy-info-export
 representative-sequences-export
 phylogenetic-tree-export
-export-asv-table-with-taxonomy
-export-rarified-table
-export-genus-table
+asv-table-with-taxonomy-export
+rarified-table-export
+relative-abundance-table-export
+taxonomy-abundance-table-export
 functional-prediction
 s-r-packages

@@ -96,7 +96,7 @@ __Questions__:
 - How many ASVs were detected in the dataset?
 - What is the median and mean number of sequences per samples (to 1 decimal place)?
 - What is the minimum and maximum number of sequences per ASV?
-- How many samples have >10,000 sequences?
+- How many samples have >100,000 sequences?
 - Are there more Corridor samples or Toilet samples (based on Location metadata category)?
 - How many sequences represents the second most abundant ASV?
 
@@ -134,6 +134,3 @@ __Questions__:
 
 - In which DADA2 step were most of the sequences lost?
 - If this was a real study would there be enough sequences left for optimal analysis? 
-
-
-A high percentage of sequences were detected as chimeric. In normal studies this would be worrying and may indicate a por sequencing run. However, it is fine for this tutorial as it is only practice data.

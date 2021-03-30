@@ -41,4 +41,4 @@ __Questions__:
 - Which sample has the lowest number of sequences? 
 - What is the average sequence count per sample? 
 - How is the overall quality for the sequences? 
-- Which truncating lengths would you chose for R1 and R2? This choice is base don teh quality across the length of the read plus the total length of our V4 amplicon.
+- Which truncating lengths would you chose for R1 and R2? This choice is based on the quality across the length of the read (looking for when quality dips) plus the total length of our V4 amplicon.

@@ -447,9 +447,8 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 4. Assign a taxonomic classification to each ASV
 5. Make a phylogenetic tree of the identified ASVs
 6. Sequencing depth evaluation: rarefaction plot
-7. Sequencing controls evaluation: beta-diversity without normalisation
-8. Diversity analysis: alpha and beta
-9. Differential abundance analysis of ASVs across different conditions
+7. Diversity analysis: alpha and beta
+8. Differential abundance analysis of ASVs across different conditions
 
 ## Activate environment
 You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
@@ -571,7 +570,7 @@ __Questions__:
 - Which sample has the lowest number of sequences? 
 - What is the average sequence count per sample? 
 - How is the overall quality for the sequences? 
-- Which truncating lengths would you chose for R1 and R2? This choice is base don teh quality across the length of the read plus the total length of our V4 amplicon.
+- Which truncating lengths would you chose for R1 and R2? This choice is based on the quality across the length of the read (looking for when quality dips) plus the total length of our V4 amplicon.
 
 <!--chapter:end:08-Trim_PCR_sequences.Rmd-->
 
@@ -673,7 +672,7 @@ __Questions__:
 - How many ASVs were detected in the dataset?
 - What is the median and mean number of sequences per samples (to 1 decimal place)?
 - What is the minimum and maximum number of sequences per ASV?
-- How many samples have >10,000 sequences?
+- How many samples have >100,000 sequences?
 - Are there more Corridor samples or Toilet samples (based on Location metadata category)?
 - How many sequences represents the second most abundant ASV?
 
@@ -711,9 +710,6 @@ __Questions__:
 
 - In which DADA2 step were most of the sequences lost?
 - If this was a real study would there be enough sequences left for optimal analysis? 
-
-
-A high percentage of sequences were detected as chimeric. In normal studies this would be worrying and may indicate a por sequencing run. However, it is fine for this tutorial as it is only practice data.
 
 <!--chapter:end:09-ASV_identification.Rmd-->
 
@@ -827,7 +823,14 @@ knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
 ``` 
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
 
-The following default options are chosen (no need to look at this it is only for your interest):
+```{bash, eval=FALSE}
+qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+--p-max-gap-frequency 1.0 \
+--p-min-conservation 0.4 \
+--o-masked-alignment masked-aligned-rep-seqs.qza
+```
+
+The following default options were chosen (no need to look at this it is only for your interest):
 
 - `--p-max-gap-frequency 1.0`
    - This option is provided with a number from 0-1.
@@ -840,13 +843,6 @@ The following default options are chosen (no need to look at this it is only for
    - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
       - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
       - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
-
-```{bash, eval=FALSE}
-qiime alignment mask --i-alignment aligned-rep-seqs.qza \
---p-max-gap-frequency 1.0 \
---p-min-conservation 0.4 \
---o-masked-alignment masked-aligned-rep-seqs.qza
-```
 
 ## Un-rooted tree creation with FASTTREE
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -898,6 +894,7 @@ knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRU
 ``` 
 Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
 
+## Rarefaction command
 Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics (observed features, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’s evenness).
 
 __Note__: See the appendix at the end of this bookdown for details on each metric.
@@ -906,39 +903,43 @@ You may want to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_p
 
 ```{bash, eval=FALSE}
 qiime diversity alpha-rarefaction --i-table table-dada2.qza \
- --i-phylogeny rooted-tree.qza \
- # Min and max depth for the plot
- --p-min-depth 5000 \
- --p-max-depth 130000 \
- # Evaluating diversity every 75 seqs depth
- --p-steps 75 \
- # Using average from 55 iterations for the diversity count
- --p-iterations 55 \
- --m-metadata-file metadata.file.txt \
- --p-metrics simpson_e \
- --p-metrics simpson \
- --p-metrics shannon \
- --p-metrics observed_features \
- --p-metrics faith_pd \
- --o-visualization rarefaction-curve.qzv
+--i-phylogeny rooted-tree.qza \
+# Min and max depth for the plot
+# These are based on your knowledge of the sample depths
+--p-min-depth 5000 \
+--p-max-depth 130000 \
+# Evaluating diversity every 500 sequence depth
+--p-steps 500 \
+# Using average from 10 iterations for the diversity count
+--p-iterations 10 \
+--m-metadata-file metadata.file.txt \
+--p-metrics simpson_e \
+--p-metrics simpson \
+--p-metrics shannon \
+--p-metrics observed_features \
+--p-metrics faith_pd \
+--o-visualization rarefaction-curve.qzv
 ```
 
 The command will take approximately 10 minutes.
 
-The result is a visualisation artifact. Load the file into QIIME2 view. You can select the metric to visualise as well as the grouping (there is one non-numerical column in the metadata file).
+## Rarefaction visualisation
+Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the grouping (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the observed_features metric is the best __Metric__ to view.
 
-The visualisation will have two plots. 
+The visualisation has two plots. 
 
 - Top plot = Alpha rarefaction plot.
-   - Primarily used to determine if the richness of the samples has been fully observed or sequenced. 
-   - If the lines in the plot appear to “level out” (i.e., approach a slope of zero) at some sampling depth along the xaxis, this suggests that collecting additional sequences beyond that sampling depth would not likely result in the observation of additional features. 
-   - If the lines in a plot don’t level out:
-      - The richness of the samples  may have not been fully observed (because too few sequences were collected)
+   - Primarily used to determine if the richness of the samples has been fully observed or sequenced.
+   - If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected. 
+   - If the lines in the observed feature plot do not level out:
+      - The richness of the samples may have not been fully observed (because too few sequences were collected)
       - Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
-- Bottom plot.
+- Bottom plot = Number of samples (Y) against sequencing depth (x)
    - This is important when grouping samples by metadata.
-   - It illustrates the number of samples that remain in each group through the increasing of sampling depth.
-   - This is important as when samples are removed it will change the rarefaction value of the group. This is because that sample is no longer considered for the calculation. This can be seen by jitters in the rarefaction curve corresponding a decrease in number of samples.
+   - It illustrates the number of samples with different sequencing depths for the groups in the chosen __Sample Metadata Column__.
+   - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding a decrease in number of samples.
+      - If the sample/s had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
+      - If the sample/s had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:
 
@@ -955,43 +956,20 @@ Other considerations for rarefaction threshold:
 __Questions__: 
 
 - Are any samples not fully sequenced? 
-- Choose a sampling depth (rarefaction threshold) to use for the alpha- and beta-diversity analysis.
+- Comparing the two __Locations__, which has a higher evenness score (simpson_e)?
+- Comparing the 2 __Places__, which has higher diversity value when considering most of the samples (faith_pd, shannon, & simpson)?
+- What sampling depth (rarefaction threshold) would you use for the alpha- and beta-diversity analysis?
+
+For the next step we will use a rarefaction size of 34,583. We have chosen this depth because:
+
+- This will keep all the samples.
+- The group based rarefaction curves (__Location__ and __Place__) are plateauing at this depth.
+- Many of the individual samples (__BarcodeSequence__) have plateaued with the others plateauing this depth.
+- We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
+
+How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the `table-dada2.qzv` visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold as that is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
 
 <!--chapter:end:12-Rarefaction.Rmd-->
-
-# Sequencing controls evaluation: beta-diversity without normalisation
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/control.png", auto_pdf = TRUE)
-``` 
-
-Current protocols for metagenetic experiments strongly suggest to always include positive and negative controls. It is therefore likely that in your design you will have:
-
-- Negative controls to explore the microbiome derived by the kits used, the so-called ‘kit-ome’ 
-- Positive controls (mock or known communities) to investigate biases from the lab protocols or the bioinformatics pipeline).
-
-To investigate if the controls (especially the negatives) show contaminations and or suspicious similarity with the samples under investigation, it is a good practice to investigate beta-diversities before proceeding with the rarefaction step. This is because the rarefaction will probably exclude most of the negative controls as they generally consist of a low number of sequences.
-
-In the experimental design used for this practical there are no controls. However, it may be good to look at the diversity before rarefaction to compare with the same after rarefaction. The following commands are used to obtain the Principal Coordinate Analysis (PCoA) for the beta-diversity using the ‘bray-curtis’ distance.
-
-```{bash, eval=FALSE}
-qiime diversity beta \
---i-table table-dada2.qza \
---p-metric braycurtis \
---o-distance-matrix dada2.braycurtis.notNorm.diversity.qza
- 
-qiime diversity pcoa \
---i-distance-matrix dada2.braycurtis.notNorm.diversity.qza \
---o-pcoa dada2.braycurtis.notNorm.diversity.pcoa.qza
- 
-qiime emperor plot \
---i-pcoa dada2.braycurtis.notNorm.diversity.pcoa.qza \
---m-metadata-file metadata.file.txt \
---o-visualization dada2.braycurtis.notNorm.diversity.pcoa.qzv
-```
-
-The final `dada2.braycurtis.notNorm.diversity.pcoa.qzv` artifact contains the first 3 axes for the PCoA analysis. It is possible to colour the samples by each metadata category group, to highlight if a specific metadata may have an effect on the diversity.
-
-<!--chapter:end:13-Sequencing_controls_evaluation.Rmd-->
 
 # Diversity analysis
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1001,7 +979,7 @@ knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the “Shannon” metric, the number of observed features and Faith’s phylogenetic distance (Shannon,
 1948, Faith, 1992).
 
-Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated), including weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957).
+Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957) (More info on these mertics in the appendix).
 
 QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2019.1/plugins/available/diversity/).
 
@@ -1010,12 +988,12 @@ qiime diversity core-metrics-phylogenetic \
 --i-table table-dada2.qza \
 --i-phylogeny rooted-tree.qza \
 # Chosen final sampling depth
---p-sampling-depth 30000 \
---output-dir dada2-diversity-30000 \
+--p-sampling-depth 34583 \
+--output-dir dada2-diversity-34583 \
 --m-metadata-file metadata.file.txt
 ```
 
-This command will produce (in approx. 1 min) all the results within the directory specified with the `--output-dir`. The artifact `rarefied_table.qza` is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains the artefact for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (`emperor.qzv` files).
+This command will produce all the results within the directory specified with the `--output-dir`. The artifact `rarefied_table.qza` is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains the artefact for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (`emperor.qzv` files).
 
 In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
 `--i-phylogeny` options.
@@ -1030,7 +1008,7 @@ Considering the alpha-diversity results for each metric, we need to explore if t
 within the specified metadata category; in the second case, a ranked Spearman test will be used instead.
 
 ```{bash, eval=FALSE}
-cd dada2-diversity-30000
+cd dada2-diversity-34583
 # For the Kruskal-Wallis
 qiime diversity alpha-group-significance \
 --i-alpha-diversity shannon_vector.qza \
@@ -1075,7 +1053,7 @@ __Questions__:
 + And using a different ordination metric? 
 + What about choosing a different grouping (metadata category)?
 
-<!--chapter:end:14-Diversity_analysis.Rmd-->
+<!--chapter:end:13-Diversity_analysis.Rmd-->
 
 # Differential abundance analysis
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -1132,7 +1110,7 @@ __Questions__:
 + Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
 + Does changing the metadata category let you infer something different?
 
-<!--chapter:end:15-Differential_abundance.Rmd-->
+<!--chapter:end:14-Differential_abundance.Rmd-->
 
 # Final consideration
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1153,7 +1131,7 @@ If you are happy with the composition, you can then explore the ecological diffe
 __CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!__
 If you have still time available you can try to repeat the analysis using different setting to compare the results (remember to use a different name for the output compared to what you used before), as an alternative you can read the suggested reading.
 
-<!--chapter:end:16-Final_consideration.Rmd-->
+<!--chapter:end:15-Final_consideration.Rmd-->
 
 # Resources
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1295,7 +1273,7 @@ __ANCOM__
 
 Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2015). Analysis of composition of microbiomes: a novel method for studying microbial composition. Microbial ecology in health and disease, 26(1), p.27663.
 
-<!--chapter:end:17-Resources.Rmd-->
+<!--chapter:end:16-Resources.Rmd-->
 
 # Appendix
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1422,5 +1400,5 @@ $$
 
 For more diveristy measure please see: https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282
 
-<!--chapter:end:18-Appendix.Rmd-->
+<!--chapter:end:17-Appendix.Rmd-->
 

@@ -3,3 +3,6 @@
 knitr::include_graphics(path = "figures/artefact_to_tsv.png", auto_pdf = TRUE)
 ```  
 
+(note to self move this and future chapters up 1 and make chapter 3 about filtering ASVs and samples from a file, possibly also how to merge tables
+
+also include section on other QIIME2 tutorials including info on control checking)

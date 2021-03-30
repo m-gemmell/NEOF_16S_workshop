@@ -21,6 +21,7 @@ knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRU
 ``` 
 Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
 
+## Rarefaction command
 Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics (observed features, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’s evenness).
 
 __Note__: See the appendix at the end of this bookdown for details on each metric.
@@ -29,39 +30,43 @@ You may want to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_p
 
 ```{bash, eval=FALSE}
 qiime diversity alpha-rarefaction --i-table table-dada2.qza \
- --i-phylogeny rooted-tree.qza \
- # Min and max depth for the plot
- --p-min-depth 5000 \
- --p-max-depth 130000 \
- # Evaluating diversity every 75 seqs depth
- --p-steps 75 \
- # Using average from 55 iterations for the diversity count
- --p-iterations 55 \
- --m-metadata-file metadata.file.txt \
- --p-metrics simpson_e \
- --p-metrics simpson \
- --p-metrics shannon \
- --p-metrics observed_features \
- --p-metrics faith_pd \
- --o-visualization rarefaction-curve.qzv
+--i-phylogeny rooted-tree.qza \
+# Min and max depth for the plot
+# These are based on your knowledge of the sample depths
+--p-min-depth 5000 \
+--p-max-depth 130000 \
+# Evaluating diversity every 500 sequence depth
+--p-steps 500 \
+# Using average from 10 iterations for the diversity count
+--p-iterations 10 \
+--m-metadata-file metadata.file.txt \
+--p-metrics simpson_e \
+--p-metrics simpson \
+--p-metrics shannon \
+--p-metrics observed_features \
+--p-metrics faith_pd \
+--o-visualization rarefaction-curve.qzv
 ```
 
 The command will take approximately 10 minutes.
 
-The result is a visualisation artifact. Load the file into QIIME2 view. You can select the metric to visualise as well as the grouping (there is one non-numerical column in the metadata file).
+## Rarefaction visualisation
+Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the grouping (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the observed_features metric is the best __Metric__ to view.
 
-The visualisation will have two plots. 
+The visualisation has two plots. 
 
 - Top plot = Alpha rarefaction plot.
-   - Primarily used to determine if the richness of the samples has been fully observed or sequenced. 
-   - If the lines in the plot appear to “level out” (i.e., approach a slope of zero) at some sampling depth along the xaxis, this suggests that collecting additional sequences beyond that sampling depth would not likely result in the observation of additional features. 
-   - If the lines in a plot don’t level out:
-      - The richness of the samples  may have not been fully observed (because too few sequences were collected)
+   - Primarily used to determine if the richness of the samples has been fully observed or sequenced.
+   - If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected. 
+   - If the lines in the observed feature plot do not level out:
+      - The richness of the samples may have not been fully observed (because too few sequences were collected)
       - Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
-- Bottom plot.
+- Bottom plot = Number of samples (Y) against sequencing depth (x)
    - This is important when grouping samples by metadata.
-   - It illustrates the number of samples that remain in each group through the increasing of sampling depth.
-   - This is important as when samples are removed it will change the rarefaction value of the group. This is because that sample is no longer considered for the calculation. This can be seen by jitters in the rarefaction curve corresponding a decrease in number of samples.
+   - It illustrates the number of samples with different sequencing depths for the groups in the chosen __Sample Metadata Column__.
+   - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding a decrease in number of samples.
+      - If the sample/s had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
+      - If the sample/s had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:
 
@@ -78,4 +83,15 @@ Other considerations for rarefaction threshold:
 __Questions__: 
 
 - Are any samples not fully sequenced? 
-- Choose a sampling depth (rarefaction threshold) to use for the alpha- and beta-diversity analysis.
+- Comparing the two __Locations__, which has a higher evenness score (simpson_e)?
+- Comparing the 2 __Places__, which has higher diversity value when considering most of the samples (faith_pd, shannon, & simpson)?
+- What sampling depth (rarefaction threshold) would you use for the alpha- and beta-diversity analysis?
+
+For the next step we will use a rarefaction size of 34,583. We have chosen this depth because:
+
+- This will keep all the samples.
+- The group based rarefaction curves (__Location__ and __Place__) are plateauing at this depth.
+- Many of the individual samples (__BarcodeSequence__) have plateaued with the others plateauing this depth.
+- We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
+
+How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the `table-dada2.qzv` visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold as that is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.

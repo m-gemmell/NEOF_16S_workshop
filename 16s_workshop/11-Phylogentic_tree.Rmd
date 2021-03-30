@@ -22,7 +22,14 @@ knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
 ``` 
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
 
-The following default options are chosen (no need to look at this it is only for your interest):
+```{bash, eval=FALSE}
+qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+--p-max-gap-frequency 1.0 \
+--p-min-conservation 0.4 \
+--o-masked-alignment masked-aligned-rep-seqs.qza
+```
+
+The following default options were chosen (no need to look at this it is only for your interest):
 
 - `--p-max-gap-frequency 1.0`
    - This option is provided with a number from 0-1.
@@ -35,13 +42,6 @@ The following default options are chosen (no need to look at this it is only for
    - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
       - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
       - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
-
-```{bash, eval=FALSE}
-qiime alignment mask --i-alignment aligned-rep-seqs.qza \
---p-max-gap-frequency 1.0 \
---p-min-conservation 0.4 \
---o-masked-alignment masked-aligned-rep-seqs.qza
-```
 
 ## Un-rooted tree creation with FASTTREE
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
