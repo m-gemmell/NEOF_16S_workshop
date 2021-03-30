@@ -1,0 +1,28 @@
+--- 
+title: "Bacterial 16S metabarcoding supplemental"
+author: "Matthew Gemmell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+``` 
+
+# Introduction
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+knitr::include_graphics(path = "figures/qiime2_supplement.png", auto_pdf = TRUE)
+``` 
+
+This bookdown is a supplement to the main one. It contains some workflows and tools that are not part of the core QIIME2 workflow. However, they may prove useful depending on your needs.
+
+The sections in this supplement will cover:
+
+- Exporting QIIME2 artifacts to text files.
+- Carrying our functional prediction with a taxonomy abundance table.
+- Introduction to some R packages for 16S rRNA analysis.

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
+  
+  
+  
+
+<meta name="author" content="Luca Lenzi and Matthew Gemmell" />
+
+
+<meta name="date" content="2021-03-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="08-Trim_PCR_sequences.html"/>
+<link rel="next" href="10-Taxonomic_assignment.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a>16S metabarcoding</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="01-Bacterial_16S_metabarcoding.html"><a href="01-Bacterial_16S_metabarcoding.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="02-Background.html"><a href="02-Background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-Background.html"><a href="02-Background.html#s-rrna"><i class="fa fa-check"></i><b>2.1</b> 16S rRNA</a></li>
+<li class="chapter" data-level="2.2" data-path="02-Background.html"><a href="02-Background.html#its-and-other-possible-marker-genes"><i class="fa fa-check"></i><b>2.2</b> ITS and other possible marker genes</a></li>
+<li class="chapter" data-level="2.3" data-path="02-Background.html"><a href="02-Background.html#amplicon-sequencing"><i class="fa fa-check"></i><b>2.3</b> Amplicon sequencing</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html"><i class="fa fa-check"></i><b>3</b> Introduction to QIIME2</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#artifacts"><i class="fa fa-check"></i><b>3.1</b> Artifacts</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#workflow"><i class="fa fa-check"></i><b>3.2</b> Workflow</a></li>
+<li class="chapter" data-level="3.3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#prepare-the-sequence-dataset"><i class="fa fa-check"></i><b>3.3</b> Prepare the sequence dataset</a></li>
+<li class="chapter" data-level="3.4" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#amplicon-sequence-variants-identification"><i class="fa fa-check"></i><b>3.4</b> Amplicon Sequence Variants identification</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#otus"><i class="fa fa-check"></i><b>3.4.1</b> OTUs</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#build-phylogenetic-tree"><i class="fa fa-check"></i><b>3.6</b> Build phylogenetic tree</a></li>
+<li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
+<li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
+<li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
+<li class="chapter" data-level="3.10" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#differential-abundance-analysis"><i class="fa fa-check"></i><b>3.10</b> Differential Abundance Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html"><i class="fa fa-check"></i><b>4</b> Cluster Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#logon-instructions"><i class="fa fa-check"></i><b>4.1</b> Logon instructions</a></li>
+<li class="chapter" data-level="4.2" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#the-terminal-window"><i class="fa fa-check"></i><b>4.2</b> The Terminal Window</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#pairedendfastqmanifestphred33.csv"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a></li>
+<li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
+<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
+<li class="chapter" data-level="9.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#visualise-dada2-output"><i class="fa fa-check"></i><b>9.2</b> Visualise DADA2 output</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#table-dada2.qzv"><i class="fa fa-check"></i><b>9.2.1</b> table-dada2.qzv</a></li>
+<li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a></li>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Phylogenetic tree construction</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking</a></li>
+<li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a></li>
+<li class="chapter" data-level="13" data-path="13-Sequencing_controls_evaluation.html"><a href="13-Sequencing_controls_evaluation.html"><i class="fa fa-check"></i><b>13</b> Sequencing controls evaluation: beta-diversity without normalisation</a></li>
+<li class="chapter" data-level="14" data-path="14-Diversity_analysis.html"><a href="14-Diversity_analysis.html"><i class="fa fa-check"></i><b>14</b> Diversity analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Differential_abundance.html"><a href="15-Differential_abundance.html"><i class="fa fa-check"></i><b>15</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="16" data-path="16-Final_consideration.html"><a href="16-Final_consideration.html"><i class="fa fa-check"></i><b>16</b> Final consideration</a></li>
+<li class="chapter" data-level="17" data-path="17-Resources.html"><a href="17-Resources.html"><i class="fa fa-check"></i><b>17</b> Resources</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="17-Resources.html"><a href="17-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>17.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="17.2" data-path="17-Resources.html"><a href="17-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>17.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="17.3" data-path="17-Resources.html"><a href="17-Resources.html#references"><i class="fa fa-check"></i><b>17.3</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="18-Appendix.html"><a href="18-Appendix.html"><i class="fa fa-check"></i><b>18</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="18-Appendix.html"><a href="18-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>18.1</b> Alpha diversity metrics</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="18-Appendix.html"><a href="18-Appendix.html#observed-features"><i class="fa fa-check"></i><b>18.1.1</b> Observed features</a></li>
+<li class="chapter" data-level="18.1.2" data-path="18-Appendix.html"><a href="18-Appendix.html#evenness"><i class="fa fa-check"></i><b>18.1.2</b> Evenness</a></li>
+<li class="chapter" data-level="18.1.3" data-path="18-Appendix.html"><a href="18-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>18.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="18.1.4" data-path="18-Appendix.html"><a href="18-Appendix.html#simpson"><i class="fa fa-check"></i><b>18.1.4</b> Simpson</a></li>
+<li class="chapter" data-level="18.1.5" data-path="18-Appendix.html"><a href="18-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>18.1.5</b> Simpson evenness measure (simpson_e)</a></li>
+<li class="chapter" data-level="18.1.6" data-path="18-Appendix.html"><a href="18-Appendix.html#shannon"><i class="fa fa-check"></i><b>18.1.6</b> Shannon</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="18-Appendix.html"><a href="18-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>18.2</b> Beta diversity metrics</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="18-Appendix.html"><a href="18-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>18.2.1</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="18.2.2" data-path="18-Appendix.html"><a href="18-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>18.2.2</b> Bray-Curtis</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="18-Appendix.html"><a href="18-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>18.3</b> Diversity Resources</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bacterial 16S metabarcoding</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="de-novo-amplicon-sequence-variants-identification" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> De-novo amplicon sequence variants identification</h1>
+<p><img src="figures/clusters.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples.</p>
+<div id="dada2-denoising" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> DADA2 denoising</h2>
+<p>To perform the variant sequence identification step with DADA2, the command is (don’t run this command, see below command):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="09-ASV_identification.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> dada2 denoise-paired <span class="kw">\</span></span>
+<span id="cb11-2"><a href="09-ASV_identification.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-demultiplexed-seqs</span> paired-end-demux.trim.qza <span class="kw">\</span></span>
+<span id="cb11-3"><a href="09-ASV_identification.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R1 sequences after the 220 nt length</span></span>
+<span id="cb11-4"><a href="09-ASV_identification.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-f</span> 220 <span class="kw">\</span></span>
+<span id="cb11-5"><a href="09-ASV_identification.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncates R2 sequences after the 220 nt length</span></span>
+<span id="cb11-6"><a href="09-ASV_identification.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len-r</span> 220 <span class="kw">\</span></span>
+<span id="cb11-7"><a href="09-ASV_identification.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing the identified variants</span></span>
+<span id="cb11-8"><a href="09-ASV_identification.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-representative-sequences</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
+<span id="cb11-9"><a href="09-ASV_identification.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Object containing abundance table for the identified variants</span></span>
+<span id="cb11-10"><a href="09-ASV_identification.html#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb11-11"><a href="09-ASV_identification.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-denoising-stats</span> dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb11-12"><a href="09-ASV_identification.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--verbose</span></span></code></pre></div>
+<p>This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="09-ASV_identification.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Copy the files from the specified directory your working directory</span></span>
+<span id="cb12-2"><a href="09-ASV_identification.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_9/* ~/Metagenetics</span></code></pre></div>
+<p>Through the above command you will now have the following three files:</p>
+<ul>
+<li><code>rep-seqs-dada2.qza</code>: Artifact containing the identified sequence variants.</li>
+<li><code>tabledada2.qza</code>: Artifact containing their ASV abundance table.</li>
+<li><code>dada2-stats.qza</code>: Artifact which summarises the statistics after the main denoising steps.</li>
+</ul>
+<p>This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.</p>
+<p>In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: <code>--p-trunc-len-f 0</code> and <code>--p-trunc-len-r 0</code>. To exclude the low quality tails the <code>--p-trunc-q 20</code> option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the <code>qiime dada2 denoise-single</code> should be use instead the above dada2 command.</p>
+</div>
+<div id="visualise-dada2-output" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Visualise DADA2 output</h2>
+<p><img src="figures/qiime2view.png" width="20%" style="display: block; margin: auto;" /></p>
+<div id="table-dada2.qzv" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> table-dada2.qzv</h3>
+<p><img src="figures/table.png" width="15%" style="display: block; margin: auto;" />
+To visualise information on the ASV table we will run:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="09-ASV_identification.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="kw">\</span></span>
+<span id="cb13-2"><a href="09-ASV_identification.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb13-3"><a href="09-ASV_identification.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> table-dada2.qzv <span class="kw">\</span></span>
+<span id="cb13-4"><a href="09-ASV_identification.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-sample-metadata-file</span> metadata.file.txt</span></code></pre></div>
+<p>Now load the obtained <code>table-dada2.qzv</code> into the ‘view.qiime2.org’ website.</p>
+<p><strong>Tip</strong>: Click on the big grey “Drag and drop or click here” box on the website. Then on the pop up window click “HOME” on the top right. From your home you can naigate to “Metagenetics” and choose your file.</p>
+<p>The page opened with <code>table-dada2.qzv</code> contains 3 tabs:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Overview</strong>: An overview page with various information.
+<ul>
+<li><strong>Table summary</strong>
+<ul>
+<li><strong>Number of samples</strong></li>
+<li><strong>Number of features</strong>: In this case features are ASVs. If this was a taxa table features would be the number of taxa.</li>
+<li><strong>Total frequency</strong>: Total number of sequences (i.e. total abundance across all samples and ASVs).</li>
+</ul></li>
+<li><strong>Frequency per sample</strong>: Summary of number of sequences.
+<ul>
+<li><strong>IQR table</strong>: Table showing the Interquartile range of sample frequencies.</li>
+<li><strong>Histogram of frequency per sample</strong>: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies. The vertical dark blue lines on the x axis represent the specific frequencies of samples (1 vertical line per sample).</li>
+</ul></li>
+<li><strong>Frequency per feature</strong>: Summary of number of sequences per feature (ASV/taxa).
+<ul>
+<li><strong>IQR table</strong>: Table showing the Interquartile range of feature frequencies.</li>
+<li><strong>Histogram of frequency per sample</strong>: This shows a rough view of the number of features (y axis) with different frequencies (x axis). Note that the scales are logarithmic. The left side of the plot shows how many rare ASVs there are (ASVs represented by a low amount of sequences, i.e. low abundance ASVs). The right side of the plot shows the amount of high abundance ASVs.</li>
+</ul></li>
+</ul></li>
+<li><strong>Interactive Sample Detail</strong>: This interactive section allows you to explore sampling depth. Experiment using the Plot Controls.
+<ul>
+<li><strong>Plot</strong>: This shows the number of samples per metadata category.</li>
+<li><strong>Feature count table</strong>: Table showing feature count per sample.</li>
+<li><strong>Plot Controls</strong>: Controls to change and update the plot and table.
+<ul>
+<li><strong>Save as..</strong>: Controls to save the current plot.</li>
+<li><strong>Metadata Category</strong>: This allows you to change the values on the x axis of the plot.</li>
+<li><strong>Sampling Depth</strong>: Choosing a sampling depth will update the following.
+<ul>
+<li><strong>Plot</strong>: The plot will be updated to grey out the tops of the bars by removing samples with a depth lower than the chosen sampling depth.</li>
+<li><strong>Feature count table</strong>: Samples with a lower depth than the sampling depth will be highlighted red.</li>
+<li><strong>Plot Controls</strong>: Below the controls is a section of text showing the number of features and samples reatined by the chosen sampling depth.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Feature detail</strong>: This is a table with 3 columns.
+<ul>
+<li>1st column: This is the ASV id. This ID represnets the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.</li>
+<li><strong>Frequency</strong>: Number of sequences representing the ASV acorss all samples. I.e. the total abundance of the ASV.</li>
+<li><strong># of Samples Observed in</strong>: Number of samples the ASVs was detected in.</li>
+</ul></li>
+</ol>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>How many ASVs were detected in the dataset?</li>
+<li>What is the median and mean number of sequences per samples (to 1 decimal place)?</li>
+<li>What is the minimum and maximum number of sequences per ASV?</li>
+<li>How many samples have &gt;10,000 sequences?</li>
+<li>Are there more Corridor samples or Toilet samples (based on Location metadata category)?</li>
+<li>How many sequences represents the second most abundant ASV?</li>
+</ul>
+</div>
+<div id="dada2-stats.qzv" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> dada2-stats.qzv</h3>
+<p><img src="figures/filter.png" width="15%" style="display: block; margin: auto;" />
+Next we’ll look at the denoising stats.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="09-ASV_identification.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="kw">\</span></span>
+<span id="cb14-2"><a href="09-ASV_identification.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-input</span> dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb14-3"><a href="09-ASV_identification.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> dada2-stats.qzv</span></code></pre></div>
+<p>Load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.</p>
+<p>Open the <code>dada2-stats.qzv</code> visualisation with QIIME2 view.</p>
+<p>You will now see a denoising stats table with the following columns:</p>
+<ul>
+<li><strong>sample-id</strong></li>
+<li><strong>input</strong>: Number of sequence pairs the sample started with prior to the denoising steps.</li>
+<li><strong>filtered</strong>: Number of sequence pairs retained after user specified filtering (e.g. <code>--p-trunc-len-f 220</code> will truncate forward reads but alos remove sequence pairs where the forward length is shorter than 220).</li>
+<li><strong>percentage of input passed filter</strong>: Percentage of input reads that passed the filtering step.</li>
+<li><strong>denoised</strong>: Number of filtered sequence pairs that were successfully denoised.</li>
+<li><strong>merged</strong>: Number of filtered and denoised paired sequences that were successfully merged (forward and reverse read merged into one sequence).</li>
+<li><strong>percentage of input merged</strong>: Percentage of input reads that passed the filtering, denoising, and merging steps.</li>
+<li><strong>non-chimeric</strong>: Number of filtered, denoised, and merged sequences retained after chimera removal. This is the final number of sequences per sample.</li>
+<li><strong>percentage of input non-chimeric</strong>: Percentage of input reads retained at the end.</li>
+</ul>
+<p>This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not hae enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.</p>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>In which DADA2 step were most of the sequences lost?</li>
+<li>If this was a real study would there be enough sequences left for optimal analysis?</li>
+</ul>
+<p>A high percentage of sequences were detected as chimeric. In normal studies this would be worrying and may indicate a por sequencing run. However, it is fine for this tutorial as it is only practice data.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="08-Trim_PCR_sequences.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="10-Taxonomic_assignment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
