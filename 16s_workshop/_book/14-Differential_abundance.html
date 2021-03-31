@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-30" />
+<meta name="date" content="2021-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -197,7 +197,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command</a></li>
 <li class="chapter" data-level="12.2" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-visualisation"><i class="fa fa-check"></i><b>12.2</b> Rarefaction visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a></li>
+<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#core-metrics-command"><i class="fa fa-check"></i><b>13.1</b> Core metrics command</a></li>
+<li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
 <li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
@@ -247,37 +252,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="differential-abundance-analysis-1" class="section level1" number="14">
 <h1><span class="header-section-number">Chapter 14</span> Differential abundance analysis</h1>
 <p><img src="figures/comparison.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>The ANCOM method to identify the differentially abundant taxa, is a complex method requiring different steps, for the description of the script used please refer to the script page (<a href="https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/" class="uri">https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/</a>) and the ANCOM paper (<a href="https://www.ncbi.nlm.nih.gov/pubmed/26028277" class="uri">https://www.ncbi.nlm.nih.gov/pubmed/26028277</a>) .</p>
+<p>The ANCOM method aims to identify the differentially abundant taxa. It is a complex method requiring different steps, for the description of the script used please refer to the script page (<a href="https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/" class="uri">https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/</a>) and the ANCOM paper (<a href="https://www.ncbi.nlm.nih.gov/pubmed/26028277" class="uri">https://www.ncbi.nlm.nih.gov/pubmed/26028277</a>) .</p>
 <p>The steps to carry this out are:</p>
 <ol style="list-style-type: decimal">
-<li>Collapse ASVs into taxa-bar-plots</li>
+<li>Collapse the ASVs into taxa</li>
 <li>Add pseudo-count to the abundance table to convert ‘0’ to ‘1’</li>
 <li>Run ANCOM selecting a categorical metadata to test</li>
 </ol>
-<p>If you are still in ‘dada2-diversity-30000’ folder, please remember to move out:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="14-Differential_abundance.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<p>If you are still in ‘dada2-diversity-34583’ directory, please remember to move out:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="14-Differential_abundance.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
 <p>First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="14-Differential_abundance.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="kw">\</span></span>
-<span id="cb30-2"><a href="14-Differential_abundance.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
-<span id="cb30-3"><a href="14-Differential_abundance.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-taxonomy</span> taxonomy.sklearn.qza <span class="kw">\</span></span>
-<span id="cb30-4"><a href="14-Differential_abundance.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-level</span> 5 <span class="kw">\</span></span>
-<span id="cb30-5"><a href="14-Differential_abundance.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-collapsed-table</span> comp-ancom-table-l5.qza</span></code></pre></div>
-<p>Add pseudo-count to the abundance table to convert ‘0’ to ‘1.’ This is required as ANCOM will fail with abundance values of 0.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="14-Differential_abundance.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="kw">\</span></span>
-<span id="cb31-2"><a href="14-Differential_abundance.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> comp-ancom-table-l5.qza <span class="kw">\</span></span>
-<span id="cb31-3"><a href="14-Differential_abundance.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-pseudocount</span> 1 <span class="kw">\</span></span>
-<span id="cb31-4"><a href="14-Differential_abundance.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-composition-table</span> comp-ancom-table-l5-pse.qza</span></code></pre></div>
-<p>Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between StudentCorridor, StudentHome, Corridor and Toilet.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Differential_abundance.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="kw">\</span></span>
-<span id="cb32-2"><a href="14-Differential_abundance.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> comp-ancom-table-l5-pse.qza <span class="kw">\</span></span>
-<span id="cb32-3"><a href="14-Differential_abundance.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
-<span id="cb32-4"><a href="14-Differential_abundance.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-column</span> Location <span class="kw">\</span></span>
-<span id="cb32-5"><a href="14-Differential_abundance.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> l5-ancom-Location.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="14-Differential_abundance.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="kw">\</span></span>
+<span id="cb31-2"><a href="14-Differential_abundance.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
+<span id="cb31-3"><a href="14-Differential_abundance.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-taxonomy</span> taxonomy.sklearn.qza <span class="kw">\</span></span>
+<span id="cb31-4"><a href="14-Differential_abundance.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-level</span> 5 <span class="kw">\</span></span>
+<span id="cb31-5"><a href="14-Differential_abundance.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-collapsed-table</span> comp-ancom-table-l5.qza</span></code></pre></div>
+<p>Add pseudo-count to the abundance table with the purpose of converting 0s to 1s. This is required as ANCOM will fail with abundance values of 0.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Differential_abundance.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="kw">\</span></span>
+<span id="cb32-2"><a href="14-Differential_abundance.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> comp-ancom-table-l5.qza <span class="kw">\</span></span>
+<span id="cb32-3"><a href="14-Differential_abundance.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-pseudocount</span> 1 <span class="kw">\</span></span>
+<span id="cb32-4"><a href="14-Differential_abundance.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-composition-table</span> comp-ancom-table-l5-pse.qza</span></code></pre></div>
+<p>Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between Corridor and Toilet.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="14-Differential_abundance.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="kw">\</span></span>
+<span id="cb33-2"><a href="14-Differential_abundance.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> comp-ancom-table-l5-pse.qza <span class="kw">\</span></span>
+<span id="cb33-3"><a href="14-Differential_abundance.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
+<span id="cb33-4"><a href="14-Differential_abundance.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-column</span> Location <span class="kw">\</span></span>
+<span id="cb33-5"><a href="14-Differential_abundance.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> l5-ancom-Location.qzv</span></code></pre></div>
+<p>This produces a visualistion file with the following sections:</p>
+<ul>
+<li><strong>ANCOM Volcano Plot</strong>: A dot plot of the W statistic (y) against the CLR (x).
+<ul>
+<li>Each dot represents a feature (family in this case) in the dataset.</li>
+<li>W statistic: The higher this value the more significant the feature is differentially abundant between groups.</li>
+<li>CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abudance.</li>
+</ul></li>
+<li><strong>ANCOM statistical results</strong>: This shows the name and W statistic of features found to be differentially abundant.
+<ul>
+<li>ANCOM automatically chooses a W statistic threshold for significance.</li>
+</ul></li>
+<li><strong>Percentile abundances of features by group</strong>: This is a table which can be thought of as containing the text version of a boxplot. This shows the abundances of the differentially abundant features for the different groups.</li>
+</ul>
 <p><strong>Questions</strong>:</p>
 <ul>
 <li>Which families are discovered as biomarkers?</li>
 <li>Investigating these families, does this make sense?</li>
-<li>Do you get any genera as biomarkers that do not belong to families discovered as biomarkers?</li>
+<li>Run ANCOM analysis for genus level (level 6). Do you get any genera as biomarkers that do not belong to families discovered as biomarkers?</li>
 <li>Does changing the metadata category let you infer something different?</li>
 </ul>
 

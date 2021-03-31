@@ -3,15 +3,15 @@
 knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 
 
-The ANCOM method to identify the differentially abundant taxa, is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
+The ANCOM method aims to identify the differentially abundant taxa. It  is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
 
 The steps to carry this out are:
 
-1. Collapse ASVs into taxa-bar-plots
+1. Collapse the ASVs into taxa
 2. Add pseudo-count to the abundance table to convert ‘0’ to ‘1’
 3. Run ANCOM selecting a categorical metadata to test
 
-If you are still in ‘dada2-diversity-30000’ folder, please remember to move out:
+If you are still in ‘dada2-diversity-34583’ directory, please remember to move out:
 
 ```{bash, eval=FALSE}
 cd ..
@@ -27,7 +27,7 @@ qiime taxa collapse \
 --o-collapsed-table comp-ancom-table-l5.qza
 ```
 
-Add pseudo-count to the abundance table to convert ‘0’ to ‘1’. This is required as ANCOM will fail with abundance values of 0.
+Add pseudo-count to the abundance table with the purpose of converting 0s to 1s. This is required as ANCOM will fail with abundance values of 0.
 
 ```{bash, eval=FALSE}
 qiime composition add-pseudocount \
@@ -36,7 +36,7 @@ qiime composition add-pseudocount \
 --o-composition-table comp-ancom-table-l5-pse.qza
 ```
 
-Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between StudentCorridor, StudentHome, Corridor and Toilet.
+Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between Corridor and Toilet.
 
 ```{bash, eval=FALSE}
 qiime composition ancom \
@@ -46,9 +46,20 @@ qiime composition ancom \
 --o-visualization l5-ancom-Location.qzv
 ```
 
+This produces a visualistion file with the following sections:
+
+- __ANCOM Volcano Plot__: A dot plot of the W statistic (y) against the CLR (x).
+   - Each dot represents a feature (family in this case) in the dataset.
+   - W statistic: The higher this value the more significant the feature is differentially abundant between groups.
+   - CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abudance.
+- __ANCOM statistical results__: This shows the name and W statistic of features found to be differentially abundant.
+   - ANCOM automatically chooses a W statistic threshold for significance.
+- __Percentile abundances of features by group__: This is a table which can be thought of as containing the text version of a boxplot. This shows the abundances of the differentially abundant features for the different groups.
+
+
 __Questions__: 
 
 + Which families are discovered as biomarkers? 
 + Investigating these families, does this make sense? 
-+ Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
++ Run ANCOM analysis for genus level (level 6). Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
 + Does changing the metadata category let you infer something different?

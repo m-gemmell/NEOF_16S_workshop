@@ -43,6 +43,9 @@ sequencing-depth-evaluation-rarefaction-plot
 rarefaction-command
 rarefaction-visualisation
 diversity-analysis
+core-metrics-command
+alpha-diveristy-statistical-analysis
+beta-diversity-statistical-analysis
 differential-abundance-analysis-1
 final-consideration
 resources

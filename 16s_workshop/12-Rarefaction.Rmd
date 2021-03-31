@@ -28,6 +28,8 @@ __Note__: See the appendix at the end of this bookdown for details on each metri
 
 You may want to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_pd` for markers such as ITS where you will not create a phylogenetic tree.
 
+__Important__: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it.
+
 ```{bash, eval=FALSE}
 qiime diversity alpha-rarefaction --i-table table-dada2.qza \
 --i-phylogeny rooted-tree.qza \
@@ -48,7 +50,12 @@ qiime diversity alpha-rarefaction --i-table table-dada2.qza \
 --o-visualization rarefaction-curve.qzv
 ```
 
-The command will take approximately 10 minutes.
+Otherwise, copy over the output to your directory.
+
+```{bash eval=FALSE}
+
+```
+
 
 ## Rarefaction visualisation
 Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the grouping (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the observed_features metric is the best __Metric__ to view.

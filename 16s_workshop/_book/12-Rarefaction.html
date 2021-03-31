@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-30" />
+<meta name="date" content="2021-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -197,7 +197,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command</a></li>
 <li class="chapter" data-level="12.2" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-visualisation"><i class="fa fa-check"></i><b>12.2</b> Rarefaction visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a></li>
+<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#core-metrics-command"><i class="fa fa-check"></i><b>13.1</b> Core metrics command</a></li>
+<li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
 <li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
@@ -264,6 +269,7 @@ Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences
 <p>Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics (observed features, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’s evenness).</p>
 <p><strong>Note</strong>: See the appendix at the end of this bookdown for details on each metric.</p>
 <p>You may want to exclude <code>--i-phylogeny rooted-tree.qza</code> and <code>--p-metrics faith_pd</code> for markers such as ITS where you will not create a phylogenetic tree.</p>
+<p><strong>Important</strong>: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="12-Rarefaction.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-rarefaction --i-table table-dada2.qza <span class="kw">\</span></span>
 <span id="cb25-2"><a href="12-Rarefaction.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-phylogeny</span> rooted-tree.qza <span class="kw">\</span></span>
 <span id="cb25-3"><a href="12-Rarefaction.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Min and max depth for the plot</span></span>
@@ -281,7 +287,8 @@ Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences
 <span id="cb25-15"><a href="12-Rarefaction.html#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-metrics</span> observed_features <span class="kw">\</span></span>
 <span id="cb25-16"><a href="12-Rarefaction.html#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-metrics</span> faith_pd <span class="kw">\</span></span>
 <span id="cb25-17"><a href="12-Rarefaction.html#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> rarefaction-curve.qzv</span></code></pre></div>
-<p>The command will take approximately 10 minutes.</p>
+<p>Otherwise, copy over the output to your directory.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"></code></pre></div>
 </div>
 <div id="rarefaction-visualisation" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> Rarefaction visualisation</h2>
