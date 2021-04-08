@@ -3,7 +3,7 @@
 knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 
 
-The ANCOM method aims to identify the differentially abundant taxa. It  is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
+The ANCOM method aims to identify the differentially abundant taxa. It  is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2021.2/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
 
 The steps to carry this out are:
 
@@ -17,6 +17,11 @@ If you are still in ‘dada2-diversity-34583’ directory, please remember to mo
 cd ..
 ```
 
+## Taxa collapse
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/collapse.png", auto_pdf = TRUE)
+``` 
+
 First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.
 
 ```{bash, eval=FALSE}
@@ -27,6 +32,10 @@ qiime taxa collapse \
 --o-collapsed-table comp-ancom-table-l5.qza
 ```
 
+## Pseudo counts
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/plus_1.png", auto_pdf = TRUE)
+``` 
 Add pseudo-count to the abundance table with the purpose of converting 0s to 1s. This is required as ANCOM will fail with abundance values of 0.
 
 ```{bash, eval=FALSE}
@@ -36,6 +45,10 @@ qiime composition add-pseudocount \
 --o-composition-table comp-ancom-table-l5-pse.qza
 ```
 
+## ANCOM
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/toilet_corridor.png", auto_pdf = TRUE)
+``` 
 Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between Corridor and Toilet.
 
 ```{bash, eval=FALSE}
@@ -46,7 +59,8 @@ qiime composition ancom \
 --o-visualization l5-ancom-Location.qzv
 ```
 
-This produces a visualistion file with the following sections:
+## ANCOM visualisation
+This produces a visualisation file with the following sections:
 
 - __ANCOM Volcano Plot__: A dot plot of the W statistic (y) against the CLR (x).
    - Each dot represents a feature (family in this case) in the dataset.

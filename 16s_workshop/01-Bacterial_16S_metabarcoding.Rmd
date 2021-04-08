@@ -21,4 +21,17 @@ knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 
 This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
 
-- Logging in to our teaching environment
+- Background on the biology
+- Introduction to QIIME2
+- Cluster and webVNC information
+- Information on initial data
+- QIIME2 analysis workflow
+- Sequence import
+- PCR primer trimming
+- DADA2 denoising
+- Taxonomic classification
+- Phylogenetic tree construction
+- Rarefaction curve
+- Alpha and beta diversity analysis
+- Differential abundance analysis
+- Final considerations

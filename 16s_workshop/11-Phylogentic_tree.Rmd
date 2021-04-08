@@ -12,7 +12,8 @@ knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
 The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
 
 ```{bash, eval=FALSE}
-qiime alignment mafft --i-sequences rep-seqs-dada2.qza \
+qiime alignment mafft \
+--i-sequences rep-seqs-dada2.qza \
 --o-alignment aligned-rep-seqs.qza
 ```
 
@@ -23,7 +24,8 @@ knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
 
 ```{bash, eval=FALSE}
-qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+qiime alignment mask \
+--i-alignment aligned-rep-seqs.qza \
 --p-max-gap-frequency 1.0 \
 --p-min-conservation 0.4 \
 --o-masked-alignment masked-aligned-rep-seqs.qza
@@ -50,7 +52,8 @@ knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
 Create an un-rooted maximum-likelihood tree from our masked alignment.
 
 ```{bash, eval=FALSE}
-qiime phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza \
+qiime phylogeny fasttree \
+--i-alignment masked-aligned-rep-seqs.qza \
 --o-tree unrooted-tree.qza
 ```
 

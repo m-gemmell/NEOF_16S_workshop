@@ -26,7 +26,7 @@ We require a classifier training step to reach optimum assignment performance.
 
 Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences.
 
-Note: Do not run the below command for this tutorial, see below command)
+Note: Do not run the below command for this tutorial, see below command.
 
 ```{bash, eval=FALSE}
 qiime feature-classifier extract-reads \
@@ -53,7 +53,7 @@ qiime feature-classifier fit-classifier-naive-bayes \
 --o-classifier classifier.trained.qza
 ```
 
-With our trained classifier we can assign taxonomic assignments to the ASV represenative sequences:
+With our trained classifier we can assign taxonomic assignments to the ASV representative sequences:
 
 ```{bash, eval=FALSE}
 qiime feature-classifier classify-sklearn \

@@ -31,7 +31,7 @@ __Remember to use the same chrome window!__ You can click the QIIME2 view logo o
 
 This visualisation contains the same sections as `paired-end-demux.qzv` but contains information on the PCR trimmed data.
 
-If you are working with ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
+If you are working with the ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
 
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 

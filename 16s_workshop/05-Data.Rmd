@@ -31,14 +31,14 @@ This "manifest" file contains three columns that are separated by commas (.csv =
 
 Each column has a header and contains the following information:
 
-1. sample-id
+1. __sample-id__
    - User specified sample-id. 
    - This is how the sample will be named in all downstream QIIME2 files.
    - These must match the sample ids in the metadata file.
    - Recommendations for sample ids/identifiers can be found lower down in this bookdown page.
-2. absolute-filepath
+2. __absolute-filepath__
    - Full path of sequencing file.
-3. direction
+3. __direction__
    - Direction of the sequencing reads
    - For paired end reads this will be "forward" (R1) or "reverse" (R2).
    
@@ -93,8 +93,8 @@ The above link includes:
 
 ## primers_seqs.fasta
 
-This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for PCR trimming step (chapter 8) and the classifier training step (chapter 10).
+This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for the PCR trimming step (chapter 8) and the classifier training step (chapter 10).
 
 This file has been provided so you can copy and paste the sequences from within the webVNC. It is never advisable to try to type sequences.
 
-For your own studies you will need to ask the lab that carried out the sequencing preparation for the primer sequences.
+For your own projects you will need to ask the lab that carried out the sequencing preparation for the primer sequences.

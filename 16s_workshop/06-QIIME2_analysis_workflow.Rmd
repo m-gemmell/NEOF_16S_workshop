@@ -10,8 +10,8 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 1. Import sequences into QIIME2 artifact
 2. Trim the PCR primer sequences
 3. De-novo amplicon sequence variants identifications
-4. Assign a taxonomic classification to each ASV
-5. Make a phylogenetic tree of the identified ASVs
+4. Assign taxonomic classification to each ASV
+5. Create a phylogenetic tree of the identified ASVs
 6. Sequencing depth evaluation: rarefaction plot
 7. Diversity analysis: alpha and beta
 8. Differential abundance analysis of ASVs across different conditions
@@ -19,11 +19,8 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 ## Activate environment
 You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
 
-__Note__: Ensure you include the dot and space at the start `. ` before `useqiime2-2021.2`
+__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2021.2`
 
 ```{bash eval=FALSE}
 . useqiime2-2021.2
 ```
-
-Prior to running QIIME2 commands you would need to create and then activate a QIIME2 conda in your own computer/cluster. Below is a link to a quick start guide for QIIME2:
-https://docs.qiime2.org/2021.2/getting-started/

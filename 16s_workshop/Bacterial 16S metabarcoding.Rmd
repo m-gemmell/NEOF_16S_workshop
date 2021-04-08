@@ -21,7 +21,20 @@ knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 
 This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
 
-- Logging in to our teaching environment
+- Background on the biology
+- Introduction to QIIME2
+- Cluster and webVNC information
+- Information on initial data
+- QIIME2 analysis workflow
+- Sequence import
+- PCR primer trimming
+- DADA2 denoising
+- Taxonomic classification
+- Phylogenetic tree construction
+- Rarefaction curve
+- Alpha and beta diversity analysis
+- Differential abundance analysis
+- Final considerations
 
 <!--chapter:end:01-Bacterial_16S_metabarcoding.Rmd-->
 
@@ -126,11 +139,11 @@ Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp
 1. Prepare the sequence dataset
     a. Remove PCR primers
 2. Amplicon Sequence Variants identification
-3. Assign a taxonomic classification to each AVS
+3. Assign a taxonomic classification to each ASV
     a. Train naive-classifier for assignment
     b. Taxonomy assignment of the identified ASVs
 4. Make a phylogeny tree for the ASVs 
-    a. Alignment of the identified ASV 
+    a. Alignment of the ASV representative sequences 
     b. Masking low quality alignment 
     c. Creating the un-rooted phylogenetic tree 
     d. Creating the rooted phylogenetic tree 
@@ -181,9 +194,9 @@ There are now many bioinformatics methods to resolve amplicon sequence variants 
 
 ASV methods infer the biological sequences in the sample prior to the introduction of amplification and sequencing errors, and distinguish sequence variants differing by as little as one nucleotide. The methods use a de novo process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than error-containing sequences.
 
-Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biological reality that exists outside of the data being analysed: the DNA sequence of the assayed organism. Thus, ASVs inferred independently from different studies or different samples can be validly compared.
+Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biological reality that exists outside of the data being analysed: the DNA sequence of the assayed organism. Thus, ASVs inferred independently from different studies or different samples can be compared.
 
-The following picture (http://ju.outofmemory.cn/entry/332219) shows how DADA2 (an ASV method) and OTU processes compare each other. This shows how the canonical creation of OTUs creation by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.
+The following picture (http://ju.outofmemory.cn/entry/332219) shows how DADA2 (an ASV method) and OTU processes compare to each other. This shows how the canonical creation of OTUs by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.
 
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
 knitr::include_graphics(path = "figures/ASC_otu_comparison.png", auto_pdf = TRUE)
@@ -193,7 +206,7 @@ Much of the work involved in analysis of amplicon-based metagenomic data is that
 
 For sequencing purposes, an aliquot of PhiX phage DNA is added to each sample before sequencing, both DADA2 and deblur include a step aimed to exclude any PhiX associated reads. To remove PCR chimeric artefacts, a further filter step is applied by both. 
 
-QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing bias. It is possible to collate the denoised abundance tables and representative sequences afterward, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
+QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing biases. It is possible to collate the denoised abundance tables and representative sequences afterward, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
 
 ## Assign a taxonomic classification to each ASV
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -206,14 +219,14 @@ Different databases may result in different taxonomic classification for the sam
 
 In the practical we will use Scikit-learn (similar to the RDP tool widely used so far). It has been shown that (at least in the case of 16S analysis) taxonomic classification accuracy improves when the classifier is trained with sequences derived from the amplicon region only (Werner _et al_., 2012).
 
-## Build phylogenetic tree
+## Phylogenetic tree creation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
-To include phylogenetic diversity metrics in the diversity analysis, such as UniFrac distance metric, the construction of a phylogenetic tree for the identified AVS previously identified is required. QIIME2 supports MAFFT for the alignment and MASK to mask the alignment sections that are not phylogenetically informative. Unrooted and rooted trees may be created. 
+To include phylogenetic diversity metrics in the diversity analysis, such as UniFrac distance metrics, the construction of a phylogenetic tree for the identified ASVs is required. QIIME2 supports MAFFT for the alignment and MASK to mask the alignment sections that are not phylogenetically informative. Unrooted and rooted trees may be created. 
 
-For some marker genes it is not possible to build phylogenetic tree (ITS is among these), and it is therefore important to know the properties of the marker in use. Consequently, it is not possible to use any diversity metrics that requires the phylogenetic distance as input.
+For some marker genes it is not possible to build a phylogenetic tree (ITS is among these), and it is therefore important to know the properties of the marker in use. Consequently, it is not possible to use any diversity metrics that requires the phylogenetic distance as input.
 
 ## Data normalisation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -235,24 +248,20 @@ c. Scaling the abundance table by a fixed value or proportion.
 d. Applying a log-ratio transformation proposed by Aitchinson (1982) in analogy of compositional dataset. 
     - This is aimed to convert the abundance data into scales on which it is possible to apply conventional statistical procedures.
     
-Methods b-d convert the abundance table in a normalised-abundance table with different strength and pitfalls, therefore they can affect results for beta-diversity and differentially abundant analysis.
+Methods b-d convert the abundance table in a normalised-abundance table with different strengths and pitfalls, therefore they can affect results for beta-diversity and differential abundant analysis.
 
 These normalisation methods were compared by Weiss and colleagues (2017), but their simulations show that different methods may result in different sensitivity and different false discovery rates.
 
-In this tutorial, following the QIIME2 current tutorial, we will apply the following normalisation
-methods:
-
-a. The ‘rarefaction’ method, in the context of the alpha- and beta-diversity analysis.
-b. The ‘centered log-ratio transformation’ (clr-transformation) method, in the context of the differential abundance analysis.
+In this tutorial, following the QIIME2 current tutorial, we will apply the ‘rarefaction’ method, in the context of the alpha- and beta-diversity analysis.
 
 ## Alpha-diversity
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
-Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of species in the sample) and evenness (a measure of the relative abundance of different species that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
+Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of features in the sample) and evenness (a measure of the relative abundances of different features that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
 ASVs).
 
-The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation of the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
+The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation to the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -262,14 +271,14 @@ Beta-diversity is a term for the comparison of samples to each other. It is also
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:
 
-- Jaccard: A non-phylogeny based method that takes into account only presence/absence of a ASVs to measure the distance between two samples.
-- Bray-Curtis: A non-phylogeny based method that takes into account the number of ASVs as well as their abundance while measuring the distance between two samples.
-- Un-weighted UniFrac: Uses the presence and absence of ASVs and phylogenies.
-- Weighted UniFrac: Uses the abundance information of ASVs and phylogenies.
+- Jaccard: A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.
+- Bray-Curtis: A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.
+- Un-weighted UniFrac: Uses the presence and absence of ASVs and their phylogenies.
+- Weighted UniFrac: Uses the abundance information of ASVs and their phylogenies.
 
-As discussed for the alpha-diversity, before proceeding with the beta-diversity analysis the raw abundance table for the identified ASVs needs to be normalised, to this QIIME2 suggests using the rarefaction methods, in particular at the same rarefaction threshold used for the alpha diversity.
+As discussed for the alpha-diversity, before proceeding with the beta-diversity analysis the raw abundance table for the identified ASVs needs to be normalised. QIIME2 suggests using the rarefaction methods, in particular at the same rarefaction threshold used for the alpha diversity.
 
-The choice of the beta-diversity distance metric to use will strongly affect the results, it therefore common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes, for example the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
+The choice of the beta-diversity distance metric to use will strongly affect the results. Therefore it is common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
 ## Differential Abundance Analysis
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -278,7 +287,7 @@ knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 
 The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).
 
-QIIME2 supports two normalisation methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the value in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
+QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
 
 Examples of questions to answer:
 
@@ -325,7 +334,7 @@ Already there is useful information for us on the terminal window.
 - __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __'~'__ is a shortcut to the user's home directory.
 - Everything after the __'$'__ is where commands are typed into the terminal. This is also referred to as the command line.
 
-To open a new terminal window, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
+__To open a new terminal window__, right click on the main screen, choose `Applications` -> `Shell` -> `bash`
 
 <!--chapter:end:04-Cluster_Introduction.Rmd-->
 
@@ -362,14 +371,14 @@ This "manifest" file contains three columns that are separated by commas (.csv =
 
 Each column has a header and contains the following information:
 
-1. sample-id
+1. __sample-id__
    - User specified sample-id. 
    - This is how the sample will be named in all downstream QIIME2 files.
    - These must match the sample ids in the metadata file.
    - Recommendations for sample ids/identifiers can be found lower down in this bookdown page.
-2. absolute-filepath
+2. __absolute-filepath__
    - Full path of sequencing file.
-3. direction
+3. __direction__
    - Direction of the sequencing reads
    - For paired end reads this will be "forward" (R1) or "reverse" (R2).
    
@@ -424,11 +433,11 @@ The above link includes:
 
 ## primers_seqs.fasta
 
-This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for PCR trimming step (chapter 8) and the classifier training step (chapter 10).
+This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for the PCR trimming step (chapter 8) and the classifier training step (chapter 10).
 
 This file has been provided so you can copy and paste the sequences from within the webVNC. It is never advisable to try to type sequences.
 
-For your own studies you will need to ask the lab that carried out the sequencing preparation for the primer sequences.
+For your own projects you will need to ask the lab that carried out the sequencing preparation for the primer sequences.
 
 <!--chapter:end:05-Data.Rmd-->
 
@@ -444,8 +453,8 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 1. Import sequences into QIIME2 artifact
 2. Trim the PCR primer sequences
 3. De-novo amplicon sequence variants identifications
-4. Assign a taxonomic classification to each ASV
-5. Make a phylogenetic tree of the identified ASVs
+4. Assign taxonomic classification to each ASV
+5. Create a phylogenetic tree of the identified ASVs
 6. Sequencing depth evaluation: rarefaction plot
 7. Diversity analysis: alpha and beta
 8. Differential abundance analysis of ASVs across different conditions
@@ -453,14 +462,11 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 ## Activate environment
 You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
 
-__Note__: Ensure you include the dot and space at the start `. ` before `useqiime2-2021.2`
+__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2021.2`
 
 ```{bash eval=FALSE}
 . useqiime2-2021.2
 ```
-
-Prior to running QIIME2 commands you would need to create and then activate a QIIME2 conda in your own computer/cluster. Below is a link to a quick start guide for QIIME2:
-https://docs.qiime2.org/2021.2/getting-started/
 
 <!--chapter:end:06-QIIME2_analysis_workflow.Rmd-->
 
@@ -482,7 +488,7 @@ qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
  
 This command will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’. 
 
-The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have benn sperarated by samples). Additonally, QIIME2 artifacts use "-" as word seperators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
+The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). Additionally, QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
 
 To visualise the samples loaded, the following command will create a visualisation artifact.
 
@@ -493,28 +499,30 @@ qiime demux summarize --i-data paired-end-demux.qza \
 
 __Chrome__
 
-This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose `Applications` -> `Shell` -> `bash`). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run:
+This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose `Applications` -> `Shell` -> `bash`). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run the following command in your new terminal:
 
 ```{bash, eval=FALSE}
 chrome.sh
 ```
 
-Form now on leave the terminal you ran the above command on alone.
+From now on leave the terminal you ran the above command on alone and don't close chrome.
 
 Then:
 
-- Type the following web-site: ‘view.qiime2.org’
-- Click on ‘Drag and drop or click here’ grey box
-- You can browse now to find and select the file ‘paired-end-demux.qzv’. Tip: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+- Navigate to the following web-site on chrome: ‘view.qiime2.org’
+- Click on the ‘Drag and drop or click here’ grey box
+- You can browse now to find and select the file ‘paired-end-demux.qzv’. 
 
-The visulaisation will have two tabs:
+__Tip__: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+
+The visualisation will have two tabs:
 
 1. __Overview__: This contains 3 main sections relating to the sequence count of samples.
    - __Demultiplexxed sequence counts summary__: Summary table of number of sequences per sample divided by forward and reverse reads.
    - __Read frequency histograms__: Forward and Reverse reads histograms showing the how many samples have various numbers of sequences. 
    - __Per-sample sequence counts__: Table showing the number of forward and reverse reads in samples.
 2. __Interactive Quality Plots__: Contains similar information as fastQC analysis.
-   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random smapling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
+   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
    - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 __Questions__: 
@@ -560,7 +568,7 @@ __Remember to use the same chrome window!__ You can click the QIIME2 view logo o
 
 This visualisation contains the same sections as `paired-end-demux.qzv` but contains information on the PCR trimmed data.
 
-If you are working with ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
+If you are working with the ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
 
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 
@@ -592,7 +600,7 @@ qiime dada2 denoise-paired \
 --p-trunc-len-f 220 \
 # Truncates R2 sequences after the 220 nt length
 --p-trunc-len-r 220 \
-# Object containing the identified variants
+# Object containing the identified sequence variants
 --o-representative-sequences rep-seqs-dada2.qza \
 # Object containing abundance table for the identified variants
 --o-table table-dada2.qza \
@@ -610,12 +618,12 @@ cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 Through the above command you will now have the following three files:
 
 - `rep-seqs-dada2.qza`: Artifact containing the identified sequence variants.
-- `tabledada2.qza`: Artifact containing their ASV abundance table. 
-- `dada2-stats.qza`: Artifact which summarises the statistics after the main denoising steps.
+- `tabledada2.qza`: Artifact containing the ASV abundance table. 
+- `dada2-stats.qza`: Artifact which summarises the statistics after the denoising steps.
 
 This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
-In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be use instead the above dada2 command.
+In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
 ## Visualise DADA2 output
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -636,8 +644,6 @@ qiime feature-table summarize \
 ```
  
 Now load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
-
-__Tip__: Click on the big grey "Drag and drop or click here" box on the website. Then on the pop up window click "HOME" on the top right. From your home you can naigate to "Metagenetics" and choose your file.
 
 The page opened with `table-dada2.qzv` contains 3 tabs:
 
@@ -661,9 +667,9 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
       - __Sampling Depth__: Choosing a sampling depth will update the following.
          - __Plot__: The plot will be updated to grey out the tops of the bars by removing samples with a depth lower than the chosen sampling depth.
          - __Feature count table__: Samples with a lower depth than the sampling depth will be highlighted red.
-         - __Plot Controls__: Below the controls is a section of text showing the number of features and samples reatined by the chosen sampling depth.
+         - __Plot Controls__: Below the controls is a section of text showing the number of features and samples retained by the chosen sampling depth.
 3. __Feature detail__: This is a table with 3 columns.
-   - 1st column: This is the ASV id. This ID represnets the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.
+   - 1st column: This is the ASV id. This ID represents the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.
    - __Frequency__: Number of sequences representing the ASV acorss all samples. I.e. the total abundance of the ASV.
    - __# of Samples Observed in__: Number of samples the ASVs was detected in.
 
@@ -674,13 +680,13 @@ __Questions__:
 - What is the minimum and maximum number of sequences per ASV?
 - How many samples have >100,000 sequences?
 - Are there more Corridor samples or Toilet samples (based on Location metadata category)?
-- How many sequences represents the second most abundant ASV?
+- How many sequences represent the second most abundant ASV?
 
 ### dada2-stats.qzv
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/filter.png", auto_pdf = TRUE)
 ``` 
-Next we'll look at the denoising stats.
+Next we'll look at the denoising stats. Run the following command.
 
 ```{bash, eval=FALSE}
 qiime metadata tabulate \
@@ -688,15 +694,13 @@ qiime metadata tabulate \
 --o-visualization dada2-stats.qzv
 ```
  
-Load the obtained ‘dada2-stats.qzv’ into the ‘view.qiime2.org’ website.
-
 Open the `dada2-stats.qzv` visualisation with QIIME2 view.
 
 You will now see a denoising stats table with the following columns:
 
 - __sample-id__
 - __input__: Number of sequence pairs the sample started with prior to the denoising steps.
-- __filtered__: Number of sequence pairs retained after user specified filtering (e.g. `--p-trunc-len-f 220` will truncate forward reads but alos remove sequence pairs where the forward length is shorter than 220).
+- __filtered__: Number of sequence pairs retained after user specified filtering (e.g. `--p-trunc-len-f 220` will truncate forward reads but also remove sequence pairs where the forward length is shorter than 220).
 - __percentage of input passed filter__: Percentage of input reads that passed the filtering step.
 - __denoised__: Number of filtered sequence pairs that were successfully denoised.
 - __merged__: Number of filtered and denoised paired sequences that were successfully merged (forward and reverse read merged into one sequence).
@@ -704,7 +708,7 @@ You will now see a denoising stats table with the following columns:
 - __non-chimeric__: Number of filtered, denoised, and merged sequences retained after chimera removal. This is the final number of sequences per sample.
 - __percentage of input non-chimeric__: Percentage of input reads retained at the end.
 
-This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not hae enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.
+This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not have enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.
 
 __Questions__: 
 
@@ -741,7 +745,7 @@ We require a classifier training step to reach optimum assignment performance.
 
 Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences.
 
-Note: Do not run the below command for this tutorial, see below command)
+Note: Do not run the below command for this tutorial, see below command.
 
 ```{bash, eval=FALSE}
 qiime feature-classifier extract-reads \
@@ -768,7 +772,7 @@ qiime feature-classifier fit-classifier-naive-bayes \
 --o-classifier classifier.trained.qza
 ```
 
-With our trained classifier we can assign taxonomic assignments to the ASV represenative sequences:
+With our trained classifier we can assign taxonomic assignments to the ASV representative sequences:
 
 ```{bash, eval=FALSE}
 qiime feature-classifier classify-sklearn \
@@ -813,7 +817,8 @@ knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
 The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
 
 ```{bash, eval=FALSE}
-qiime alignment mafft --i-sequences rep-seqs-dada2.qza \
+qiime alignment mafft \
+--i-sequences rep-seqs-dada2.qza \
 --o-alignment aligned-rep-seqs.qza
 ```
 
@@ -824,7 +829,8 @@ knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
 
 ```{bash, eval=FALSE}
-qiime alignment mask --i-alignment aligned-rep-seqs.qza \
+qiime alignment mask \
+--i-alignment aligned-rep-seqs.qza \
 --p-max-gap-frequency 1.0 \
 --p-min-conservation 0.4 \
 --o-masked-alignment masked-aligned-rep-seqs.qza
@@ -851,7 +857,8 @@ knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
 Create an un-rooted maximum-likelihood tree from our masked alignment.
 
 ```{bash, eval=FALSE}
-qiime phylogeny fasttree --i-alignment masked-aligned-rep-seqs.qza \
+qiime phylogeny fasttree \
+--i-alignment masked-aligned-rep-seqs.qza \
 --o-tree unrooted-tree.qza
 ```
 
@@ -926,7 +933,7 @@ qiime diversity alpha-rarefaction --i-table table-dada2.qza \
 Otherwise, copy over the output to your directory.
 
 ```{bash eval=FALSE}
-
+cp /pub39/tea/matthew/16s_workshop/chapter_12/rarefaction-curve.qzv .
 ```
 
 
@@ -941,28 +948,28 @@ The visualisation has two plots.
    - If the lines in the observed feature plot do not level out:
       - The richness of the samples may have not been fully observed (because too few sequences were collected)
       - Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
-- Bottom plot = Number of samples (Y) against sequencing depth (x)
+- Bottom plot = Number of samples (Y) against sequencing depth (X)
    - This is important when grouping samples by metadata.
    - It illustrates the number of samples with different sequencing depths for the groups in the chosen __Sample Metadata Column__.
-   - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding a decrease in number of samples.
+   - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding to a decrease in number of samples.
       - If the sample/s had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
       - If the sample/s had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:
 
-- Losing sequencing depth within samples.
+- Retaining sequencing depth within samples.
 - Losing entire samples.
 
 The best choice usually depends on the experimental design. If you have many samples per group you may be able to lose a few samples without losing statistical power for the analysis. If you have few samples per group you may need to choose a lower threshold.
 
 Other considerations for rarefaction threshold:
 
-- Does the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.
-- Should you samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold
+- Do the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.
+- Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold.
 
 __Questions__: 
 
-- Are any samples not fully sequenced? 
+- Are there any samples not fully sequenced? (yes or no)
 - Comparing the two __Locations__, which has a higher evenness score (simpson_e)?
 - Comparing the 2 __Places__, which has higher diversity value when considering most of the samples (faith_pd, shannon, & simpson)?
 - What sampling depth (rarefaction threshold) would you use for the alpha- and beta-diversity analysis?
@@ -971,10 +978,10 @@ For the next step we will use a rarefaction size of 34,583. We have chosen this 
 
 - This will keep all the samples.
 - The group based rarefaction curves (__Location__ and __Place__) are plateauing at this depth.
-- Many of the individual samples (__BarcodeSequence__) have plateaued with the others plateauing this depth.
+- Many of the individual samples (__BarcodeSequence__) have plateaued at this depth.
 - We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
 
-How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the `table-dada2.qzv` visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold as that is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
+How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the `table-dada2.qzv` visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
 
 <!--chapter:end:12-Rarefaction.Rmd-->
 
@@ -989,6 +996,9 @@ Alpha diversity is a representation of the diversity within a sample. There are 
 Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957) (More info on these mertics in the appendix).
 
 ## Core metrics command
+```{r, fig.align = 'center',out.width= '8%', echo=FALSE }
+knitr::include_graphics(path = "figures/core.png", auto_pdf = TRUE)
+``` 
 
 QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2019.1/plugins/available/diversity/).
 
@@ -1009,11 +1019,14 @@ In case of ITS or any marker for which it is not possible to obtain phylogenetic
 
 __Questions__: 
 
-+ Looking at the beta-diversity plot (`emperor.qzv`), one metric of your choice, is there any metadata category that produces clusters based on the groups? NOte: You can reorientate the 3D plot.
-+ If you choose a different metric, do you get a different plot/results?
++ Looking at the beta-diversity plot (`emperor.qzv`), one metric of your choice, is there any metadata category that produces clusters based on the groups? Note: You can reorientate the 3D plot.
++ If you choose a different metric, do you get a different plot/result?
 + Does a different sampling-depth give a different result? Try running the `core-metrics-phylogenetic` command with a different `--p-sampling-depth` and `--output-dir`.
 
 ## Alpha diveristy statistical analysis
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+``` 
 
 We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly significant.
 
@@ -1022,7 +1035,7 @@ The QIIME2 pipeline offers two alternative choices:
 - Categorical data: Kruskal-Wallis test.
 - Numerical data: Ranked Spearman test.
 
-As we have catergorical and numeric metadata columns we will carry out both types of test. Let us do this for the shannon alpha diversity.
+As we have catergorical and numeric metadata columns we will carry out both types of tests. Let us do this for the shannon alpha diversity.
 
 ```{bash, eval=FALSE}
 #Change directory into the output directory
@@ -1043,18 +1056,21 @@ Load the produced files into QIIME2 view. At this point I will remind you to hav
 
 In the visualisations you will see plots showing the diversity values and statistics below the plots. You can choose what metadata grouping to visualise with the __Column__ drop down selection. To determine if there is a statistical difference between the groups:
 
-- Kruskal-Wallis: It is best to look at the q-value/s (in essence the p-value corrected) in the pairwise section. The q-value is in essence the multiple comparison corrected p-value. As there is only one comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
-- Ranked Spearman: Can look at the p-value to determine is there is a statistical significant correlation between the numeric category and the alpha diversity metric.
+- Kruskal-Wallis: It is best to look at the q-value/s in the pairwise section. The q-value is in essence the multiple comparison corrected p-value. As there is only one comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
+- Ranked Spearman: Can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
 
 __Questions__:
 
 + Are there any groups (for one or more metadata __Column__) showing a higher/lower alpha-diversity compared to the other/s in the same __Column__? 
 + Is the p-value or q-value for this comparison significant? 
-+ If you choose a different metric do you get different results? Run both the Kruskal-Wallis and Ranked Spearman tests on a alpha diveristy metric of your choice and visualise the results.
++ If you choose a different metric do you get different results? Run both the Kruskal-Wallis and Ranked Spearman tests on another alpha diversity metric of your choice and visualise the results.
 
 ## Beta diversity statistical analysis
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
+``` 
 
-Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PRMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just be originated by chance. 
+Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PRMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
 
 To carry this out the 'PERMANOVA' analysis we will use the `distance_matrix.qza` which contains all the sample pairwise dissimilarity distances. For the `--p-permutations` option we will use the default value, 999.
 
@@ -1084,12 +1100,12 @@ Load the resulting visualisation file in QIIME2 view. You will see the following
    - Sample size: Good to determine if there are enough samples for statistical strength.
    - q-value: Always go for q-values over p-values.
    
-For an example with more groups in the metada column please see:
+For an example with more groups in the metadata column please see:
 https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv
 
 __Questions__:
 
-+ Does the chosen grouping information result in a statistical significance differences? 
++ Does the chosen grouping information result in a statistically significant difference? 
 + Does using ‘anosim’ instead of ‘permanova’ change the result? 
 + And using a different ordination metric? 
 + What about choosing a different grouping (metadata category)?
@@ -1101,7 +1117,7 @@ __Questions__:
 knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 
 
-The ANCOM method aims to identify the differentially abundant taxa. It  is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2019.1/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
+The ANCOM method aims to identify the differentially abundant taxa. It  is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2021.2/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
 
 The steps to carry this out are:
 
@@ -1115,6 +1131,11 @@ If you are still in ‘dada2-diversity-34583’ directory, please remember to mo
 cd ..
 ```
 
+## Taxa collapse
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/collapse.png", auto_pdf = TRUE)
+``` 
+
 First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.
 
 ```{bash, eval=FALSE}
@@ -1125,6 +1146,10 @@ qiime taxa collapse \
 --o-collapsed-table comp-ancom-table-l5.qza
 ```
 
+## Pseudo counts
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/plus_1.png", auto_pdf = TRUE)
+``` 
 Add pseudo-count to the abundance table with the purpose of converting 0s to 1s. This is required as ANCOM will fail with abundance values of 0.
 
 ```{bash, eval=FALSE}
@@ -1134,6 +1159,10 @@ qiime composition add-pseudocount \
 --o-composition-table comp-ancom-table-l5-pse.qza
 ```
 
+## ANCOM
+```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+knitr::include_graphics(path = "figures/toilet_corridor.png", auto_pdf = TRUE)
+``` 
 Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between Corridor and Toilet.
 
 ```{bash, eval=FALSE}
@@ -1144,7 +1173,8 @@ qiime composition ancom \
 --o-visualization l5-ancom-Location.qzv
 ```
 
-This produces a visualistion file with the following sections:
+## ANCOM visualisation
+This produces a visualisation file with the following sections:
 
 - __ANCOM Volcano Plot__: A dot plot of the W statistic (y) against the CLR (x).
    - Each dot represents a feature (family in this case) in the dataset.
@@ -1169,7 +1199,7 @@ __Questions__:
 knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ``` 
 
-Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, the following are points you can consider.
+Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, you can consider the following points.
 
 Are there any missing taxa you know should be there? These taxa may be present but not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis. 
 

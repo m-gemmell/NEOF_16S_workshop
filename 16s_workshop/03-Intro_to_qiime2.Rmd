@@ -33,11 +33,11 @@ Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp
 1. Prepare the sequence dataset
     a. Remove PCR primers
 2. Amplicon Sequence Variants identification
-3. Assign a taxonomic classification to each AVS
+3. Assign a taxonomic classification to each ASV
     a. Train naive-classifier for assignment
     b. Taxonomy assignment of the identified ASVs
 4. Make a phylogeny tree for the ASVs 
-    a. Alignment of the identified ASV 
+    a. Alignment of the ASV representative sequences 
     b. Masking low quality alignment 
     c. Creating the un-rooted phylogenetic tree 
     d. Creating the rooted phylogenetic tree 
@@ -88,9 +88,9 @@ There are now many bioinformatics methods to resolve amplicon sequence variants 
 
 ASV methods infer the biological sequences in the sample prior to the introduction of amplification and sequencing errors, and distinguish sequence variants differing by as little as one nucleotide. The methods use a de novo process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than error-containing sequences.
 
-Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biological reality that exists outside of the data being analysed: the DNA sequence of the assayed organism. Thus, ASVs inferred independently from different studies or different samples can be validly compared.
+Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biological reality that exists outside of the data being analysed: the DNA sequence of the assayed organism. Thus, ASVs inferred independently from different studies or different samples can be compared.
 
-The following picture (http://ju.outofmemory.cn/entry/332219) shows how DADA2 (an ASV method) and OTU processes compare each other. This shows how the canonical creation of OTUs creation by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.
+The following picture (http://ju.outofmemory.cn/entry/332219) shows how DADA2 (an ASV method) and OTU processes compare to each other. This shows how the canonical creation of OTUs by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.
 
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
 knitr::include_graphics(path = "figures/ASC_otu_comparison.png", auto_pdf = TRUE)
@@ -100,7 +100,7 @@ Much of the work involved in analysis of amplicon-based metagenomic data is that
 
 For sequencing purposes, an aliquot of PhiX phage DNA is added to each sample before sequencing, both DADA2 and deblur include a step aimed to exclude any PhiX associated reads. To remove PCR chimeric artefacts, a further filter step is applied by both. 
 
-QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing bias. It is possible to collate the denoised abundance tables and representative sequences afterward, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
+QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing biases. It is possible to collate the denoised abundance tables and representative sequences afterward, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
 
 ## Assign a taxonomic classification to each ASV
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -113,14 +113,14 @@ Different databases may result in different taxonomic classification for the sam
 
 In the practical we will use Scikit-learn (similar to the RDP tool widely used so far). It has been shown that (at least in the case of 16S analysis) taxonomic classification accuracy improves when the classifier is trained with sequences derived from the amplicon region only (Werner _et al_., 2012).
 
-## Build phylogenetic tree
+## Phylogenetic tree creation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
-To include phylogenetic diversity metrics in the diversity analysis, such as UniFrac distance metric, the construction of a phylogenetic tree for the identified AVS previously identified is required. QIIME2 supports MAFFT for the alignment and MASK to mask the alignment sections that are not phylogenetically informative. Unrooted and rooted trees may be created. 
+To include phylogenetic diversity metrics in the diversity analysis, such as UniFrac distance metrics, the construction of a phylogenetic tree for the identified ASVs is required. QIIME2 supports MAFFT for the alignment and MASK to mask the alignment sections that are not phylogenetically informative. Unrooted and rooted trees may be created. 
 
-For some marker genes it is not possible to build phylogenetic tree (ITS is among these), and it is therefore important to know the properties of the marker in use. Consequently, it is not possible to use any diversity metrics that requires the phylogenetic distance as input.
+For some marker genes it is not possible to build a phylogenetic tree (ITS is among these), and it is therefore important to know the properties of the marker in use. Consequently, it is not possible to use any diversity metrics that requires the phylogenetic distance as input.
 
 ## Data normalisation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -142,24 +142,20 @@ c. Scaling the abundance table by a fixed value or proportion.
 d. Applying a log-ratio transformation proposed by Aitchinson (1982) in analogy of compositional dataset. 
     - This is aimed to convert the abundance data into scales on which it is possible to apply conventional statistical procedures.
     
-Methods b-d convert the abundance table in a normalised-abundance table with different strength and pitfalls, therefore they can affect results for beta-diversity and differentially abundant analysis.
+Methods b-d convert the abundance table in a normalised-abundance table with different strengths and pitfalls, therefore they can affect results for beta-diversity and differential abundant analysis.
 
 These normalisation methods were compared by Weiss and colleagues (2017), but their simulations show that different methods may result in different sensitivity and different false discovery rates.
 
-In this tutorial, following the QIIME2 current tutorial, we will apply the following normalisation
-methods:
-
-a. The ‘rarefaction’ method, in the context of the alpha- and beta-diversity analysis.
-b. The ‘centered log-ratio transformation’ (clr-transformation) method, in the context of the differential abundance analysis.
+In this tutorial, following the QIIME2 current tutorial, we will apply the ‘rarefaction’ method, in the context of the alpha- and beta-diversity analysis.
 
 ## Alpha-diversity
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
-Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of species in the sample) and evenness (a measure of the relative abundance of different species that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
+Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of features in the sample) and evenness (a measure of the relative abundances of different features that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
 ASVs).
 
-The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation of the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
+The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation to the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -169,14 +165,14 @@ Beta-diversity is a term for the comparison of samples to each other. It is also
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:
 
-- Jaccard: A non-phylogeny based method that takes into account only presence/absence of a ASVs to measure the distance between two samples.
-- Bray-Curtis: A non-phylogeny based method that takes into account the number of ASVs as well as their abundance while measuring the distance between two samples.
-- Un-weighted UniFrac: Uses the presence and absence of ASVs and phylogenies.
-- Weighted UniFrac: Uses the abundance information of ASVs and phylogenies.
+- Jaccard: A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.
+- Bray-Curtis: A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.
+- Un-weighted UniFrac: Uses the presence and absence of ASVs and their phylogenies.
+- Weighted UniFrac: Uses the abundance information of ASVs and their phylogenies.
 
-As discussed for the alpha-diversity, before proceeding with the beta-diversity analysis the raw abundance table for the identified ASVs needs to be normalised, to this QIIME2 suggests using the rarefaction methods, in particular at the same rarefaction threshold used for the alpha diversity.
+As discussed for the alpha-diversity, before proceeding with the beta-diversity analysis the raw abundance table for the identified ASVs needs to be normalised. QIIME2 suggests using the rarefaction methods, in particular at the same rarefaction threshold used for the alpha diversity.
 
-The choice of the beta-diversity distance metric to use will strongly affect the results, it therefore common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes, for example the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
+The choice of the beta-diversity distance metric to use will strongly affect the results. Therefore it is common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
 ## Differential Abundance Analysis
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -185,7 +181,7 @@ knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 
 The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).
 
-QIIME2 supports two normalisation methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the value in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
+QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
 
 Examples of questions to answer:
 

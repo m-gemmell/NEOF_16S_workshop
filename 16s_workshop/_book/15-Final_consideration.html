@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-31" />
+<meta name="date" content="2021-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
-<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#build-phylogenetic-tree"><i class="fa fa-check"></i><b>3.6</b> Build phylogenetic tree</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#phylogenetic-tree-creation"><i class="fa fa-check"></i><b>3.6</b> Phylogenetic tree creation</a></li>
 <li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
 <li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
 <li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
@@ -203,7 +203,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis</a></li>
 <li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>14.1</b> Taxa collapse</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>14.2</b> Pseudo counts</a></li>
+<li class="chapter" data-level="14.3" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>14.3</b> ANCOM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
+</ul></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
 <li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
 <ul>
@@ -252,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="final-consideration" class="section level1" number="15">
 <h1><span class="header-section-number">Chapter 15</span> Final consideration</h1>
 <p><img src="figures/finish.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no,’ the following are points you can consider.</p>
+<p>Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no,’ you can consider the following points.</p>
 <p>Are there any missing taxa you know should be there? These taxa may be present but not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis.</p>
 <p>The failure could be right at the beginning of the project design. It is worth checking if the PCR primers you are using can amplify these species. Are the primers known to impose bias on the community you are amplifying? Are the primers unable to amplify some taxon whose 16S rRNA sequences are too distant from the rest of the community? The literature may be able to help you on this topic.</p>
 <p>If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:</p>

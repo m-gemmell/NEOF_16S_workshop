@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-31" />
+<meta name="date" content="2021-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
-<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#build-phylogenetic-tree"><i class="fa fa-check"></i><b>3.6</b> Build phylogenetic tree</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#phylogenetic-tree-creation"><i class="fa fa-check"></i><b>3.6</b> Phylogenetic tree creation</a></li>
 <li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
 <li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
 <li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
@@ -203,7 +203,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis</a></li>
 <li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>14.1</b> Taxa collapse</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>14.2</b> Pseudo counts</a></li>
+<li class="chapter" data-level="14.3" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>14.3</b> ANCOM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
+</ul></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
 <li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
 <ul>
@@ -259,21 +265,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-3"><a href="07-Import_sequences_into_QIIME2.html#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--output-path</span> paired-end-demux.qza <span class="kw">\</span></span>
 <span id="cb6-4"><a href="07-Import_sequences_into_QIIME2.html#cb6-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">--input-format</span> PairedEndFastqManifestPhred33</span></code></pre></div>
 <p>This command will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza.’</p>
-<p>The “demux” part of the file name indicates that the samples are already demultiplexed (i.e. sequences have benn sperarated by samples). Additonally, QIIME2 artifacts use “-” as word seperators in file names. This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.</p>
+<p>The “demux” part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). Additionally, QIIME2 artifacts use “-” as word separators in file names. This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.</p>
 <p>To visualise the samples loaded, the following command will create a visualisation artifact.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="07-Import_sequences_into_QIIME2.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> demux summarize --i-data paired-end-demux.qza <span class="kw">\</span></span>
 <span id="cb7-2"><a href="07-Import_sequences_into_QIIME2.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> paired-end-demux.qzv</span></code></pre></div>
 <p><strong>Chrome</strong></p>
-<p>This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose <code>Applications</code> -&gt; <code>Shell</code> -&gt; <code>bash</code>). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome,’ run:</p>
+<p>This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose <code>Applications</code> -&gt; <code>Shell</code> -&gt; <code>bash</code>). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome,’ run the following command in your new terminal:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="07-Import_sequences_into_QIIME2.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">chrome.sh</span></span></code></pre></div>
-<p>Form now on leave the terminal you ran the above command on alone.</p>
+<p>From now on leave the terminal you ran the above command on alone and don’t close chrome.</p>
 <p>Then:</p>
 <ul>
-<li>Type the following web-site: ‘view.qiime2.org’</li>
-<li>Click on ‘Drag and drop or click here’ grey box</li>
-<li>You can browse now to find and select the file ‘paired-end-demux.qzv.’ Tip: click “HOME” on the top right, from there you can navigate to “Metagenetics” and choose your file.</li>
+<li>Navigate to the following web-site on chrome: ‘view.qiime2.org’</li>
+<li>Click on the ‘Drag and drop or click here’ grey box</li>
+<li>You can browse now to find and select the file ‘paired-end-demux.qzv.’</li>
 </ul>
-<p>The visulaisation will have two tabs:</p>
+<p><strong>Tip</strong>: click “HOME” on the top right, from there you can navigate to “Metagenetics” and choose your file.</p>
+<p>The visualisation will have two tabs:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Overview</strong>: This contains 3 main sections relating to the sequence count of samples.
 <ul>
@@ -283,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><strong>Interactive Quality Plots</strong>: Contains similar information as fastQC analysis.
 <ul>
-<li><strong>Interactive quality plots</strong>: These show the quality of your forward and reverse reads using a random smapling of 10000 reads. You can click on a part of the plot to get info in the below “Paramteric seven-number summary” table.</li>
+<li><strong>Interactive quality plots</strong>: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below “Paramteric seven-number summary” table.</li>
 <li><strong>Demultiplexed sequence length summary</strong>: Table showing summary of sequence lengths for the forward and reverse reads.</li>
 </ul></li>
 </ol>

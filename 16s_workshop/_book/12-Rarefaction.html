@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-31" />
+<meta name="date" content="2021-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
-<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#build-phylogenetic-tree"><i class="fa fa-check"></i><b>3.6</b> Build phylogenetic tree</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#phylogenetic-tree-creation"><i class="fa fa-check"></i><b>3.6</b> Phylogenetic tree creation</a></li>
 <li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
 <li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
 <li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
@@ -203,7 +203,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis</a></li>
 <li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>14.1</b> Taxa collapse</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>14.2</b> Pseudo counts</a></li>
+<li class="chapter" data-level="14.3" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>14.3</b> ANCOM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
+</ul></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
 <li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
 <ul>
@@ -288,7 +294,7 @@ Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences
 <span id="cb25-16"><a href="12-Rarefaction.html#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-metrics</span> faith_pd <span class="kw">\</span></span>
 <span id="cb25-17"><a href="12-Rarefaction.html#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> rarefaction-curve.qzv</span></code></pre></div>
 <p>Otherwise, copy over the output to your directory.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="12-Rarefaction.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/16s_workshop/chapter_12/rarefaction-curve.qzv .</span></code></pre></div>
 </div>
 <div id="rarefaction-visualisation" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> Rarefaction visualisation</h2>
@@ -305,11 +311,11 @@ Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences
 <li>Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).</li>
 </ul></li>
 </ul></li>
-<li>Bottom plot = Number of samples (Y) against sequencing depth (x)
+<li>Bottom plot = Number of samples (Y) against sequencing depth (X)
 <ul>
 <li>This is important when grouping samples by metadata.</li>
 <li>It illustrates the number of samples with different sequencing depths for the groups in the chosen <strong>Sample Metadata Column</strong>.</li>
-<li>This is useful as when a sample’s sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding a decrease in number of samples.
+<li>This is useful as when a sample’s sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding to a decrease in number of samples.
 <ul>
 <li>If the sample/s had a lower value than the average of the group the curve will jitter upwards, as the group average increases.</li>
 <li>If the sample/s had a higher value than the average of the group the curve will jitter downwards, as the group average decreases.</li>
@@ -318,18 +324,18 @@ Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences
 </ul>
 <p>Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:</p>
 <ul>
-<li>Losing sequencing depth within samples.</li>
+<li>Retaining sequencing depth within samples.</li>
 <li>Losing entire samples.</li>
 </ul>
 <p>The best choice usually depends on the experimental design. If you have many samples per group you may be able to lose a few samples without losing statistical power for the analysis. If you have few samples per group you may need to choose a lower threshold.</p>
 <p>Other considerations for rarefaction threshold:</p>
 <ul>
-<li>Does the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.</li>
-<li>Should you samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold</li>
+<li>Do the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.</li>
+<li>Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold.</li>
 </ul>
 <p><strong>Questions</strong>:</p>
 <ul>
-<li>Are any samples not fully sequenced?</li>
+<li>Are there any samples not fully sequenced? (yes or no)</li>
 <li>Comparing the two <strong>Locations</strong>, which has a higher evenness score (simpson_e)?</li>
 <li>Comparing the 2 <strong>Places</strong>, which has higher diversity value when considering most of the samples (faith_pd, shannon, &amp; simpson)?</li>
 <li>What sampling depth (rarefaction threshold) would you use for the alpha- and beta-diversity analysis?</li>
@@ -338,10 +344,10 @@ Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences
 <ul>
 <li>This will keep all the samples.</li>
 <li>The group based rarefaction curves (<strong>Location</strong> and <strong>Place</strong>) are plateauing at this depth.</li>
-<li>Many of the individual samples (<strong>BarcodeSequence</strong>) have plateaued with the others plateauing this depth.</li>
+<li>Many of the individual samples (<strong>BarcodeSequence</strong>) have plateaued at this depth.</li>
 <li>We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.</li>
 </ul>
-<p>How do we know that the very exact number of 34,583 will keep all the samples? Looking at the <strong>Interactive Sample Detail</strong> section of the <code>table-dada2.qzv</code> visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of &gt;50k we’d pick 58,605 as the exact threshold as that is the lowest sample depth &gt;50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.</p>
+<p>How do we know that the very exact number of 34,583 will keep all the samples? Looking at the <strong>Interactive Sample Detail</strong> section of the <code>table-dada2.qzv</code> visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of &gt;50k we’d pick 58,605 as the exact threshold, this is the lowest sample depth &gt;50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.</p>
 
 </div>
 </div>

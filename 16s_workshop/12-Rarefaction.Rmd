@@ -53,7 +53,7 @@ qiime diversity alpha-rarefaction --i-table table-dada2.qza \
 Otherwise, copy over the output to your directory.
 
 ```{bash eval=FALSE}
-
+cp /pub39/tea/matthew/16s_workshop/chapter_12/rarefaction-curve.qzv .
 ```
 
 
@@ -68,28 +68,28 @@ The visualisation has two plots.
    - If the lines in the observed feature plot do not level out:
       - The richness of the samples may have not been fully observed (because too few sequences were collected)
       - Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
-- Bottom plot = Number of samples (Y) against sequencing depth (x)
+- Bottom plot = Number of samples (Y) against sequencing depth (X)
    - This is important when grouping samples by metadata.
    - It illustrates the number of samples with different sequencing depths for the groups in the chosen __Sample Metadata Column__.
-   - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding a decrease in number of samples.
+   - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding to a decrease in number of samples.
       - If the sample/s had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
       - If the sample/s had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:
 
-- Losing sequencing depth within samples.
+- Retaining sequencing depth within samples.
 - Losing entire samples.
 
 The best choice usually depends on the experimental design. If you have many samples per group you may be able to lose a few samples without losing statistical power for the analysis. If you have few samples per group you may need to choose a lower threshold.
 
 Other considerations for rarefaction threshold:
 
-- Does the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.
-- Should you samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold
+- Do the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.
+- Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold.
 
 __Questions__: 
 
-- Are any samples not fully sequenced? 
+- Are there any samples not fully sequenced? (yes or no)
 - Comparing the two __Locations__, which has a higher evenness score (simpson_e)?
 - Comparing the 2 __Places__, which has higher diversity value when considering most of the samples (faith_pd, shannon, & simpson)?
 - What sampling depth (rarefaction threshold) would you use for the alpha- and beta-diversity analysis?
@@ -98,7 +98,7 @@ For the next step we will use a rarefaction size of 34,583. We have chosen this 
 
 - This will keep all the samples.
 - The group based rarefaction curves (__Location__ and __Place__) are plateauing at this depth.
-- Many of the individual samples (__BarcodeSequence__) have plateaued with the others plateauing this depth.
+- Many of the individual samples (__BarcodeSequence__) have plateaued at this depth.
 - We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
 
-How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the `table-dada2.qzv` visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold as that is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
+How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the `table-dada2.qzv` visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.

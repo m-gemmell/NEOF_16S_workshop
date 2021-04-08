@@ -16,7 +16,7 @@ qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
  
 This command will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’. 
 
-The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have benn sperarated by samples). Additonally, QIIME2 artifacts use "-" as word seperators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
+The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). Additionally, QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
 
 To visualise the samples loaded, the following command will create a visualisation artifact.
 
@@ -27,28 +27,30 @@ qiime demux summarize --i-data paired-end-demux.qza \
 
 __Chrome__
 
-This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose `Applications` -> `Shell` -> `bash`). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run:
+This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose `Applications` -> `Shell` -> `bash`). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run the following command in your new terminal:
 
 ```{bash, eval=FALSE}
 chrome.sh
 ```
 
-Form now on leave the terminal you ran the above command on alone.
+From now on leave the terminal you ran the above command on alone and don't close chrome.
 
 Then:
 
-- Type the following web-site: ‘view.qiime2.org’
-- Click on ‘Drag and drop or click here’ grey box
-- You can browse now to find and select the file ‘paired-end-demux.qzv’. Tip: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+- Navigate to the following web-site on chrome: ‘view.qiime2.org’
+- Click on the ‘Drag and drop or click here’ grey box
+- You can browse now to find and select the file ‘paired-end-demux.qzv’. 
 
-The visulaisation will have two tabs:
+__Tip__: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+
+The visualisation will have two tabs:
 
 1. __Overview__: This contains 3 main sections relating to the sequence count of samples.
    - __Demultiplexxed sequence counts summary__: Summary table of number of sequences per sample divided by forward and reverse reads.
    - __Read frequency histograms__: Forward and Reverse reads histograms showing the how many samples have various numbers of sequences. 
    - __Per-sample sequence counts__: Table showing the number of forward and reverse reads in samples.
 2. __Interactive Quality Plots__: Contains similar information as fastQC analysis.
-   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random smapling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
+   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
    - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 __Questions__: 

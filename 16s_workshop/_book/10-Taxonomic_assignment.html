@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-03-31" />
+<meta name="date" content="2021-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
-<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#build-phylogenetic-tree"><i class="fa fa-check"></i><b>3.6</b> Build phylogenetic tree</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#phylogenetic-tree-creation"><i class="fa fa-check"></i><b>3.6</b> Phylogenetic tree creation</a></li>
 <li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
 <li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
 <li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
@@ -203,7 +203,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis</a></li>
 <li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a></li>
+<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>14.1</b> Taxa collapse</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>14.2</b> Pseudo counts</a></li>
+<li class="chapter" data-level="14.3" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>14.3</b> ANCOM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
+</ul></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
 <li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
 <ul>
@@ -267,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-10"><a href="10-Taxonomic_assignment.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--type</span> <span class="st">&#39;FeatureData[Taxonomy]&#39;</span></span></code></pre></div>
 <p>We require a classifier training step to reach optimum assignment performance.</p>
 <p>Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences.</p>
-<p>Note: Do not run the below command for this tutorial, see below command)</p>
+<p>Note: Do not run the below command for this tutorial, see below command.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="10-Taxonomic_assignment.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier extract-reads <span class="kw">\</span></span>
 <span id="cb16-2"><a href="10-Taxonomic_assignment.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-sequences</span> gg-13-8.99_otus.qza <span class="kw">\</span></span>
 <span id="cb16-3"><a href="10-Taxonomic_assignment.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-f-primer</span> NNNNNGTGCCAGCMGCCGCGGTAA <span class="kw">\</span></span>
@@ -282,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-2"><a href="10-Taxonomic_assignment.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-reference-reads</span> gg-13-8.99.ref.seqs.qza <span class="kw">\</span></span>
 <span id="cb18-3"><a href="10-Taxonomic_assignment.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-reference-taxonomy</span> gg-13-8.99.taxa.qza <span class="kw">\</span></span>
 <span id="cb18-4"><a href="10-Taxonomic_assignment.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-classifier</span> classifier.trained.qza</span></code></pre></div>
-<p>With our trained classifier we can assign taxonomic assignments to the ASV represenative sequences:</p>
+<p>With our trained classifier we can assign taxonomic assignments to the ASV representative sequences:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="10-Taxonomic_assignment.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="kw">\</span></span>
 <span id="cb19-2"><a href="10-Taxonomic_assignment.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-classifier</span> classifier.trained.qza <span class="kw">\</span></span>
 <span id="cb19-3"><a href="10-Taxonomic_assignment.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Default value for confidence</span></span>

@@ -11,7 +11,7 @@ amplicon-sequence-variants-identification
 otus
 asvs
 assign-a-taxonomic-classification-to-each-asv
-build-phylogenetic-tree
+phylogenetic-tree-creation
 data-normalisation
 alpha-diversity
 beta-diversity
@@ -47,6 +47,10 @@ core-metrics-command
 alpha-diveristy-statistical-analysis
 beta-diversity-statistical-analysis
 differential-abundance-analysis-1
+taxa-collapse
+pseudo-counts
+ancom
+ancom-visualisation
 final-consideration
 resources
 suggested-readings
