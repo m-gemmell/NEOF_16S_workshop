@@ -34,6 +34,11 @@ visualise-dada2-output
 table-dada2.qzv
 dada2-stats.qzv
 assign-a-taxonomic-classification-to-each-amplicon-sequence-variant
+import-taxonomy-database
+extract-16s-region-of-interest
+classifier-training
+taxonomy-assignment
+taxonomy-bar-chart-production
 phylogenetic-tree-construction
 mafft-alignment
 masking
