@@ -44,10 +44,12 @@ Each column has a header and contains the following information:
    
 For paired end read datasets there will be two lines for each sample. One for the forward read file and one for the reverse read file. These two lines must have the same sample-id.
 
-Have a look at the top 7 lines of our "manifest" file.
+Have a look at the "manifest" file. You will see the header followed by all the forward reads then the reverse reads.
+
+__Tip__: Type `q` to quit `less`
 
 ```{bash, eval=FALSE}
-head –n 7 PairedEndFastqManifestPhred33.csv
+less PairedEndFastqManifestPhred33.csv
 ```
 
 This file will be used in chapter 7.

@@ -24,8 +24,15 @@ This bookdown is a supplement to the main one. It contains some workflows and to
 The sections in this supplement will cover:
 
 - Exporting QIIME2 artifacts to text files.
+- Handy QIIME2 commands
 - Carrying our functional prediction with a taxonomy abundance table.
 - Introduction to some R packages for 16S rRNA analysis.
+
+Ensure you have the QIIME2 environment activated for all of these materials. For convenience the command is:
+
+```{bash eval=FALSE}
+. useqiime2-2021.2
+```
 
 <!--chapter:end:01-16S_supplemental.Rmd-->
 
@@ -55,8 +62,8 @@ knitr::include_graphics(path = "figures/setup.png", auto_pdf = TRUE)
 First copy a new directory that will contain all the QIIME2 output you need and then change directory to it.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/matthew/NEOF/16s_workshop/16s_export ~
-cd ~/16s_export
+cp -r /pub39/tea/matthew/NEOF/16s_workshop/16s_export ~/Metagenetics
+cd ~/Metagenetics/16s_export
 ```
 
 Before we start exporting it is best to make a few directories.
@@ -101,7 +108,7 @@ Use a text viewer/editor of your choice to inspect the final file. Make sure to 
 Exporting the taxonomy info.
 
 ```{bash eval=FALSE}
-qiime tool export --input-path taxonomy.sklearn.qza \
+qiime tools export --input-path taxonomy.sklearn.qza \
 --output-path export
 #Move the produced tsv file to the final_exports directory
 mv export/taxonomy.tsv final_exports
@@ -131,15 +138,25 @@ This step will produce a TSV file containing the ASV abundance table with the la
 
 To carry out this step you will need the BIOM format produced in the abundance table export and the exported taxonomy file.
 
-First we create a new BIOM file which contains the taxonomy information
+We need to change the header of the taxonomy file for it to be compatible with the biom command.
+
+First create a copy which we will edit
+
+```{bash eval=FALSE}
+cp final_exports/taxonomy.tsv final_exports/taxonomy.header.tsv
+```
+
+Then using a text editor of your choice (nano, vim, emacs, etc.) change the first and second column headers to `#OTUID` and `taxonomy`.
+
+Now we can create a new BIOM file which contains the taxonomy information
 ```{bash eval=FALSE}
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.biom \
---observation-metadata-fp export/taxonomy.tsv \
+--observation-metadata-fp final_exports/taxonomy.headers.tsv \
 --output-fp qiime2_exports/ASV_table.tax.biom
 ```
 
-Now we export the newly created BIOM file. We will need to include option `--header-key taxonomy` to include the taxonomy info in the newly TSV file.
+Export the newly created BIOM file. We will need to include option `--header-key taxonomy` to include the taxonomy info in the newly TSV file.
 ```{bash eval=FALSE}
 biom convert \
 -i qiime2_exports/ASV_table.tax.biom \
@@ -170,9 +187,10 @@ qiime tools export \
 #Move and rename exported biom
 mv export/feature-table.biom qiime2_exports/ASV_table.rarefied_20000.biom
 #Add taxonomy info to biom file
+#Ensure to use the taxonomy with the altered headers
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.rarefied_20000.biom \
---observation-metadata-fp export/taxonomy.tsv \
+--observation-metadata-fp final_exports/taxonomy.headers.tsv \
 --output-fp qiime2_exports/ASV_table.rarefied_20000.tax.biom
 #Convert biom to tsv with taxonomy
 biom convert \
@@ -201,11 +219,12 @@ qiime tools export \
 --input-path table-dada2.rarefied_20000.relabund.qza \
 --output-path export
 #Move and rename exported biom
-mv export/feature-table.biom qiime2_exports/ASV_table.rarefied_20000.relabund.biom
+mv export/feature-table.biom \
+qiime2_exports/ASV_table.rarefied_20000.relabund.biom
 #Add taxonomy info to biom file
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.rarefied_20000.relabund.biom \
---observation-metadata-fp export/taxonomy.tsv \
+--observation-metadata-fp final_exports/taxonomy.headers.tsv \
 --output-fp qiime2_exports/ASV_table.rarefied_20000.relabund.tax.biom
 #Convert biom to tsv with taxonomy
 biom convert \
@@ -232,17 +251,17 @@ Be careful though as with some taxonomy databases the levels are not consistent 
 
 We will now run our taxonomy collapse command on our rarefied table to produce a Family abundance table.
 
+__Note__: The below command can not be run on a relative abundance table. You will have to run the relative frequency command on its output if you want relative abundance family table.
+
 ```{bash eval=FALSE}
 qiime taxa collapse \
---i-table table-dada2.rarefied_20000.relabund.qza \
+--i-table table-dada2.rarefied_20000.qza \
 --i-taxonomy taxonomy.sklearn.qza \
---p-level 6 \
+--p-level 5 \
 --o-collapsed-table table-dada2-family.rarefied_20000.qza
 ```
 
-Then for al the export and convert commands.
-
-Then you can export it the same way as the rarefied abundance table. We should not include the steo that adds the taxonomy for this.
+Then you can export it in a similar way as the other tables. However, we should not include the step that adds the taxonomy for this.
 
 ```{bash eval=FALSE}
 #Qiime tools export
@@ -250,11 +269,11 @@ qiime tools export \
 --input-path table-dada2-family.rarefied_20000.qza \
 --output-path export
 #Move and rename exported biom
-mv export/feature-table.biom qiime2_exports/Family_table.rarefied_20000.relabund.biom
+mv export/feature-table.biom qiime2_exports/family_table.rarefied_20000.biom
 #Convert biom to tsv with taxonomy
 biom convert \
--i qiime2_exports/Family_table.rarefied_20000.relabund.biom \
--o final_exports/ASV_table.rarefied_20000.relabund.tax.tsv \
+-i qiime2_exports/family_table.rarefied_20000.biom \
+-o final_exports/family_table.rarefied_20000.tsv \
 --to-tsv
 ```
 
@@ -262,19 +281,204 @@ I hope this is a nice quick reference for your future use.
 
 <!--chapter:end:02-Exporting_artifacts.Rmd-->
 
-# Functional prediction
+# Handy QIIME2 commands
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/artefact_to_tsv.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/tools.png", auto_pdf = TRUE)
 ```  
 
+This section will contain a few useful commands for QIIME2 analysis.
 
-<!--chapter:end:03-Functional_prediction.Rmd-->
+Copy over a directory with the content you will need and move into it for this section.
+
+```{bash eval=FALSE}
+cp -r /pub39/tea/matthew/NEOF/16s_workshop/handy_qiime2_cmds ~/Metagenetics
+cd ~/Metagenetics/handy_qiime2_cmds
+```
+
+## Create a manifest file
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/manifest.png", auto_pdf = TRUE)
+``` 
+
+In the main practical you used a premade manifest file. However, in your own analyses you will need to create your own manifest files based on the path of your fastq files. This can be done through manually typing all the information. However, it is best to use commands to create this automatically.
+
+The first step is to create a manifest file with the header line.
+
+```{bash eval=FALSE}
+echo "sample-id,absolute-filepath,direction" > manifest.csv
+```
+
+Next we will use two long commands with many pipes (`|`) to append the lines we need to our file. Below are the two commands and below that is an explanation on the various parts.
+
+```{bash eval=FALSE}
+#Append lines for forward reads
+find /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R1*fastq.gz | \
+while read path ; do \
+sample=$(basename $p  |sed "s/_.*//") ; \
+echo ${sample},${path},forward ; \
+done >> manifest.csv
+#Append lines for reverse reads
+find /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R2*fastq.gz | \
+while read path ; do \
+sample=$(basename $p | sed "s/_.*//") ; \
+echo ${sample},${path},reverse ; \
+done >> manifest.csv
+```
+
+Note the above is quite complicated and you may get away with just changing the specified directory for your own analyses. Always make sure you check the output manifest file before importing with it. If it is wrong make sure to start from the first step so you reset your file.
+
+- `find /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R1*fastq.gz`
+   - This will find all the absolute paths from the specified directory and its subdirectories (`/pub39/tea/matthew/NEOF/16sworkshop/RawReads/`) that contain "R1" and end with "fastq.gz" (`-name *R1*fastq.gz`). Ensure the specified directory and its subdirectories only contain your fastq files of interest.
+- `while read path ;`
+   - This is a loop that will loop through all the returned file paths. Everything between the `do` and `done` are the commands run in the loop. `path` is the variable name of the aboslute file path that is used in each instance of the loop. The `;` separates commands within the loop.
+- `sample=$(basename $p  |sed "s/_.*//")`
+   - The `sample=$()` section assigns a variable called `sample` to the output from the command/s within `$()`
+   - The command `basename` removes all the directory path info so you are only left with the file name (e.g. /path/directory/file.txt -> file.txt)
+   - `sed "s/_.*//"` is a `sed` command that will substitute (`s`) everything after the first "_" (`_.*`) with nothing (represented by nothing between the last two `/`). E.g. 3TM_CAGAGAGG-GTAAGGAG_L001_R1_001.fastq.gz -> 3TM
+   - More info on `sed`: https://www.gnu.org/software/sed/manual/sed.html
+- `echo ${sample},${path},forward`
+   - This will create a line for the absolute file path containing the sample name, absolute file path, and read direction separated by commas.
+- `>> manifest.csv`
+   - This appends the output from the loop into our file of interest. If you only use `>` you will overwrite the file, removing previously added lines.
+   
+The command is run twice, once for the R1/forward reads and once for the R2/reverse reads. Ensure you change the `R1` -> `R2` in the `find -name` option and the `forward` -> `reverse` in the `echo` command for the R2/reverse read running of the command.
+
+## Filter ASVs from a table
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/filter.png", auto_pdf = TRUE)
+``` 
+
+QIIME2 has many methods to filter out ASVs. I find a lot of these methods are hard to use and I have had much difficulty trying to use them in the past. Thankfully one method always appears to work.
+
+The functioning method requires a metadata file to be provided that contains ASV names.
+
+The file must have a header of `feature-id` and then have the names of ASVs you would like removed. An example called `asv_names.txt` is in your directory. Look at it with less, these are simply the last 10 ASVs in the table for demonstrative purposes.
+
+Now we will filter our table to remove these ASVs.
+
+```{bash eval=FALSE}
+#Filter command
+qiime feature-table filter-features \
+--i-table table-dada2.qza \
+--m-metadata-file asv_names.txt \
+--p-exclude-ids \
+--o-filtered-table table-dada2.asv_filtered.qza
+#Create new visualisation
+qiime feature-table summarize \
+--i-table table-dada2.asv_filtered.qza \
+--o-visualization table-dada2.asv_filtered.qzv
+```
+
+You can compare the number of features shown in the new `table-dada2.asv_filtered.qzv` to the provided `table-dada2.qzv` to ensure that 10 features have been removed.
+
+If you do not include the option `--p-exclude-ids` you will insetad filter out all ASVs except the ASVs in the provided metadata file.
+
+You may want to filter out certain ASVs due to certain reasons. Maybe you would like to remove a taxonomic group or remove ASVs below a relative abundance threshold. I wll generally get my list of ASVs using an exported file, such as the `ASV_table.rarefied_20000.tax.tsv` file created in the "exporting artifacts" chapter or through R (only for those familiar with R and the packages introduced in the 16S R packages chapter).
+
+## Split tables
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/split.png", auto_pdf = TRUE)
+``` 
+
+It is possible you may run multiple 16S experiments on a single Illumina run. In this case it can be useful to run it all together for the steps up to and including the phylogenetic tree construction if the experiments are relatively similar (i.e. if they are human gut samples). If the experiments are not similar (i.e. human gut and soil microbiome) I would suggest to split the table after the dada2 denoising. However, I might suggests to keep the samples separate from the start if the experiments are very different as it may make the dada2 denosing take a very long time. 
+
+Then you would want to split the table into the different experiments. This is done in a similar manner as filtering out ASVs except we filter out samples.
+
+The metadata file we use for filtering is the same metadata file we use for alpha and beta diversity analysis, except it must only contain the samples we want included. View the 3 metadata files begiining with "experiment_".
+
+Now we will use those 3 files to create 3 new tables.
+
+```{bash eval=FALSE}
+#Create table for experiment 1
+qiime feature-table filter-samples \
+--i-table table-dada2.asv \
+--m-metadata-file experiment_1_metadata.txt \
+--o-filtered-table experiment_1_table.qza
+#experiment 2
+qiime feature-table filter-samples \
+--i-table table-dada2.asv \
+--m-metadata-file experiment_2_metadata.txt \
+--o-filtered-table experiment_2_table.qza
+#experiment 2
+qiime feature-table filter-samples \
+--i-table table-dada2.asv \
+--m-metadata-file experiment_3_metadata.txt \
+--o-filtered-table experiment_3_table.qza
+```
+
+It is always important to check your output. Create a visualisation file for each table and then view it with QIIME2 view to ensure they contain only the samples you want.
+
+```{bash eval=FALSE}
+#experiment 1
+qiime feature-table summarize \
+--i-table experiment_1_table.qza \
+--o-visualization experiment_1_table.qzv
+#experiment 2
+qiime feature-table summarize \
+--i-table experiment_2_table.qza \
+--o-visualization experiment_2_table.qzv
+#experiment 3
+qiime feature-table summarize \
+--i-table experiment_3_table.qza \
+--o-visualization experiment_3_table.qzv
+```
+
+This is also a quick way to remove controls that you do not need in the table any more.
+
+The taxonomy, representative sequences, and phylogeny file can all be left as they are and can be used for all the split tables normally.
+
+## Merge tables
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/merge.png", auto_pdf = TRUE)
+``` 
+
+The opposite of the last section may occur, where you have one experiment over multiple runs. Each run must be run through the QIIME2 steps up to and including the dada2 denoising step. Then they should be merged.
+
+As an example we will merge the tables for the 3 experiments back together.
+
+```{bash eval=FALSE}
+#Merge command
+qiime feature-table merge \
+--i-tables experiment_1_table.qza \
+--i-tables experiment_2_table.qza \
+--i-tables experiment_3_table.qza \
+--o-merged-table experiments_1_2_3_table.qza
+#Visualise command to ensure it worked properly
+qiime feature-table summarize \
+--i-table experiments_1_2_3_table.qza \
+--o-visualization experiments_1_2_3_table.qzv
+```
+
+If you were merging the output from multiple dada2 commands you would also need to merge the representative sequence artifacts. Below is an example command  (don't run the below one as we don't have files).
+
+```{bash eval=FALSE}
+qiime feature-table merge-seqs \
+--i-data experiment_1_rep-seqs-dada2.qza \
+--i-data experiment_2_rep-seqs-dada2.qza \
+--i-data experiment_3_rep-seqs-dada2.qza \
+--o-merged-data experiments_1_2_3_rep-seqs-dada2.qza
+```
+
+Hopefully you will find this section useful in the future if not now.
+
+<!--chapter:end:03-Handy_QIIME2_commands.Rmd-->
+
+# Functional prediction
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/picrust.png", auto_pdf = TRUE)
+```  
+
+(note to self move this and future chapters up 1 and make chapter 3 about filtering ASVs and samples from a file, possibly also how to merge tables and how to create your own manifest files with ls and find
+
+also include section on other QIIME2 tutorials including info on control checking)
+
+<!--chapter:end:04-Functional_prediction.Rmd-->
 
 # 16S R packages
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/artefact_to_tsv.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
 ```  
 
 
-<!--chapter:end:04-16S_R_packages.Rmd-->
+<!--chapter:end:05-16S_R_packages.Rmd-->
 

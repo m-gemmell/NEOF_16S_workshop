@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-08" />
+<meta name="date" content="2021-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -300,8 +300,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 <p>For paired end read datasets there will be two lines for each sample. One for the forward read file and one for the reverse read file. These two lines must have the same sample-id.</p>
-<p>Have a look at the top 7 lines of our “manifest” file.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="05-Data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> –n 7 PairedEndFastqManifestPhred33.csv</span></code></pre></div>
+<p>Have a look at the “manifest” file. You will see the header followed by all the forward reads then the reverse reads.</p>
+<p><strong>Tip</strong>: Type <code>q</code> to quit <code>less</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="05-Data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> PairedEndFastqManifestPhred33.csv</span></code></pre></div>
 <p>This file will be used in chapter 7.</p>
 </div>
 <div id="metadata.file.txt" class="section level2" number="5.2">

@@ -10,5 +10,10 @@ asv-table-with-taxonomy-export
 rarified-table-export
 relative-abundance-table-export
 taxonomy-abundance-table-export
+handy-qiime2-commands
+create-a-manifest-file
+filter-asvs-from-a-table
+split-tables
+merge-tables
 functional-prediction
 s-r-packages
