@@ -16,4 +16,11 @@ filter-asvs-from-a-table
 split-tables
 merge-tables
 functional-prediction
+picrust2-pipeline
+commands
+visualisation
+picrust2-links
 s-r-packages
+qiime2r
+phyloseq
+microbiome
