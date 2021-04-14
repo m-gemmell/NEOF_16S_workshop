@@ -41,6 +41,9 @@ mkdir final_exports
 - `final_exports`: This directory will contain the final exported files we would generaly want to keep.
 
 ## Abundance table export
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/noun_Table_250445_000000.png", auto_pdf = TRUE)
+```
 
 First we will export our ASV abundance table. We will have to convert the BIOM file produced by QIIME2 to a TSV file.
 
@@ -67,6 +70,10 @@ The option `--to-tsv` (or alternative) must be provided or the command will not 
 Use a text viewer/editor of your choice to inspect the final file. Make sure to do this for all the files in this tutorial.
 
 ## Taxonomy info export
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/noun_ranking_165760.png", auto_pdf = TRUE)
+```
+
 Exporting the taxonomy info.
 
 ```{bash eval=FALSE}
@@ -77,6 +84,11 @@ mv export/taxonomy.tsv final_exports
 ```
 
 ## Representative sequences export
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/noun_DNA_947999.png", auto_pdf = TRUE)
+```
+
+Export the representative sequences to a fasta file.
 
 ```{bash eval=FALSE}
 qiime tools export --input-path rep-seqs-dada2.qza \
@@ -86,6 +98,10 @@ mv export/dna-sequences.fasta final_exports/ASV_rep_seqs.fasta
 ```
 
 ## Phylogenetic tree export
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/noun_Tree_1857655.png", auto_pdf = TRUE)
+```
+
 The below export the specified phylogenetic tree into a newick format file. For more info on the Newick format please see:  https://en.wikipedia.org/wiki/Newick_format
 
 ```{bash eval=FALSE}
@@ -96,6 +112,10 @@ mv export/tree.nwk final_exports/fasttree_rooted_tree.nwk
 ```
 
 ## ASV table with taxonomy export
+```{r, fig.align = 'center',out.width= '25%', echo=FALSE }
+knitr::include_graphics(path = "figures/table_w_tax.png", auto_pdf = TRUE)
+```
+
 This step will produce a TSV file containing the ASV abundance table with the last column containing the taxonomy assignment of the ASV.
 
 To carry out this step you will need the BIOM format produced in the abundance table export and the exported taxonomy file.
@@ -128,6 +148,10 @@ biom convert \
 ```
 
 ## Rarified table export
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/noun_curve_3542841.png", auto_pdf = TRUE)
+```
+
 You can export a rarefied table. The first step of this is to rarefy our ASV table artifact. 
 
 The option `--p-sampling-depth` is our rarefaction threshold. We will choose 20,000 for this example but make sure to pick an appropriate one for your own projects.
@@ -163,6 +187,10 @@ biom convert \
 ```
 
 ## Relative abundance table export
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/noun_Percent_3560962.png", auto_pdf = TRUE)
+```
+
 Instead of an abundance table you may want a relative abundance table. Thankfully this can easily be done in QIIME 2 with the following command. 
 
 __Note__: You will most likely want to get the relative abundance from a rarefied table.
@@ -197,6 +225,10 @@ biom convert \
 ```
 
 ## Taxonomy abundance table export
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/noun_Family_137805.png", auto_pdf = TRUE)
+```
+
 The last recipe I will show you is how to create and then export a taxonomy abundance table.
 
 First we collapse our ASV table to a specific taxonomy level. This is carried out by specifying a number to the option `--p-level` in the command below. With Silva and Greengenes the numbers normally correspond to:

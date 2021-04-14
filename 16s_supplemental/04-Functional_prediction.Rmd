@@ -92,27 +92,72 @@ qiime picrust2 full-pipeline \
 
 The command will take ~30 minutes. If you would like to skip running the command or you encounter an issue you can copy the output.
 
+```{bash eval=FALSE}
+cp -r /pub39/tea/matthew/NEOF/16s_workshop/q2-picrust2_output ~/Metagenetics/picrust2
+```
+
 __Notes__
 
 - The developers recommend using `--p-placement-method epa-ng` and `--p-hsp-method mp` in real analysis. You may also need to include `--p-edge-exponent 0` . The options above were chosen due to speed.
 - For information on the parameters please see: https://github.com/picrust/picrust2/wiki/q2-picrust2-Tutorial
 
+__Issues__
+
+I have encountered an issue when trying to rerun the PICRUSt2 command with files and directories I have used before. This issue causes the command to fail. This would occur if you rerun with different parameters or a newly filtered file. The way to get around it, seemingly, is to create a new directory somewhere else and copy over the required files to the new directory. Then run the command in the new directory.
+
 ## Visualisation
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_vis.png", auto_pdf = TRUE)
+```  
 
+Next we will carry out some quick visualisations.
 
+First move into the newly created directory with the output.
 
+```{bash eval=FALSE}
+cd ~/Metagenetics/picrust2/q2-picrust2_output
+```
 
+List the files in the directory and you will see 3 files:
 
+- `ec_metagenome.qza`: Abundance table for Enzyme Classifications.
+- `ko_metagenome.qza`: Abundance table for KEGG Orthology.
+- `pathway_abundance.qza`: Abundance table for MetaCyc pathways.
 
+We'll look at the KOs, the first step being to summarize the table.
 
+```{bash eval=FALSE}
+qiime feature-table summarize \
+--i-table ko_metagenome.qza \
+--o-visualization ko_metagenome.qzv
+```
+
+Look at the visualisation and you should notice very high frequencies. This is expected as each KO will most likely be found in multiple ASVs. The frequency of a KO is based on the frequency of every ASV it has been matched to. Additionally there are more features (KOs) in this table than in the ASV table.
+
+Let us see how the numbers change with the pathways abundance table.
+
+```{bash eval=FALSE}
+qiime feature-table summarize \
+--i-table pathway_abundance.qza \
+--o-visualization pathway_abundance.qzv
+```
+
+In this case there are fewer features (pathways) because it is a broader classification (pathways rather than gene orthologs).
+
+With these tables you can carry out downstream analysis such as alpha and beta diversity, biomarker detection etc. If you do this in the future you can most likely use the lowest sample frequency number as it will most likely be over 100k.
 
 ## PICRUSt2 Links
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/link.png", auto_pdf = TRUE)
+``` 
+
+That was a quick run introduction to PICRUSt2. There are good tutorials online you can use to get a stronger understanding of it.
 
 Key limitations of analysing PICRUSt2 output: https://github.com/picrust/picrust2/wiki/Key-Limitations
 
-Q2 picrust2 tutorial: https://github.com/picrust/picrust2/wiki/q2-picrust2-Tutorial
+Q2 PICRUSt2 tutorial: https://github.com/picrust/picrust2/wiki/q2-picrust2-Tutorial
 
-Q2 picrust2 installation: https://library.qiime2.org/plugins/q2-picrust2/13/
+Q2 PICRUSt2 installation: https://library.qiime2.org/plugins/q2-picrust2/13/
 
 PICRUSt2 tutorial: https://github.com/picrust/picrust2/wiki/PICRUSt2-Tutorial-(v2.4.1)
 
