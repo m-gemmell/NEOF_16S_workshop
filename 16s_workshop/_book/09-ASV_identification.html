@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,7 +364,7 @@ To visualise information on the ASV table we will run:</p>
 <p><img src="figures/filter.png" width="15%" style="display: block; margin: auto;" />
 Next we’ll look at the denoising stats. Run the following command.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="09-ASV_identification.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> metadata tabulate <span class="kw">\</span></span>
-<span id="cb14-2"><a href="09-ASV_identification.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-input</span> dada2-stats.qza <span class="kw">\</span></span>
+<span id="cb14-2"><a href="09-ASV_identification.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-input-file</span> dada2-stats.qza <span class="kw">\</span></span>
 <span id="cb14-3"><a href="09-ASV_identification.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> dada2-stats.qzv</span></code></pre></div>
 <p>Open the <code>dada2-stats.qzv</code> visualisation with QIIME2 view.</p>
 <p>You will now see a denoising stats table with the following columns:</p>

@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.</p>
 <p>We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2.</p>
 <p><strong>Note</strong>: You can copy and paste the forward and reverse primer from the fasta file “primers_seqs.fasta”</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="08-Trim_PCR_sequences.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="08-Trim_PCR_sequences.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza <span class="kw">\</span></span>
 <span id="cb9-2"><a href="08-Trim_PCR_sequences.html#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># Forward primer</span></span>
 <span id="cb9-3"><a href="08-Trim_PCR_sequences.html#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">--p-front-f</span> NNNNNGTGCCAGCMGCCGCGGTAA <span class="kw">\</span></span>
 <span id="cb9-4"><a href="08-Trim_PCR_sequences.html#cb9-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># Reverse primer</span></span>

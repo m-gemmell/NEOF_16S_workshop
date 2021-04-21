@@ -5,7 +5,7 @@ knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
 
 ## Suggested readings
 
-The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2019.1/tutorials/).
+The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2021.2/tutorials/).
 
 The QIIME scripts collection (http://qiime.org/scripts/index.html) includes many other useful scripts that we have not described, each script with its own description and tips for using it. We encourage you to explore this resource.
 
@@ -28,13 +28,9 @@ De novo clustering methods outperform reference-based methods for assigning 16S 
 
 http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4675110/
 
-https://www.uab.edu/medicine/camac/images/10-A-Kumar_slide_show.pdf
-
 Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible. Paul J. McMurdie, Susan Holmes (2014) Plos ONE.
 
 http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531
-
-http://compbio.ucsd.edu/wp-content/uploads/2016/10/20170712_microbiome_16s_tutorial_noninteractive.pdf
 
 Normalization and microbial differential abundance strategies depend upon data characteristics. Sophie Weiss, Zhenjiang Zech Xu, Shyamal Peddada, Amnon Amir, Kyle Bittinger, Antonio Gonzalez, Catherine Lozupone, Jesse R. Zaneveld, Yoshiki Vázquez-Baeza, Amanda Birmingham, Embriette R. Hyde and Rob Knight (2017) Microbiome
 

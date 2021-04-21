@@ -6,7 +6,7 @@ One of the most common aims of metagenomic analyses is to quantify the compositi
 
 In the first approach, amplicons act as ‘tags’ identifying the different bacterial species present in the sample, which can be both identified and quantified to describe the composition of the bacterial community (also called _metagenetics_ or _metaprofiling_). In the second approach, whole genomes, rather than just representative amplicons, are sequenced (_shotgun metagenomics_). This DNA can be assembled, or the source of the reads can be identified and quantified in a broadly similar way to 16S analysis.
 
-In this workshop, we will analyse amplicon sequencing data, obtained by amplification of the variable region 4 of the 16S gene, using primer 515FB-806RB described in http://press.igsb.anl.gov/earthmicrobiome/protocols-and-standards/16s/ (Caporaso _et al_, 2011). The sequences were obtained from the Illumina MiSeq platform, 2x250bp reads, and the analysis process will be based on the software package QIIME2 ("Quantitative Insights Into Microbial Ecology", https://qiime2.org). We will explore the bacterial populations sampled at various locations in the Bioscience building: toilets and corridors from different floors.
+In this workshop, we will analyse amplicon sequencing data, obtained by amplification of the variable region 4 of the 16S gene, using primer 515FB-806RB (Caporaso _et al_, 2011). The sequences were obtained from the Illumina MiSeq platform, 2x250bp reads, and the analysis process will be based on the software package QIIME2 ("Quantitative Insights Into Microbial Ecology", https://qiime2.org). We will explore the bacterial populations sampled at various locations in the Bioscience building: toilets and corridors from different floors.
 
 ## 16S rRNA
 

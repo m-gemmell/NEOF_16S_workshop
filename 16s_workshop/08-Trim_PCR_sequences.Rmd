@@ -10,7 +10,7 @@ We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequ
 __Note__: You can copy and paste the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
 ```{bash, eval=FALSE}
-qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza
+qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza \
  # Forward primer
  --p-front-f NNNNNGTGCCAGCMGCCGCGGTAA \
  # Reverse primer

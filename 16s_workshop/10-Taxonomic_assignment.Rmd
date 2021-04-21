@@ -16,12 +16,12 @@ First, we need to import the Greengenes data into QIIME2 artifacts. These steps 
 
 ```{bash, eval=FALSE}
 qiime tools import --input-path \
-/pub39/tea/matthew/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta \
+/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta \
 --output-path gg-13-8.99_otus.qza \
 --type 'FeatureData[Sequence]'
 
 qiime tools import --input-path \
-/pub39/tea/matthew/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
+/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
 --output-path gg-13-8.99.taxa.qza \
 --input-format HeaderlessTSVTaxonomyFormat \
 --type 'FeatureData[Taxonomy]'
@@ -52,7 +52,7 @@ qiime feature-classifier extract-reads \
 Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:
 
 ```{bash, eval=FALSE}
-cp /pub39/tea/matthew/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
+cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
 ```
 
 ## Classifier training

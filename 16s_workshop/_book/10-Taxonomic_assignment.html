@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -272,12 +272,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/import.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>First, we need to import the Greengenes data into QIIME2 artifacts. These steps will create two objects containing the sequences and their taxonomy, respectively.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="10-Taxonomic_assignment.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import --input-path <span class="kw">\</span></span>
-<span id="cb15-2"><a href="10-Taxonomic_assignment.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/matthew/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta</span> <span class="kw">\</span></span>
+<span id="cb15-2"><a href="10-Taxonomic_assignment.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta</span> <span class="kw">\</span></span>
 <span id="cb15-3"><a href="10-Taxonomic_assignment.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-path</span> gg-13-8.99_otus.qza <span class="kw">\</span></span>
 <span id="cb15-4"><a href="10-Taxonomic_assignment.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--type</span> <span class="st">&#39;FeatureData[Sequence]&#39;</span></span>
 <span id="cb15-5"><a href="10-Taxonomic_assignment.html#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="10-Taxonomic_assignment.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import --input-path <span class="kw">\</span></span>
-<span id="cb15-7"><a href="10-Taxonomic_assignment.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/matthew/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt</span> <span class="kw">\</span></span>
+<span id="cb15-7"><a href="10-Taxonomic_assignment.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt</span> <span class="kw">\</span></span>
 <span id="cb15-8"><a href="10-Taxonomic_assignment.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-path</span> gg-13-8.99.taxa.qza <span class="kw">\</span></span>
 <span id="cb15-9"><a href="10-Taxonomic_assignment.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--input-format</span> HeaderlessTSVTaxonomyFormat <span class="kw">\</span></span>
 <span id="cb15-10"><a href="10-Taxonomic_assignment.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--type</span> <span class="st">&#39;FeatureData[Taxonomy]&#39;</span></span></code></pre></div>
@@ -296,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-6"><a href="10-Taxonomic_assignment.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len</span> 250 <span class="kw">\</span></span>
 <span id="cb16-7"><a href="10-Taxonomic_assignment.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-reads</span> gg-13-8.99.ref.seqs.qza</span></code></pre></div>
 <p>Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="10-Taxonomic_assignment.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="10-Taxonomic_assignment.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .</span></code></pre></div>
 </div>
 <div id="classifier-training" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Classifier training</h2>
