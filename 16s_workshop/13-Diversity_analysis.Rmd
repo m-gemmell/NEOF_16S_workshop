@@ -41,7 +41,7 @@ __Questions__:
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
-We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly significant.
+We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly different.
 
 The QIIME2 pipeline offers two alternative choices: 
 

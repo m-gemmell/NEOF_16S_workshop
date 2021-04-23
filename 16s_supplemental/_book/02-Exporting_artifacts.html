@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,7 +270,7 @@ First copy a new directory that will contain all the QIIME2 output you need and 
 <p>Now we can create a new BIOM file which contains the taxonomy information</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="02-Exporting_artifacts.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> add-metadata <span class="kw">\</span></span>
 <span id="cb11-2"><a href="02-Exporting_artifacts.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--input-fp</span> qiime2_exports/ASV_table.biom <span class="kw">\</span></span>
-<span id="cb11-3"><a href="02-Exporting_artifacts.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--observation-metadata-fp</span> final_exports/taxonomy.headers.tsv <span class="kw">\</span></span>
+<span id="cb11-3"><a href="02-Exporting_artifacts.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--observation-metadata-fp</span> final_exports/taxonomy.header.tsv <span class="kw">\</span></span>
 <span id="cb11-4"><a href="02-Exporting_artifacts.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-fp</span> qiime2_exports/ASV_table.tax.biom</span></code></pre></div>
 <p>Export the newly created BIOM file. We will need to include option <code>--header-key taxonomy</code> to include the taxonomy info in the newly TSV file.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="02-Exporting_artifacts.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> convert <span class="kw">\</span></span>
@@ -299,7 +299,7 @@ First copy a new directory that will contain all the QIIME2 output you need and 
 <span id="cb14-8"><a href="02-Exporting_artifacts.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Ensure to use the taxonomy with the altered headers</span></span>
 <span id="cb14-9"><a href="02-Exporting_artifacts.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> add-metadata <span class="kw">\</span></span>
 <span id="cb14-10"><a href="02-Exporting_artifacts.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--input-fp</span> qiime2_exports/ASV_table.rarefied_20000.biom <span class="kw">\</span></span>
-<span id="cb14-11"><a href="02-Exporting_artifacts.html#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--observation-metadata-fp</span> final_exports/taxonomy.headers.tsv <span class="kw">\</span></span>
+<span id="cb14-11"><a href="02-Exporting_artifacts.html#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--observation-metadata-fp</span> final_exports/taxonomy.header.tsv <span class="kw">\</span></span>
 <span id="cb14-12"><a href="02-Exporting_artifacts.html#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-fp</span> qiime2_exports/ASV_table.rarefied_20000.tax.biom</span>
 <span id="cb14-13"><a href="02-Exporting_artifacts.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert biom to tsv with taxonomy</span></span>
 <span id="cb14-14"><a href="02-Exporting_artifacts.html#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> convert <span class="kw">\</span></span>
@@ -327,7 +327,7 @@ First copy a new directory that will contain all the QIIME2 output you need and 
 <span id="cb16-8"><a href="02-Exporting_artifacts.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Add taxonomy info to biom file</span></span>
 <span id="cb16-9"><a href="02-Exporting_artifacts.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> add-metadata <span class="kw">\</span></span>
 <span id="cb16-10"><a href="02-Exporting_artifacts.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--input-fp</span> qiime2_exports/ASV_table.rarefied_20000.relabund.biom <span class="kw">\</span></span>
-<span id="cb16-11"><a href="02-Exporting_artifacts.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--observation-metadata-fp</span> final_exports/taxonomy.headers.tsv <span class="kw">\</span></span>
+<span id="cb16-11"><a href="02-Exporting_artifacts.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--observation-metadata-fp</span> final_exports/taxonomy.header.tsv <span class="kw">\</span></span>
 <span id="cb16-12"><a href="02-Exporting_artifacts.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-fp</span> qiime2_exports/ASV_table.rarefied_20000.relabund.tax.biom</span>
 <span id="cb16-13"><a href="02-Exporting_artifacts.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert biom to tsv with taxonomy</span></span>
 <span id="cb16-14"><a href="02-Exporting_artifacts.html#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="ex">biom</span> convert <span class="kw">\</span></span>

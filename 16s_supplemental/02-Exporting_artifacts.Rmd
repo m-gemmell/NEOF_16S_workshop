@@ -134,7 +134,7 @@ Now we can create a new BIOM file which contains the taxonomy information
 ```{bash eval=FALSE}
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.biom \
---observation-metadata-fp final_exports/taxonomy.headers.tsv \
+--observation-metadata-fp final_exports/taxonomy.header.tsv \
 --output-fp qiime2_exports/ASV_table.tax.biom
 ```
 
@@ -176,7 +176,7 @@ mv export/feature-table.biom qiime2_exports/ASV_table.rarefied_20000.biom
 #Ensure to use the taxonomy with the altered headers
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.rarefied_20000.biom \
---observation-metadata-fp final_exports/taxonomy.headers.tsv \
+--observation-metadata-fp final_exports/taxonomy.header.tsv \
 --output-fp qiime2_exports/ASV_table.rarefied_20000.tax.biom
 #Convert biom to tsv with taxonomy
 biom convert \
@@ -214,7 +214,7 @@ qiime2_exports/ASV_table.rarefied_20000.relabund.biom
 #Add taxonomy info to biom file
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.rarefied_20000.relabund.biom \
---observation-metadata-fp final_exports/taxonomy.headers.tsv \
+--observation-metadata-fp final_exports/taxonomy.header.tsv \
 --output-fp qiime2_exports/ASV_table.rarefied_20000.relabund.tax.biom
 #Convert biom to tsv with taxonomy
 biom convert \

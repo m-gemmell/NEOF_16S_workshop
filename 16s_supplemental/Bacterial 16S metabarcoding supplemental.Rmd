@@ -172,7 +172,7 @@ Now we can create a new BIOM file which contains the taxonomy information
 ```{bash eval=FALSE}
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.biom \
---observation-metadata-fp final_exports/taxonomy.headers.tsv \
+--observation-metadata-fp final_exports/taxonomy.header.tsv \
 --output-fp qiime2_exports/ASV_table.tax.biom
 ```
 
@@ -214,7 +214,7 @@ mv export/feature-table.biom qiime2_exports/ASV_table.rarefied_20000.biom
 #Ensure to use the taxonomy with the altered headers
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.rarefied_20000.biom \
---observation-metadata-fp final_exports/taxonomy.headers.tsv \
+--observation-metadata-fp final_exports/taxonomy.header.tsv \
 --output-fp qiime2_exports/ASV_table.rarefied_20000.tax.biom
 #Convert biom to tsv with taxonomy
 biom convert \
@@ -252,7 +252,7 @@ qiime2_exports/ASV_table.rarefied_20000.relabund.biom
 #Add taxonomy info to biom file
 biom add-metadata \
 --input-fp qiime2_exports/ASV_table.rarefied_20000.relabund.biom \
---observation-metadata-fp final_exports/taxonomy.headers.tsv \
+--observation-metadata-fp final_exports/taxonomy.header.tsv \
 --output-fp qiime2_exports/ASV_table.rarefied_20000.relabund.tax.biom
 #Convert biom to tsv with taxonomy
 biom convert \
@@ -344,15 +344,15 @@ Next we will use two long commands with many pipes (`|`) to append the lines we 
 
 ```{bash eval=FALSE}
 #Append lines for forward reads
-find /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R1*fastq.gz | \
+find /pub39/tea/matthew/NEOF/16s_workshop/RawReads/ -name *R1*fastq.gz | \
 while read path ; do \
-sample=$(basename $p  |sed "s/_.*//") ; \
+sample=$(basename $path  | sed "s/_.*//") ; \
 echo ${sample},${path},forward ; \
 done >> manifest.csv
 #Append lines for reverse reads
 find /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R2*fastq.gz | \
 while read path ; do \
-sample=$(basename $p | sed "s/_.*//") ; \
+sample=$(basename $path | sed "s/_.*//") ; \
 echo ${sample},${path},reverse ; \
 done >> manifest.csv
 ```
@@ -363,7 +363,7 @@ Note the above is quite complicated and you may get away with just changing the 
    - This will find all the absolute paths from the specified directory and its subdirectories (`/pub39/tea/matthew/NEOF/16sworkshop/RawReads/`) that contain "R1" and end with "fastq.gz" (`-name *R1*fastq.gz`). Ensure the specified directory and its subdirectories only contain your fastq files of interest.
 - `while read path ;`
    - This is a loop that will loop through all the returned file paths. Everything between the `do` and `done` are the commands run in the loop. `path` is the variable name of the aboslute file path that is used in each instance of the loop. The `;` separates commands within the loop.
-- `sample=$(basename $p  |sed "s/_.*//")`
+- `sample=$(basename $path  |sed "s/_.*//")`
    - The `sample=$()` section assigns a variable called `sample` to the output from the command/s within `$()`
    - The command `basename` removes all the directory path info so you are only left with the file name (e.g. /path/directory/file.txt -> file.txt)
    - `sed "s/_.*//"` is a `sed` command that will substitute (`s`) everything after the first "_" (`_.*`) with nothing (represented by nothing between the last two `/`). E.g. 3TM_CAGAGAGG-GTAAGGAG_L001_R1_001.fastq.gz -> 3TM

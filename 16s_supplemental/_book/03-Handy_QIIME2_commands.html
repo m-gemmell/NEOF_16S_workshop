@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2021-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,15 +202,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="03-Handy_QIIME2_commands.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;sample-id,absolute-filepath,direction&quot;</span> <span class="op">&gt;</span> manifest.csv</span></code></pre></div>
 <p>Next we will use two long commands with many pipes (<code>|</code>) to append the lines we need to our file. Below are the two commands and below that is an explanation on the various parts.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="03-Handy_QIIME2_commands.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Append lines for forward reads</span></span>
-<span id="cb21-2"><a href="03-Handy_QIIME2_commands.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R1*fastq.gz <span class="kw">|</span> <span class="kw">\</span></span>
+<span id="cb21-2"><a href="03-Handy_QIIME2_commands.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /pub39/tea/matthew/NEOF/16s_workshop/RawReads/ -name *R1*fastq.gz <span class="kw">|</span> <span class="kw">\</span></span>
 <span id="cb21-3"><a href="03-Handy_QIIME2_commands.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">while</span> <span class="bu">read</span> <span class="va">path</span> ; <span class="kw">do</span> <span class="kw">\</span></span>
-<span id="cb21-4"><a href="03-Handy_QIIME2_commands.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="va">sample=$(</span><span class="fu">basename</span> <span class="va">$p</span>  <span class="kw">|</span><span class="fu">sed</span> <span class="st">&quot;s/_.*//&quot;</span><span class="va">)</span> ; <span class="kw">\</span></span>
+<span id="cb21-4"><a href="03-Handy_QIIME2_commands.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="va">sample=$(</span><span class="fu">basename</span> <span class="va">$path</span>  <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s/_.*//&quot;</span><span class="va">)</span> ; <span class="kw">\</span></span>
 <span id="cb21-5"><a href="03-Handy_QIIME2_commands.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span>,<span class="va">${path}</span>,forward <span class="kw">;</span> <span class="kw">\</span></span>
 <span id="cb21-6"><a href="03-Handy_QIIME2_commands.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">done</span> <span class="op">&gt;&gt;</span> <span class="ex">manifest.csv</span></span>
 <span id="cb21-7"><a href="03-Handy_QIIME2_commands.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Append lines for reverse reads</span></span>
 <span id="cb21-8"><a href="03-Handy_QIIME2_commands.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R2*fastq.gz <span class="kw">|</span> <span class="kw">\</span></span>
 <span id="cb21-9"><a href="03-Handy_QIIME2_commands.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="kw">while</span> <span class="bu">read</span> <span class="va">path</span> ; <span class="kw">do</span> <span class="kw">\</span></span>
-<span id="cb21-10"><a href="03-Handy_QIIME2_commands.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="va">sample=$(</span><span class="fu">basename</span> <span class="va">$p</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s/_.*//&quot;</span><span class="va">)</span> ; <span class="kw">\</span></span>
+<span id="cb21-10"><a href="03-Handy_QIIME2_commands.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="va">sample=$(</span><span class="fu">basename</span> <span class="va">$path</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s/_.*//&quot;</span><span class="va">)</span> ; <span class="kw">\</span></span>
 <span id="cb21-11"><a href="03-Handy_QIIME2_commands.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${sample}</span>,<span class="va">${path}</span>,reverse <span class="kw">;</span> <span class="kw">\</span></span>
 <span id="cb21-12"><a href="03-Handy_QIIME2_commands.html#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="kw">done</span> <span class="op">&gt;&gt;</span> <span class="ex">manifest.csv</span></span></code></pre></div>
 <p>Note the above is quite complicated and you may get away with just changing the specified directory for your own analyses. Always make sure you check the output manifest file before importing with it. If it is wrong make sure to start from the first step so you reset your file.</p>
@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>This is a loop that will loop through all the returned file paths. Everything between the <code>do</code> and <code>done</code> are the commands run in the loop. <code>path</code> is the variable name of the aboslute file path that is used in each instance of the loop. The <code>;</code> separates commands within the loop.</li>
 </ul></li>
-<li><code>sample=$(basename $p  |sed "s/_.*//")</code>
+<li><code>sample=$(basename $path  |sed "s/_.*//")</code>
 <ul>
 <li>The <code>sample=$()</code> section assigns a variable called <code>sample</code> to the output from the command/s within <code>$()</code></li>
 <li>The command <code>basename</code> removes all the directory path info so you are only left with the file name (e.g. /path/directory/file.txt -&gt; file.txt)</li>

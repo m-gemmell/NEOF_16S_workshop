@@ -53,7 +53,7 @@ qiime diversity alpha-rarefaction --i-table table-dada2.qza \
 Otherwise, copy over the output to your directory.
 
 ```{bash eval=FALSE}
-cp /pub39/tea/matthew/16s_workshop/chapter_12/rarefaction-curve.qzv .
+cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 ```
 
 

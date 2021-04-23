@@ -961,7 +961,7 @@ qiime diversity alpha-rarefaction --i-table table-dada2.qza \
 Otherwise, copy over the output to your directory.
 
 ```{bash eval=FALSE}
-cp /pub39/tea/matthew/16s_workshop/chapter_12/rarefaction-curve.qzv .
+cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 ```
 
 
@@ -1056,7 +1056,7 @@ __Questions__:
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
-We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly significant.
+We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly different.
 
 The QIIME2 pipeline offers two alternative choices: 
 
