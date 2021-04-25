@@ -111,7 +111,7 @@ knitr::include_graphics(path = "figures/q2docs.png", auto_pdf = TRUE)
 
 Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on February 2021 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
-To install QIIME2, please refer to its instruction page:
+If you want to install QIIME2 on your own machine, please refer to: 
 https://docs.qiime2.org/2021.2/install/
 
 ## Artifacts
@@ -174,7 +174,7 @@ knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 
 The most used procedure to identify OTUs (Operational Taxonomic Units) is through the clustering of reads into groups that are sufficiently similar to one another. These grouped reads are likely to come from the same rRNA gene, genome or taxa group. 
 
-The identified OTUs are a feature of the sequence dataset, heavily dependent on the similarity level used for OTU identification. The most commonly used threshold is 3% dissimilarity (i.e 97% similarity) to group reads into species OTUS. Therefore, de novo OTUs identified in two different data sets cannot be compared. 
+The identified OTUs are a feature of the sequence dataset, heavily dependent on the similarity level used for OTU identification. The most commonly used threshold is 3% dissimilarity (i.e 97% similarity) to group reads into species OTUs. Therefore, de novo OTUs identified in two different data sets cannot be compared. 
 
 There is no single perfect tool for this step; but a few of the most widely used are:
 
@@ -190,7 +190,7 @@ The number of reads in each OTU should reflect the number of copies of the gene 
 knitr::include_graphics(path = "figures/mangify_glass.png", auto_pdf = TRUE)
 ``` 
 
-There are now many bioinformatics methods to resolve amplicon sequence variants (AVS) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
+There are now many bioinformatics methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
 
 ASV methods infer the biological sequences in the sample prior to the introduction of amplification and sequencing errors, and distinguish sequence variants differing by as little as one nucleotide. The methods use a de novo process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than error-containing sequences.
 
@@ -287,7 +287,7 @@ knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 
 The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).
 
-QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
+QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistic, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.
 
 Examples of questions to answer:
 
@@ -1028,7 +1028,7 @@ Beta diversity is diversity among different communities. There are many possible
 knitr::include_graphics(path = "figures/core.png", auto_pdf = TRUE)
 ``` 
 
-QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2019.1/plugins/available/diversity/).
+QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2021.2/plugins/available/diversity/).
 
 ```{bash, eval=FALSE}
 qiime diversity core-metrics-phylogenetic \
@@ -1098,7 +1098,7 @@ __Questions__:
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
-Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PRMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
+Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
 
 To carry this out the 'PERMANOVA' analysis we will use the `distance_matrix.qza` which contains all the sample pairwise dissimilarity distances. For the `--p-permutations` option we will use the default value, 999.
 
@@ -1290,9 +1290,10 @@ http://onlinelibrary.wiley.com/doi/10.1111/mec.13536/abstract
 Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. Benjamin J Callahan, Paul J McMurdie & Susan P Holmes (2017).
 
 https://www.nature.com/articles/ismej2017119
+
 Optimizing taxonomic classification of marker gene amplicon sequences Nicholas A Bokulich, Benjamin D Kaehler, Jai Ram Rideout, Matthew Dillon, Evan Bolyen, Rob Knight, Gavin A. Huttley, J. Gregory Caporaso
 
-https://peerj.com/preprints/3208/
+https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0470-z
 
 Denoising the Denoisers: An independent evaluation of microbiome 3 sequence error-correction methods. Nearing Jacob, Douglas Gavin, Comeau Andre, Langille Morngan
 
@@ -1333,7 +1334,7 @@ __QIIME2 (Quantative Insights Into Microbial Ecology)__
 
 Bolyen E, Rideout JR, Dillon MR, Bokulich NA, Abnet C, Al-Ghalith GA, Alexander H, Alm EJ, Arumugam M, Asnicar F, Bai Y, Bisanz JE, Bittinger K, Brejnrod A, Brislawn CJ, Titus Brown C, Callahan BJ,Caraballo-Rodríguez AM, Chase J, Cope E, Da Silva R, Dorrestein PC, Douglas GM, Durall DM, Duvallet C, Edwardson CF, Ernst M, Estaki M, Fouquier J, Gauglitz JM, Gibson DL, Gonzalez A, Gorlick K, Guo J, Hillmann B, Holmes S, Holste H, Huttenhower C, Huttley G, Janssen S, Jarmusch AK, Jiang L, Kaehler B, Kang K, Keefe CR, Keim P, Kelley ST, Knights D, Koester I, Kosciolek T, Kreps J, Langille MGI, Lee J, Ley R, Liu Y, Loftfield E, Lozupone C, Maher M, Marotz C, Martin BD, McDonald D, McIver LJ, Melnik AV, Metcalf JL, Morgan SC, Morton J, Naimey AT, Navas-Molina JA, Nothias LF, Orchanian SB, Pearson T, Peoples SL, Petras D, Preuss ML, Pruesse E, Rasmussen LB, Rivers A, Robeson MS, Rosenthal P, Segata N, Shaffer M, Shiffer A, Sinha R, Song SJ, Spear JR, Swafford AD, Thompson LR, Torres PJ, Trinh P, Tripathi A, Turnbaugh PJ, Ul-Hasan S, van der Hooft JJJ, Vargas F, Vázquez-Baeza Y, Vogtmann E, von Hippel M, Walters W, Wan Y, Wang M, Warren J, Weber KC, Williamson CHD, Willis AD, Xu ZZ, Zaneveld JR, Zhang Y, Knight R, Caporaso JG (2018) QIIME 2: Reproducible, interactive, scalable, and extensible microbiome data science. PeerJ pre-prints
 
-https://peerj.com/preprints/27295/
+https://www.nature.com/articles/s41587-019-0209-9
 
 __BLAST__
 
@@ -1371,7 +1372,7 @@ __UniFrac__
 
 Lozupone, C.; Knight, R. (2005). "UniFrac: A New Phylogenetic Method for Comparing Microbial Communities". Applied and Environmental Microbiology 71 (12): 8228–8235
 
-http://bmf.colorado.edu/unifrac/
+https://aem.asm.org/content/71/12/8228.short
 
 __UniFrac__
 

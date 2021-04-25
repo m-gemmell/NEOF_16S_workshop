@@ -13,7 +13,7 @@ Beta diversity is diversity among different communities. There are many possible
 knitr::include_graphics(path = "figures/core.png", auto_pdf = TRUE)
 ``` 
 
-QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2019.1/plugins/available/diversity/).
+QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2021.2/plugins/available/diversity/).
 
 ```{bash, eval=FALSE}
 qiime diversity core-metrics-phylogenetic \
@@ -83,7 +83,7 @@ __Questions__:
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
-Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PRMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
+Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
 
 To carry this out the 'PERMANOVA' analysis we will use the `distance_matrix.qza` which contains all the sample pairwise dissimilarity distances. For the `--p-permutations` option we will use the default value, 999.
 

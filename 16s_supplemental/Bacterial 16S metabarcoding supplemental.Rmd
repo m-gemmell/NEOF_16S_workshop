@@ -350,7 +350,7 @@ sample=$(basename $path  | sed "s/_.*//") ; \
 echo ${sample},${path},forward ; \
 done >> manifest.csv
 #Append lines for reverse reads
-find /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R2*fastq.gz | \
+find /pub39/tea/matthew/NEOF/16s_workshop/RawReads/ -name *R2*fastq.gz | \
 while read path ; do \
 sample=$(basename $path | sed "s/_.*//") ; \
 echo ${sample},${path},reverse ; \

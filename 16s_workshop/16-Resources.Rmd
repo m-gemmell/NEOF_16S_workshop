@@ -43,9 +43,10 @@ http://onlinelibrary.wiley.com/doi/10.1111/mec.13536/abstract
 Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. Benjamin J Callahan, Paul J McMurdie & Susan P Holmes (2017).
 
 https://www.nature.com/articles/ismej2017119
+
 Optimizing taxonomic classification of marker gene amplicon sequences Nicholas A Bokulich, Benjamin D Kaehler, Jai Ram Rideout, Matthew Dillon, Evan Bolyen, Rob Knight, Gavin A. Huttley, J. Gregory Caporaso
 
-https://peerj.com/preprints/3208/
+https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0470-z
 
 Denoising the Denoisers: An independent evaluation of microbiome 3 sequence error-correction methods. Nearing Jacob, Douglas Gavin, Comeau Andre, Langille Morngan
 
@@ -86,7 +87,7 @@ __QIIME2 (Quantative Insights Into Microbial Ecology)__
 
 Bolyen E, Rideout JR, Dillon MR, Bokulich NA, Abnet C, Al-Ghalith GA, Alexander H, Alm EJ, Arumugam M, Asnicar F, Bai Y, Bisanz JE, Bittinger K, Brejnrod A, Brislawn CJ, Titus Brown C, Callahan BJ,Caraballo-Rodríguez AM, Chase J, Cope E, Da Silva R, Dorrestein PC, Douglas GM, Durall DM, Duvallet C, Edwardson CF, Ernst M, Estaki M, Fouquier J, Gauglitz JM, Gibson DL, Gonzalez A, Gorlick K, Guo J, Hillmann B, Holmes S, Holste H, Huttenhower C, Huttley G, Janssen S, Jarmusch AK, Jiang L, Kaehler B, Kang K, Keefe CR, Keim P, Kelley ST, Knights D, Koester I, Kosciolek T, Kreps J, Langille MGI, Lee J, Ley R, Liu Y, Loftfield E, Lozupone C, Maher M, Marotz C, Martin BD, McDonald D, McIver LJ, Melnik AV, Metcalf JL, Morgan SC, Morton J, Naimey AT, Navas-Molina JA, Nothias LF, Orchanian SB, Pearson T, Peoples SL, Petras D, Preuss ML, Pruesse E, Rasmussen LB, Rivers A, Robeson MS, Rosenthal P, Segata N, Shaffer M, Shiffer A, Sinha R, Song SJ, Spear JR, Swafford AD, Thompson LR, Torres PJ, Trinh P, Tripathi A, Turnbaugh PJ, Ul-Hasan S, van der Hooft JJJ, Vargas F, Vázquez-Baeza Y, Vogtmann E, von Hippel M, Walters W, Wan Y, Wang M, Warren J, Weber KC, Williamson CHD, Willis AD, Xu ZZ, Zaneveld JR, Zhang Y, Knight R, Caporaso JG (2018) QIIME 2: Reproducible, interactive, scalable, and extensible microbiome data science. PeerJ pre-prints
 
-https://peerj.com/preprints/27295/
+https://www.nature.com/articles/s41587-019-0209-9
 
 __BLAST__
 
@@ -124,7 +125,7 @@ __UniFrac__
 
 Lozupone, C.; Knight, R. (2005). "UniFrac: A New Phylogenetic Method for Comparing Microbial Communities". Applied and Environmental Microbiology 71 (12): 8228–8235
 
-http://bmf.colorado.edu/unifrac/
+https://aem.asm.org/content/71/12/8228.short
 
 __UniFrac__
 

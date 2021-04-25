@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-23" />
+<meta name="date" content="2021-04-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -266,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Introduction to QIIME2</h1>
 <p><img src="figures/q2docs.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on February 2021 (given the active development on the tool this may not be the most recent release at the time of this workshop).</p>
-<p>To install QIIME2, please refer to its instruction page:
+<p>If you want to install QIIME2 on your own machine, please refer to:
 <a href="https://docs.qiime2.org/2021.2/install/" class="uri">https://docs.qiime2.org/2021.2/install/</a></p>
 <div id="artifacts" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Artifacts</h2>
@@ -321,7 +321,7 @@ Representation of the step proposed for the analysis (<a href="http://compbio.uc
 <h3><span class="header-section-number">3.4.1</span> OTUs</h3>
 <p><img src="figures/clusters.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The most used procedure to identify OTUs (Operational Taxonomic Units) is through the clustering of reads into groups that are sufficiently similar to one another. These grouped reads are likely to come from the same rRNA gene, genome or taxa group.</p>
-<p>The identified OTUs are a feature of the sequence dataset, heavily dependent on the similarity level used for OTU identification. The most commonly used threshold is 3% dissimilarity (i.e 97% similarity) to group reads into species OTUS. Therefore, de novo OTUs identified in two different data sets cannot be compared.</p>
+<p>The identified OTUs are a feature of the sequence dataset, heavily dependent on the similarity level used for OTU identification. The most commonly used threshold is 3% dissimilarity (i.e 97% similarity) to group reads into species OTUs. Therefore, de novo OTUs identified in two different data sets cannot be compared.</p>
 <p>There is no single perfect tool for this step; but a few of the most widely used are:</p>
 <ul>
 <li>UCLUST (the default used by QIIME1.9.1)</li>
@@ -334,7 +334,7 @@ Representation of the step proposed for the analysis (<a href="http://compbio.uc
 <div id="asvs" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> ASVs</h3>
 <p><img src="figures/mangify_glass.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>There are now many bioinformatics methods to resolve amplicon sequence variants (AVS) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.</p>
+<p>There are now many bioinformatics methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.</p>
 <p>ASV methods infer the biological sequences in the sample prior to the introduction of amplification and sequencing errors, and distinguish sequence variants differing by as little as one nucleotide. The methods use a de novo process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than error-containing sequences.</p>
 <p>Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biological reality that exists outside of the data being analysed: the DNA sequence of the assayed organism. Thus, ASVs inferred independently from different studies or different samples can be compared.</p>
 <p>The following picture shows how DADA2 (an ASV method) and OTU processes compare to each other. This shows how the canonical creation of OTUs by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.</p>
@@ -408,7 +408,7 @@ Beta-diversity is a term for the comparison of samples to each other. It is also
 <h2><span class="header-section-number">3.10</span> Differential Abundance Analysis</h2>
 <p><img src="figures/comparison.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).</p>
-<p>QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X.’ That is the ‘W’ statistics, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.</p>
+<p>QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X.’ That is the ‘W’ statistic, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.</p>
 <p>Examples of questions to answer:</p>
 <ul>
 <li>Are there differences in taxa at various levels of taxonomy?</li>
