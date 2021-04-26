@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-23" />
+<meta name="date" content="2021-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -271,17 +271,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now we will use those 3 files to create 3 new tables.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="03-Handy_QIIME2_commands.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create table for experiment 1</span></span>
 <span id="cb23-2"><a href="03-Handy_QIIME2_commands.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-samples <span class="kw">\</span></span>
-<span id="cb23-3"><a href="03-Handy_QIIME2_commands.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.asv <span class="kw">\</span></span>
+<span id="cb23-3"><a href="03-Handy_QIIME2_commands.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
 <span id="cb23-4"><a href="03-Handy_QIIME2_commands.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> experiment_1_metadata.txt <span class="kw">\</span></span>
 <span id="cb23-5"><a href="03-Handy_QIIME2_commands.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-filtered-table</span> experiment_1_table.qza</span>
 <span id="cb23-6"><a href="03-Handy_QIIME2_commands.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#experiment 2</span></span>
 <span id="cb23-7"><a href="03-Handy_QIIME2_commands.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-samples <span class="kw">\</span></span>
-<span id="cb23-8"><a href="03-Handy_QIIME2_commands.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.asv <span class="kw">\</span></span>
+<span id="cb23-8"><a href="03-Handy_QIIME2_commands.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
 <span id="cb23-9"><a href="03-Handy_QIIME2_commands.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> experiment_2_metadata.txt <span class="kw">\</span></span>
 <span id="cb23-10"><a href="03-Handy_QIIME2_commands.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-filtered-table</span> experiment_2_table.qza</span>
 <span id="cb23-11"><a href="03-Handy_QIIME2_commands.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#experiment 2</span></span>
 <span id="cb23-12"><a href="03-Handy_QIIME2_commands.html#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-samples <span class="kw">\</span></span>
-<span id="cb23-13"><a href="03-Handy_QIIME2_commands.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.asv <span class="kw">\</span></span>
+<span id="cb23-13"><a href="03-Handy_QIIME2_commands.html#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
 <span id="cb23-14"><a href="03-Handy_QIIME2_commands.html#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> experiment_3_metadata.txt <span class="kw">\</span></span>
 <span id="cb23-15"><a href="03-Handy_QIIME2_commands.html#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-filtered-table</span> experiment_3_table.qza</span></code></pre></div>
 <p>It is always important to check your output. Create a visualisation file for each table and then view it with QIIME2 view to ensure they contain only the samples you want.</p>

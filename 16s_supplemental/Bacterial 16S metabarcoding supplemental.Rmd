@@ -423,17 +423,17 @@ Now we will use those 3 files to create 3 new tables.
 ```{bash eval=FALSE}
 #Create table for experiment 1
 qiime feature-table filter-samples \
---i-table table-dada2.asv \
+--i-table table-dada2.qza \
 --m-metadata-file experiment_1_metadata.txt \
 --o-filtered-table experiment_1_table.qza
 #experiment 2
 qiime feature-table filter-samples \
---i-table table-dada2.asv \
+--i-table table-dada2.qza \
 --m-metadata-file experiment_2_metadata.txt \
 --o-filtered-table experiment_2_table.qza
 #experiment 2
 qiime feature-table filter-samples \
---i-table table-dada2.asv \
+--i-table table-dada2.qza \
 --m-metadata-file experiment_3_metadata.txt \
 --o-filtered-table experiment_3_table.qza
 ```
