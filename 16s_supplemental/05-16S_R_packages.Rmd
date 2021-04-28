@@ -16,7 +16,7 @@ https://github.com/jbisanz/qiime2R
 
 qiime2R is an R package to import QIIME2 artifacts into R compatible files. It can convert artifacts into data structures that are useable in R. Additionally it can also create some plots.
 
-One of its most useful commands is `qza_to_phyloseq()` which converts a .qza artifact into the phyloseq data structure, a .
+One of its most useful commands is `qza_to_phyloseq()` which converts a .qza artifact into the phyloseq data structure.
 
 ## phyloseq
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }

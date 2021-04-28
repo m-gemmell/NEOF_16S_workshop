@@ -62,7 +62,7 @@ Check the visualisation to see how many rare ASVs have been removed.
 
 The next step would then be to remove samples with too low a depth. Generally I would say 20,000 would be a good cutoff but it does depend on your data and what the rarefaction curves show.
 
-FOr demonstration purposes we will choose a depth cutoff of 50,000. We can therefore use the below command to remove samples with a depth lower than 50,000.
+For demonstration purposes we will choose a depth cutoff of 50,000. We can therefore use the below command to remove samples with a depth lower than 50,000.
 
 ```{bash eval=FALSE}
 #Filter command

@@ -102,7 +102,7 @@ mv export/dna-sequences.fasta final_exports/ASV_rep_seqs.fasta
 knitr::include_graphics(path = "figures/noun_Tree_1857655.png", auto_pdf = TRUE)
 ```
 
-The below export the specified phylogenetic tree into a newick format file. For more info on the Newick format please see:  https://en.wikipedia.org/wiki/Newick_format
+The below exports the specified phylogenetic tree into a newick format file. For more info on the Newick format please see:  https://en.wikipedia.org/wiki/Newick_format
 
 ```{bash eval=FALSE}
 qiime tools export --input-path rooted-tree.qza \

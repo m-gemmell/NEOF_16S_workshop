@@ -140,7 +140,7 @@ mv export/dna-sequences.fasta final_exports/ASV_rep_seqs.fasta
 knitr::include_graphics(path = "figures/noun_Tree_1857655.png", auto_pdf = TRUE)
 ```
 
-The below export the specified phylogenetic tree into a newick format file. For more info on the Newick format please see:  https://en.wikipedia.org/wiki/Newick_format
+The below exports the specified phylogenetic tree into a newick format file. For more info on the Newick format please see:  https://en.wikipedia.org/wiki/Newick_format
 
 ```{bash eval=FALSE}
 qiime tools export --input-path rooted-tree.qza \
@@ -431,7 +431,7 @@ qiime feature-table filter-samples \
 --i-table table-dada2.qza \
 --m-metadata-file experiment_2_metadata.txt \
 --o-filtered-table experiment_2_table.qza
-#experiment 2
+#experiment 3
 qiime feature-table filter-samples \
 --i-table table-dada2.qza \
 --m-metadata-file experiment_3_metadata.txt \
@@ -559,7 +559,7 @@ Check the visualisation to see how many rare ASVs have been removed.
 
 The next step would then be to remove samples with too low a depth. Generally I would say 20,000 would be a good cutoff but it does depend on your data and what the rarefaction curves show.
 
-FOr demonstration purposes we will choose a depth cutoff of 50,000. We can therefore use the below command to remove samples with a depth lower than 50,000.
+For demonstration purposes we will choose a depth cutoff of 50,000. We can therefore use the below command to remove samples with a depth lower than 50,000.
 
 ```{bash eval=FALSE}
 #Filter command
@@ -679,7 +679,7 @@ https://github.com/jbisanz/qiime2R
 
 qiime2R is an R package to import QIIME2 artifacts into R compatible files. It can convert artifacts into data structures that are useable in R. Additionally it can also create some plots.
 
-One of its most useful commands is `qza_to_phyloseq()` which converts a .qza artifact into the phyloseq data structure, a .
+One of its most useful commands is `qza_to_phyloseq()` which converts a .qza artifact into the phyloseq data structure.
 
 ## phyloseq
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }

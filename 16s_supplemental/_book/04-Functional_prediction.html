@@ -24,7 +24,7 @@
 <meta name="author" content="Matthew Gemmell" />
 
 
-<meta name="date" content="2021-04-26" />
+<meta name="date" content="2021-04-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-9"><a href="04-Functional_prediction.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> table-dada2.feat_min_freq_10.qzv</span></code></pre></div>
 <p>Check the visualisation to see how many rare ASVs have been removed.</p>
 <p>The next step would then be to remove samples with too low a depth. Generally I would say 20,000 would be a good cutoff but it does depend on your data and what the rarefaction curves show.</p>
-<p>FOr demonstration purposes we will choose a depth cutoff of 50,000. We can therefore use the below command to remove samples with a depth lower than 50,000.</p>
+<p>For demonstration purposes we will choose a depth cutoff of 50,000. We can therefore use the below command to remove samples with a depth lower than 50,000.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="04-Functional_prediction.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter command</span></span>
 <span id="cb29-2"><a href="04-Functional_prediction.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-samples <span class="kw">\</span></span>
 <span id="cb29-3"><a href="04-Functional_prediction.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.feat_min_freq_10.qza <span class="kw">\</span></span>

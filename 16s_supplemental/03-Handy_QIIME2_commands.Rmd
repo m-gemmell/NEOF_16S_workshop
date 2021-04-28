@@ -116,7 +116,7 @@ qiime feature-table filter-samples \
 --i-table table-dada2.qza \
 --m-metadata-file experiment_2_metadata.txt \
 --o-filtered-table experiment_2_table.qza
-#experiment 2
+#experiment 3
 qiime feature-table filter-samples \
 --i-table table-dada2.qza \
 --m-metadata-file experiment_3_metadata.txt \
