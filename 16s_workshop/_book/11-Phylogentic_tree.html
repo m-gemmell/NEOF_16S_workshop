@@ -5,35 +5,35 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Phylogenetic tree construction | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 11 Phylogenetic tree construction | Bacterial 16S metabarcoding" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Phylogenetic tree construction | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
-  
-  
+  <meta property="og:image" content="/figures/NEOF.png" />
+  <meta property="og:description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 11 Phylogenetic tree construction | Bacterial 16S metabarcoding" />
   
-  
-  
+  <meta name="twitter:description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
+  <meta name="twitter:image" content="/figures/NEOF.png" />
 
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-06-03" />
+<meta name="date" content="2021-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="10-Taxonomic_assignment.html"/>
 <link rel="next" href="12-Rarefaction.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -117,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -130,6 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/neof_small_logo.png"></a></li>
 <li><a>16S metabarcoding</a></li>
 
 <li class="divider"></li>
@@ -173,8 +178,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
 <li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
+<li class="part"><span><b>Preprocessing of data</b></span></li>
 <li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
+<li class="part"><span><b>ASVs, Taxonomy, and phylogeny</b></span></li>
 <li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
@@ -184,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a>
+<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
@@ -199,6 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
 <li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
 </ul></li>
+<li class="part"><span><b>Analysis</b></span></li>
 <li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command</a></li>
@@ -218,29 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
-<li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>A</b> Resources</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>16.1</b> Suggested readings</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>16.2</b> Other useful resources</a></li>
-<li class="chapter" data-level="16.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>16.3</b> References</a></li>
+<li class="chapter" data-level="A.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>A.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="A.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>A.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="A.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>A.3</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>17</b> Appendix</a>
+<li class="chapter" data-level="B" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>B</b> Diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>17.1</b> Alpha diversity metrics</a>
+<li class="chapter" data-level="B.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>B.1</b> Alpha diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>17.1.1</b> Observed features</a></li>
-<li class="chapter" data-level="17.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>17.1.2</b> Evenness</a></li>
-<li class="chapter" data-level="17.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>17.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
-<li class="chapter" data-level="17.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>17.1.4</b> Simpson</a></li>
-<li class="chapter" data-level="17.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>17.1.5</b> Simpson evenness measure (simpson_e)</a></li>
-<li class="chapter" data-level="17.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>17.1.6</b> Shannon</a></li>
+<li class="chapter" data-level="B.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>B.1.1</b> Observed features</a></li>
+<li class="chapter" data-level="B.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>B.1.2</b> Evenness</a></li>
+<li class="chapter" data-level="B.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>B.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="B.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>B.1.4</b> Simpson</a></li>
+<li class="chapter" data-level="B.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>B.1.5</b> Simpson evenness measure (simpson_e)</a></li>
+<li class="chapter" data-level="B.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>B.1.6</b> Shannon</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>17.2</b> Beta diversity metrics</a>
+<li class="chapter" data-level="B.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>B.2</b> Beta diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>17.2.1</b> Weighted and unweighted UniFrac distances</a></li>
-<li class="chapter" data-level="17.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>17.2.2</b> Bray-Curtis</a></li>
+<li class="chapter" data-level="B.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>B.2.1</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="B.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>B.2.2</b> Bray-Curtis</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>17.3</b> Diversity Resources</a></li>
+<li class="chapter" data-level="B.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>B.3</b> Diversity Resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -262,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="phylogenetic-tree-construction" class="section level1" number="11">
+<div id="phylogeny" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Phylogenetic tree construction</h1>
 <p><img src="figures/phylo_tree.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS among others).</p>
@@ -270,19 +279,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.1</span> MAFFT alignment</h2>
 <p><img src="figures/dna_alignment.png" width="20%" style="display: block; margin: auto;" />
 The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="11-Phylogentic_tree.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mafft <span class="kw">\</span></span>
-<span id="cb21-2"><a href="11-Phylogentic_tree.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-sequences</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
-<span id="cb21-3"><a href="11-Phylogentic_tree.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-alignment</span> aligned-rep-seqs.qza</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="11-Phylogentic_tree.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mafft <span class="dt">\</span></span>
+<span id="cb21-2"><a href="11-Phylogentic_tree.html#cb21-2" aria-hidden="true" tabindex="-1"></a>--i-sequences rep-seqs-dada2.qza <span class="dt">\</span></span>
+<span id="cb21-3"><a href="11-Phylogentic_tree.html#cb21-3" aria-hidden="true" tabindex="-1"></a>--o-alignment aligned-rep-seqs.qza</span></code></pre></div>
 </div>
 <div id="masking" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Masking</h2>
 <p><img src="figures/mask.png" width="15%" style="display: block; margin: auto;" />
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="11-Phylogentic_tree.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mask <span class="kw">\</span></span>
-<span id="cb22-2"><a href="11-Phylogentic_tree.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alignment</span> aligned-rep-seqs.qza <span class="kw">\</span></span>
-<span id="cb22-3"><a href="11-Phylogentic_tree.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-max-gap-frequency</span> 1.0 <span class="kw">\</span></span>
-<span id="cb22-4"><a href="11-Phylogentic_tree.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-min-conservation</span> 0.4 <span class="kw">\</span></span>
-<span id="cb22-5"><a href="11-Phylogentic_tree.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-masked-alignment</span> masked-aligned-rep-seqs.qza</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="11-Phylogentic_tree.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mask <span class="dt">\</span></span>
+<span id="cb22-2"><a href="11-Phylogentic_tree.html#cb22-2" aria-hidden="true" tabindex="-1"></a>--i-alignment aligned-rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb22-3"><a href="11-Phylogentic_tree.html#cb22-3" aria-hidden="true" tabindex="-1"></a>--p-max-gap-frequency 1.0 <span class="dt">\</span></span>
+<span id="cb22-4"><a href="11-Phylogentic_tree.html#cb22-4" aria-hidden="true" tabindex="-1"></a>--p-min-conservation 0.4 <span class="dt">\</span></span>
+<span id="cb22-5"><a href="11-Phylogentic_tree.html#cb22-5" aria-hidden="true" tabindex="-1"></a>--o-masked-alignment masked-aligned-rep-seqs.qza</span></code></pre></div>
 <p>The following default options were chosen (no need to look at this it is only for your interest):</p>
 <ul>
 <li><code>--p-max-gap-frequency 1.0</code>
@@ -308,21 +317,24 @@ After alignment non-informative regions are masked. This will make our phylogene
 <h2><span class="header-section-number">11.3</span> Un-rooted tree creation with FASTTREE</h2>
 <p><img src="figures/tree_unrooted.png" width="15%" style="display: block; margin: auto;" />
 Create an un-rooted maximum-likelihood tree from our masked alignment.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="11-Phylogentic_tree.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny fasttree <span class="kw">\</span></span>
-<span id="cb23-2"><a href="11-Phylogentic_tree.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-alignment</span> masked-aligned-rep-seqs.qza <span class="kw">\</span></span>
-<span id="cb23-3"><a href="11-Phylogentic_tree.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-tree</span> unrooted-tree.qza</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="11-Phylogentic_tree.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny fasttree <span class="dt">\</span></span>
+<span id="cb23-2"><a href="11-Phylogentic_tree.html#cb23-2" aria-hidden="true" tabindex="-1"></a>--i-alignment masked-aligned-rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb23-3"><a href="11-Phylogentic_tree.html#cb23-3" aria-hidden="true" tabindex="-1"></a>--o-tree unrooted-tree.qza</span></code></pre></div>
 </div>
 <div id="rooted-tree-creation" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> Rooted tree creation</h2>
 <p><img src="figures/tree_rooted.png" width="15%" style="display: block; margin: auto;" />
 Finally the un-rooted tree is rooted.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="11-Phylogentic_tree.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny midpoint-root <span class="kw">\</span></span>
-<span id="cb24-2"><a href="11-Phylogentic_tree.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-tree</span> unrooted-tree.qza <span class="kw">\</span></span>
-<span id="cb24-3"><a href="11-Phylogentic_tree.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-rooted-tree</span> rooted-tree.qza</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="11-Phylogentic_tree.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny midpoint-root <span class="dt">\</span></span>
+<span id="cb24-2"><a href="11-Phylogentic_tree.html#cb24-2" aria-hidden="true" tabindex="-1"></a>--i-tree unrooted-tree.qza <span class="dt">\</span></span>
+<span id="cb24-3"><a href="11-Phylogentic_tree.html#cb24-3" aria-hidden="true" tabindex="-1"></a>--o-rooted-tree rooted-tree.qza</span></code></pre></div>
 <p>All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .</p>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
@@ -361,7 +373,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

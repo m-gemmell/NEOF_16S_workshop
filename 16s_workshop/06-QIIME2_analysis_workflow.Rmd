@@ -1,4 +1,4 @@
-# QIIME2 analysis workflow
+# QIIME2 analysis workflow {#q2workflow}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ``` 

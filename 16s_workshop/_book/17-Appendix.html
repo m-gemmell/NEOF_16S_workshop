@@ -4,36 +4,36 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 17 Appendix | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 17 Appendix | Bacterial 16S metabarcoding" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <title>B Diversity metrics | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 17 Appendix | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="B Diversity metrics | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
-  
-  
+  <meta property="og:image" content="/figures/NEOF.png" />
+  <meta property="og:description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 17 Appendix | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="B Diversity metrics | Bacterial 16S metabarcoding" />
   
-  
-  
+  <meta name="twitter:description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
+  <meta name="twitter:image" content="/figures/NEOF.png" />
 
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-06-03" />
+<meta name="date" content="2021-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="16-Resources.html"/>
 
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -117,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -130,6 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/neof_small_logo.png"></a></li>
 <li><a>16S metabarcoding</a></li>
 
 <li class="divider"></li>
@@ -173,8 +178,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
 <li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
+<li class="part"><span><b>Preprocessing of data</b></span></li>
 <li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
+<li class="part"><span><b>ASVs, Taxonomy, and phylogeny</b></span></li>
 <li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
@@ -184,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a>
+<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
@@ -199,6 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
 <li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
 </ul></li>
+<li class="part"><span><b>Analysis</b></span></li>
 <li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command</a></li>
@@ -218,29 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
-<li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>A</b> Resources</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>16.1</b> Suggested readings</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>16.2</b> Other useful resources</a></li>
-<li class="chapter" data-level="16.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>16.3</b> References</a></li>
+<li class="chapter" data-level="A.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>A.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="A.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>A.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="A.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>A.3</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>17</b> Appendix</a>
+<li class="chapter" data-level="B" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>B</b> Diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>17.1</b> Alpha diversity metrics</a>
+<li class="chapter" data-level="B.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>B.1</b> Alpha diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>17.1.1</b> Observed features</a></li>
-<li class="chapter" data-level="17.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>17.1.2</b> Evenness</a></li>
-<li class="chapter" data-level="17.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>17.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
-<li class="chapter" data-level="17.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>17.1.4</b> Simpson</a></li>
-<li class="chapter" data-level="17.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>17.1.5</b> Simpson evenness measure (simpson_e)</a></li>
-<li class="chapter" data-level="17.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>17.1.6</b> Shannon</a></li>
+<li class="chapter" data-level="B.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>B.1.1</b> Observed features</a></li>
+<li class="chapter" data-level="B.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>B.1.2</b> Evenness</a></li>
+<li class="chapter" data-level="B.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>B.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="B.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>B.1.4</b> Simpson</a></li>
+<li class="chapter" data-level="B.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>B.1.5</b> Simpson evenness measure (simpson_e)</a></li>
+<li class="chapter" data-level="B.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>B.1.6</b> Shannon</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>17.2</b> Beta diversity metrics</a>
+<li class="chapter" data-level="B.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>B.2</b> Beta diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>17.2.1</b> Weighted and unweighted UniFrac distances</a></li>
-<li class="chapter" data-level="17.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>17.2.2</b> Bray-Curtis</a></li>
+<li class="chapter" data-level="B.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>B.2.1</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="B.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>B.2.2</b> Bray-Curtis</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>17.3</b> Diversity Resources</a></li>
+<li class="chapter" data-level="B.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>B.3</b> Diversity Resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -262,20 +271,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix" class="section level1" number="17">
-<h1><span class="header-section-number">Chapter 17</span> Appendix</h1>
-<p><img src="figures/appendix.png" width="20%" style="display: block; margin: auto;" /></p>
+<div id="diversity-metrics" class="section level1" number="17">
+<h1><span class="header-section-number">B</span> Diversity metrics</h1>
+<p><img src="figures/metric_square.png" width="20%" style="display: block; margin: auto;" /></p>
 <div id="alpha-diversity-metrics" class="section level2" number="17.1">
-<h2><span class="header-section-number">17.1</span> Alpha diversity metrics</h2>
+<h2><span class="header-section-number">B.1</span> Alpha diversity metrics</h2>
 <p><img src="figures/alpha_div.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness.</p>
 <div id="observed-features" class="section level3" number="17.1.1">
-<h3><span class="header-section-number">17.1.1</span> Observed features</h3>
+<h3><span class="header-section-number">B.1.1</span> Observed features</h3>
 <p>The observed number of features is defined as the number of distinct features, such as ASVs, within a sample.</p>
 <p>The number of observed features can also be known as the feature richness of a sample. A sample with more present features than another would be said to be richer.</p>
 </div>
 <div id="evenness" class="section level3" number="17.1.2">
-<h3><span class="header-section-number">17.1.2</span> Evenness</h3>
+<h3><span class="header-section-number">B.1.2</span> Evenness</h3>
 <p>How evenly spread the abundances are across all present features.</p>
 <ul>
 <li>A sample with 4 ASVs, each with 25% relative abundance would be perfectly even.</li>
@@ -283,13 +292,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="faiths-pd-phylogenetic-diversity" class="section level3" number="17.1.3">
-<h3><span class="header-section-number">17.1.3</span> Faith’s PD (phylogenetic diversity)</h3>
+<h3><span class="header-section-number">B.1.3</span> Faith’s PD (phylogenetic diversity)</h3>
 <p>Faith’s PD represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.</p>
 <p>A sample with 10 ASVs could have a lower Faith’s PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.</p>
 <p><img src="figures/faith_pd.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="simpson" class="section level3" number="17.1.4">
-<h3><span class="header-section-number">17.1.4</span> Simpson</h3>
+<h3><span class="header-section-number">B.1.4</span> Simpson</h3>
 <p>A measure of diversity based on number of features present and the relative abundance of each feature. If richness and evenness increase the diversity score increases.</p>
 <p><strong>Equation</strong>:
 <span class="math display">\[
@@ -308,7 +317,7 @@ D = 1 -
 <p>The values range from 0 (no diversity) to 1 (infinite diversity).</p>
 </div>
 <div id="simpson-evenness-measure-simpson_e" class="section level3" number="17.1.5">
-<h3><span class="header-section-number">17.1.5</span> Simpson evenness measure (simpson_e)</h3>
+<h3><span class="header-section-number">B.1.5</span> Simpson evenness measure (simpson_e)</h3>
 <p>This is a measure of evenness based on the Simpson index. It ranges from 0 (lowest eveness) to 1 (complete evenness). It compares the calculated Simpson Index of a sample to its theoretical maximum if the sample was perfectly even but had the same amount of features.</p>
 <p><strong>Equation</strong>:
 <span class="math display">\[
@@ -323,7 +332,7 @@ E_D =
 </ul>
 </div>
 <div id="shannon" class="section level3" number="17.1.6">
-<h3><span class="header-section-number">17.1.6</span> Shannon</h3>
+<h3><span class="header-section-number">B.1.6</span> Shannon</h3>
 <p>A measure of diversity where a higher number means higher diversity. Shannon’s index accounts for both abundance and evenness of the feaures present.</p>
 <p><strong>Equation</strong>:</p>
 <p><span class="math display">\[
@@ -339,7 +348,7 @@ H =
 </div>
 </div>
 <div id="beta-diversity-metrics" class="section level2" number="17.2">
-<h2><span class="header-section-number">17.2</span> Beta diversity metrics</h2>
+<h2><span class="header-section-number">B.2</span> Beta diversity metrics</h2>
 <p><img src="figures/beta_div.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:</p>
 <ul>
@@ -347,7 +356,7 @@ H =
 <li>A higher score indicates the 2 samples are more dissimilar.</li>
 </ul>
 <div id="weighted-and-unweighted-unifrac-distances" class="section level3" number="17.2.1">
-<h3><span class="header-section-number">17.2.1</span> Weighted and unweighted UniFrac distances</h3>
+<h3><span class="header-section-number">B.2.1</span> Weighted and unweighted UniFrac distances</h3>
 <p>The UniFrac metric is a phylogenetic distance measure between two samples. It is defined as “the sum of the unshared branch lengths between two samples divided by the total branch length (shared + unshared) of two samples” (Lozupone and Knight, 2005). This results in calculating the fraction of the branch lengths unique to each sample (ie. the higher this value is, the more dissimilar two samples are). The entire phylogenetic tree created for all the sequences of all the analysed samples is used for this calculation.</p>
 <ul>
 <li>Unweighted UniFrac: Only considers feature presence/absence.</li>
@@ -355,7 +364,7 @@ H =
 </ul>
 </div>
 <div id="bray-curtis" class="section level3" number="17.2.2">
-<h3><span class="header-section-number">17.2.2</span> Bray-Curtis</h3>
+<h3><span class="header-section-number">B.2.2</span> Bray-Curtis</h3>
 <p>The Bray-Curtis metric is a dissimilarity measure that can quantify the level of difference between two samples. Two identical samples would have a Bray-Curtis measure of 0 (i.e. they have 0 dissimilarity).</p>
 <p>There are 2 versions but the one used by QIIME2 looks at the number of features shared by the 2 samples.</p>
 <p><strong>Equation</strong>:</p>
@@ -372,7 +381,7 @@ CBC = 1 –
 </div>
 </div>
 <div id="diversity-resources" class="section level2" number="17.3">
-<h2><span class="header-section-number">17.3</span> Diversity Resources</h2>
+<h2><span class="header-section-number">B.3</span> Diversity Resources</h2>
 <p>For more diveristy measure please see: <a href="https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282" class="uri">https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282</a></p>
 
 </div>
@@ -415,7 +424,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

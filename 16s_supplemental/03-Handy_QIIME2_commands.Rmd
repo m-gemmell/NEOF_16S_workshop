@@ -1,4 +1,4 @@
-# Handy QIIME2 commands
+# Handy QIIME2 commands {#handy}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/tools.png", auto_pdf = TRUE)
 ```  

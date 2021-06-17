@@ -1,5 +1,5 @@
 introduction
-exporting-artifacts
+export
 biom-files
 setup
 abundance-table-export
@@ -10,17 +10,17 @@ asv-table-with-taxonomy-export
 rarified-table-export
 relative-abundance-table-export
 taxonomy-abundance-table-export
-handy-qiime2-commands
+handy
 create-a-manifest-file
 filter-asvs-from-a-table
 split-tables
 merge-tables
-functional-prediction
+picrust2
 picrust2-pipeline
 commands
 visualisation
 picrust2-links
-s-r-packages
+rpackages
 qiime2r
 phyloseq
 microbiome

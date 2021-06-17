@@ -1,4 +1,4 @@
-# Phylogenetic tree construction
+# Phylogenetic tree construction {#phylogeny}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 

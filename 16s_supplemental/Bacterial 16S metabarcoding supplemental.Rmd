@@ -8,6 +8,9 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the Introduction to command line bioinformatics workshop
+cover-image: "figures/NEOF.png"
 ---
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -15,7 +18,7 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
 
 # Introduction
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2_supplement.png", auto_pdf = TRUE)
 ``` 
 
@@ -23,10 +26,10 @@ This bookdown is a supplement to the main one. It contains some workflows and to
 
 The sections in this supplement will cover:
 
-- Exporting QIIME2 artifacts to text files.
-- Handy QIIME2 commands
-- Carrying our functional prediction with a taxonomy abundance table.
-- Introduction to some R packages for 16S rRNA analysis.
+- [Exporting QIIME2 artifacts to text files](#export)
+- [Handy QIIME2 commands](#handy)
+- [Carrying our functional prediction with a taxonomy abundance table](#picrust2)
+- [Introduction to some R packages for 16S rRNA analysis](#rpackages)
 
 Ensure you have the QIIME2 environment activated for all of these materials. For convenience the command is:
 
@@ -36,7 +39,7 @@ Ensure you have the QIIME2 environment activated for all of these materials. For
 
 <!--chapter:end:01-16S_supplemental.Rmd-->
 
-# Exporting Artifacts
+# Exporting Artifacts {#export}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/artefact_to_tsv.png", auto_pdf = TRUE)
 ```  
@@ -313,7 +316,7 @@ I hope this is a nice quick reference for your future use.
 
 <!--chapter:end:02-Exporting_artifacts.Rmd-->
 
-# Handy QIIME2 commands
+# Handy QIIME2 commands {#handy}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/tools.png", auto_pdf = TRUE)
 ```  
@@ -495,7 +498,7 @@ Hopefully you will find this section useful in the future if not now.
 
 <!--chapter:end:03-Handy_QIIME2_commands.Rmd-->
 
-# Functional prediction
+# Functional prediction {#picrust2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/picrust.png", auto_pdf = TRUE)
 ```  
@@ -661,7 +664,7 @@ PICRUSt2 tutorial: https://github.com/picrust/picrust2/wiki/PICRUSt2-Tutorial-(v
 
 <!--chapter:end:04-Functional_prediction.Rmd-->
 
-# 16S R packages
+# 16S R packages {#rpackages}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
 ```  

@@ -1,4 +1,4 @@
-# Differential abundance analysis
+# Differential abundance analysis {#differential}
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 

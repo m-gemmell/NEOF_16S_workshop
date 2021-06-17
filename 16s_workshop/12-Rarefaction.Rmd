@@ -1,4 +1,6 @@
-#  Sequencing depth evaluation: rarefaction plot
+# (PART\*) Analysis {-}
+
+# Sequencing depth evaluation: rarefaction plot {#rarefaction}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ``` 

@@ -8,6 +8,9 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the Bacterial 16S metabarcoding workshop
+cover-image: "figures/NEOF.png"
 ---
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -15,23 +18,23 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
 
 # Introduction
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 ``` 
 
 This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
 
-- Background on the biology
-- Introduction to QIIME2
-- Cluster and webVNC information
-- Information on initial data
-- QIIME2 analysis workflow
-- Sequence import
-- PCR primer trimming
-- DADA2 denoising
-- Taxonomic classification
-- Phylogenetic tree construction
-- Rarefaction curve
-- Alpha and beta diversity analysis
-- Differential abundance analysis
-- Final considerations
+- [Background on the biology](#background)
+- [Introduction to QIIME2](#introqiime2)
+- [Cluster and webVNC information](#cluster)
+- [Information on initial data](#data)
+- [QIIME2 analysis workflow](#q2workflow)
+- [Sequence import](#import)
+- [PCR primer trimming](#pcrtrim)
+- [DADA2 denoising](#dada2)
+- [Taxonomic classification](#taxa)
+- [Phylogenetic tree construction](#phylogeny)
+- [Rarefaction curve](#rarefaction)
+- [Alpha and beta diversity analysis](#diversity)
+- [Differential abundance analysis](#differential)
+- [Final considerations](#final)

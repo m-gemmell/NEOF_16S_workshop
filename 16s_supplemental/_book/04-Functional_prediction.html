@@ -5,35 +5,35 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Functional prediction | Bacterial 16S metabarcoding supplemental</title>
-  <meta name="description" content="Chapter 4 Functional prediction | Bacterial 16S metabarcoding supplemental" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="description" content="NEOF book for the Introduction to command line bioinformatics workshop" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Functional prediction | Bacterial 16S metabarcoding supplemental" />
   <meta property="og:type" content="book" />
   
-  
-  
+  <meta property="og:image" content="/figures/NEOF.png" />
+  <meta property="og:description" content="NEOF book for the Introduction to command line bioinformatics workshop" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Functional prediction | Bacterial 16S metabarcoding supplemental" />
   
-  
-  
+  <meta name="twitter:description" content="NEOF book for the Introduction to command line bioinformatics workshop" />
+  <meta name="twitter:image" content="/figures/NEOF.png" />
 
 <meta name="author" content="Matthew Gemmell" />
 
 
-<meta name="date" content="2021-06-03" />
+<meta name="date" content="2021-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="03-Handy_QIIME2_commands.html"/>
 <link rel="next" href="05-16S_R_packages.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -117,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -130,6 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/neof_small_logo.png"></a></li>
 <li><a>16S supplemental</a></li>
 
 <li class="divider"></li>
@@ -187,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functional-prediction" class="section level1" number="4">
+<div id="picrust2" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Functional prediction</h1>
 <p><img src="figures/picrust.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Functional prediction is a method to infer the functional pathways within a community. PICRUSt2 uses 16s sequences to infer abundances of the following types of pathways:</p>
@@ -214,44 +219,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/command.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We will use the abundance table we created in the main QIIME2 tutorial for PICRUSt2. It is recommended to not rarefy the table prior to the PICRUSt2 analysis.</p>
 <p>Copy over the directory with the relevant files (including the table artifact) and then move into it.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="04-Functional_prediction.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> -r /pub39/tea/matthew/NEOF/16s_workshop/picrust2 ~/Metagenetics</span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="04-Functional_prediction.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> /pub39/tea/matthew/NEOF/16s_workshop/picrust2 ~/Metagenetics</span>
 <span id="cb27-2"><a href="04-Functional_prediction.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Metagenetics/picrust2</span></code></pre></div>
 <p>Although we do not want the table rarefied it is recommended to filter the table to remove very rare ASVs and to remove low depth samples.</p>
 <p>First we will filter low frequency features/ASVs. You can look at the visualisation of <code>table-dada2.qzv</code> to see an overview of “Frequency per feature.” There seems to be no clear consensus of how many rare features should be filtered.</p>
 <p>In this case we are going to filter out features/ASVs with a frequency less than 10 across all samples. With 18 samples and a mean frequency of &gt;900 this should be safe.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="04-Functional_prediction.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter features command</span></span>
-<span id="cb28-2"><a href="04-Functional_prediction.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-features <span class="kw">\</span></span>
-<span id="cb28-3"><a href="04-Functional_prediction.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.qza <span class="kw">\</span></span>
-<span id="cb28-4"><a href="04-Functional_prediction.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-min-frequency</span> 10 <span class="kw">\</span></span>
-<span id="cb28-5"><a href="04-Functional_prediction.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-filtered-table</span> table-dada2.feat_min_freq_10.qza</span>
+<span id="cb28-2"><a href="04-Functional_prediction.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-features <span class="dt">\</span></span>
+<span id="cb28-3"><a href="04-Functional_prediction.html#cb28-3" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
+<span id="cb28-4"><a href="04-Functional_prediction.html#cb28-4" aria-hidden="true" tabindex="-1"></a>--p-min-frequency 10 <span class="dt">\</span></span>
+<span id="cb28-5"><a href="04-Functional_prediction.html#cb28-5" aria-hidden="true" tabindex="-1"></a>--o-filtered-table table-dada2.feat_min_freq_10.qza</span>
 <span id="cb28-6"><a href="04-Functional_prediction.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualise filtered table</span></span>
-<span id="cb28-7"><a href="04-Functional_prediction.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="kw">\</span></span>
-<span id="cb28-8"><a href="04-Functional_prediction.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.feat_min_freq_10.qza <span class="kw">\</span></span>
-<span id="cb28-9"><a href="04-Functional_prediction.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> table-dada2.feat_min_freq_10.qzv</span></code></pre></div>
+<span id="cb28-7"><a href="04-Functional_prediction.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
+<span id="cb28-8"><a href="04-Functional_prediction.html#cb28-8" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.feat_min_freq_10.qza <span class="dt">\</span></span>
+<span id="cb28-9"><a href="04-Functional_prediction.html#cb28-9" aria-hidden="true" tabindex="-1"></a>--o-visualization table-dada2.feat_min_freq_10.qzv</span></code></pre></div>
 <p>Check the visualisation to see how many rare ASVs have been removed.</p>
 <p>The next step would then be to remove samples with too low a depth. Generally I would say 20,000 would be a good cutoff but it does depend on your data and what the rarefaction curves show.</p>
 <p>For demonstration purposes we will choose a depth cutoff of 50,000. We can therefore use the below command to remove samples with a depth lower than 50,000.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="04-Functional_prediction.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter command</span></span>
-<span id="cb29-2"><a href="04-Functional_prediction.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-samples <span class="kw">\</span></span>
-<span id="cb29-3"><a href="04-Functional_prediction.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.feat_min_freq_10.qza <span class="kw">\</span></span>
-<span id="cb29-4"><a href="04-Functional_prediction.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-min-frequency</span> 50000 <span class="kw">\</span></span>
-<span id="cb29-5"><a href="04-Functional_prediction.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-filtered-table</span> table-dada2.feat_min_freq_10.sample_min_freq_50k.qza</span>
+<span id="cb29-2"><a href="04-Functional_prediction.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-samples <span class="dt">\</span></span>
+<span id="cb29-3"><a href="04-Functional_prediction.html#cb29-3" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.feat_min_freq_10.qza <span class="dt">\</span></span>
+<span id="cb29-4"><a href="04-Functional_prediction.html#cb29-4" aria-hidden="true" tabindex="-1"></a>--p-min-frequency 50000 <span class="dt">\</span></span>
+<span id="cb29-5"><a href="04-Functional_prediction.html#cb29-5" aria-hidden="true" tabindex="-1"></a>--o-filtered-table table-dada2.feat_min_freq_10.sample_min_freq_50k.qza</span>
 <span id="cb29-6"><a href="04-Functional_prediction.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualise filtered table</span></span>
-<span id="cb29-7"><a href="04-Functional_prediction.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="kw">\</span></span>
-<span id="cb29-8"><a href="04-Functional_prediction.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.feat_min_freq_10.sample_min_freq_50k.qza <span class="kw">\</span></span>
-<span id="cb29-9"><a href="04-Functional_prediction.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> table-dada2.feat_min_freq_10.sample_min_freq_50k.qzv</span></code></pre></div>
+<span id="cb29-7"><a href="04-Functional_prediction.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
+<span id="cb29-8"><a href="04-Functional_prediction.html#cb29-8" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.feat_min_freq_10.sample_min_freq_50k.qza <span class="dt">\</span></span>
+<span id="cb29-9"><a href="04-Functional_prediction.html#cb29-9" aria-hidden="true" tabindex="-1"></a>--o-visualization table-dada2.feat_min_freq_10.sample_min_freq_50k.qzv</span></code></pre></div>
 <p>Now that we have carried out the filtering we can run the PICRUSt2 pipeline. The command to run the full PICRUSt2 pipeline is:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="04-Functional_prediction.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> picrust2 full-pipeline <span class="kw">\</span></span>
-<span id="cb30-2"><a href="04-Functional_prediction.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> table-dada2.feat_min_freq_10.sample_min_freq_50k.qza <span class="kw">\</span></span>
-<span id="cb30-3"><a href="04-Functional_prediction.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-seq</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
-<span id="cb30-4"><a href="04-Functional_prediction.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-dir</span> q2-picrust2_output <span class="kw">\</span></span>
-<span id="cb30-5"><a href="04-Functional_prediction.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-placement-tool</span> sepp <span class="kw">\</span></span>
-<span id="cb30-6"><a href="04-Functional_prediction.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-threads</span> 1 <span class="kw">\</span></span>
-<span id="cb30-7"><a href="04-Functional_prediction.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-hsp-method</span> pic <span class="kw">\</span></span>
-<span id="cb30-8"><a href="04-Functional_prediction.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-max-nsti</span> 2 <span class="kw">\</span></span>
-<span id="cb30-9"><a href="04-Functional_prediction.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--verbose</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="04-Functional_prediction.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> picrust2 full-pipeline <span class="dt">\</span></span>
+<span id="cb30-2"><a href="04-Functional_prediction.html#cb30-2" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.feat_min_freq_10.sample_min_freq_50k.qza <span class="dt">\</span></span>
+<span id="cb30-3"><a href="04-Functional_prediction.html#cb30-3" aria-hidden="true" tabindex="-1"></a>--i-seq rep-seqs-dada2.qza <span class="dt">\</span></span>
+<span id="cb30-4"><a href="04-Functional_prediction.html#cb30-4" aria-hidden="true" tabindex="-1"></a>--output-dir q2-picrust2_output <span class="dt">\</span></span>
+<span id="cb30-5"><a href="04-Functional_prediction.html#cb30-5" aria-hidden="true" tabindex="-1"></a>--p-placement-tool sepp <span class="dt">\</span></span>
+<span id="cb30-6"><a href="04-Functional_prediction.html#cb30-6" aria-hidden="true" tabindex="-1"></a>--p-threads 1 <span class="dt">\</span></span>
+<span id="cb30-7"><a href="04-Functional_prediction.html#cb30-7" aria-hidden="true" tabindex="-1"></a>--p-hsp-method pic <span class="dt">\</span></span>
+<span id="cb30-8"><a href="04-Functional_prediction.html#cb30-8" aria-hidden="true" tabindex="-1"></a>--p-max-nsti 2 <span class="dt">\</span></span>
+<span id="cb30-9"><a href="04-Functional_prediction.html#cb30-9" aria-hidden="true" tabindex="-1"></a>--verbose</span></code></pre></div>
 <p>The command will take ~30 minutes. If you would like to skip running the command or you encounter an issue you can copy the output.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="04-Functional_prediction.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> -r /pub39/tea/matthew/NEOF/16s_workshop/q2-picrust2_output ~/Metagenetics/picrust2</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="04-Functional_prediction.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> /pub39/tea/matthew/NEOF/16s_workshop/q2-picrust2_output ~/Metagenetics/picrust2</span></code></pre></div>
 <p><strong>Notes</strong></p>
 <ul>
 <li>The developers recommend using <code>--p-placement-method epa-ng</code> and <code>--p-hsp-method mp</code> in real analysis. You may also need to include <code>--p-edge-exponent 0</code> . The options above were chosen due to speed.</li>
@@ -273,14 +278,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>pathway_abundance.qza</code>: Abundance table for MetaCyc pathways.</li>
 </ul>
 <p>We’ll look at the KOs, the first step being to summarize the table.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="04-Functional_prediction.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="kw">\</span></span>
-<span id="cb33-2"><a href="04-Functional_prediction.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> ko_metagenome.qza <span class="kw">\</span></span>
-<span id="cb33-3"><a href="04-Functional_prediction.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> ko_metagenome.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="04-Functional_prediction.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
+<span id="cb33-2"><a href="04-Functional_prediction.html#cb33-2" aria-hidden="true" tabindex="-1"></a>--i-table ko_metagenome.qza <span class="dt">\</span></span>
+<span id="cb33-3"><a href="04-Functional_prediction.html#cb33-3" aria-hidden="true" tabindex="-1"></a>--o-visualization ko_metagenome.qzv</span></code></pre></div>
 <p>Look at the visualisation and you should notice very high frequencies. This is expected as each KO will most likely be found in multiple ASVs. The frequency of a KO is based on the frequency of every ASV it has been matched to. Additionally there are more features (KOs) in this table than in the ASV table.</p>
 <p>Let us see how the numbers change with the pathways abundance table.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="04-Functional_prediction.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="kw">\</span></span>
-<span id="cb34-2"><a href="04-Functional_prediction.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-table</span> pathway_abundance.qza <span class="kw">\</span></span>
-<span id="cb34-3"><a href="04-Functional_prediction.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> pathway_abundance.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="04-Functional_prediction.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table summarize <span class="dt">\</span></span>
+<span id="cb34-2"><a href="04-Functional_prediction.html#cb34-2" aria-hidden="true" tabindex="-1"></a>--i-table pathway_abundance.qza <span class="dt">\</span></span>
+<span id="cb34-3"><a href="04-Functional_prediction.html#cb34-3" aria-hidden="true" tabindex="-1"></a>--o-visualization pathway_abundance.qzv</span></code></pre></div>
 <p>In this case there are fewer features (pathways) because it is a broader classification (pathways rather than gene orthologs).</p>
 <p>With these tables you can carry out downstream analysis such as alpha and beta diversity, biomarker detection etc. If you do this in the future you can most likely use the lowest sample frequency number as it will most likely be over 100k.</p>
 </div>
@@ -333,7 +338,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

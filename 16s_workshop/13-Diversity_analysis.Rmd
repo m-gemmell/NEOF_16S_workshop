@@ -1,4 +1,4 @@
-# Diversity analysis
+# Diversity analysis {#diversity}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ``` 

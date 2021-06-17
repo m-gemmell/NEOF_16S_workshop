@@ -1,4 +1,4 @@
-# Introduction to QIIME2
+# Introduction to QIIME2 {#introqiime2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/q2docs.png", auto_pdf = TRUE)
 ``` 

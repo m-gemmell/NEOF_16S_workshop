@@ -1,4 +1,4 @@
-# Trim the PCR primer sequences
+# Trim the PCR primer sequences {#pcrtrim}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 ``` 

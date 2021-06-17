@@ -1,4 +1,4 @@
-# Assign a taxonomic classification to each amplicon sequence variant
+# ASV taxonomic assignment {#taxa}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 

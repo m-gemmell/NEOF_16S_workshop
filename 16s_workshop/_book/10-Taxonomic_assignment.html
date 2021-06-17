@@ -4,36 +4,36 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding</title>
-  <meta name="description" content="Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <title>Chapter 10 ASV taxonomic assignment | Bacterial 16S metabarcoding</title>
+  <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding" />
+  <meta property="og:title" content="Chapter 10 ASV taxonomic assignment | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
   
-  
-  
+  <meta property="og:image" content="/figures/NEOF.png" />
+  <meta property="og:description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Assign a taxonomic classification to each amplicon sequence variant | Bacterial 16S metabarcoding" />
+  <meta name="twitter:title" content="Chapter 10 ASV taxonomic assignment | Bacterial 16S metabarcoding" />
   
-  
-  
+  <meta name="twitter:description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
+  <meta name="twitter:image" content="/figures/NEOF.png" />
 
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-06-03" />
+<meta name="date" content="2021-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="09-ASV_identification.html"/>
 <link rel="next" href="11-Phylogentic_tree.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,12 +51,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -117,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -130,6 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/neof_small_logo.png"></a></li>
 <li><a>16S metabarcoding</a></li>
 
 <li class="divider"></li>
@@ -173,8 +178,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
 <li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
+<li class="part"><span><b>Preprocessing of data</b></span></li>
 <li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a></li>
 <li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
+<li class="part"><span><b>ASVs, Taxonomy, and phylogeny</b></span></li>
 <li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
@@ -184,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> Assign a taxonomic classification to each amplicon sequence variant</a>
+<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
@@ -199,6 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
 <li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
 </ul></li>
+<li class="part"><span><b>Analysis</b></span></li>
 <li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command</a></li>
@@ -218,29 +226,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
-<li class="chapter" data-level="16" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>16</b> Resources</a>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>A</b> Resources</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>16.1</b> Suggested readings</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>16.2</b> Other useful resources</a></li>
-<li class="chapter" data-level="16.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>16.3</b> References</a></li>
+<li class="chapter" data-level="A.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>A.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="A.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>A.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="A.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>A.3</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>17</b> Appendix</a>
+<li class="chapter" data-level="B" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>B</b> Diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>17.1</b> Alpha diversity metrics</a>
+<li class="chapter" data-level="B.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>B.1</b> Alpha diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>17.1.1</b> Observed features</a></li>
-<li class="chapter" data-level="17.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>17.1.2</b> Evenness</a></li>
-<li class="chapter" data-level="17.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>17.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
-<li class="chapter" data-level="17.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>17.1.4</b> Simpson</a></li>
-<li class="chapter" data-level="17.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>17.1.5</b> Simpson evenness measure (simpson_e)</a></li>
-<li class="chapter" data-level="17.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>17.1.6</b> Shannon</a></li>
+<li class="chapter" data-level="B.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>B.1.1</b> Observed features</a></li>
+<li class="chapter" data-level="B.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>B.1.2</b> Evenness</a></li>
+<li class="chapter" data-level="B.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>B.1.3</b> Faith’s PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="B.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>B.1.4</b> Simpson</a></li>
+<li class="chapter" data-level="B.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>B.1.5</b> Simpson evenness measure (simpson_e)</a></li>
+<li class="chapter" data-level="B.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>B.1.6</b> Shannon</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>17.2</b> Beta diversity metrics</a>
+<li class="chapter" data-level="B.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>B.2</b> Beta diversity metrics</a>
 <ul>
-<li class="chapter" data-level="17.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>17.2.1</b> Weighted and unweighted UniFrac distances</a></li>
-<li class="chapter" data-level="17.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>17.2.2</b> Bray-Curtis</a></li>
+<li class="chapter" data-level="B.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>B.2.1</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="B.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>B.2.2</b> Bray-Curtis</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>17.3</b> Diversity Resources</a></li>
+<li class="chapter" data-level="B.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>B.3</b> Diversity Resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -262,8 +271,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="assign-a-taxonomic-classification-to-each-amplicon-sequence-variant" class="section level1" number="10">
-<h1><span class="header-section-number">Chapter 10</span> Assign a taxonomic classification to each amplicon sequence variant</h1>
+<div id="taxa" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> ASV taxonomic assignment</h1>
 <p><img src="figures/classification.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. Here, we use the <code>sk-learn</code> classifier to assign taxonomy based on the Greengenes database (DeSantis <em>et al</em>., 2006).</p>
 <p>Greengenes is a database containing quality-controlled microbial sequence data. Greengenes 16S rDNA sequences come from a large number of species which have been formatted for use in QIIME, by clustering the sequences at a given level of similarity (here, 99%). As for OTU-picking, the more stringent the similarity threshold, the more fine-grained the taxonomic designation (i.e. there are more Greengenes OTUs defined to the species level at 99% than at 97% similarity). The classifier maps the variant sequences to OTU representative sequences from the Greengenes set.</p>
@@ -271,16 +280,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> Import taxonomy database</h2>
 <p><img src="figures/import.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>First, we need to import the Greengenes data into QIIME2 artifacts. These steps will create two objects containing the sequences and their taxonomy, respectively.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="10-Taxonomic_assignment.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import --input-path <span class="kw">\</span></span>
-<span id="cb15-2"><a href="10-Taxonomic_assignment.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta</span> <span class="kw">\</span></span>
-<span id="cb15-3"><a href="10-Taxonomic_assignment.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-path</span> gg-13-8.99_otus.qza <span class="kw">\</span></span>
-<span id="cb15-4"><a href="10-Taxonomic_assignment.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--type</span> <span class="st">&#39;FeatureData[Sequence]&#39;</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="10-Taxonomic_assignment.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="at">--input-path</span> <span class="dt">\</span></span>
+<span id="cb15-2"><a href="10-Taxonomic_assignment.html#cb15-2" aria-hidden="true" tabindex="-1"></a>/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta <span class="dt">\</span></span>
+<span id="cb15-3"><a href="10-Taxonomic_assignment.html#cb15-3" aria-hidden="true" tabindex="-1"></a>--output-path gg-13-8.99_otus.qza <span class="dt">\</span></span>
+<span id="cb15-4"><a href="10-Taxonomic_assignment.html#cb15-4" aria-hidden="true" tabindex="-1"></a>--type <span class="st">&#39;FeatureData[Sequence]&#39;</span></span>
 <span id="cb15-5"><a href="10-Taxonomic_assignment.html#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="10-Taxonomic_assignment.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import --input-path <span class="kw">\</span></span>
-<span id="cb15-7"><a href="10-Taxonomic_assignment.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt</span> <span class="kw">\</span></span>
-<span id="cb15-8"><a href="10-Taxonomic_assignment.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--output-path</span> gg-13-8.99.taxa.qza <span class="kw">\</span></span>
-<span id="cb15-9"><a href="10-Taxonomic_assignment.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--input-format</span> HeaderlessTSVTaxonomyFormat <span class="kw">\</span></span>
-<span id="cb15-10"><a href="10-Taxonomic_assignment.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--type</span> <span class="st">&#39;FeatureData[Taxonomy]&#39;</span></span></code></pre></div>
+<span id="cb15-6"><a href="10-Taxonomic_assignment.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="at">--input-path</span> <span class="dt">\</span></span>
+<span id="cb15-7"><a href="10-Taxonomic_assignment.html#cb15-7" aria-hidden="true" tabindex="-1"></a>/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt <span class="dt">\</span></span>
+<span id="cb15-8"><a href="10-Taxonomic_assignment.html#cb15-8" aria-hidden="true" tabindex="-1"></a>--output-path gg-13-8.99.taxa.qza <span class="dt">\</span></span>
+<span id="cb15-9"><a href="10-Taxonomic_assignment.html#cb15-9" aria-hidden="true" tabindex="-1"></a>--input-format HeaderlessTSVTaxonomyFormat <span class="dt">\</span></span>
+<span id="cb15-10"><a href="10-Taxonomic_assignment.html#cb15-10" aria-hidden="true" tabindex="-1"></a>--type <span class="st">&#39;FeatureData[Taxonomy]&#39;</span></span></code></pre></div>
 </div>
 <div id="extract-16s-region-of-interest" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> Extract 16s region of interest</h2>
@@ -288,13 +297,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We require a classifier training step to reach optimum assignment performance.</p>
 <p>Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences.</p>
 <p>Note: Do not run the below command for this tutorial, see below command.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="10-Taxonomic_assignment.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier extract-reads <span class="kw">\</span></span>
-<span id="cb16-2"><a href="10-Taxonomic_assignment.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-sequences</span> gg-13-8.99_otus.qza <span class="kw">\</span></span>
-<span id="cb16-3"><a href="10-Taxonomic_assignment.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-f-primer</span> NNNNNGTGCCAGCMGCCGCGGTAA <span class="kw">\</span></span>
-<span id="cb16-4"><a href="10-Taxonomic_assignment.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-r-primer</span> GGACTACHVGGGTWTCTAAT <span class="kw">\</span></span>
-<span id="cb16-5"><a href="10-Taxonomic_assignment.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating reads of 250 bp as our intial read length was 250bp</span></span>
-<span id="cb16-6"><a href="10-Taxonomic_assignment.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len</span> 250 <span class="kw">\</span></span>
-<span id="cb16-7"><a href="10-Taxonomic_assignment.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-reads</span> gg-13-8.99.ref.seqs.qza</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="10-Taxonomic_assignment.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier extract-reads <span class="dt">\</span></span>
+<span id="cb16-2"><a href="10-Taxonomic_assignment.html#cb16-2" aria-hidden="true" tabindex="-1"></a>--i-sequences gg-13-8.99_otus.qza <span class="dt">\</span></span>
+<span id="cb16-3"><a href="10-Taxonomic_assignment.html#cb16-3" aria-hidden="true" tabindex="-1"></a>--p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA <span class="dt">\</span></span>
+<span id="cb16-4"><a href="10-Taxonomic_assignment.html#cb16-4" aria-hidden="true" tabindex="-1"></a>--p-r-primer GGACTACHVGGGTWTCTAAT <span class="dt">\</span></span>
+<span id="cb16-5"><a href="10-Taxonomic_assignment.html#cb16-5" aria-hidden="true" tabindex="-1"></a># Creating reads of 250 bp as our intial read length was 250bp</span>
+<span id="cb16-6"><a href="10-Taxonomic_assignment.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-trunc-len</span> 250 <span class="dt">\</span></span>
+<span id="cb16-7"><a href="10-Taxonomic_assignment.html#cb16-7" aria-hidden="true" tabindex="-1"></a>--o-reads gg-13-8.99.ref.seqs.qza</span></code></pre></div>
 <p>Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="10-Taxonomic_assignment.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .</span></code></pre></div>
 </div>
@@ -302,30 +311,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.3</span> Classifier training</h2>
 <p><img src="figures/train.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Now we train the classifier on this set of extracted reads (approx. 25 mins):</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="10-Taxonomic_assignment.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier fit-classifier-naive-bayes <span class="kw">\</span></span>
-<span id="cb18-2"><a href="10-Taxonomic_assignment.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-reference-reads</span> gg-13-8.99.ref.seqs.qza <span class="kw">\</span></span>
-<span id="cb18-3"><a href="10-Taxonomic_assignment.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-reference-taxonomy</span> gg-13-8.99.taxa.qza <span class="kw">\</span></span>
-<span id="cb18-4"><a href="10-Taxonomic_assignment.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-classifier</span> classifier.trained.qza</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="10-Taxonomic_assignment.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier fit-classifier-naive-bayes <span class="dt">\</span></span>
+<span id="cb18-2"><a href="10-Taxonomic_assignment.html#cb18-2" aria-hidden="true" tabindex="-1"></a>--i-reference-reads gg-13-8.99.ref.seqs.qza <span class="dt">\</span></span>
+<span id="cb18-3"><a href="10-Taxonomic_assignment.html#cb18-3" aria-hidden="true" tabindex="-1"></a>--i-reference-taxonomy gg-13-8.99.taxa.qza <span class="dt">\</span></span>
+<span id="cb18-4"><a href="10-Taxonomic_assignment.html#cb18-4" aria-hidden="true" tabindex="-1"></a>--o-classifier classifier.trained.qza</span></code></pre></div>
 </div>
 <div id="taxonomy-assignment" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> Taxonomy assignment</h2>
 <p><img src="figures/classification.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>With our trained classifier we can assign taxonomic assignments to the ASV representative sequences:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="10-Taxonomic_assignment.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="kw">\</span></span>
-<span id="cb19-2"><a href="10-Taxonomic_assignment.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-classifier</span> classifier.trained.qza <span class="kw">\</span></span>
-<span id="cb19-3"><a href="10-Taxonomic_assignment.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Default value for confidence</span></span>
-<span id="cb19-4"><a href="10-Taxonomic_assignment.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-confidence</span> 0.7 <span class="kw">\</span></span>
-<span id="cb19-5"><a href="10-Taxonomic_assignment.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-reads</span> rep-seqs-dada2.qza <span class="kw">\</span></span>
-<span id="cb19-6"><a href="10-Taxonomic_assignment.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-classification</span> taxonomy.sklearn.qza</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="10-Taxonomic_assignment.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier classify-sklearn <span class="dt">\</span></span>
+<span id="cb19-2"><a href="10-Taxonomic_assignment.html#cb19-2" aria-hidden="true" tabindex="-1"></a>--i-classifier classifier.trained.qza <span class="dt">\</span></span>
+<span id="cb19-3"><a href="10-Taxonomic_assignment.html#cb19-3" aria-hidden="true" tabindex="-1"></a># Default value for confidence</span>
+<span id="cb19-4"><a href="10-Taxonomic_assignment.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-confidence</span> 0.7 <span class="dt">\</span></span>
+<span id="cb19-5"><a href="10-Taxonomic_assignment.html#cb19-5" aria-hidden="true" tabindex="-1"></a>--i-reads rep-seqs-dada2.qza <span class="dt">\</span></span>
+<span id="cb19-6"><a href="10-Taxonomic_assignment.html#cb19-6" aria-hidden="true" tabindex="-1"></a>--o-classification taxonomy.sklearn.qza</span></code></pre></div>
 </div>
 <div id="taxonomy-bar-chart-production" class="section level2" number="10.5">
 <h2><span class="header-section-number">10.5</span> Taxonomy bar chart production</h2>
 <p><img src="figures/bar_charts.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Create a taxonomy-abundance bar-chart visualisation artifact:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="10-Taxonomic_assignment.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot --i-table table-dada2.qza <span class="kw">\</span></span>
-<span id="cb20-2"><a href="10-Taxonomic_assignment.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--i-taxonomy</span> taxonomy.sklearn.qza <span class="kw">\</span></span>
-<span id="cb20-3"><a href="10-Taxonomic_assignment.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--m-metadata-file</span> metadata.file.txt <span class="kw">\</span></span>
-<span id="cb20-4"><a href="10-Taxonomic_assignment.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--o-visualization</span> taxa-bar-plots.dada2.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="10-Taxonomic_assignment.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot <span class="at">--i-table</span> table-dada2.qza <span class="dt">\</span></span>
+<span id="cb20-2"><a href="10-Taxonomic_assignment.html#cb20-2" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
+<span id="cb20-3"><a href="10-Taxonomic_assignment.html#cb20-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb20-4"><a href="10-Taxonomic_assignment.html#cb20-4" aria-hidden="true" tabindex="-1"></a>--o-visualization taxa-bar-plots.dada2.qzv</span></code></pre></div>
 <p>The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.</p>
 <p><strong>Questions</strong>:</p>
 <ul>
@@ -374,7 +383,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

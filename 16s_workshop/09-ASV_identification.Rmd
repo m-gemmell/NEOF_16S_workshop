@@ -1,4 +1,6 @@
-# De-novo amplicon sequence variants identification
+# (PART\*) ASVs, Taxonomy, and phylogeny {-}
+
+# De-novo amplicon sequence variants identification {#dada2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 ``` 

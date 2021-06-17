@@ -8,6 +8,9 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
+favicon: figures/NEOF_favicon.png
+description: NEOF book for the Bacterial 16S metabarcoding workshop
+cover-image: "figures/NEOF.png"
 ---
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -15,30 +18,30 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
 
 # Introduction
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 ``` 
 
 This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
 
-- Background on the biology
-- Introduction to QIIME2
-- Cluster and webVNC information
-- Information on initial data
-- QIIME2 analysis workflow
-- Sequence import
-- PCR primer trimming
-- DADA2 denoising
-- Taxonomic classification
-- Phylogenetic tree construction
-- Rarefaction curve
-- Alpha and beta diversity analysis
-- Differential abundance analysis
-- Final considerations
+- [Background on the biology](#background)
+- [Introduction to QIIME2](#introqiime2)
+- [Cluster and webVNC information](#cluster)
+- [Information on initial data](#data)
+- [QIIME2 analysis workflow](#q2workflow)
+- [Sequence import](#import)
+- [PCR primer trimming](#pcrtrim)
+- [DADA2 denoising](#dada2)
+- [Taxonomic classification](#taxa)
+- [Phylogenetic tree construction](#phylogeny)
+- [Rarefaction curve](#rarefaction)
+- [Alpha and beta diversity analysis](#diversity)
+- [Differential abundance analysis](#differential)
+- [Final considerations](#final)
 
 <!--chapter:end:01-Bacterial_16S_metabarcoding.Rmd-->
 
-# Background
+# Background {#background}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/background.png", auto_pdf = TRUE)
 ```  
@@ -104,7 +107,7 @@ B) Representation of the number of sequences obtained for a sample, showing that
 
 <!--chapter:end:02-Background.Rmd-->
 
-# Introduction to QIIME2
+# Introduction to QIIME2 {#introqiime2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/q2docs.png", auto_pdf = TRUE)
 ``` 
@@ -299,7 +302,7 @@ Examples of questions to answer:
 
 <!--chapter:end:03-Intro_to_qiime2.Rmd-->
 
-# Cluster Introduction
+# Cluster Introduction {#cluster}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 ``` 
@@ -338,7 +341,7 @@ __To open a new terminal window__, right click on the main screen, choose `Appli
 
 <!--chapter:end:04-Cluster_Introduction.Rmd-->
 
-# Data
+# Data {#data}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/data_files.png", auto_pdf = TRUE)
 ``` 
@@ -443,7 +446,7 @@ For your own projects you will need to ask the lab that carried out the sequenci
 
 <!--chapter:end:05-Data.Rmd-->
 
-# QIIME2 analysis workflow
+# QIIME2 analysis workflow {#q2workflow}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ``` 
@@ -472,7 +475,9 @@ __Note__: Ensure you include the dot and space (`. `) at the start before `useqi
 
 <!--chapter:end:06-QIIME2_analysis_workflow.Rmd-->
 
-# Sequence import
+# (PART\*) Preprocessing of data {-}
+
+# Sequence import {#import}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
@@ -537,7 +542,7 @@ __Questions__:
 
 <!--chapter:end:07-Import_sequences_into_QIIME2.Rmd-->
 
-# Trim the PCR primer sequences
+# Trim the PCR primer sequences {#pcrtrim}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 ``` 
@@ -584,7 +589,9 @@ __Questions__:
 
 <!--chapter:end:08-Trim_PCR_sequences.Rmd-->
 
-# De-novo amplicon sequence variants identification
+# (PART\*) ASVs, Taxonomy, and phylogeny {-}
+
+# De-novo amplicon sequence variants identification {#dada2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 ``` 
@@ -719,7 +726,7 @@ __Questions__:
 
 <!--chapter:end:09-ASV_identification.Rmd-->
 
-# Assign a taxonomic classification to each amplicon sequence variant
+# ASV taxonomic assignment {#taxa}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 
@@ -831,7 +838,7 @@ If you have sequenced any samples with known composition (e.g. mock community), 
 
 <!--chapter:end:10-Taxonomic_assignment.Rmd-->
 
-# Phylogenetic tree construction
+# Phylogenetic tree construction {#phylogeny}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
@@ -906,7 +913,9 @@ All these steps should finish in approximately 3 minutes. The final artifact for
 
 <!--chapter:end:11-Phylogentic_tree.Rmd-->
 
-#  Sequencing depth evaluation: rarefaction plot
+# (PART\*) Analysis {-}
+
+# Sequencing depth evaluation: rarefaction plot {#rarefaction}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ``` 
@@ -1013,7 +1022,7 @@ How do we know that the very exact number of 34,583 will keep all the samples? L
 
 <!--chapter:end:12-Rarefaction.Rmd-->
 
-# Diversity analysis
+# Diversity analysis {#diversity}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ``` 
@@ -1140,7 +1149,7 @@ __Questions__:
 
 <!--chapter:end:13-Diversity_analysis.Rmd-->
 
-# Differential abundance analysis
+# Differential abundance analysis {#differential}
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 
@@ -1222,7 +1231,7 @@ __Questions__:
 
 <!--chapter:end:14-Differential_abundance.Rmd-->
 
-# Final consideration
+# Final consideration {#final}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ``` 
@@ -1244,6 +1253,8 @@ __CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!__
 If you have still time available you can move onto the Supplemental bookdown.
 
 <!--chapter:end:15-Final_consideration.Rmd-->
+
+# (APPENDIX) Appendix {-}
 
 # Resources
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1384,9 +1395,9 @@ Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2
 
 <!--chapter:end:16-Resources.Rmd-->
 
-# Appendix
+# Diversity metrics
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/appendix.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
 ``` 
 
 ## Alpha diversity metrics
