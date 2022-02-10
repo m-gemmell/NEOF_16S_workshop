@@ -96,7 +96,7 @@ The following picture shows how DADA2 (an ASV method) and OTU processes compare 
 knitr::include_graphics(path = "figures/ASC_otu_comparison.png", auto_pdf = TRUE)
 ``` 
 
-Much of the work involved in analysis of amplicon-based metagenomic data is that of separating true variants from errors introduced by sequencing. These errors include miscalling of nucleotides and the generation of chimeric sequences.
+Much of the work involved in the analysis of amplicon-based metagenomic data is that of separating true variants from errors introduced by sequencing. These errors include miscalling of nucleotides and the generation of chimeric sequences.
 
 For sequencing purposes, an aliquot of PhiX phage DNA is added to each sample before sequencing, both DADA2 and deblur include a step aimed to exclude any PhiX associated reads. To remove PCR chimeric artefacts, a further filter step is applied by both. 
 

@@ -51,15 +51,15 @@ One of the most common aims of metagenomic analyses is to quantify the compositi
 
 In the first approach, amplicons act as ‘tags’ identifying the different bacterial species present in the sample, which can be both identified and quantified to describe the composition of the bacterial community (also called _metagenetics_ or _metaprofiling_). In the second approach, whole genomes, rather than just representative amplicons, are sequenced (_shotgun metagenomics_). This DNA can be assembled, or the source of the reads can be identified and quantified in a broadly similar way to 16S analysis.
 
-In this workshop, we will analyse amplicon sequencing data, obtained by amplification of the variable region 4 of the 16S gene, using primer 515FB-806RB (Caporaso _et al_, 2011). The sequences were obtained from the Illumina MiSeq platform, 2x250bp reads, and the analysis process will be based on the software package QIIME2 ("Quantitative Insights Into Microbial Ecology", https://qiime2.org). We will explore the bacterial populations sampled at various locations in the Bioscience building: toilets and corridors from different floors.
+In this workshop, we will analyse amplicon sequencing data, obtained by amplification of the variable region 4 of the 16S gene, using primer 515FB-806RB (Caporaso _et al_, 2011). The sequences were obtained from the Illumina MiSeq platform, 2x250bp reads, and the analysis process will be based on the software package QIIME2 ("Quantitative Insights Into Microbial Ecology", https://qiime2.org). We will explore the bacterial populations sampled at various locations in the University of Liverpool's Bioscience building: toilets and corridors from different floors.
 
 ## 16S rRNA
 
 16S ribosomal RNA is a structural RNA which is a component of the prokaryotic ribosome. Ribosomes are the site of protein synthesis, therefore all prokaryotes have at least a 16S rRNA gene that codes for the 16S ribosomal RNA.
 
-The 16S rRNA gene is utilised in reconstructing phylogenies due to its slow rate of evolution, its size and its functional constancy. If the function of 16S rRNA changed then the cell could not synthesise protein correctly and so will not survive.
+The 16S rRNA gene is utilised in reconstructing phylogenies due to its slow rate of evolution, its size and its functional constancy. If the function of 16S rRNA changed then the cell could not synthesise proteins correctly and so will not survive.
 
-The 16S rRNA gene is ~1,500bp long and is made up of 9 variable regions separated by conserved regions. The variable regions evolve at a faster rate allowing differentiation between bacterial taxa. The conserved regions evolve at a slower rate which allows areas to carry out universal amplification on the gene. The nine variable regions are generally called V1, V2, V3 etc.
+The 16S rRNA gene is ~1,500bp long and consists of 9 variable regions separated by conserved regions. The variable regions evolve at a faster rate allowing differentiation between bacterial taxa. The conserved regions evolve at a slower rate which allows areas to carry out universal amplification on the gene. The nine variable regions are generally called V1, V2, V3 etc.
 
 ```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
 knitr::include_graphics(path = "figures/16srna.png", auto_pdf = TRUE)
@@ -88,7 +88,7 @@ On the negative side, there are many steps which may potentially introduce biase
 
 - Experimental design, sampling, storage and DNA extraction methods are known to potentially reduce the initial bacterial population processed and sequenced. 
 - Any reagent used may add exogenous bacterial population to the samples (potentially contaminating or changing the initial bacterial amount).
-- Several papers discuss how the PCR protocol used for the amplification of the DNA material may affect the final results (such as the creation of chimeric sequences or by preferentially amplifying some bacterial). 
+- Several papers discuss how the PCR protocol used for the amplification of the DNA material may affect the final results (such as the creation of chimeric sequences or by preferentially amplifying certain bacterial species). 
 - The choice of sequencing platform may result in the identification of different species in the same samples by having its own characteristic error-profile.
 - From the bioinformatics perspective, the length of the sequences, and the pipeline used for the analysis are also able to add variability to the final results.
 - The identification of the species in the samples can be affected by the quality and completeness of the database used for the analysis. Additionally, it may become less precise at lower taxonomy levels such as ‘genus’ and ‘species’ (Hugerth and Andersson, 2017).
@@ -207,7 +207,7 @@ The following picture shows how DADA2 (an ASV method) and OTU processes compare 
 knitr::include_graphics(path = "figures/ASC_otu_comparison.png", auto_pdf = TRUE)
 ``` 
 
-Much of the work involved in analysis of amplicon-based metagenomic data is that of separating true variants from errors introduced by sequencing. These errors include miscalling of nucleotides and the generation of chimeric sequences.
+Much of the work involved in the analysis of amplicon-based metagenomic data is that of separating true variants from errors introduced by sequencing. These errors include miscalling of nucleotides and the generation of chimeric sequences.
 
 For sequencing purposes, an aliquot of PhiX phage DNA is added to each sample before sequencing, both DADA2 and deblur include a step aimed to exclude any PhiX associated reads. To remove PCR chimeric artefacts, a further filter step is applied by both. 
 
@@ -358,7 +358,7 @@ mkdir Metagenetics
 #Change directory to "Metagenetics"
 cd Metagenetics
 #Copy the contents of a directory to your current directory
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_5/* .
+cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_5/* .
 ```
 
 Look at the contents of your current directory and then continue reading for explantions on their contents.
@@ -414,12 +414,12 @@ The first 2 rows must be:
 
 1. Headers
    - Name of metadata fields.
-   - These are chosen by the user (except the sample-id column). Make sure to these are informative and concise.
+   - These are chosen by the user (except the sample-id column). Make sure to make these are informative and concise.
    - We suggest to only use letters and not to use spaces.
 2. Column type
    - The value "#q2:types" must be used for the 1st column.
    - For all other columns the value must be:
-      - "categorical": For catergorical metadata.This will be the most common choice.
+      - "categorical": For categorical metadata.This will be the most common choice.
       - "numeric": For numerical metadata. 
       
 Have a look at the top 10 lines of the metadata file:
@@ -622,8 +622,8 @@ qiime dada2 denoise-paired \
 This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
 
 ```{bash, eval=FALSE}
-#Copy the files from the specified directory your working directory
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
+#Copy the files from the specified directory to your working directory
+cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 ```
 
 Through the above command you will now have the following three files:

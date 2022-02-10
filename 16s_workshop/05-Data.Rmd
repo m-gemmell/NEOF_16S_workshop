@@ -13,7 +13,7 @@ mkdir Metagenetics
 #Change directory to "Metagenetics"
 cd Metagenetics
 #Copy the contents of a directory to your current directory
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_5/* .
+cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_5/* .
 ```
 
 Look at the contents of your current directory and then continue reading for explantions on their contents.
@@ -69,12 +69,12 @@ The first 2 rows must be:
 
 1. Headers
    - Name of metadata fields.
-   - These are chosen by the user (except the sample-id column). Make sure to these are informative and concise.
+   - These are chosen by the user (except the sample-id column). Make sure to make these are informative and concise.
    - We suggest to only use letters and not to use spaces.
 2. Column type
    - The value "#q2:types" must be used for the 1st column.
    - For all other columns the value must be:
-      - "categorical": For catergorical metadata.This will be the most common choice.
+      - "categorical": For categorical metadata.This will be the most common choice.
       - "numeric": For numerical metadata. 
       
 Have a look at the top 10 lines of the metadata file:

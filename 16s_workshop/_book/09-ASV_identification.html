@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2022-02-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="08-Trim_PCR_sequences.html"/>
 <link rel="next" href="10-Taxonomic_assignment.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -291,8 +291,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-11"><a href="09-ASV_identification.html#cb11-11" aria-hidden="true" tabindex="-1"></a>--o-denoising-stats dada2-stats.qza <span class="dt">\</span></span>
 <span id="cb11-12"><a href="09-ASV_identification.html#cb11-12" aria-hidden="true" tabindex="-1"></a>--verbose</span></code></pre></div>
 <p>This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="09-ASV_identification.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Copy the files from the specified directory your working directory</span></span>
-<span id="cb12-2"><a href="09-ASV_identification.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_9/<span class="pp">*</span> ~/Metagenetics</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="09-ASV_identification.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Copy the files from the specified directory to your working directory</span></span>
+<span id="cb12-2"><a href="09-ASV_identification.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/nsc006/NEOF/16s_workshop/chapter_9/<span class="pp">*</span> ~/Metagenetics</span></code></pre></div>
 <p>Through the above command you will now have the following three files:</p>
 <ul>
 <li><code>rep-seqs-dada2.qza</code>: Artifact containing the identified sequence variants.</li>
@@ -408,7 +408,6 @@ Next we’ll look at the denoising stats. Run the following command.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -435,6 +434,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

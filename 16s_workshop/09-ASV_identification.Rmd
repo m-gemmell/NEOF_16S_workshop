@@ -29,8 +29,8 @@ qiime dada2 denoise-paired \
 This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
 
 ```{bash, eval=FALSE}
-#Copy the files from the specified directory your working directory
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
+#Copy the files from the specified directory to your working directory
+cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 ```
 
 Through the above command you will now have the following three files:

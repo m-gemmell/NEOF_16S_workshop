@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Background | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Background | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2022-02-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="01-Bacterial_16S_metabarcoding.html"/>
 <link rel="next" href="03-Intro_to_qiime2.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -276,12 +276,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/background.png" width="20%" style="display: block; margin: auto;" />
 One of the most common aims of metagenomic analyses is to quantify the composition and diversity of a community (usually a community of prokaryotes). This can be done in several ways. A common approach is high-throughput amplicon sequencing, usually of a region of the bacterial 16S SSU rRNA gene. Another approach is shotgun metagenomic sequencing, where the whole genomic content of a sample is sequenced.</p>
 <p>In the first approach, amplicons act as ‘tags’ identifying the different bacterial species present in the sample, which can be both identified and quantified to describe the composition of the bacterial community (also called <em>metagenetics</em> or <em>metaprofiling</em>). In the second approach, whole genomes, rather than just representative amplicons, are sequenced (<em>shotgun metagenomics</em>). This DNA can be assembled, or the source of the reads can be identified and quantified in a broadly similar way to 16S analysis.</p>
-<p>In this workshop, we will analyse amplicon sequencing data, obtained by amplification of the variable region 4 of the 16S gene, using primer 515FB-806RB (Caporaso <em>et al</em>, 2011). The sequences were obtained from the Illumina MiSeq platform, 2x250bp reads, and the analysis process will be based on the software package QIIME2 (“Quantitative Insights Into Microbial Ecology,” <a href="https://qiime2.org" class="uri">https://qiime2.org</a>). We will explore the bacterial populations sampled at various locations in the Bioscience building: toilets and corridors from different floors.</p>
+<p>In this workshop, we will analyse amplicon sequencing data, obtained by amplification of the variable region 4 of the 16S gene, using primer 515FB-806RB (Caporaso <em>et al</em>, 2011). The sequences were obtained from the Illumina MiSeq platform, 2x250bp reads, and the analysis process will be based on the software package QIIME2 (“Quantitative Insights Into Microbial Ecology,” <a href="https://qiime2.org" class="uri">https://qiime2.org</a>). We will explore the bacterial populations sampled at various locations in the University of Liverpool’s Bioscience building: toilets and corridors from different floors.</p>
 <div id="s-rrna" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> 16S rRNA</h2>
 <p>16S ribosomal RNA is a structural RNA which is a component of the prokaryotic ribosome. Ribosomes are the site of protein synthesis, therefore all prokaryotes have at least a 16S rRNA gene that codes for the 16S ribosomal RNA.</p>
-<p>The 16S rRNA gene is utilised in reconstructing phylogenies due to its slow rate of evolution, its size and its functional constancy. If the function of 16S rRNA changed then the cell could not synthesise protein correctly and so will not survive.</p>
-<p>The 16S rRNA gene is ~1,500bp long and is made up of 9 variable regions separated by conserved regions. The variable regions evolve at a faster rate allowing differentiation between bacterial taxa. The conserved regions evolve at a slower rate which allows areas to carry out universal amplification on the gene. The nine variable regions are generally called V1, V2, V3 etc.</p>
+<p>The 16S rRNA gene is utilised in reconstructing phylogenies due to its slow rate of evolution, its size and its functional constancy. If the function of 16S rRNA changed then the cell could not synthesise proteins correctly and so will not survive.</p>
+<p>The 16S rRNA gene is ~1,500bp long and consists of 9 variable regions separated by conserved regions. The variable regions evolve at a faster rate allowing differentiation between bacterial taxa. The conserved regions evolve at a slower rate which allows areas to carry out universal amplification on the gene. The nine variable regions are generally called V1, V2, V3 etc.</p>
 <p><img src="figures/16srna.png" width="60%" style="display: block; margin: auto;" />
 Secondary structure of 16S rRNA of Esherichia coli (Yarza <em>et al</em>, 2014)</p>
 </div>
@@ -304,7 +304,7 @@ It is very common to perform analysis with marker genes other than 16S, e.g. to
 <ul>
 <li>Experimental design, sampling, storage and DNA extraction methods are known to potentially reduce the initial bacterial population processed and sequenced.</li>
 <li>Any reagent used may add exogenous bacterial population to the samples (potentially contaminating or changing the initial bacterial amount).</li>
-<li>Several papers discuss how the PCR protocol used for the amplification of the DNA material may affect the final results (such as the creation of chimeric sequences or by preferentially amplifying some bacterial).</li>
+<li>Several papers discuss how the PCR protocol used for the amplification of the DNA material may affect the final results (such as the creation of chimeric sequences or by preferentially amplifying certain bacterial species).</li>
 <li>The choice of sequencing platform may result in the identification of different species in the same samples by having its own characteristic error-profile.</li>
 <li>From the bioinformatics perspective, the length of the sequences, and the pipeline used for the analysis are also able to add variability to the final results.</li>
 <li>The identification of the species in the samples can be affected by the quality and completeness of the database used for the analysis. Additionally, it may become less precise at lower taxonomy levels such as ‘genus’ and ‘species’ (Hugerth and Andersson, 2017).</li>
@@ -335,7 +335,6 @@ Above shows a representation of amplicon sequencing.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -362,6 +361,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
