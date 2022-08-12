@@ -616,33 +616,37 @@ knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 
 Before we can work with our data in QIIME2 we need to import the data into a QIIME2 artifact.
 
-## Import read data
+## Import: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
+``` 
 
 Import our read pairs into a QIIME2 artifact.
 
 __Note__: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.
 
 ```{bash, eval=FALSE}
-qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
- --input-path PairedEndFastqManifestPhred33.csv \
- --output-path paired-end-demux.qza \
- --input-format PairedEndFastqManifestPhred33
+qiime tools import \
+--type 'SampleData[PairedEndSequencesWithQuality]' \
+--input-path PairedEndFastqManifestPhred33.csv \
+--output-path paired-end-demux.qza \
+--input-format PairedEndFastqManifestPhred33
 ```
 
 __Parameters__
 
-- `--type`: The type of data being imported.
+- __`--type`__: The type of data being imported.
   - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contain quality. I.e. normal Illumina paired end fastq data.
-- `--input-path`: The input [manifest file](#manifestfile)
-- `--output-path`: Output QIIME2 artifact file contiang your sequence data.
+- __`--input-path`__: The input [manifest file](#manifestfile)
+- __`--output-path`__: Output QIIME2 artifact file contiang your sequence data.
   - The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). 
   - QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
-- `--input-format`: The format of the input files.
+- __`--input-format`__: The format of the input files.
   - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encodin can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
-More information can be found on the following QIIME2 page: https://docs.qiime2.org/2022.2/tutorials/importing/
+[QIIME2 docs on importing data](https://docs.qiime2.org/2022.2/tutorials/importing/)
 
-__Note__: This link may be out of date and the below will appear:
+__Note__: All the QIIME2 links may be out of date and the below will appear:
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2_website_out_of_date.png", auto_pdf = TRUE)
 ``` 
@@ -654,22 +658,25 @@ You can then click the version box on the top left (above the table of contents,
 knitr::include_graphics(path = "figures/qiime2_version_box.png", auto_pdf = TRUE)
 ``` 
 
-## Visualise imported read data
+## Import: visualise {#chap7_vis}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/view.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
 ``` 
 
 To visualise the samples loaded, the following command will create a visualisation artifact.
 
 ```{bash, eval=FALSE}
-qiime demux summarize --i-data paired-end-demux.qza \
+qiime demux summarize \
+--i-data paired-end-demux.qza \
 --o-visualization paired-end-demux.qzv
 ```
 
 __Parameters__
 
-- `--i-data`: Input data artifact (`.qza`) to be summarised and visualised.
-- `--o-visualization`: Output visualisation artifact (`qzv`).
+- __`--i-data`__: Input data artifact (`.qza`) to be summarised and visualised.
+- __`--o-visualization`__: Output visualisation artifact (`qzv`).
+
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2022.2/plugins/available/demux/summarize/)
 
 __Chrome__
 
@@ -728,7 +735,17 @@ opts_p <- c("1TM", "3K2E", answer="3K1M")
 opts_p <- c(answer="1TM", "3K2E", "3k1M")
 ```
 5. Which sample has 86,083 forward reads? `r longmcq(opts_p)`
- 
+
+```{r, echo = FALSE}
+opts_p <- c(answer="TRUE", "FALSE")
+```
+6. Most of the read quality for the forward reads is above Q30? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="TRUE", "FALSE")
+```
+7. Most of the read quality for the reverse reads is above Q30? `r longmcq(opts_p)`
+
 ## Import: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
@@ -762,25 +779,50 @@ knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 
 Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
 
+## Cutadapt: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_black.png", auto_pdf = TRUE)
+``` 
+
 We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2.
 
-__Note__: You can copy and paste the forward and reverse primer from the fasta file "primers_seqs.fasta"
+__Note__: You can copy and paste (using right click) the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
 ```{bash, eval=FALSE}
-qiime cutadapt trim-paired --i-demultiplexed-sequences paired-end-demux.qza \
- # Forward primer
- --p-front-f NNNNNGTGCCAGCMGCCGCGGTAA \
- # Reverse primer
- --p-front-r GGACTACHVGGGTWTCTAAT \
+#Print primer sequences to screen for copying and poasting
+cat primers_seqs.fasta
+
+#Run cutadapt comman
+qiime cutadapt trim-paired \
+--i-demultiplexed-sequences paired-end-demux.qza \
+--p-front-f NNNNNGTGCCAGCMGCCGCGGTAA \
+--p-front-r GGACTACHVGGGTWTCTAAT \
 --o-trimmed-sequences paired-end-demux.trim.qza
 ```
 
-To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact.
+__Parameters__
+
+- __`--i-demultiplexed-sequences`__: The input demultiplexed sequence artifact.
+- __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
+- __`--p-front-r`__: Sequence for the reverse primer (`r``). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
+- __`--o-trimmed-sequences`__: The output artificat containing the trimmed sequence data.
+
+[QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2022.2/plugins/available/cutadapt/trim-paired/)
+
+## Cutadapt: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_brown.png", auto_pdf = TRUE)
+``` 
+
+To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact. This is the same visualisation command as in [chapter 7](#chap7_vis) with different a different input and output.
 
 ```{bash, eval=FALSE}
-qiime demux summarize --i-data paired-end-demux.trim.qza \
+qiime demux summarize \
+--i-data paired-end-demux.trim.qza \
 --o-visualization paired-end-demux.trim.qzv
 ```
+
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2022.2/plugins/available/demux/summarize/)
 
 Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’ website.
 
@@ -792,13 +834,42 @@ If you are working with the ITS region, to trim off the conserved regions from t
 
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 
-__Questions__: 
+## Cutadapt: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
+```
 
-- Are the sequences evenly distributed across samples?
-- Which sample has the lowest number of sequences? 
-- What is the average sequence count per sample? 
-- How is the overall quality for the sequences? 
-- Which truncating lengths would you chose for R1 and R2? This choice is based on the quality across the length of the read (looking for when quality dips) plus the total length of our V4 amplicon.
+```{r, echo = FALSE}
+opts_p <- c("1TE", "2K2E", answer="3K1E")
+```
+1. which sample has the lowest number of forward reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("1TE", answer="2K2E", "3K1E")
+```
+2. Which sample has the highest number of forward reads? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("<200", "200-220", answer=">220")
+```
+3. Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("<200", "200-220", answer=">220")
+```
+4. Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="226", "230", "250")
+```
+5. What is the median length of the forward reads?
+
+## Cutadapt: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
+```
+
+We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=230. This is expected. We have alos kept a good amount of reads and the quality looks good so we can move to denoising.
 
 <!--chapter:end:08-Trim_PCR_sequences.Rmd-->
 
@@ -826,18 +897,19 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 ``` 
 
-We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. 
+We will use DADA2 to denoise and identify the amplicon sequence variants (ASVs) among all the samples. 
 
-## DADA2 denoising
+## DADA2: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
+``` 
 
-To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
+To perform the variant sequence identification step with DADA2, the command is (__don't run this command, see below command__):
 
 ```{bash, eval=FALSE}
 qiime dada2 denoise-paired \
 --i-demultiplexed-seqs paired-end-demux.trim.qza \
-# Truncates R1 sequences after the 220 nt length
 --p-trunc-len-f 220 \
-# Truncates R2 sequences after the 220 nt length
 --p-trunc-len-r 220 \
 # Object containing the identified sequence variants
 --o-representative-sequences rep-seqs-dada2.qza \
@@ -847,7 +919,28 @@ qiime dada2 denoise-paired \
 --verbose
 ```
 
-This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
+#### Parameters {-}
+
+- __`--i-demultiplexed-seqs`__: Input artifact file containing the trimmed demultiplexed sequences.
+- __`--p-trunc-len-f`__: This will truncate (trim) the forward sequences to retain only the first `220` bases.
+- __`--p-trunc-len-r`__: This will truncate (trim) the reverse sequences to retain only the first `220` bases.
+- __`--o-representative-sequences`__: Output artifact containing the identified sequence variants.
+- __`--o-table`__: Output artifact containing the abundance table for the identified variants.
+- __`--o-denoising-stats`__: Output artifact containing the sequence numbers pre- and post- trimming and denoising.
+- __`--verbose`__: Causes command to display verbose output to screen.
+
+[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2022.2/plugins/available/dada2/denoise-paired/)
+
+#### Truncation length {-}
+
+We chose `220` for `--p-trunc-len-f` & `--p-trunc-len-r` as the read quality was very good up to the 220 bp position for both the forward and reverse reads.
+Additionally, our amplicon length is ~291bp. The combined length of our forward and reverse reads is 440bp, therefore we would have an overlap greater than 100bp which is very good (440 - 291 = 149bp).
+
+As a reminder we are using the primer 515FB-806RB for the V4 16S rRNA gene. The name 515FB-806RB represents the location within an __E.coli__ 16S gene that the primers will hit (515 for the forward, 806 for the reverse). Therefore the amplicon length for __E.coli__ will be 806 - 515 = 291bp. As with all genes this size will vary in length across all the bacterial taxa but only by a few base pairs.
+
+#### Copy DADA2 output {-}
+
+The command will take a long time, so stop the command (ctrl+c), if you started it, and copy the final output files, which have been previously made, to your current directory:
 
 ```{bash, eval=FALSE}
 #Copy the files from the specified directory to your working directory
@@ -860,13 +953,15 @@ Through the above command you will now have the following three files:
 - `tabledada2.qza`: Artifact containing the ASV abundance table. 
 - `dada2-stats.qza`: Artifact which summarises the statistics after the denoising steps.
 
+#### DADA2 considerations {-}
+
 This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
-## Visualise DADA2 output
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/qiime2view.png", auto_pdf = TRUE)
+## DADA2: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
 ``` 
 
 ### table-dada2.qzv

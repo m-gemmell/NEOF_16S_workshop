@@ -5,18 +5,19 @@
 knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 ``` 
 
-We will use DADA2 to identify the amplicon sequence variants (ASVs) among all the samples. 
+We will use DADA2 to denoise and identify the amplicon sequence variants (ASVs) among all the samples. 
 
-## DADA2 denoising
+## DADA2: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
+``` 
 
-To perform the variant sequence identification step with DADA2, the command is (don't run this command, see below command):
+To perform the variant sequence identification step with DADA2, the command is (__don't run this command, see below command__):
 
 ```{bash, eval=FALSE}
 qiime dada2 denoise-paired \
 --i-demultiplexed-seqs paired-end-demux.trim.qza \
-# Truncates R1 sequences after the 220 nt length
 --p-trunc-len-f 220 \
-# Truncates R2 sequences after the 220 nt length
 --p-trunc-len-r 220 \
 # Object containing the identified sequence variants
 --o-representative-sequences rep-seqs-dada2.qza \
@@ -26,7 +27,28 @@ qiime dada2 denoise-paired \
 --verbose
 ```
 
-This step will take a long time, so stop the command (ctrl+c) and copy the final output files, which have been previously made, to your current directory:
+#### Parameters {-}
+
+- __`--i-demultiplexed-seqs`__: Input artifact file containing the trimmed demultiplexed sequences.
+- __`--p-trunc-len-f`__: This will truncate (trim) the forward sequences to retain only the first `220` bases.
+- __`--p-trunc-len-r`__: This will truncate (trim) the reverse sequences to retain only the first `220` bases.
+- __`--o-representative-sequences`__: Output artifact containing the identified sequence variants.
+- __`--o-table`__: Output artifact containing the abundance table for the identified variants.
+- __`--o-denoising-stats`__: Output artifact containing the sequence numbers pre- and post- trimming and denoising.
+- __`--verbose`__: Causes command to display verbose output to screen.
+
+[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2022.2/plugins/available/dada2/denoise-paired/)
+
+#### Truncation length {-}
+
+We chose `220` for `--p-trunc-len-f` & `--p-trunc-len-r` as the read quality was very good up to the 220 bp position for both the forward and reverse reads.
+Additionally, our amplicon length is ~291bp. The combined length of our forward and reverse reads is 440bp, therefore we would have an overlap greater than 100bp which is very good (440 - 291 = 149bp).
+
+As a reminder we are using the primer 515FB-806RB for the V4 16S rRNA gene. The name 515FB-806RB represents the location within an __E.coli__ 16S gene that the primers will hit (515 for the forward, 806 for the reverse). Therefore the amplicon length for __E.coli__ will be 806 - 515 = 291bp. As with all genes this size will vary in length across all the bacterial taxa but only by a few base pairs.
+
+#### Copy DADA2 output {-}
+
+The command will take a long time, so stop the command (ctrl+c), if you started it, and copy the final output files, which have been previously made, to your current directory:
 
 ```{bash, eval=FALSE}
 #Copy the files from the specified directory to your working directory
@@ -39,13 +61,15 @@ Through the above command you will now have the following three files:
 - `tabledada2.qza`: Artifact containing the ASV abundance table. 
 - `dada2-stats.qza`: Artifact which summarises the statistics after the denoising steps.
 
+#### DADA2 considerations {-}
+
 This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
-## Visualise DADA2 output
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/qiime2view.png", auto_pdf = TRUE)
+## DADA2: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
 ``` 
 
 ### table-dada2.qzv
