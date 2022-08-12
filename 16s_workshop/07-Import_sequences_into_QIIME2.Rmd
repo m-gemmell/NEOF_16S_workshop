@@ -5,7 +5,11 @@
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
 
-Now it is time to import our read pairs into a QIIME2 artifact.
+Before we can work with our data in QIIME2 we need to import the data into a QIIME2 artifact.
+
+## Import read data
+
+Import our read pairs into a QIIME2 artifact.
 
 __Note__: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.
 
@@ -15,10 +19,36 @@ qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
  --output-path paired-end-demux.qza \
  --input-format PairedEndFastqManifestPhred33
 ```
- 
-This command will use the information contained in the ‘manifest file’ to create the ‘paired-end-demux.qza’. 
 
-The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). Additionally, QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
+__Parameters__
+
+- `--type`: The type of data being imported.
+  - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contain quality. I.e. normal Illumina paired end fastq data.
+- `--input-path`: The input [manifest file](#manifestfile)
+- `--output-path`: Output QIIME2 artifact file contiang your sequence data.
+  - The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). 
+  - QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
+- `--input-format`: The format of the input files.
+  - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encodin can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
+ 
+More information can be found on the following QIIME2 page: https://docs.qiime2.org/2022.2/tutorials/importing/
+
+__Note__: This link may be out of date and the below will appear:
+```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+knitr::include_graphics(path = "figures/qiime2_website_out_of_date.png", auto_pdf = TRUE)
+``` 
+
+If this occurs click "Show me the content on this page".
+
+You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/qiime2_version_box.png", auto_pdf = TRUE)
+``` 
+
+## Visualise imported read data
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/view.png", auto_pdf = TRUE)
+``` 
 
 To visualise the samples loaded, the following command will create a visualisation artifact.
 
@@ -26,6 +56,11 @@ To visualise the samples loaded, the following command will create a visualisati
 qiime demux summarize --i-data paired-end-demux.qza \
 --o-visualization paired-end-demux.qzv
 ```
+
+__Parameters__
+
+- `--i-data`: Input data artifact (`.qza`) to be summarised and visualised.
+- `--o-visualization`: Output visualisation artifact (`qzv`).
 
 __Chrome__
 
@@ -55,10 +90,39 @@ The visualisation will have two tabs:
    - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
    - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
-__Questions__: 
+## Import: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
+```
 
-- Are the sequences evenly distributed across samples?
-- Which sample has the lowest number of sequences? 
-- Is there any sample with a low final number of sequences (<20k)? 
-- What is the mean sequence count per sample?
-- How is the overall quality for the sequences?
+```{r, echo = FALSE}
+opts_p <- c(answer="42,853", "126,670", "174,951")
+```
+1. What is the minimum number of forward reads across the samples? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("42,853", "126,670", answer="174,951")
+```
+2. What is the maximum number of forward reads across the samples? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("42,853", answer="126,670", "174,951")
+```
+3. What is the mean number of forward reads across the samples? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("1TM", "3K2E", answer="3K1M")
+```
+4. Which sample has 134,737 forward reads? `r longmcq(opts_p)`
+ 
+```{r, echo = FALSE}
+opts_p <- c(answer="1TM", "3K2E", "3k1M")
+```
+5. Which sample has 86,083 forward reads? `r longmcq(opts_p)`
+ 
+## Import: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
+```
+
+We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need aymore.

@@ -17,6 +17,9 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 8. Differential abundance analysis of ASVs across different conditions
 
 ## Activate environment
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+``` 
 You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
 
 __Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2021.2`

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Introduction to QIIME2 | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Introduction to QIIME2 | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-03-14" />
+<meta name="date" content="2022-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="02-Background.html"/>
 <link rel="next" href="04-Cluster_Introduction.html"/>
-<script src="libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -123,6 +121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="www/webex.css" type="text/css" />
 </head>
 
 <body>
@@ -139,118 +138,124 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a>16S metabarcoding</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="01-Bacterial_16S_metabarcoding.html"><a href="01-Bacterial_16S_metabarcoding.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a></li>
-<li class="chapter" data-level="2" data-path="02-Background.html"><a href="02-Background.html"><i class="fa fa-check"></i><b>2</b> Background<span></span></a>
+<li class="chapter" data-level="1" data-path="01-Bacterial_16S_metabarcoding.html"><a href="01-Bacterial_16S_metabarcoding.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="02-Background.html"><a href="02-Background.html"><i class="fa fa-check"></i><b>2</b> Background</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="02-Background.html"><a href="02-Background.html#s-rrna"><i class="fa fa-check"></i><b>2.1</b> 16S rRNA<span></span></a></li>
-<li class="chapter" data-level="2.2" data-path="02-Background.html"><a href="02-Background.html#its-and-other-possible-marker-genes"><i class="fa fa-check"></i><b>2.2</b> ITS and other possible marker genes<span></span></a></li>
-<li class="chapter" data-level="2.3" data-path="02-Background.html"><a href="02-Background.html#amplicon-sequencing"><i class="fa fa-check"></i><b>2.3</b> Amplicon sequencing<span></span></a></li>
+<li class="chapter" data-level="2.1" data-path="02-Background.html"><a href="02-Background.html#s-rrna"><i class="fa fa-check"></i><b>2.1</b> 16S rRNA</a></li>
+<li class="chapter" data-level="2.2" data-path="02-Background.html"><a href="02-Background.html#its-and-other-possible-marker-genes"><i class="fa fa-check"></i><b>2.2</b> ITS and other possible marker genes</a></li>
+<li class="chapter" data-level="2.3" data-path="02-Background.html"><a href="02-Background.html#amplicon-sequencing"><i class="fa fa-check"></i><b>2.3</b> Amplicon sequencing</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html"><i class="fa fa-check"></i><b>3</b> Introduction to QIIME2<span></span></a>
+<li class="chapter" data-level="3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html"><i class="fa fa-check"></i><b>3</b> Introduction to QIIME2</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#artifacts"><i class="fa fa-check"></i><b>3.1</b> Artifacts<span></span></a></li>
-<li class="chapter" data-level="3.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#workflow"><i class="fa fa-check"></i><b>3.2</b> Workflow<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#prepare-the-sequence-dataset"><i class="fa fa-check"></i><b>3.3</b> Prepare the sequence dataset<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#amplicon-sequence-variants-identification"><i class="fa fa-check"></i><b>3.4</b> Amplicon Sequence Variants identification<span></span></a>
+<li class="chapter" data-level="3.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#artifacts"><i class="fa fa-check"></i><b>3.1</b> Artifacts</a></li>
+<li class="chapter" data-level="3.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#workflow"><i class="fa fa-check"></i><b>3.2</b> Workflow</a></li>
+<li class="chapter" data-level="3.3" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#prepare-the-sequence-dataset"><i class="fa fa-check"></i><b>3.3</b> Prepare the sequence dataset</a></li>
+<li class="chapter" data-level="3.4" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#amplicon-sequence-variants-identification"><i class="fa fa-check"></i><b>3.4</b> Amplicon Sequence Variants identification</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#otus"><i class="fa fa-check"></i><b>3.4.1</b> OTUs<span></span></a></li>
-<li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#otus"><i class="fa fa-check"></i><b>3.4.1</b> OTUs</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#asvs"><i class="fa fa-check"></i><b>3.4.2</b> ASVs</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV<span></span></a></li>
-<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#phylogenetic-tree-creation"><i class="fa fa-check"></i><b>3.6</b> Phylogenetic tree creation<span></span></a></li>
-<li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation<span></span></a></li>
-<li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity<span></span></a></li>
-<li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity<span></span></a></li>
-<li class="chapter" data-level="3.10" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#differential-abundance-analysis"><i class="fa fa-check"></i><b>3.10</b> Differential Abundance Analysis<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#assign-a-taxonomic-classification-to-each-asv"><i class="fa fa-check"></i><b>3.5</b> Assign a taxonomic classification to each ASV</a></li>
+<li class="chapter" data-level="3.6" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#phylogenetic-tree-creation"><i class="fa fa-check"></i><b>3.6</b> Phylogenetic tree creation</a></li>
+<li class="chapter" data-level="3.7" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#data-normalisation"><i class="fa fa-check"></i><b>3.7</b> Data normalisation</a></li>
+<li class="chapter" data-level="3.8" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#alpha-diversity"><i class="fa fa-check"></i><b>3.8</b> Alpha-diversity</a></li>
+<li class="chapter" data-level="3.9" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#beta-diversity"><i class="fa fa-check"></i><b>3.9</b> Beta-diversity</a></li>
+<li class="chapter" data-level="3.10" data-path="03-Intro_to_qiime2.html"><a href="03-Intro_to_qiime2.html#differential-abundance-analysis"><i class="fa fa-check"></i><b>3.10</b> Differential Abundance Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html"><i class="fa fa-check"></i><b>4</b> Cluster Introduction<span></span></a>
+<li class="chapter" data-level="4" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html"><i class="fa fa-check"></i><b>4</b> Cluster Introduction</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#logon-instructions"><i class="fa fa-check"></i><b>4.1</b> Logon instructions<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#the-terminal-window"><i class="fa fa-check"></i><b>4.2</b> The Terminal Window<span></span></a></li>
+<li class="chapter" data-level="4.1" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#logon-instructions"><i class="fa fa-check"></i><b>4.1</b> Logon instructions</a></li>
+<li class="chapter" data-level="4.2" data-path="04-Cluster_Introduction.html"><a href="04-Cluster_Introduction.html#the-terminal-window"><i class="fa fa-check"></i><b>4.2</b> The Terminal Window</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data<span></span></a>
+<li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#pairedendfastqmanifestphred33.csv"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv<span></span></a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt<span></span></a></li>
-<li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta<span></span></a></li>
+<li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#manifestfile"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow<span></span></a>
+<li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow<span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment<span></span></a></li>
+<li class="chapter" data-level="6.1" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#workflow-1"><i class="fa fa-check"></i><b>6.1</b> Workflow</a></li>
+<li class="chapter" data-level="6.2" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html#activate-environment"><i class="fa fa-check"></i><b>6.2</b> Activate environment</a></li>
 </ul></li>
-<li class="part"><span><b>Preprocessing of data<span></span></b></span></li>
-<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import<span></span></a></li>
-<li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences<span></span></a></li>
-<li class="part"><span><b>ASVs, Taxonomy, and phylogeny<span></span></b></span></li>
-<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification<span></span></a>
+<li class="part"><span><b>Preprocessing of data</b></span></li>
+<li class="chapter" data-level="7" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html"><i class="fa fa-check"></i><b>7</b> Sequence import</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#visualise-dada2-output"><i class="fa fa-check"></i><b>9.2</b> Visualise DADA2 output<span></span></a>
+<li class="chapter" data-level="7.1" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#import-read-data"><i class="fa fa-check"></i><b>7.1</b> Import read data</a></li>
+<li class="chapter" data-level="7.2" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#visualise-imported-read-data"><i class="fa fa-check"></i><b>7.2</b> Visualise imported read data</a></li>
+<li class="chapter" data-level="7.3" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#import-mcqs"><i class="fa fa-check"></i><b>7.3</b> Import: MCQs</a></li>
+<li class="chapter" data-level="7.4" data-path="07-Import_sequences_into_QIIME2.html"><a href="07-Import_sequences_into_QIIME2.html#import-summary"><i class="fa fa-check"></i><b>7.4</b> Import: summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="08-Trim_PCR_sequences.html"><a href="08-Trim_PCR_sequences.html"><i class="fa fa-check"></i><b>8</b> Trim the PCR primer sequences</a></li>
+<li class="part"><span><b>ASVs, Taxonomy, and phylogeny</b></span></li>
+<li class="chapter" data-level="9" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html"><i class="fa fa-check"></i><b>9</b> De-novo amplicon sequence variants identification</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#table-dada2.qzv"><i class="fa fa-check"></i><b>9.2.1</b> table-dada2.qzv<span></span></a></li>
-<li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv<span></span></a></li>
+<li class="chapter" data-level="9.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-denoising"><i class="fa fa-check"></i><b>9.1</b> DADA2 denoising</a></li>
+<li class="chapter" data-level="9.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#visualise-dada2-output"><i class="fa fa-check"></i><b>9.2</b> Visualise DADA2 output</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#table-dada2.qzv"><i class="fa fa-check"></i><b>9.2.1</b> table-dada2.qzv</a></li>
+<li class="chapter" data-level="9.2.2" data-path="09-ASV_identification.html"><a href="09-ASV_identification.html#dada2-stats.qzv"><i class="fa fa-check"></i><b>9.2.2</b> dada2-stats.qzv</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment<span></span></a>
+<li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database<span></span></a></li>
-<li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest<span></span></a></li>
-<li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training<span></span></a></li>
-<li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment<span></span></a></li>
-<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production<span></span></a></li>
+<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database</a></li>
+<li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
+<li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
+<li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Phylogenetic tree construction<span></span></a>
+<li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Phylogenetic tree construction</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE<span></span></a></li>
-<li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation<span></span></a></li>
+<li class="chapter" data-level="11.1" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#mafft-alignment"><i class="fa fa-check"></i><b>11.1</b> MAFFT alignment</a></li>
+<li class="chapter" data-level="11.2" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#masking"><i class="fa fa-check"></i><b>11.2</b> Masking</a></li>
+<li class="chapter" data-level="11.3" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree"><i class="fa fa-check"></i><b>11.3</b> Un-rooted tree creation with FASTTREE</a></li>
+<li class="chapter" data-level="11.4" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html#rooted-tree-creation"><i class="fa fa-check"></i><b>11.4</b> Rooted tree creation</a></li>
 </ul></li>
-<li class="part"><span><b>Analysis<span></span></b></span></li>
-<li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot<span></span></a>
+<li class="part"><span><b>Analysis</b></span></li>
+<li class="chapter" data-level="12" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html"><i class="fa fa-check"></i><b>12</b> Sequencing depth evaluation: rarefaction plot</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-visualisation"><i class="fa fa-check"></i><b>12.2</b> Rarefaction visualisation<span></span></a></li>
+<li class="chapter" data-level="12.1" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-command"><i class="fa fa-check"></i><b>12.1</b> Rarefaction command</a></li>
+<li class="chapter" data-level="12.2" data-path="12-Rarefaction.html"><a href="12-Rarefaction.html#rarefaction-visualisation"><i class="fa fa-check"></i><b>12.2</b> Rarefaction visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis<span></span></a>
+<li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#core-metrics-command"><i class="fa fa-check"></i><b>13.1</b> Core metrics command<span></span></a></li>
-<li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis<span></span></a></li>
-<li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis<span></span></a></li>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#core-metrics-command"><i class="fa fa-check"></i><b>13.1</b> Core metrics command</a></li>
+<li class="chapter" data-level="13.2" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#alpha-diveristy-statistical-analysis"><i class="fa fa-check"></i><b>13.2</b> Alpha diveristy statistical analysis</a></li>
+<li class="chapter" data-level="13.3" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#beta-diversity-statistical-analysis"><i class="fa fa-check"></i><b>13.3</b> Beta diversity statistical analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis<span></span></a>
+<li class="chapter" data-level="14" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html"><i class="fa fa-check"></i><b>14</b> Differential abundance analysis</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>14.1</b> Taxa collapse<span></span></a></li>
-<li class="chapter" data-level="14.2" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>14.2</b> Pseudo counts<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>14.3</b> ANCOM<span></span></a></li>
-<li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation<span></span></a></li>
+<li class="chapter" data-level="14.1" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>14.1</b> Taxa collapse</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>14.2</b> Pseudo counts</a></li>
+<li class="chapter" data-level="14.3" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>14.3</b> ANCOM</a></li>
+<li class="chapter" data-level="14.4" data-path="14-Differential_abundance.html"><a href="14-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>14.4</b> ANCOM visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration<span></span></a></li>
-<li class="appendix"><span><b>Appendix<span></span></b></span></li>
-<li class="chapter" data-level="A" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>A</b> Resources<span></span></a>
+<li class="chapter" data-level="15" data-path="15-Final_consideration.html"><a href="15-Final_consideration.html"><i class="fa fa-check"></i><b>15</b> Final consideration</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="16-Resources.html"><a href="16-Resources.html"><i class="fa fa-check"></i><b>A</b> Resources</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>A.1</b> Suggested readings<span></span></a></li>
-<li class="chapter" data-level="A.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>A.2</b> Other useful resources<span></span></a></li>
-<li class="chapter" data-level="A.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>A.3</b> References<span></span></a></li>
+<li class="chapter" data-level="A.1" data-path="16-Resources.html"><a href="16-Resources.html#suggested-readings"><i class="fa fa-check"></i><b>A.1</b> Suggested readings</a></li>
+<li class="chapter" data-level="A.2" data-path="16-Resources.html"><a href="16-Resources.html#other-useful-resources"><i class="fa fa-check"></i><b>A.2</b> Other useful resources</a></li>
+<li class="chapter" data-level="A.3" data-path="16-Resources.html"><a href="16-Resources.html#references"><i class="fa fa-check"></i><b>A.3</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>B</b> Diversity metrics<span></span></a>
+<li class="chapter" data-level="B" data-path="17-Appendix.html"><a href="17-Appendix.html"><i class="fa fa-check"></i><b>B</b> Diversity metrics</a>
 <ul>
-<li class="chapter" data-level="B.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>B.1</b> Alpha diversity metrics<span></span></a>
+<li class="chapter" data-level="B.1" data-path="17-Appendix.html"><a href="17-Appendix.html#alpha-diversity-metrics"><i class="fa fa-check"></i><b>B.1</b> Alpha diversity metrics</a>
 <ul>
-<li class="chapter" data-level="B.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>B.1.1</b> Observed features<span></span></a></li>
-<li class="chapter" data-level="B.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>B.1.2</b> Evenness<span></span></a></li>
-<li class="chapter" data-level="B.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>B.1.3</b> Faith’s PD (phylogenetic diversity)<span></span></a></li>
-<li class="chapter" data-level="B.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>B.1.4</b> Simpson<span></span></a></li>
-<li class="chapter" data-level="B.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>B.1.5</b> Simpson evenness measure (simpson_e)<span></span></a></li>
-<li class="chapter" data-level="B.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>B.1.6</b> Shannon<span></span></a></li>
+<li class="chapter" data-level="B.1.1" data-path="17-Appendix.html"><a href="17-Appendix.html#observed-features"><i class="fa fa-check"></i><b>B.1.1</b> Observed features</a></li>
+<li class="chapter" data-level="B.1.2" data-path="17-Appendix.html"><a href="17-Appendix.html#evenness"><i class="fa fa-check"></i><b>B.1.2</b> Evenness</a></li>
+<li class="chapter" data-level="B.1.3" data-path="17-Appendix.html"><a href="17-Appendix.html#faiths-pd-phylogenetic-diversity"><i class="fa fa-check"></i><b>B.1.3</b> Faith's PD (phylogenetic diversity)</a></li>
+<li class="chapter" data-level="B.1.4" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson"><i class="fa fa-check"></i><b>B.1.4</b> Simpson</a></li>
+<li class="chapter" data-level="B.1.5" data-path="17-Appendix.html"><a href="17-Appendix.html#simpson-evenness-measure-simpson_e"><i class="fa fa-check"></i><b>B.1.5</b> Simpson evenness measure (simpson_e)</a></li>
+<li class="chapter" data-level="B.1.6" data-path="17-Appendix.html"><a href="17-Appendix.html#shannon"><i class="fa fa-check"></i><b>B.1.6</b> Shannon</a></li>
 </ul></li>
-<li class="chapter" data-level="B.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>B.2</b> Beta diversity metrics<span></span></a>
+<li class="chapter" data-level="B.2" data-path="17-Appendix.html"><a href="17-Appendix.html#beta-diversity-metrics"><i class="fa fa-check"></i><b>B.2</b> Beta diversity metrics</a>
 <ul>
-<li class="chapter" data-level="B.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>B.2.1</b> Weighted and unweighted UniFrac distances<span></span></a></li>
-<li class="chapter" data-level="B.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>B.2.2</b> Bray-Curtis<span></span></a></li>
+<li class="chapter" data-level="B.2.1" data-path="17-Appendix.html"><a href="17-Appendix.html#weighted-and-unweighted-unifrac-distances"><i class="fa fa-check"></i><b>B.2.1</b> Weighted and unweighted UniFrac distances</a></li>
+<li class="chapter" data-level="B.2.2" data-path="17-Appendix.html"><a href="17-Appendix.html#bray-curtis"><i class="fa fa-check"></i><b>B.2.2</b> Bray-Curtis</a></li>
 </ul></li>
-<li class="chapter" data-level="B.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>B.3</b> Diversity Resources<span></span></a></li>
+<li class="chapter" data-level="B.3" data-path="17-Appendix.html"><a href="17-Appendix.html#diversity-resources"><i class="fa fa-check"></i><b>B.3</b> Diversity Resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -283,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/artefact.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data and metadata and may be of two types: result or visualisation.</p>
 <ul>
-<li><strong>Result files (.qza)</strong>: This file type contains the results of a method, which accepts other ‘artifacts’ and specific settings as input, in order to apply a procedure creating a new artifact (e.g. loading sequences, error correction, alpha- or beta-diversity).</li>
+<li><strong>Result files (.qza)</strong>: This file type contains the results of a method, which accepts other ‘artifacts’ and specific settings as input, in order to apply a procedure creating a new artifact (e.g. loading sequences, error correction, alpha- or beta-diversity).</li>
 <li><strong>Visualisation files (.qzv)</strong>: This file type contains the results of a specific procedure to obtain an object that can only be used to visualize the results. These files can be loaded into the following web-site <a href="https://view.qiime2.org" class="uri">https://view.qiime2.org</a>, where the interactive visualisations can be viewed. Please note that only chrome and Firefox are supported by this QIIME2 website.</li>
 </ul>
 </div>
@@ -321,7 +326,7 @@ Representation of the step proposed for the analysis (<a href="http://compbio.uc
 <h2><span class="header-section-number">3.3</span> Prepare the sequence dataset<a href="03-Intro_to_qiime2.html#prepare-the-sequence-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/prepare.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>The read set you will be using in this tutorial will be a raw dataset. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences.</p>
-<p>The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds ‘random’ variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step.</p>
+<p>The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step.</p>
 <p>If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers <em>et al</em>., 2018) is designed for this specific task and it is available as a QIIME2 plug-in, though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (<a href="https://library.qiime2.org/plugins/" class="uri">https://library.qiime2.org/plugins/</a> ).</p>
 </div>
 <div id="amplicon-sequence-variants-identification" class="section level2 hasAnchor" number="3.4">
@@ -372,7 +377,7 @@ Representation of the step proposed for the analysis (<a href="http://compbio.uc
 <p><img src="figures/normalisation.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Any further analyses to compare the identified ASVs among sample groups (either alpha- or beta-diversity or differential abundance) should account for the features of the abundance table that can cause erroneous results (Weiss et al., 2017). These features are:</p>
 <ol style="list-style-type: decimal">
-<li>The microbial community in each sample may be represented by different numbers of sequences (i.e. sequencing depth for each sample).</li>
+<li>The microbial community in each sample may be represented by different numbers of sequences (i.e. sequencing depth for each sample).</li>
 <li>The abundance table is usually sparse. That is, most of the ASVs are present only in a few samples and therefore the abundance table contains many ‘0’ values (it is also possible that a particular species is present in a sample but below the detection limit of the methods).</li>
 <li>The total number of sequences obtained reflect the relative abundance of species sequenced rather that the absolute abundance of the species present in the sample (this is commonly referred as ‘compositional nature’ of the data). The relative abundances for the taxa are therefore not independent as in the underlying assumption of many frequently used statistical methods (Gloor <em>et al</em>., 2017).</li>
 </ol>
@@ -418,7 +423,7 @@ Beta-diversity is a term for the comparison of samples to each other. It is also
 <h2><span class="header-section-number">3.10</span> Differential Abundance Analysis<a href="03-Intro_to_qiime2.html#differential-abundance-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/comparison.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).</p>
-<p>QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X.’ That is the ‘W’ statistic, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.</p>
+<p>QIIME2 supports two methods to investigate differentially abundant taxa across experimental conditions: ANCOM (Mandal et al., 2015) and GNEISS (Morton et al, 2017). Both methods are based on the conversion of the abundance values using the clr-transformation method prior to any comparison. Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). These methods may therefore artificially increase the alpha-diversity for the samples as well as decrease the beta-diversity distances in the dataset. In this analysis we will use the ANCOM method following the current QIIME2 tutorial. This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. That is the ‘W’ statistic, the higher this value is the more significant the ASV/taxa X is differentially abundant between the tested groups. This test assumes that a large number of ASVs did not change in abundances between groups. If, in the results, more than 25% of the ASVs changes in the examined contrasts, the underlying hypothesis for the ANCOM test may be not fulfilled, and there is the chance that the results may be misleading.</p>
 <p>Examples of questions to answer:</p>
 <ul>
 <li>Are there differences in taxa at various levels of taxonomy?</li>
@@ -430,6 +435,177 @@ Beta-diversity is a term for the comparison of samples to each other. It is also
 
 </div>
 </div>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  if (t = document.getElementById("webex-total_correct")) {
+    var correct = document.getElementsByClassName("webex-correct").length;
+    var solvemes = document.getElementsByClassName("webex-solveme").length;
+    var radiogroups = document.getElementsByClassName("webex-radiogroup").length;
+    var selects = document.getElementsByClassName("webex-select").length;
+    
+    t.innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+  
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+  
+  var cl = this.classList
+  
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+  
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+  
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+  
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+  }
+
+  update_total_correct();
+}
+
+</script>
             </section>
 
           </div>

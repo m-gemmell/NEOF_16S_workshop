@@ -22,7 +22,7 @@ Look at the contents of your current directory and then continue reading for exp
 ls
 ```
 
-## PairedEndFastqManifestPhred33.csv
+## PairedEndFastqManifestPhred33.csv {#manifestfile}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/manifest.png", auto_pdf = TRUE)
 ``` 
