@@ -12,7 +12,7 @@ We will use DADA2 to denoise and identify the amplicon sequence variants (ASVs) 
 knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
 ``` 
 
-To perform the variant sequence identification step with DADA2, the command is (__don't run this command, see below command__):
+To perform the variant sequence identification step with DADA2, the command is (__don't run this command, [see below command](#cpdada2)__):
 
 ```{bash, eval=FALSE}
 qiime dada2 denoise-paired \
@@ -28,6 +28,9 @@ qiime dada2 denoise-paired \
 ```
 
 #### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
+```
 
 - __`--i-demultiplexed-seqs`__: Input artifact file containing the trimmed demultiplexed sequences.
 - __`--p-trunc-len-f`__: This will truncate (trim) the forward sequences to retain only the first `220` bases.
@@ -39,14 +42,20 @@ qiime dada2 denoise-paired \
 
 [QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2022.2/plugins/available/dada2/denoise-paired/)
 
-#### Truncation length {-}
+### Truncation length
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/measuring_tape.png", auto_pdf = TRUE)
+```
 
 We chose `220` for `--p-trunc-len-f` & `--p-trunc-len-r` as the read quality was very good up to the 220 bp position for both the forward and reverse reads.
 Additionally, our amplicon length is ~291bp. The combined length of our forward and reverse reads is 440bp, therefore we would have an overlap greater than 100bp which is very good (440 - 291 = 149bp).
 
 As a reminder we are using the primer 515FB-806RB for the V4 16S rRNA gene. The name 515FB-806RB represents the location within an __E.coli__ 16S gene that the primers will hit (515 for the forward, 806 for the reverse). Therefore the amplicon length for __E.coli__ will be 806 - 515 = 291bp. As with all genes this size will vary in length across all the bacterial taxa but only by a few base pairs.
 
-#### Copy DADA2 output {-}
+### Copy DADA2 output {#cpdada2}
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
+```
 
 The command will take a long time, so stop the command (ctrl+c), if you started it, and copy the final output files, which have been previously made, to your current directory:
 
@@ -58,21 +67,19 @@ cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 Through the above command you will now have the following three files:
 
 - `rep-seqs-dada2.qza`: Artifact containing the identified sequence variants.
-- `tabledada2.qza`: Artifact containing the ASV abundance table. 
+- `table-dada2.qza`: Artifact containing the ASV abundance table. 
 - `dada2-stats.qza`: Artifact which summarises the statistics after the denoising steps.
 
-#### DADA2 considerations {-}
+### DADA2 considerations
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
+```
 
 This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
-## DADA2: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
-``` 
-
-### table-dada2.qzv
+## table-dada2.qzv
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/table.png", auto_pdf = TRUE)
 ``` 
@@ -84,7 +91,23 @@ qiime feature-table summarize \
 --o-visualization table-dada2.qzv \
 --m-sample-metadata-file metadata.file.txt
 ```
- 
+
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact file containing the abundance table of the ASVs.
+- __`--o-visualization`__: Output visualisation artifact.
+- __`--m-sample-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+
+[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2022.2/plugins/available/feature-table/summarize/)
+
+#### Output {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_purple.png", auto_pdf = TRUE)
+```
+
 Now load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
 
 The page opened with `table-dada2.qzv` contains 3 tabs:
@@ -115,16 +138,54 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
    - __Frequency__: Number of sequences representing the ASV acorss all samples. I.e. the total abundance of the ASV.
    - __# of Samples Observed in__: Number of samples the ASVs was detected in.
 
-__Questions__:
+### table-dada2.qzv: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = TRUE)
+```
 
-- How many ASVs were detected in the dataset?
-- What is the median and mean number of sequences per samples (to 1 decimal place)?
-- What is the minimum and maximum number of sequences per ASV?
-- How many samples have >100,000 sequences?
-- Are there more Corridor samples or Toilet samples (based on Location metadata category)?
-- How many sequences represent the second most abundant ASV?
+Attempt the below MCQs.
 
-### dada2-stats.qzv
+```{r, echo = FALSE}
+opts_p <- c(answer="__2,139__", "__118,703.5__", "__258,440__")
+```
+1. How many ASVs (features) were detected in the dataset? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__2,139__", answer="__118,703.5__", "__258,440__")
+```
+2. What is the median number of sequences per sample? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__2,139__", "__118,703.5__", answer="__258,440__")
+```
+3. What is the maximum number of sequences per ASV? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__4__", "__5__", answer="__13__")
+```
+4. How many samples have >=100,000 sequences? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__4__", answer="__5__", "__13__")
+```
+5. How many Toilet (Metadata Category: Location) samples have >=80,00 sequences? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__4__", "__5__", "__13__")
+```
+6. How many MainBuilding (Metadata Category: Entrance) samples have >=120,000 sequences? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__15__", answer="__225,752__", "__258,440__")
+```
+7. How many sequences represent the second most abundant ASV? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__15__", "__225,752__", "__258,440__")
+```
+8. How many samples is the 10th most abundant AVS observed in? `r longmcq(opts_p)`
+
+## dada2-stats.qzv
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/filter.png", auto_pdf = TRUE)
 ``` 
@@ -135,7 +196,22 @@ qiime metadata tabulate \
 --m-input-file dada2-stats.qza \
 --o-visualization dada2-stats.qzv
 ```
- 
+
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
+```
+
+- __`--m-input-file`__: Input artifact file containing the denosing stats from DADA2.
+- __`--o-visualization`__: Output visualisation artifact.
+
+[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2022.2/plugins/available/metadata/tabulate/)
+
+#### Output {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_blue.png", auto_pdf = TRUE)
+```
+
 Open the `dada2-stats.qzv` visualisation with QIIME2 view.
 
 You will now see a denoising stats table with the following columns:
@@ -152,7 +228,28 @@ You will now see a denoising stats table with the following columns:
 
 This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not have enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.
 
-__Questions__: 
+### dada2-stats.qzv: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
+```
 
-- In which DADA2 step were most of the sequences lost?
-- If this was a real study would there be enough sequences left for optimal analysis? 
+Attempt the below MCQs?
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Filtering__", "__Denoising and merging__", "__Chimera removal__")
+```
+1. In which DADA2 step were most of the sequences lost? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__1K1MB__", "__1K1E__", answer="__1K2M__")
+```
+2. Which sample retained the smallest percentage of its input at the end (i.e. after filtering, denoising, merging, and chimera removal)?  `r longmcq(opts_p)`
+
+## DADA2: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+```
+
+Our reads have been filtered, denoised, and merged. Additionally, chimeras have been removed. With this carried out we have an ASV abundance table, representative sequences, and stats on the various steps that have been carried out.
+
+Through visualising the table and stats we can determine that there are a good amount of sequences per sample (>20,000) and there is a good amount of samples per sample group. We are therefore happy with our data and can continue on.

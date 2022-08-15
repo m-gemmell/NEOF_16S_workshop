@@ -38,9 +38,14 @@ cutadapt-mcqs
 cutadapt-summary
 dada2
 dada2-run
-dada2-visualise
+truncation-length
+cpdada2
+dada2-considerations
 table-dada2.qzv
+table-dada2.qzv-mcqs
 dada2-stats.qzv
+dada2-stats.qzv-mcqs
+dada2-summary
 taxa
 import-taxonomy-database
 extract-16s-region-of-interest
