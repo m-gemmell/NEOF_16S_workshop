@@ -313,25 +313,25 @@ Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences
 <p><strong>Note</strong>: See the appendix at the end of this bookdown for details on each metric.</p>
 <p>You may want to exclude <code>--i-phylogeny rooted-tree.qza</code> and <code>--p-metrics faith_pd</code> for markers such as ITS where you will not create a phylogenetic tree.</p>
 <p><strong>Important</strong>: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="12-Rarefaction.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-rarefaction <span class="at">--i-table</span> table-dada2.qza <span class="dt">\</span></span>
-<span id="cb25-2"><a href="12-Rarefaction.html#cb25-2" aria-hidden="true" tabindex="-1"></a>--i-phylogeny rooted-tree.qza <span class="dt">\</span></span>
-<span id="cb25-3"><a href="12-Rarefaction.html#cb25-3" aria-hidden="true" tabindex="-1"></a># Min and max depth for the plot</span>
-<span id="cb25-4"><a href="12-Rarefaction.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># These are based on your knowledge of the sample depths</span></span>
-<span id="cb25-5"><a href="12-Rarefaction.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-min-depth</span> 5000 <span class="dt">\</span></span>
-<span id="cb25-6"><a href="12-Rarefaction.html#cb25-6" aria-hidden="true" tabindex="-1"></a>--p-max-depth 130000 <span class="dt">\</span></span>
-<span id="cb25-7"><a href="12-Rarefaction.html#cb25-7" aria-hidden="true" tabindex="-1"></a># Evaluating diversity every 500 sequence depth</span>
-<span id="cb25-8"><a href="12-Rarefaction.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-steps</span> 500 <span class="dt">\</span></span>
-<span id="cb25-9"><a href="12-Rarefaction.html#cb25-9" aria-hidden="true" tabindex="-1"></a># Using average from 10 iterations for the diversity count</span>
-<span id="cb25-10"><a href="12-Rarefaction.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-iterations</span> 10 <span class="dt">\</span></span>
-<span id="cb25-11"><a href="12-Rarefaction.html#cb25-11" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
-<span id="cb25-12"><a href="12-Rarefaction.html#cb25-12" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson_e <span class="dt">\</span></span>
-<span id="cb25-13"><a href="12-Rarefaction.html#cb25-13" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson <span class="dt">\</span></span>
-<span id="cb25-14"><a href="12-Rarefaction.html#cb25-14" aria-hidden="true" tabindex="-1"></a>--p-metrics shannon <span class="dt">\</span></span>
-<span id="cb25-15"><a href="12-Rarefaction.html#cb25-15" aria-hidden="true" tabindex="-1"></a>--p-metrics observed_features <span class="dt">\</span></span>
-<span id="cb25-16"><a href="12-Rarefaction.html#cb25-16" aria-hidden="true" tabindex="-1"></a>--p-metrics faith_pd <span class="dt">\</span></span>
-<span id="cb25-17"><a href="12-Rarefaction.html#cb25-17" aria-hidden="true" tabindex="-1"></a>--o-visualization rarefaction-curve.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="12-Rarefaction.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity alpha-rarefaction <span class="at">--i-table</span> table-dada2.qza <span class="dt">\</span></span>
+<span id="cb26-2"><a href="12-Rarefaction.html#cb26-2" aria-hidden="true" tabindex="-1"></a>--i-phylogeny rooted-tree.qza <span class="dt">\</span></span>
+<span id="cb26-3"><a href="12-Rarefaction.html#cb26-3" aria-hidden="true" tabindex="-1"></a># Min and max depth for the plot</span>
+<span id="cb26-4"><a href="12-Rarefaction.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># These are based on your knowledge of the sample depths</span></span>
+<span id="cb26-5"><a href="12-Rarefaction.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-min-depth</span> 5000 <span class="dt">\</span></span>
+<span id="cb26-6"><a href="12-Rarefaction.html#cb26-6" aria-hidden="true" tabindex="-1"></a>--p-max-depth 130000 <span class="dt">\</span></span>
+<span id="cb26-7"><a href="12-Rarefaction.html#cb26-7" aria-hidden="true" tabindex="-1"></a># Evaluating diversity every 500 sequence depth</span>
+<span id="cb26-8"><a href="12-Rarefaction.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-steps</span> 500 <span class="dt">\</span></span>
+<span id="cb26-9"><a href="12-Rarefaction.html#cb26-9" aria-hidden="true" tabindex="-1"></a># Using average from 10 iterations for the diversity count</span>
+<span id="cb26-10"><a href="12-Rarefaction.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-iterations</span> 10 <span class="dt">\</span></span>
+<span id="cb26-11"><a href="12-Rarefaction.html#cb26-11" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb26-12"><a href="12-Rarefaction.html#cb26-12" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson_e <span class="dt">\</span></span>
+<span id="cb26-13"><a href="12-Rarefaction.html#cb26-13" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson <span class="dt">\</span></span>
+<span id="cb26-14"><a href="12-Rarefaction.html#cb26-14" aria-hidden="true" tabindex="-1"></a>--p-metrics shannon <span class="dt">\</span></span>
+<span id="cb26-15"><a href="12-Rarefaction.html#cb26-15" aria-hidden="true" tabindex="-1"></a>--p-metrics observed_features <span class="dt">\</span></span>
+<span id="cb26-16"><a href="12-Rarefaction.html#cb26-16" aria-hidden="true" tabindex="-1"></a>--p-metrics faith_pd <span class="dt">\</span></span>
+<span id="cb26-17"><a href="12-Rarefaction.html#cb26-17" aria-hidden="true" tabindex="-1"></a>--o-visualization rarefaction-curve.qzv</span></code></pre></div>
 <p>Otherwise, copy over the output to your directory.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="12-Rarefaction.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="12-Rarefaction.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .</span></code></pre></div>
 </div>
 <div id="rarefaction-visualisation" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Rarefaction visualisation<a href="12-Rarefaction.html#rarefaction-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h2>

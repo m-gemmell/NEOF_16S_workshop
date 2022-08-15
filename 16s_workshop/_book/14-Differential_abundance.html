@@ -303,35 +303,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Run ANCOM selecting a categorical metadata to test</li>
 </ol>
 <p>If you are still in ‘dada2-diversity-34583’ directory, please remember to move out:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="14-Differential_abundance.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="14-Differential_abundance.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
 <div id="taxa-collapse" class="section level2 hasAnchor" number="14.1">
 <h2><span class="header-section-number">14.1</span> Taxa collapse<a href="14-Differential_abundance.html#taxa-collapse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/collapse.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="14-Differential_abundance.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="dt">\</span></span>
-<span id="cb31-2"><a href="14-Differential_abundance.html#cb31-2" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
-<span id="cb31-3"><a href="14-Differential_abundance.html#cb31-3" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
-<span id="cb31-4"><a href="14-Differential_abundance.html#cb31-4" aria-hidden="true" tabindex="-1"></a>--p-level 5 <span class="dt">\</span></span>
-<span id="cb31-5"><a href="14-Differential_abundance.html#cb31-5" aria-hidden="true" tabindex="-1"></a>--o-collapsed-table comp-ancom-table-l5.qza</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Differential_abundance.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="dt">\</span></span>
+<span id="cb32-2"><a href="14-Differential_abundance.html#cb32-2" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
+<span id="cb32-3"><a href="14-Differential_abundance.html#cb32-3" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
+<span id="cb32-4"><a href="14-Differential_abundance.html#cb32-4" aria-hidden="true" tabindex="-1"></a>--p-level 5 <span class="dt">\</span></span>
+<span id="cb32-5"><a href="14-Differential_abundance.html#cb32-5" aria-hidden="true" tabindex="-1"></a>--o-collapsed-table comp-ancom-table-l5.qza</span></code></pre></div>
 </div>
 <div id="pseudo-counts" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> Pseudo counts<a href="14-Differential_abundance.html#pseudo-counts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/plus_1.png" width="15%" style="display: block; margin: auto;" />
 Add pseudo-count to the abundance table with the purpose of converting 0s to 1s. This is required as ANCOM will fail with abundance values of 0.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="14-Differential_abundance.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="dt">\</span></span>
-<span id="cb32-2"><a href="14-Differential_abundance.html#cb32-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5.qza <span class="dt">\</span></span>
-<span id="cb32-3"><a href="14-Differential_abundance.html#cb32-3" aria-hidden="true" tabindex="-1"></a>--p-pseudocount 1 <span class="dt">\</span></span>
-<span id="cb32-4"><a href="14-Differential_abundance.html#cb32-4" aria-hidden="true" tabindex="-1"></a>--o-composition-table comp-ancom-table-l5-pse.qza</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="14-Differential_abundance.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="dt">\</span></span>
+<span id="cb33-2"><a href="14-Differential_abundance.html#cb33-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5.qza <span class="dt">\</span></span>
+<span id="cb33-3"><a href="14-Differential_abundance.html#cb33-3" aria-hidden="true" tabindex="-1"></a>--p-pseudocount 1 <span class="dt">\</span></span>
+<span id="cb33-4"><a href="14-Differential_abundance.html#cb33-4" aria-hidden="true" tabindex="-1"></a>--o-composition-table comp-ancom-table-l5-pse.qza</span></code></pre></div>
 </div>
 <div id="ancom" class="section level2 hasAnchor" number="14.3">
 <h2><span class="header-section-number">14.3</span> ANCOM<a href="14-Differential_abundance.html#ancom" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/toilet_corridor.png" width="40%" style="display: block; margin: auto;" />
 Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between Corridor and Toilet.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="14-Differential_abundance.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="dt">\</span></span>
-<span id="cb33-2"><a href="14-Differential_abundance.html#cb33-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5-pse.qza <span class="dt">\</span></span>
-<span id="cb33-3"><a href="14-Differential_abundance.html#cb33-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
-<span id="cb33-4"><a href="14-Differential_abundance.html#cb33-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
-<span id="cb33-5"><a href="14-Differential_abundance.html#cb33-5" aria-hidden="true" tabindex="-1"></a>--o-visualization l5-ancom-Location.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="14-Differential_abundance.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="dt">\</span></span>
+<span id="cb34-2"><a href="14-Differential_abundance.html#cb34-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5-pse.qza <span class="dt">\</span></span>
+<span id="cb34-3"><a href="14-Differential_abundance.html#cb34-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb34-4"><a href="14-Differential_abundance.html#cb34-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
+<span id="cb34-5"><a href="14-Differential_abundance.html#cb34-5" aria-hidden="true" tabindex="-1"></a>--o-visualization l5-ancom-Location.qzv</span></code></pre></div>
 </div>
 <div id="ancom-visualisation" class="section level2 hasAnchor" number="14.4">
 <h2><span class="header-section-number">14.4</span> ANCOM visualisation<a href="14-Differential_abundance.html#ancom-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h2>

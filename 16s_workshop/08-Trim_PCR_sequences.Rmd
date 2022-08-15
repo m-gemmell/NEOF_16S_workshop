@@ -5,6 +5,8 @@ knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 
 Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
 
+However, before we carry this out we will need to remove any sequence data that is not biologically relevant. This includes the primer sequences that were used in the Illumina sequencing.
+
 ## Cutadapt: run
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/play_black.png", auto_pdf = TRUE)
@@ -34,7 +36,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 - __`--i-demultiplexed-sequences`__: The input demultiplexed sequence artifact.
 - __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
 - __`--p-front-r`__: Sequence for the reverse primer (`r``). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
-- __`--o-trimmed-sequences`__: The output artificat containing the trimmed sequence data.
+- __`--o-trimmed-sequences`__: The output artifact containing the trimmed sequence data.
 
 [QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2022.2/plugins/available/cutadapt/trim-paired/)
 

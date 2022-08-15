@@ -296,6 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 8</span> Trim the PCR primer sequences<a href="08-Trim_PCR_sequences.html#pcrtrim" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/prepare.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.</p>
+<p>However, before we carry this out we will need to remove any sequence data that is not biologically relevant. This includes the primer sequences that were used in the Illumina sequencing.</p>
 <div id="cutadapt-run" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Cutadapt: run<a href="08-Trim_PCR_sequences.html#cutadapt-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/play_black.png" width="15%" style="display: block; margin: auto;" /></p>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><code>--i-demultiplexed-sequences</code></strong>: The input demultiplexed sequence artifact.</li>
 <li><strong><code>--p-front-f</code></strong>: Sequence for the forward primer (<code>f</code>). The sequence is ligated to the 5 prime end (<code>front</code>), this is the normal.</li>
 <li><strong><code>--p-front-r</code></strong>: Sequence for the reverse primer (<code>r``). The sequence is ligated to the 5 prime end (</code>front`), this is the normal.</li>
-<li><strong><code>--o-trimmed-sequences</code></strong>: The output artificat containing the trimmed sequence data.</li>
+<li><strong><code>--o-trimmed-sequences</code></strong>: The output artifact containing the trimmed sequence data.</li>
 </ul>
 <p><a href="https://docs.qiime2.org/2022.2/plugins/available/cutadapt/trim-paired/">QIIME2 docs on <code>qiime cutadapt trim-paired</code></a></p>
 </div>
@@ -341,20 +342,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_black.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>which sample has the lowest number of forward reads?
-<div id="radio_LTQZVUSFFA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LTQZVUSFFA" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_LTQZVUSFFA" value=""></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_LTQZVUSFFA" value="answer"></input> <span>3K1E</span></label>
+<div id="radio_XFTGGDWUJM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XFTGGDWUJM" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_XFTGGDWUJM" value=""></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_XFTGGDWUJM" value="answer"></input> <span>3K1E</span></label>
 </div></li>
 <li>Which sample has the highest number of forward reads?
-<div id="radio_UAMUHJOKQT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UAMUHJOKQT" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_UAMUHJOKQT" value="answer"></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_UAMUHJOKQT" value=""></input> <span>3K1E</span></label>
+<div id="radio_NKZAVHRRMP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NKZAVHRRMP" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_NKZAVHRRMP" value="answer"></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_NKZAVHRRMP" value=""></input> <span>3K1E</span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)?
-<div id="radio_DYAUCXZHDV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DYAUCXZHDV" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_DYAUCXZHDV" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_DYAUCXZHDV" value="answer"></input> <span>&gt;220</span></label>
+<div id="radio_MJTFIEXWNV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MJTFIEXWNV" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_MJTFIEXWNV" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_MJTFIEXWNV" value="answer"></input> <span>&gt;220</span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)?
-<div id="radio_ZBDORZQOLV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZBDORZQOLV" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_ZBDORZQOLV" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_ZBDORZQOLV" value="answer"></input> <span>&gt;220</span></label>
+<div id="radio_OEPZGFZIDI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OEPZGFZIDI" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_OEPZGFZIDI" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_OEPZGFZIDI" value="answer"></input> <span>&gt;220</span></label>
 </div></li>
 <li>What is the median length of the forward reads?</li>
 </ol>

@@ -300,19 +300,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.1</span> MAFFT alignment<a href="11-Phylogentic_tree.html#mafft-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/dna_alignment.png" width="20%" style="display: block; margin: auto;" />
 The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="11-Phylogentic_tree.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mafft <span class="dt">\</span></span>
-<span id="cb21-2"><a href="11-Phylogentic_tree.html#cb21-2" aria-hidden="true" tabindex="-1"></a>--i-sequences rep-seqs-dada2.qza <span class="dt">\</span></span>
-<span id="cb21-3"><a href="11-Phylogentic_tree.html#cb21-3" aria-hidden="true" tabindex="-1"></a>--o-alignment aligned-rep-seqs.qza</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="11-Phylogentic_tree.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mafft <span class="dt">\</span></span>
+<span id="cb22-2"><a href="11-Phylogentic_tree.html#cb22-2" aria-hidden="true" tabindex="-1"></a>--i-sequences rep-seqs-dada2.qza <span class="dt">\</span></span>
+<span id="cb22-3"><a href="11-Phylogentic_tree.html#cb22-3" aria-hidden="true" tabindex="-1"></a>--o-alignment aligned-rep-seqs.qza</span></code></pre></div>
 </div>
 <div id="masking" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> Masking<a href="11-Phylogentic_tree.html#masking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/mask.png" width="15%" style="display: block; margin: auto;" />
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="11-Phylogentic_tree.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mask <span class="dt">\</span></span>
-<span id="cb22-2"><a href="11-Phylogentic_tree.html#cb22-2" aria-hidden="true" tabindex="-1"></a>--i-alignment aligned-rep-seqs.qza <span class="dt">\</span></span>
-<span id="cb22-3"><a href="11-Phylogentic_tree.html#cb22-3" aria-hidden="true" tabindex="-1"></a>--p-max-gap-frequency 1.0 <span class="dt">\</span></span>
-<span id="cb22-4"><a href="11-Phylogentic_tree.html#cb22-4" aria-hidden="true" tabindex="-1"></a>--p-min-conservation 0.4 <span class="dt">\</span></span>
-<span id="cb22-5"><a href="11-Phylogentic_tree.html#cb22-5" aria-hidden="true" tabindex="-1"></a>--o-masked-alignment masked-aligned-rep-seqs.qza</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="11-Phylogentic_tree.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> alignment mask <span class="dt">\</span></span>
+<span id="cb23-2"><a href="11-Phylogentic_tree.html#cb23-2" aria-hidden="true" tabindex="-1"></a>--i-alignment aligned-rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb23-3"><a href="11-Phylogentic_tree.html#cb23-3" aria-hidden="true" tabindex="-1"></a>--p-max-gap-frequency 1.0 <span class="dt">\</span></span>
+<span id="cb23-4"><a href="11-Phylogentic_tree.html#cb23-4" aria-hidden="true" tabindex="-1"></a>--p-min-conservation 0.4 <span class="dt">\</span></span>
+<span id="cb23-5"><a href="11-Phylogentic_tree.html#cb23-5" aria-hidden="true" tabindex="-1"></a>--o-masked-alignment masked-aligned-rep-seqs.qza</span></code></pre></div>
 <p>The following default options were chosen (no need to look at this it is only for your interest):</p>
 <ul>
 <li><code>--p-max-gap-frequency 1.0</code>
@@ -338,17 +338,17 @@ After alignment non-informative regions are masked. This will make our phylogene
 <h2><span class="header-section-number">11.3</span> Un-rooted tree creation with FASTTREE<a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/tree_unrooted.png" width="15%" style="display: block; margin: auto;" />
 Create an un-rooted maximum-likelihood tree from our masked alignment.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="11-Phylogentic_tree.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny fasttree <span class="dt">\</span></span>
-<span id="cb23-2"><a href="11-Phylogentic_tree.html#cb23-2" aria-hidden="true" tabindex="-1"></a>--i-alignment masked-aligned-rep-seqs.qza <span class="dt">\</span></span>
-<span id="cb23-3"><a href="11-Phylogentic_tree.html#cb23-3" aria-hidden="true" tabindex="-1"></a>--o-tree unrooted-tree.qza</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="11-Phylogentic_tree.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny fasttree <span class="dt">\</span></span>
+<span id="cb24-2"><a href="11-Phylogentic_tree.html#cb24-2" aria-hidden="true" tabindex="-1"></a>--i-alignment masked-aligned-rep-seqs.qza <span class="dt">\</span></span>
+<span id="cb24-3"><a href="11-Phylogentic_tree.html#cb24-3" aria-hidden="true" tabindex="-1"></a>--o-tree unrooted-tree.qza</span></code></pre></div>
 </div>
 <div id="rooted-tree-creation" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> Rooted tree creation<a href="11-Phylogentic_tree.html#rooted-tree-creation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/tree_rooted.png" width="15%" style="display: block; margin: auto;" />
 Finally the un-rooted tree is rooted.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="11-Phylogentic_tree.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny midpoint-root <span class="dt">\</span></span>
-<span id="cb24-2"><a href="11-Phylogentic_tree.html#cb24-2" aria-hidden="true" tabindex="-1"></a>--i-tree unrooted-tree.qza <span class="dt">\</span></span>
-<span id="cb24-3"><a href="11-Phylogentic_tree.html#cb24-3" aria-hidden="true" tabindex="-1"></a>--o-rooted-tree rooted-tree.qza</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="11-Phylogentic_tree.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> phylogeny midpoint-root <span class="dt">\</span></span>
+<span id="cb25-2"><a href="11-Phylogentic_tree.html#cb25-2" aria-hidden="true" tabindex="-1"></a>--i-tree unrooted-tree.qza <span class="dt">\</span></span>
+<span id="cb25-3"><a href="11-Phylogentic_tree.html#cb25-3" aria-hidden="true" tabindex="-1"></a>--o-rooted-tree rooted-tree.qza</span></code></pre></div>
 <p>All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .</p>
 
 </div>
