@@ -1203,7 +1203,7 @@ First, we need to import the Greengenes data into QIIME2 artifacts. These steps 
 Import the Sequence data.
 ```{bash, eval=FALSE}
 qiime tools import --input-path \
-/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta \
+/pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta \
 --output-path gg-13-8.99_otus.qza \
 --type 'FeatureData[Sequence]'
 ```
@@ -1211,7 +1211,7 @@ qiime tools import --input-path \
 Import the Taxonomy data.
 ```{bash, eval=FALSE}
 qiime tools import --input-path \
-/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
+/pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
 --output-path gg-13-8.99.taxa.qza \
 --input-format HeaderlessTSVTaxonomyFormat \
 --type 'FeatureData[Taxonomy]'
@@ -1243,7 +1243,7 @@ A classifier training step is required to reach optimum assignment performance.
 
 Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences. These are the same we used for [removing the PCR primer](#pcrtrim).
 
-Note: Do not run the below command for this tutorial, see `cp` command further down.
+__Note__: Do not run the below command for this tutorial, see `cp` command further down.
 
 ```{bash, eval=FALSE}
 qiime feature-classifier extract-reads \
@@ -1273,7 +1273,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:
 
 ```{bash, eval=FALSE}
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
+cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
 ```
 
 ## Classifier training
@@ -1341,15 +1341,35 @@ knitr::include_graphics(path = "figures/bar_charts.png", auto_pdf = TRUE)
 Create a taxonomy-abundance bar-chart visualisation artifact:
 
 ```{bash, eval=FALSE}
-qiime taxa barplot --i-table table-dada2.qza \
+qiime taxa barplot \
+--i-table table-dada2.qza \
 --i-taxonomy taxonomy.sklearn.qza \
 --m-metadata-file metadata.file.txt \
 --o-visualization taxa-bar-plots.dada2.qzv
 ```
- 
-The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.
 
-__Questions__: 
+#### Parameters{-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing the ASV abundance table.
+- __`--i-taxonomy`__: Input artifact containing the taxomomic classifications of the ASVs.
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--o-visualization`__: Output visualisation file containing an interactive taxonomy-abundance bar-chart.
+
+The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.
+
+[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2022.2/plugins/available/taxa/barplot/)
+
+## Taxonomy MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
+```
+
+Attempt the below MCQs.
+
+
 
 - What is the most abundant taxon, at taxonomic level 5, in the dataset (note: taxa are ordered form most to least abundant in the legend)? 
 - How do the samples compare to each other?

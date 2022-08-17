@@ -52,6 +52,7 @@ extract-16s-region-of-interest
 classifier-training
 taxonomy-assignment
 taxonomy-bar-chart-production
+taxonomy-mcqs
 phylogeny
 mafft-alignment
 masking

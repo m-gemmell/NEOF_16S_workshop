@@ -219,6 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
 <li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
+<li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy MCQs</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Phylogenetic tree construction</a>
 <ul>
@@ -303,12 +304,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First, we need to import the Greengenes data into QIIME2 artifacts. These steps will create two objects containing the sequences and their taxonomy, respectively.</p>
 <p>Import the Sequence data.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="10-Taxonomic_assignment.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="at">--input-path</span> <span class="dt">\</span></span>
-<span id="cb15-2"><a href="10-Taxonomic_assignment.html#cb15-2" aria-hidden="true" tabindex="-1"></a>/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta <span class="dt">\</span></span>
+<span id="cb15-2"><a href="10-Taxonomic_assignment.html#cb15-2" aria-hidden="true" tabindex="-1"></a>/pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta <span class="dt">\</span></span>
 <span id="cb15-3"><a href="10-Taxonomic_assignment.html#cb15-3" aria-hidden="true" tabindex="-1"></a>--output-path gg-13-8.99_otus.qza <span class="dt">\</span></span>
 <span id="cb15-4"><a href="10-Taxonomic_assignment.html#cb15-4" aria-hidden="true" tabindex="-1"></a>--type <span class="st">&#39;FeatureData[Sequence]&#39;</span></span></code></pre></div>
 <p>Import the Taxonomy data.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="10-Taxonomic_assignment.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="at">--input-path</span> <span class="dt">\</span></span>
-<span id="cb16-2"><a href="10-Taxonomic_assignment.html#cb16-2" aria-hidden="true" tabindex="-1"></a>/pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt <span class="dt">\</span></span>
+<span id="cb16-2"><a href="10-Taxonomic_assignment.html#cb16-2" aria-hidden="true" tabindex="-1"></a>/pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt <span class="dt">\</span></span>
 <span id="cb16-3"><a href="10-Taxonomic_assignment.html#cb16-3" aria-hidden="true" tabindex="-1"></a>--output-path gg-13-8.99.taxa.qza <span class="dt">\</span></span>
 <span id="cb16-4"><a href="10-Taxonomic_assignment.html#cb16-4" aria-hidden="true" tabindex="-1"></a>--input-format HeaderlessTSVTaxonomyFormat <span class="dt">\</span></span>
 <span id="cb16-5"><a href="10-Taxonomic_assignment.html#cb16-5" aria-hidden="true" tabindex="-1"></a>--type <span class="st">&#39;FeatureData[Taxonomy]&#39;</span></span></code></pre></div>
@@ -337,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/scissor_cut.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>A classifier training step is required to reach optimum assignment performance.</p>
 <p>Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences. These are the same we used for <a href="08-Trim_PCR_sequences.html#pcrtrim">removing the PCR primer</a>.</p>
-<p>Note: Do not run the below command for this tutorial, see <code>cp</code> command further down.</p>
+<p><strong>Note</strong>: Do not run the below command for this tutorial, see <code>cp</code> command further down.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="10-Taxonomic_assignment.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier extract-reads <span class="dt">\</span></span>
 <span id="cb17-2"><a href="10-Taxonomic_assignment.html#cb17-2" aria-hidden="true" tabindex="-1"></a>--i-sequences gg-13-8.99_otus.qza <span class="dt">\</span></span>
 <span id="cb17-3"><a href="10-Taxonomic_assignment.html#cb17-3" aria-hidden="true" tabindex="-1"></a>--p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA <span class="dt">\</span></span>
@@ -362,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="copy-premade-results" class="section level4 unnumbered hasAnchor">
 <h4>Copy premade results<a href="10-Taxonomic_assignment.html#copy-premade-results" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="10-Taxonomic_assignment.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/matthew/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="10-Taxonomic_assignment.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .</span></code></pre></div>
 </div>
 </div>
 <div id="classifier-training" class="section level2 hasAnchor" number="10.3">
@@ -415,12 +416,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.5</span> Taxonomy bar chart production<a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/bar_charts.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Create a taxonomy-abundance bar-chart visualisation artifact:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="10-Taxonomic_assignment.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot <span class="at">--i-table</span> table-dada2.qza <span class="dt">\</span></span>
-<span id="cb21-2"><a href="10-Taxonomic_assignment.html#cb21-2" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
-<span id="cb21-3"><a href="10-Taxonomic_assignment.html#cb21-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
-<span id="cb21-4"><a href="10-Taxonomic_assignment.html#cb21-4" aria-hidden="true" tabindex="-1"></a>--o-visualization taxa-bar-plots.dada2.qzv</span></code></pre></div>
-<p>The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then answer the below questions.</p>
-<p><strong>Questions</strong>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="10-Taxonomic_assignment.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot <span class="dt">\</span></span>
+<span id="cb21-2"><a href="10-Taxonomic_assignment.html#cb21-2" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
+<span id="cb21-3"><a href="10-Taxonomic_assignment.html#cb21-3" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
+<span id="cb21-4"><a href="10-Taxonomic_assignment.html#cb21-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb21-5"><a href="10-Taxonomic_assignment.html#cb21-5" aria-hidden="true" tabindex="-1"></a>--o-visualization taxa-bar-plots.dada2.qzv</span></code></pre></div>
+<div id="parameters-10" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="10-Taxonomic_assignment.html#parameters-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="figures/parameter_blue.png" width="10%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong><code>--i-table</code></strong>: Input artifact containing the ASV abundance table.</li>
+<li><strong><code>--i-taxonomy</code></strong>: Input artifact containing the taxomomic classifications of the ASVs.</li>
+<li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
+<li><strong><code>--o-visualization</code></strong>: Output visualisation file containing an interactive taxonomy-abundance bar-chart.</li>
+</ul>
+<p>The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.</p>
+<p><a href="https://docs.qiime2.org/2022.2/plugins/available/taxa/barplot/">QIIME2 docs on <code>qiime taxa barplot</code></a></p>
+</div>
+</div>
+<div id="taxonomy-mcqs" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Taxonomy MCQs<a href="10-Taxonomic_assignment.html#taxonomy-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/question_bubble_blue.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Attempt the below MCQs.</p>
 <ul>
 <li>What is the most abundant taxon, at taxonomic level 5, in the dataset (note: taxa are ordered form most to least abundant in the legend)?</li>
 <li>How do the samples compare to each other?</li>

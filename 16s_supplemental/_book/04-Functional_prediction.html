@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Functional prediction | Bacterial 16S metabarcoding supplemental</title>
   <meta name="description" content="NEOF book for the Introduction to command line bioinformatics workshop" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Functional prediction | Bacterial 16S metabarcoding supplemental" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/figures/NEOF.png" />
   <meta property="og:description" content="NEOF book for the Introduction to command line bioinformatics workshop" />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Matthew Gemmell" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2022-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   <link rel="shortcut icon" href="figures/NEOF_favicon.png" type="image/x-icon" />
 <link rel="prev" href="03-Handy_QIIME2_commands.html"/>
 <link rel="next" href="05-16S_R_packages.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -192,8 +191,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="picrust2" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Functional prediction</h1>
+<div id="picrust2" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Functional prediction<a href="04-Functional_prediction.html#picrust2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/picrust.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Functional prediction is a method to infer the functional pathways within a community. PICRUSt2 uses 16s sequences to infer abundances of the following types of pathways:</p>
 <ul>
@@ -201,8 +200,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>KO: KEGG Orthology, <a href="https://www.genome.jp/kegg/ko.html" class="uri">https://www.genome.jp/kegg/ko.html</a>.</li>
 <li>MetaCyc: Metabolic pathway, <a href="https://metacyc.org/" class="uri">https://metacyc.org/</a>.</li>
 </ul>
-<div id="picrust2-pipeline" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> PICRUSt2 pipeline</h2>
+<div id="picrust2-pipeline" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> PICRUSt2 pipeline<a href="04-Functional_prediction.html#picrust2-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The PICRUSt2 pipeline consists of 5 major steps. The entire pipeline can be visualised below.</p>
 <p><img src="figures/picrust2_pipeline.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The steps are:</p>
@@ -214,15 +213,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Pathway abundances are calculated using the predicted gene family abundances and a map of gene families to pathways.</li>
 </ol>
 </div>
-<div id="commands" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Commands</h2>
+<div id="commands" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Commands<a href="04-Functional_prediction.html#commands" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/command.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We will use the abundance table we created in the main QIIME2 tutorial for PICRUSt2. It is recommended to not rarefy the table prior to the PICRUSt2 analysis.</p>
 <p>Copy over the directory with the relevant files (including the table artifact) and then move into it.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="04-Functional_prediction.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> /pub39/tea/matthew/NEOF/16s_workshop/picrust2 ~/Metagenetics</span>
 <span id="cb27-2"><a href="04-Functional_prediction.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Metagenetics/picrust2</span></code></pre></div>
 <p>Although we do not want the table rarefied it is recommended to filter the table to remove very rare ASVs and to remove low depth samples.</p>
-<p>First we will filter low frequency features/ASVs. You can look at the visualisation of <code>table-dada2.qzv</code> to see an overview of “Frequency per feature.” There seems to be no clear consensus of how many rare features should be filtered.</p>
+<p>First we will filter low frequency features/ASVs. You can look at the visualisation of <code>table-dada2.qzv</code> to see an overview of “Frequency per feature”. There seems to be no clear consensus of how many rare features should be filtered.</p>
 <p>In this case we are going to filter out features/ASVs with a frequency less than 10 across all samples. With 18 samples and a mean frequency of &gt;900 this should be safe.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="04-Functional_prediction.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter features command</span></span>
 <span id="cb28-2"><a href="04-Functional_prediction.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-table filter-features <span class="dt">\</span></span>
@@ -265,8 +264,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Issues</strong></p>
 <p>I have encountered an issue when trying to rerun the PICRUSt2 command with files and directories I have used before. This issue causes the command to fail. This would occur if you rerun with different parameters or a newly filtered file. The way to get around it, seemingly, is to create a new directory somewhere else and copy over the required files to the new directory. Then run the command in the new directory.</p>
 </div>
-<div id="visualisation" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Visualisation</h2>
+<div id="visualisation" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Visualisation<a href="04-Functional_prediction.html#visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/eye_vis.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Next we will carry out some quick visualisations.</p>
 <p>First move into the newly created directory with the output.</p>
@@ -289,8 +288,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this case there are fewer features (pathways) because it is a broader classification (pathways rather than gene orthologs).</p>
 <p>With these tables you can carry out downstream analysis such as alpha and beta diversity, biomarker detection etc. If you do this in the future you can most likely use the lowest sample frequency number as it will most likely be over 100k.</p>
 </div>
-<div id="picrust2-links" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> PICRUSt2 Links</h2>
+<div id="picrust2-links" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> PICRUSt2 Links<a href="04-Functional_prediction.html#picrust2-links" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/link.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>That was a quick run introduction to PICRUSt2. There are good tutorials online you can use to get a stronger understanding of it.</p>
 <p>Key limitations of analysing PICRUSt2 output: <a href="https://github.com/picrust/picrust2/wiki/Key-Limitations" class="uri">https://github.com/picrust/picrust2/wiki/Key-Limitations</a></p>
@@ -310,7 +309,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -337,6 +335,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
