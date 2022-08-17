@@ -97,7 +97,7 @@ knitr::include_graphics(path = "figures/train.png", auto_pdf = TRUE)
 
 Now we train the classifier on this set of extracted reads (approx. 25 mins). 
 
-This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we will not explain how it works.
+This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we won't explain it here..
 
 ```{bash, eval=FALSE}
 qiime feature-classifier fit-classifier-naive-bayes \
@@ -176,19 +176,49 @@ The visualisation consists of an interactive taxonomy bar chart. You can specify
 
 [QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2022.2/plugins/available/taxa/barplot/)
 
-## Taxonomy MCQs
+## Taxonomy: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
 ```
 
 Attempt the below MCQs.
 
+```{r, echo = FALSE}
+opts_p <- c("__Corynebacteriaceae__", answer="__Moraxellaceae__", "__Pseudomonadaceae__")
+```
+1. At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend) `r longmcq(opts_p)`
 
+```{r, echo = FALSE}
+opts_p <- c(answer="__Corynebacteriaceae__", "__Moraxellaceae__", "__Pseudomonadaceae__")
+```
+2. At taxonomic level 5, what is the most abundant taxon for sample 1TE?  `r longmcq(opts_p)`
 
-- What is the most abundant taxon, at taxonomic level 5, in the dataset (note: taxa are ordered form most to least abundant in the legend)? 
-- How do the samples compare to each other?
+__Note__: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, left sample is highest relative abundance) drop down to "Descending" may be useful.
 
-If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.
+```{r, echo = FALSE}
+opts_p <- c("__1K2E__", answer="__1TM__", "__3TM__")
+```
+3. Which sample has the highest relative abundance of the class Actinobacteria (Taxonomic level 3)? `r longmcq(opts_p)`
 
+```{r, echo = FALSE}
+opts_p <- c(answer="__1K2E__", "__1TM__", "__3TM__")
+```
+4. Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__1K2E__", "__1TM__", answer="__3TM__")
+```
+5. Which sample has the third highest relative abundance of the phylum Bacteroidetes (Taxonomic level 2)? `r longmcq(opts_p)`
+
+## Taxonomy: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+```
+
+We have trimmed and denoised our data, producing ASVs. This has been followed by assigning taxonomic classifications to the ASVs. 
+
+In your future analysis if you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected. Do they contain what you expect? You may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.
+
+We are close to carrying out some biodiversity analysis. Before this we will produce a phylogenetic tree in the next chapter.
 
 [QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2022.2/tutorials/feature-classifier/)

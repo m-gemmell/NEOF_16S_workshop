@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 ASV taxonomic assignment | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 ASV taxonomic assignment | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -219,7 +219,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
 <li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
-<li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy MCQs</a></li>
+<li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy: MCQs</a></li>
+<li class="chapter" data-level="10.7" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-summary"><i class="fa fa-check"></i><b>10.7</b> Taxonomy: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="11-Phylogentic_tree.html"><a href="11-Phylogentic_tree.html"><i class="fa fa-check"></i><b>11</b> Phylogenetic tree construction</a>
 <ul>
@@ -370,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.3</span> Classifier training<a href="10-Taxonomic_assignment.html#classifier-training" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/train.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Now we train the classifier on this set of extracted reads (approx. 25 mins).</p>
-<p>This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we will not explain how it works.</p>
+<p>This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we won't explain it here..</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="10-Taxonomic_assignment.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> feature-classifier fit-classifier-naive-bayes <span class="dt">\</span></span>
 <span id="cb19-2"><a href="10-Taxonomic_assignment.html#cb19-2" aria-hidden="true" tabindex="-1"></a>--i-reference-reads gg-13-8.99.ref.seqs.qza <span class="dt">\</span></span>
 <span id="cb19-3"><a href="10-Taxonomic_assignment.html#cb19-3" aria-hidden="true" tabindex="-1"></a>--i-reference-taxonomy gg-13-8.99.taxa.qza <span class="dt">\</span></span>
@@ -435,14 +436,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="taxonomy-mcqs" class="section level2 hasAnchor" number="10.6">
-<h2><span class="header-section-number">10.6</span> Taxonomy MCQs<a href="10-Taxonomic_assignment.html#taxonomy-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">10.6</span> Taxonomy: MCQs<a href="10-Taxonomic_assignment.html#taxonomy-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/question_bubble_blue.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Attempt the below MCQs.</p>
-<ul>
-<li>What is the most abundant taxon, at taxonomic level 5, in the dataset (note: taxa are ordered form most to least abundant in the legend)?</li>
-<li>How do the samples compare to each other?</li>
-</ul>
-<p>If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.</p>
+<ol style="list-style-type: decimal">
+<li>At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend)
+<div id="radio_OKDRKWWVAB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OKDRKWWVAB" value=""></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OKDRKWWVAB" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OKDRKWWVAB" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+</div></li>
+<li>At taxonomic level 5, what is the most abundant taxon for sample 1TE?
+<div id="radio_GWIGKOPMNK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GWIGKOPMNK" value="answer"></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GWIGKOPMNK" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GWIGKOPMNK" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+</div></li>
+</ol>
+<p><strong>Note</strong>: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, left sample is highest relative abundance) drop down to "Descending" may be useful.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Which sample has the highest relative abundance of the class Actinobacteria (Taxonomic level 3)?
+<div id="radio_YSNKGEHBXY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YSNKGEHBXY" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YSNKGEHBXY" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YSNKGEHBXY" value=""></input> <span><strong>3TM</strong></span></label>
+</div></li>
+<li>Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)?
+<div id="radio_JIVNQFWDTR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JIVNQFWDTR" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JIVNQFWDTR" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JIVNQFWDTR" value=""></input> <span><strong>3TM</strong></span></label>
+</div></li>
+<li>Which sample has the third highest relative abundance of the phylum Bacteroidetes (Taxonomic level 2)?
+<div id="radio_BTNGFCDYYC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BTNGFCDYYC" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BTNGFCDYYC" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BTNGFCDYYC" value="answer"></input> <span><strong>3TM</strong></span></label>
+</div></li>
+</ol>
+</div>
+<div id="taxonomy-summary" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Taxonomy: summary<a href="10-Taxonomic_assignment.html#taxonomy-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/sum_blue.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>We have trimmed and denoised our data, producing ASVs. This has been followed by assigning taxonomic classifications to the ASVs.</p>
+<p>In your future analysis if you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected. Do they contain what you expect? You may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.</p>
+<p>We are close to carrying out some biodiversity analysis. Before this we will produce a phylogenetic tree in the next chapter.</p>
 <p><a href="https://docs.qiime2.org/2022.2/tutorials/feature-classifier/">QIIME2 documents on training feature classifiers</a></p>
 
 </div>
@@ -671,7 +699,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

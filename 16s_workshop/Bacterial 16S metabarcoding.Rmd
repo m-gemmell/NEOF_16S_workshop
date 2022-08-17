@@ -1283,7 +1283,7 @@ knitr::include_graphics(path = "figures/train.png", auto_pdf = TRUE)
 
 Now we train the classifier on this set of extracted reads (approx. 25 mins). 
 
-This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we will not explain how it works.
+This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we won't explain it here..
 
 ```{bash, eval=FALSE}
 qiime feature-classifier fit-classifier-naive-bayes \
@@ -1362,20 +1362,50 @@ The visualisation consists of an interactive taxonomy bar chart. You can specify
 
 [QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2022.2/plugins/available/taxa/barplot/)
 
-## Taxonomy MCQs
+## Taxonomy: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
 ```
 
 Attempt the below MCQs.
 
+```{r, echo = FALSE}
+opts_p <- c("__Corynebacteriaceae__", answer="__Moraxellaceae__", "__Pseudomonadaceae__")
+```
+1. At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend) `r longmcq(opts_p)`
 
+```{r, echo = FALSE}
+opts_p <- c(answer="__Corynebacteriaceae__", "__Moraxellaceae__", "__Pseudomonadaceae__")
+```
+2. At taxonomic level 5, what is the most abundant taxon for sample 1TE?  `r longmcq(opts_p)`
 
-- What is the most abundant taxon, at taxonomic level 5, in the dataset (note: taxa are ordered form most to least abundant in the legend)? 
-- How do the samples compare to each other?
+__Note__: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, left sample is highest relative abundance) drop down to "Descending" may be useful.
 
-If you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected, you may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.
+```{r, echo = FALSE}
+opts_p <- c("__1K2E__", answer="__1TM__", "__3TM__")
+```
+3. Which sample has the highest relative abundance of the class Actinobacteria (Taxonomic level 3)? `r longmcq(opts_p)`
 
+```{r, echo = FALSE}
+opts_p <- c(answer="__1K2E__", "__1TM__", "__3TM__")
+```
+4. Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__1K2E__", "__1TM__", answer="__3TM__")
+```
+5. Which sample has the third highest relative abundance of the phylum Bacteroidetes (Taxonomic level 2)? `r longmcq(opts_p)`
+
+## Taxonomy: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+```
+
+We have trimmed and denoised our data, producing ASVs. This has been followed by assigning taxonomic classifications to the ASVs. 
+
+In your future analysis if you have sequenced any samples with known composition (e.g. mock community), now is the time to see if they behave as expected. Do they contain what you expect? You may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.
+
+We are close to carrying out some biodiversity analysis. Before this we will produce a phylogenetic tree in the next chapter.
 
 [QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2022.2/tutorials/feature-classifier/)
 
@@ -1403,19 +1433,29 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
-In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS among others).
+In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
 
 ## MAFFT alignment
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
 ``` 
-The first step is to align our representative sequences. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
+The first step is to align our representative sequences against each other. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
 
 ```{bash, eval=FALSE}
 qiime alignment mafft \
 --i-sequences rep-seqs-dada2.qza \
 --o-alignment aligned-rep-seqs.qza
 ```
+
+#### Parameters{-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
+```
+
+- __`--i-sequences`__: Input artifact containing the representative sequences of the features (ASVs) to be aligned.
+- __`--o-alignment`__: Output artifact containing the aligned represenative sequences.
+
+[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mafft/)
 
 ## Masking
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1431,19 +1471,25 @@ qiime alignment mask \
 --o-masked-alignment masked-aligned-rep-seqs.qza
 ```
 
-The following default options were chosen (no need to look at this it is only for your interest):
+#### Parameters{-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
+```
 
-- `--p-max-gap-frequency 1.0`
-   - This option is provided with a number from 0-1.
-   - This determines the relative frequency of gap characters in an aligned column for the column to be retained.
-   - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
-   - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
-- `--p-min-conservation 0.4`
-   - This option is provided with a number from 0-1.
-   - This is the minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
-   - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
-      - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
-      - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
+- __`--i-alignment`__: Input artifact containing aligned representative sequences.
+- __`--p-max-gap-frequency`__: This determines the relative frequency of gap characters in an aligned column for the column to be retained.
+  - This option is provided with a number from 0-1.
+  - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
+  - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
+  - 1.0 was chosen as it is the default option. Unless you have good reason this is what you should use for your future 16S analysis.
+- __`--p-min-conservation`__: This is the minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
+  - This option is provided with a number from 0-1.
+  - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
+    - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
+    - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
+  0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
+
+[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mask/)
 
 ## Un-rooted tree creation with FASTTREE
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1457,6 +1503,11 @@ qiime phylogeny fasttree \
 --o-tree unrooted-tree.qza
 ```
 
+#### Parameters{-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
+```
+
 ## Rooted tree creation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/tree_rooted.png", auto_pdf = TRUE)
@@ -1468,6 +1519,12 @@ qiime phylogeny midpoint-root \
 --i-tree unrooted-tree.qza \
 --o-rooted-tree rooted-tree.qza
 ```
+
+#### Parameters{-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
+```
+
 
 All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .
 

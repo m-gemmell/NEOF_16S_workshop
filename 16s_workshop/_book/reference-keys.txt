@@ -53,6 +53,7 @@ classifier-training
 taxonomy-assignment
 taxonomy-bar-chart-production
 taxonomy-mcqs
+taxonomy-summary
 phylogeny
 mafft-alignment
 masking
