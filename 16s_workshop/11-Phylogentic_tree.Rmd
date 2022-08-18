@@ -65,7 +65,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
 ``` 
-Create an un-rooted maximum-likelihood tree from our masked alignment.
+Create an un-rooted maximum-likelihood tree from our masked alignment with the Fasttree 2 tool. 
 
 ```{bash, eval=FALSE}
 qiime phylogeny fasttree \
@@ -77,6 +77,11 @@ qiime phylogeny fasttree \
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
+
+- __`--i-alignment`__: Input artifact containing the masked aligned representative sequences.
+- __`--o-tree`__: Output artifact containing the un-rooted tree.
+
+[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/fasttree/)
 
 ## Rooted tree creation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -95,5 +100,16 @@ qiime phylogeny midpoint-root \
 knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 ```
 
+- __`--i-tree`__: Input artifact containing the un-rooted tree
+- __`--o-rooted-tree`__: Output artifact containing the rooted tree.
 
-All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .
+[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/midpoint-root/)
+
+## Phylogeny: summary
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
+```
+
+All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiveristy measures that require phylogenetic information.
+
+The file ‘rooted-tree.qza’ contains a phylogentic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).

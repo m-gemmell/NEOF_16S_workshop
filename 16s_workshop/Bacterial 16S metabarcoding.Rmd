@@ -990,7 +990,7 @@ This may be one of the longest steps of the whole pipeline. The running time is 
 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
-## table-dada2.qzv
+## table-dada2.qzv {#tabledada2qzv}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/table.png", auto_pdf = TRUE)
 ``` 
@@ -1495,7 +1495,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
 ``` 
-Create an un-rooted maximum-likelihood tree from our masked alignment.
+Create an un-rooted maximum-likelihood tree from our masked alignment with the Fasttree 2 tool. 
 
 ```{bash, eval=FALSE}
 qiime phylogeny fasttree \
@@ -1507,6 +1507,11 @@ qiime phylogeny fasttree \
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
+
+- __`--i-alignment`__: Input artifact containing the masked aligned representative sequences.
+- __`--o-tree`__: Output artifact containing the un-rooted tree.
+
+[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/fasttree/)
 
 ## Rooted tree creation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1525,8 +1530,19 @@ qiime phylogeny midpoint-root \
 knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 ```
 
+- __`--i-tree`__: Input artifact containing the un-rooted tree
+- __`--o-rooted-tree`__: Output artifact containing the rooted tree.
 
-All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’ .
+[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/midpoint-root/)
+
+## Phylogeny: summary
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
+```
+
+All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiveristy measures that require phylogenetic information.
+
+The file ‘rooted-tree.qza’ contains a phylogentic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).
 
 <!--chapter:end:11-Phylogentic_tree.Rmd-->
 
@@ -1549,7 +1565,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 ```
 # (PART\*) Analysis {-}
 
-# Sequencing depth evaluation: rarefaction plot {#rarefaction}
+# Sequencing depth evaluation {#rarefaction}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ``` 
@@ -1557,7 +1573,7 @@ knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
 
 To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction. 
-This is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
+Rarefaction is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
 
 For example, if we rarefy to a depth of 2000 for all samples:
 
@@ -1567,28 +1583,29 @@ For example, if we rarefy to a depth of 2000 for all samples:
 
 Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample smaller subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '80%', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
 knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
 ``` 
-Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
 
-## Rarefaction command
-Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics (observed features, Simpson, Shannon, Faith’s PD) as well as an evenness metric (Simpson’s evenness).
+## Rarefaction: run
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
+``` 
 
-__Note__: See the appendix at the end of this bookdown for details on each metric.
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
+
+__Note__: See the [appendix](#alphamet) at the end of this bookdown for details on each metric.
 
 You may want to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_pd` for markers such as ITS where you will not create a phylogenetic tree.
 
-__Important__: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it.
+__Important__: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it. Optionally, you can [copy the output](#cprarefaction) instead of running it.
 
 ```{bash, eval=FALSE}
-qiime diversity alpha-rarefaction --i-table table-dada2.qza \
+qiime diversity alpha-rarefaction \
+--i-table table-dada2.qza \
 --i-phylogeny rooted-tree.qza \
-# Min and max depth for the plot
-# These are based on your knowledge of the sample depths
 --p-min-depth 5000 \
 --p-max-depth 130000 \
-# Evaluating diversity every 500 sequence depth
 --p-steps 500 \
 # Using average from 10 iterations for the diversity count
 --p-iterations 10 \
@@ -1601,35 +1618,73 @@ qiime diversity alpha-rarefaction --i-table table-dada2.qza \
 --o-visualization rarefaction-curve.qzv
 ```
 
-Otherwise, copy over the output to your directory.
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing the abundance table for the identified variants.
+- __`--i-phylogeny`__: Input artifact containing the rooted tree.
+- __`--p-min-depth`__: Minimum depth to show in the plot (x-axis).
+- __`--p-max-depth`__: Maximum depth to show in the plot (x-axis).
+  - The minimum and maximum depth are chosen based on your knowledge of the sample depths. This can be figured out from the ['table-dada2.qzv' file](#tabledada2qzv).
+- __`--p-steps`__: The number of rarefaction steps to include between the min and max depth.
+  - This means there will be x points on the sequence depth axis (x-axis) in the resulting plot.
+  - The more steps there are the longer the command will take to run.
+  - In your future analysis it may take some experimentation to get a number of steps that is a good amount. Too many steps and it can be messy, too few steps and it can be uninformative
+- __`--p-iterations`__: This is the number of rarefaction tables that will created. The final output is based on the average of these tables.
+  - Although a very large number would be very good it would also take a very long time. The number of iterations increase the time by that amount (i.e. 2 iterations takes 2 times more than 1 iteration).
+  - Ten iterations is generally a good amount.
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--p-metrics`__: This parameter indicates which alpha diversity to use for rarefaction.
+  - This parameter can be specified multiple times for different metrics.
+- __`--o-visualization`__: Output visualisation artifact containing the rarefaction plots. 
+
+[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-rarefaction/)
+
+### Copy rarefaction output {#cprarefaction}
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
+```
+
+Instead of running the command you can copy the output to your directory.
 
 ```{bash eval=FALSE}
-cp /pub39/tea/matthew/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
+cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 ```
 
 
-## Rarefaction visualisation
-Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the grouping (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the observed_features metric is the best __Metric__ to view.
+## Rarefaction: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_blue.png", auto_pdf = TRUE)
+```
+
+Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the groupings (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the [__observed_features__](#obvs) metric is the best __Metric__ to view.
 
 The visualisation has two plots. 
 
-- Top plot = Alpha rarefaction plot.
+- __Top plot: Alpha rarefaction plot.__
    - Primarily used to determine if the richness of the samples has been fully observed or sequenced.
    - If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected. 
    - If the lines in the observed feature plot do not level out:
       - The richness of the samples may have not been fully observed (because too few sequences were collected)
       - Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
-- Bottom plot = Number of samples (Y) against sequencing depth (X)
+- __Bottom plot: Number of samples (Y) against sequencing depth (X)__
    - This is important when grouping samples by metadata.
    - It illustrates the number of samples with different sequencing depths for the groups in the chosen __Sample Metadata Column__.
    - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding to a decrease in number of samples.
-      - If the sample/s had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
-      - If the sample/s had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
+      - If the lost sample had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
+      - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
+
+### Rarefaction considerations
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
+```
 
 Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:
 
 - Retaining sequencing depth within samples.
-- Losing entire samples.
+- Not losing entire samples.
 
 The best choice usually depends on the experimental design. If you have many samples per group you may be able to lose a few samples without losing statistical power for the analysis. If you have few samples per group you may need to choose a lower threshold.
 
@@ -1638,7 +1693,10 @@ Other considerations for rarefaction threshold:
 - Do the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.
 - Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold.
 
-__Questions__: 
+### Rarefaction: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
+```
 
 - Are there any samples not fully sequenced? (yes or no)
 - Comparing the two __Locations__, which has a higher evenness score (simpson_e)?
@@ -2119,14 +2177,14 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
 ``` 
 
-## Alpha diversity metrics
+## Alpha diversity metrics {#alphamet}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
 Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness. 
 
-### Observed features
+### Observed features {#obvs}
 
 The observed number of features is defined as the number of distinct features, such as ASVs, within a sample.
 
@@ -2139,7 +2197,7 @@ How evenly spread the abundances are across all present features.
 - A sample with 4 ASVs, each with 25% relative abundance would be perfectly even.
 - A sample with 4 ASVs, where one ASV has 97% abundance and the other 3 have 1%, would be highly uneven.
 
-### Faith's PD (phylogenetic diversity)
+### Faith's PD (phylogenetic diversity) {#faith}
 
 Faith's PD represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.
 
@@ -2149,7 +2207,7 @@ A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 AS
 knitr::include_graphics(path = "figures/faith_pd.png", auto_pdf = TRUE)
 ``` 
 
-### Simpson
+### Simpson {#simpson}
 
 A measure of diversity based on number of features present and the relative abundance of each feature. If richness and evenness increase the diversity score increases.
 
@@ -2169,7 +2227,7 @@ $$
 
 The values range from 0 (no diversity) to 1 (infinite diversity).
 
-### Simpson evenness measure (simpson_e)
+### Simpson evenness measure (simpson_e) {#simpsone}
 
 This is a measure of evenness based on the Simpson index. It ranges from 0 (lowest eveness) to 1 (complete evenness). It compares the calculated Simpson Index of a sample to its theoretical maximum if the sample was perfectly even but had the same amount of features.
 
@@ -2184,7 +2242,7 @@ $$
 - D = Simpson diversity index
 - D~m~ = Max possible Simpson diveristy index given the number of features
 
-### Shannon
+### Shannon {#shannon}
 
 A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the feaures present.
 

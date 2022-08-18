@@ -3,14 +3,14 @@
 knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
 ``` 
 
-## Alpha diversity metrics
+## Alpha diversity metrics {#alphamet}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
 Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness. 
 
-### Observed features
+### Observed features {#obvs}
 
 The observed number of features is defined as the number of distinct features, such as ASVs, within a sample.
 
@@ -23,7 +23,7 @@ How evenly spread the abundances are across all present features.
 - A sample with 4 ASVs, each with 25% relative abundance would be perfectly even.
 - A sample with 4 ASVs, where one ASV has 97% abundance and the other 3 have 1%, would be highly uneven.
 
-### Faith's PD (phylogenetic diversity)
+### Faith's PD (phylogenetic diversity) {#faith}
 
 Faith's PD represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.
 
@@ -33,7 +33,7 @@ A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 AS
 knitr::include_graphics(path = "figures/faith_pd.png", auto_pdf = TRUE)
 ``` 
 
-### Simpson
+### Simpson {#simpson}
 
 A measure of diversity based on number of features present and the relative abundance of each feature. If richness and evenness increase the diversity score increases.
 
@@ -53,7 +53,7 @@ $$
 
 The values range from 0 (no diversity) to 1 (infinite diversity).
 
-### Simpson evenness measure (simpson_e)
+### Simpson evenness measure (simpson_e) {#simpsone}
 
 This is a measure of evenness based on the Simpson index. It ranges from 0 (lowest eveness) to 1 (complete evenness). It compares the calculated Simpson Index of a sample to its theoretical maximum if the sample was perfectly even but had the same amount of features.
 
@@ -68,7 +68,7 @@ $$
 - D = Simpson diversity index
 - D~m~ = Max possible Simpson diveristy index given the number of features
 
-### Shannon
+### Shannon {#shannon}
 
 A measure of diversity where a higher number means higher diversity. Shannon's index accounts for both abundance and evenness of the feaures present.
 

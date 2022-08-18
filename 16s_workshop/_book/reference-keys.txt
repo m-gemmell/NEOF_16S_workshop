@@ -1,3 +1,4 @@
+fig:unnamed-chunk-149
 introduction
 background
 s-rrna
@@ -41,7 +42,7 @@ dada2-run
 truncation-length
 cpdada2
 dada2-considerations
-table-dada2.qzv
+tabledada2qzv
 table-dada2.qzv-mcqs
 dada2-stats.qzv
 dada2-stats.qzv-mcqs
@@ -59,9 +60,13 @@ mafft-alignment
 masking
 un-rooted-tree-creation-with-fasttree
 rooted-tree-creation
+phylogeny-summary
 rarefaction
-rarefaction-command
-rarefaction-visualisation
+rarefaction-run
+cprarefaction
+rarefaction-visualise
+rarefaction-considerations
+rarefaction-mcqs
 diversity
 core-metrics-command
 alpha-diveristy-statistical-analysis
@@ -77,12 +82,12 @@ suggested-readings
 other-useful-resources
 references
 diversity-metrics
-alpha-diversity-metrics
-observed-features
+alphamet
+obvs
 evenness
-faiths-pd-phylogenetic-diversity
+faith
 simpson
-simpson-evenness-measure-simpson_e
+simpsone
 shannon
 beta-diversity-metrics
 weighted-and-unweighted-unifrac-distances
