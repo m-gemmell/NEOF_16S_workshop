@@ -1691,17 +1691,44 @@ The best choice usually depends on the experimental design. If you have many sam
 Other considerations for rarefaction threshold:
 
 - Do the samples in one group have lower depths? Although you may be able to retain all the samples in the other groups with a high rarefaction threshold you may remove too much of the low depth group.
-- Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diveristy. With higher diveristy you will need a larger rarefaction threshold.
+- Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diversity. With higher diversity you will need a larger rarefaction threshold.
 
 ### Rarefaction: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
 ```
 
-- Are there any samples not fully sequenced? (yes or no)
-- Comparing the two __Locations__, which has a higher evenness score (simpson_e)?
-- Comparing the 2 __Places__, which has higher diversity value when considering most of the samples (faith_pd, shannon, & simpson)?
-- What sampling depth (rarefaction threshold) would you use for the alpha- and beta-diversity analysis?
+Attempt the below MCQs.
+
+```{r, echo = FALSE}
+opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
+```
+1. At approximately what sequencing depth do the rarefaction of most of the samples (>90%) plateau'd?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Corridor__", "__Toilet__")
+```
+2. Comparing the two __Locations__, which has higher evenness scores (simpson_e)? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Corridor__", "__Toilet__")
+```
+3. Comparing the two __Locations__, which has a higher Faith's PD scores? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__70,000__", answer="__90,000__", "__115,000 __")
+```
+4. When comparing the two __Places__, at approximately what sequencing depth are there only 6 MainBuilding samples remaining?  `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__70,000__", "__90,000__", answer="__115,000 __")
+```
+5. When comparing the two __Places__, at approximately what sequencing depth are there only 5 Entrance samples remaining? `r longmcq(opts_p)`
+
+## Rarefaction: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
+```
 
 For the next step we will use a rarefaction size of 34,583. We have chosen this depth because:
 
@@ -1710,7 +1737,7 @@ For the next step we will use a rarefaction size of 34,583. We have chosen this 
 - Many of the individual samples (__BarcodeSequence__) have plateaued at this depth.
 - We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
 
-How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the `table-dada2.qzv` visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
+How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the [`table-dada2.qzv`](#tabledada2qzv) visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
 
 <!--chapter:end:12-Rarefaction.Rmd-->
 
@@ -1736,14 +1763,14 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ``` 
 
-Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the “Shannon” metric, the number of observed features and Faith’s phylogenetic distance (Shannon,
+Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
 1948, Faith, 1992).
 
-Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use weighted and unweighted UniFrac metrics (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the Bray-Curtis metric (Bray and Curtis, 1957) (More info on these mertics in the appendix).
+Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
-## Core metrics command
-```{r, fig.align = 'center',out.width= '8%', echo=FALSE }
-knitr::include_graphics(path = "figures/core.png", auto_pdf = TRUE)
+## Diversity: run 
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_red.png", auto_pdf = TRUE)
 ``` 
 
 QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2021.2/plugins/available/diversity/).
@@ -1752,10 +1779,25 @@ QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at 
 qiime diversity core-metrics-phylogenetic \
 --i-table table-dada2.qza \
 --i-phylogeny rooted-tree.qza \
-# Chosen final sampling depth
 --p-sampling-depth 34583 \
 --output-dir dada2-diversity-34583 \
 --m-metadata-file metadata.file.txt
+```
+
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing the abundance table for the identified variants.
+- __`--i-phylogeny`__: Input artifact containing the rooted tree.
+- __`--p-sampling-depth`__: Sampling depth to rarefy the abundance data table to.
+- __`--output-dir`__: Output directory that will contain all the output files form the command.
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+
+#### Output {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
 ```
 
 This command will produce all the results within the directory specified with the option `--output-dir`. The produced artifact `rarefied_table.qza` is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains artifacts for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (`emperor.qzv` files).
@@ -1763,13 +1805,35 @@ This command will produce all the results within the directory specified with th
 In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
 `--i-phylogeny` option.
 
-__Questions__: 
+### Diversity: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
+```
 
 + Looking at the beta-diversity plot (`emperor.qzv`), one metric of your choice, is there any metadata category that produces clusters based on the groups? Note: You can reorientate the 3D plot.
 + If you choose a different metric, do you get a different plot/result?
 + Does a different sampling-depth give a different result? Try running the `core-metrics-phylogenetic` command with a different `--p-sampling-depth` and `--output-dir`.
 
-## Alpha diveristy statistical analysis
+<!--chapter:end:13-Diversity_analysis.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Alpha diveristy statistical analysis
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
@@ -1811,7 +1875,26 @@ __Questions__:
 + Is the p-value or q-value for this comparison significant? 
 + If you choose a different metric do you get different results? Run both the Kruskal-Wallis and Ranked Spearman tests on another alpha diversity metric of your choice and visualise the results.
 
-## Beta diversity statistical analysis
+<!--chapter:end:14-Alpha_diversity.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+suppressPackageStartupMessages({
+  library(webexercises)
+})
+
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
+  }
+})
+```
+# Beta diversity statistical analysis
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
@@ -1856,7 +1939,7 @@ __Questions__:
 + And using a different ordination metric? 
 + What about choosing a different grouping (metadata category)?
 
-<!--chapter:end:13-Diversity_analysis.Rmd-->
+<!--chapter:end:15-Beta_diversity_analysis.rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -1955,7 +2038,7 @@ __Questions__:
 + Run ANCOM analysis for genus level (level 6). Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
 + Does changing the metadata category let you infer something different?
 
-<!--chapter:end:14-Differential_abundance.Rmd-->
+<!--chapter:end:16-Differential_abundance.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -1995,7 +2078,7 @@ If you are happy with the composition, you can then explore the ecological diffe
 __CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!__
 If you have still time available you can move onto the Supplemental bookdown.
 
-<!--chapter:end:15-Final_consideration.Rmd-->
+<!--chapter:end:17-Final_consideration.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -2153,7 +2236,7 @@ __ANCOM__
 
 Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2015). Analysis of composition of microbiomes: a novel method for studying microbial composition. Microbial ecology in health and disease, 26(1), p.27663.
 
-<!--chapter:end:16-Resources.Rmd-->
+<!--chapter:end:18-Resources.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
@@ -2268,14 +2351,14 @@ Beta diversity compares 2 samples at a time. This is measured in terms of dissim
 - A lower score indicate the 2 samples are more similar.
 - A higher score indicates the 2 samples are more dissimilar.
 
-### Weighted and unweighted UniFrac distances
+### Weighted and unweighted UniFrac distances {#unifrac_explanation}
 
 The UniFrac metric is a phylogenetic distance measure between two samples. It is defined as “the sum of the unshared branch lengths between two samples divided by the total branch length (shared + unshared) of two samples” (Lozupone and Knight, 2005). This results in calculating the fraction of the branch lengths unique to each sample (ie. the higher this value is, the more dissimilar two samples are). The entire phylogenetic tree created for all the sequences of all the analysed samples is used for this calculation.
 
 - Unweighted UniFrac: Only considers feature presence/absence.
 - Weighted UniFrac: Takes into account feature presence/absence & abundance. I.e. the value is weighted by the abundances.
 
-### Bray-Curtis
+### Bray-Curtis {#bray_explanation}
 
 The Bray-Curtis metric is a dissimilarity measure that can quantify the level of difference between two samples. Two identical samples would have a Bray-Curtis measure of 0 (i.e. they have 0 dissimilarity).
 
@@ -2297,5 +2380,5 @@ $$
 
 For more diveristy measure please see: https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282
 
-<!--chapter:end:17-Appendix.Rmd-->
+<!--chapter:end:19-Appendix.Rmd-->
 

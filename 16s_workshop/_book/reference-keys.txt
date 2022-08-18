@@ -67,8 +67,10 @@ cprarefaction
 rarefaction-visualise
 rarefaction-considerations
 rarefaction-mcqs
+rarefaction-summary
 diversity
-core-metrics-command
+diversity-run
+diversity-mcqs
 alpha-diveristy-statistical-analysis
 beta-diversity-statistical-analysis
 differential
@@ -90,6 +92,6 @@ simpson
 simpsone
 shannon
 beta-diversity-metrics
-weighted-and-unweighted-unifrac-distances
-bray-curtis
+unifrac_explanation
+bray_explanation
 diversity-resources

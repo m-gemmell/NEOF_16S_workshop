@@ -1,0 +1,41 @@
+# Alpha diveristy statistical analysis
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
+``` 
+
+We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly different.
+
+The QIIME2 pipeline offers two alternative choices: 
+
+- Categorical data: Kruskal-Wallis test.
+- Numerical data: Ranked Spearman test.
+
+As we have catergorical and numeric metadata columns we will carry out both types of tests. Let us do this for the shannon alpha diversity.
+
+```{bash, eval=FALSE}
+#Change directory into the output directory
+cd dada2-diversity-34583
+# For the Kruskal-Wallis test
+qiime diversity alpha-group-significance \
+--i-alpha-diversity shannon_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization shannon-group-significance.kw.qzv
+# For the ranked Spearman test
+qiime diversity alpha-correlation \
+--i-alpha-diversity shannon_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization shannon-group-significance.rs.qzv
+```
+
+Load the produced files into QIIME2 view. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
+
+In the visualisations you will see plots showing the diversity values and statistics below the plots. You can choose what metadata grouping to visualise with the __Column__ drop down selection. To determine if there is a statistical difference between the groups:
+
+- Kruskal-Wallis: It is best to look at the q-value/s in the pairwise section. The q-value is in essence the multiple comparison corrected p-value. As there is only one comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
+- Ranked Spearman: Can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
+
+__Questions__:
+
++ Are there any groups (for one or more metadata __Column__) showing a higher/lower alpha-diversity compared to the other/s in the same __Column__? 
++ Is the p-value or q-value for this comparison significant? 
++ If you choose a different metric do you get different results? Run both the Kruskal-Wallis and Ranked Spearman tests on another alpha diversity metric of your choice and visualise the results.

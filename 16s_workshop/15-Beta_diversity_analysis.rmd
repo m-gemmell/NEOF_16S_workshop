@@ -1,0 +1,44 @@
+# Beta diversity statistical analysis
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
+``` 
+
+Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
+
+To carry this out the 'PERMANOVA' analysis we will use the `distance_matrix.qza` which contains all the sample pairwise dissimilarity distances. For the `--p-permutations` option we will use the default value, 999.
+
+The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples, especially on Axis 2.
+
+```{bash, eval=FALSE}
+qiime diversity beta-group-significance \
+--i-distance-matrix weighted_unifrac_distance_matrix.qza \
+--m-metadata-file ../metadata.file.txt \
+--m-metadata-column Location \
+# prmanova default, anosim as alternative choice
+--p-method permanova \
+--p-pairwise \
+--p-permutations 999 \
+--o-visualization weighted-unifrac-significance.location.qzv
+```
+
+Load the resulting visualisation file in QIIME2 view. You will see the following sections:
+
+- __Overview__: An overview of the statistical analysis for the metadata column.
+- __Group significance plot__: These boxplots represent all the pairwise distances between the samples in the specified groups.
+   - Distances to Corridor plot
+      - Corridor boxplot: This boxplot represents all the pairwise distances within the Corridor samples. If you had 3 corridor samples (C1-3) the boxplot would consist of the distances between C1-C2, C1-C3, and C2-C3.
+      - Toilet boxplot: This boxplot represents the pairwise distances between all the corridor samples and toilet samples. If you had 3 corridor samples (C1-3) and 2 toilet samples (T1-2) the boxplot would consist of the distances between C1-T1, C1-T2, C2-T1, C2-T2, C3-T1, and C3-T2.
+   - With these plots you can see if the distances within a group is lower than the distances between that group and other groups.
+- __Pairwise results__: This section shows the statistical results comparing the different groups in pairwise fashion. The best values to look at are:
+   - Sample size: Good to determine if there are enough samples for statistical strength.
+   - q-value: Always go for q-values over p-values.
+   
+For an example with more groups in the metadata column please see:
+https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv
+
+__Questions__:
+
++ Does the chosen grouping information result in a statistically significant difference? 
++ Does using ‘anosim’ instead of ‘permanova’ change the result? 
++ And using a different ordination metric? 
++ What about choosing a different grouping (metadata category)?
