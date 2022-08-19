@@ -1,16 +1,21 @@
-# Alpha diveristy statistical analysis
+# Alpha diveristy statistical analysis {#alpha_div_stats}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
-We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly different.
+We can carry out some statistical analysis to compare the alpha diversity values between the different metadata data groups.
 
 The QIIME2 pipeline offers two alternative choices: 
 
-- Categorical data: Kruskal-Wallis test.
-- Numerical data: Ranked Spearman test.
+- Categorical metadata: Kruskal-Wallis test.
+- Numerical metadata: Ranked Spearman (correlation) test.
 
-As we have catergorical and numeric metadata columns we will carry out both types of tests. Let us do this for the shannon alpha diversity.
+## Alpha diversity: run 
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
+``` 
+
+As we have categorical (Location & Place) and numeric (Floor) metadata columns we will carry out both types of tests. Let's do this for the shannon alpha diversity.
 
 ```{bash, eval=FALSE}
 #Change directory into the output directory
@@ -27,15 +32,96 @@ qiime diversity alpha-correlation \
 --o-visualization shannon-group-significance.rs.qzv
 ```
 
-Load the produced files into QIIME2 view. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
+```
 
-In the visualisations you will see plots showing the diversity values and statistics below the plots. You can choose what metadata grouping to visualise with the __Column__ drop down selection. To determine if there is a statistical difference between the groups:
+Although we have used two different commands they both have the same parameters.
 
-- Kruskal-Wallis: It is best to look at the q-value/s in the pairwise section. The q-value is in essence the multiple comparison corrected p-value. As there is only one comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
-- Ranked Spearman: Can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
+- __`--i-alpha-diversity`__: Input artifact file containing the alpha diversity vectors (values).
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--o-visualization`__:  Output visualisation artifact containing the box plots and statistical table.
 
-__Questions__:
+[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-group-significance/)
 
-+ Are there any groups (for one or more metadata __Column__) showing a higher/lower alpha-diversity compared to the other/s in the same __Column__? 
-+ Is the p-value or q-value for this comparison significant? 
-+ If you choose a different metric do you get different results? Run both the Kruskal-Wallis and Ranked Spearman tests on another alpha diversity metric of your choice and visualise the results.
+[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-correlation/)
+
+## Alpha diveristy: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
+```
+
+Load the produced files (`shannon-group-significance.kw.qzv` & `shannon-group-significance.rs.qzv`) into QIIME2 view using 2 chrome tabs. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
+
+At the top of both the outputs is a drop down menu labelled __"Column"__ that can be used to display the plot and stats of your chosen metadata grouping. As there was only one numeric column (Floors) there will only be one option in the Ranked Spearman output.
+
+#### Kruskal-Wallis {-}
+
+The Kruskal-Wallis (`shannon-group-significance.kw.qzv`) visualisation artifact contains:
+
+- __Alpha Diversity Boxplots__: Displays the alpha diversity values plotted as box plots comparing the chosen metadata column.
+- __Kruskal-Wallis (all groups)__: Displays the stats for the all groups comparison. 
+  - These stats will be different to the pairwise comparisons if there are more than 2 groups.
+- __Kruskal-Wallis (pairwise)__: Displays the stats for the all the pairwise group comparison. 
+
+To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
+
+[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2022.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
+
+#### Ranked Spearman {-}
+
+The Ranked Spearman (`shannon-group-significance.rs.qzv`) visualisation artifact contains:
+
+- __Plot__: This plots the alpha diversity values as a scatterplot.
+  - The x-axis contains the numeric values form the metadata.
+  - The y-axis contains the alpha diversity values.
+- __Stats table__: The Spearman ranked correlation statistics table. 
+
+You can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
+
+### Alpha diversity: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = TRUE)
+```
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+1. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+2. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+3. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ? `r longmcq(opts_p)`
+
+For the below questions you will need to run some more `qiime diversity alpha-group-significance` and `qiime diversity alpha-correlation`. When creating and running these commands ensure you are giving the input and output artifacts the correct names.
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+4. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using observed features? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+5. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+6. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD? `r longmcq(opts_p)`
+
+## Alpha diversity: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
+```
+
+We have viewed alpha diversity output but unfortunately found no significant differences between groups. Hopefully in your future projects you will have more samples and more luck. Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.
+
+IN the next chapter we will look at the beta diversity output and carry out some more statistics.

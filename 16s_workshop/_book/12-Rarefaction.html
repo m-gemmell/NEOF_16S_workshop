@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Sequencing depth evaluation | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Sequencing depth evaluation | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-18" />
+<meta name="date" content="2022-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,13 +246,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-mcqs"><i class="fa fa-check"></i><b>13.1.1</b> Diversity: MCQs</a></li>
+<li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
+<li class="chapter" data-level="14.3" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-summary"><i class="fa fa-check"></i><b>14.3</b> Alpha diversity: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a></li>
-<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
+<li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
@@ -338,15 +348,14 @@ Figure 12.1: Example rarefaction curve: We can see that Series 1 plateaus at ~7,
 <span id="cb26-4"><a href="12-Rarefaction.html#cb26-4" aria-hidden="true" tabindex="-1"></a>--p-min-depth 5000 <span class="dt">\</span></span>
 <span id="cb26-5"><a href="12-Rarefaction.html#cb26-5" aria-hidden="true" tabindex="-1"></a>--p-max-depth 130000 <span class="dt">\</span></span>
 <span id="cb26-6"><a href="12-Rarefaction.html#cb26-6" aria-hidden="true" tabindex="-1"></a>--p-steps 500 <span class="dt">\</span></span>
-<span id="cb26-7"><a href="12-Rarefaction.html#cb26-7" aria-hidden="true" tabindex="-1"></a># Using average from 10 iterations for the diversity count</span>
-<span id="cb26-8"><a href="12-Rarefaction.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-iterations</span> 10 <span class="dt">\</span></span>
-<span id="cb26-9"><a href="12-Rarefaction.html#cb26-9" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
-<span id="cb26-10"><a href="12-Rarefaction.html#cb26-10" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson_e <span class="dt">\</span></span>
-<span id="cb26-11"><a href="12-Rarefaction.html#cb26-11" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson <span class="dt">\</span></span>
-<span id="cb26-12"><a href="12-Rarefaction.html#cb26-12" aria-hidden="true" tabindex="-1"></a>--p-metrics shannon <span class="dt">\</span></span>
-<span id="cb26-13"><a href="12-Rarefaction.html#cb26-13" aria-hidden="true" tabindex="-1"></a>--p-metrics observed_features <span class="dt">\</span></span>
-<span id="cb26-14"><a href="12-Rarefaction.html#cb26-14" aria-hidden="true" tabindex="-1"></a>--p-metrics faith_pd <span class="dt">\</span></span>
-<span id="cb26-15"><a href="12-Rarefaction.html#cb26-15" aria-hidden="true" tabindex="-1"></a>--o-visualization rarefaction-curve.qzv</span></code></pre></div>
+<span id="cb26-7"><a href="12-Rarefaction.html#cb26-7" aria-hidden="true" tabindex="-1"></a>--p-iterations 10 <span class="dt">\</span></span>
+<span id="cb26-8"><a href="12-Rarefaction.html#cb26-8" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb26-9"><a href="12-Rarefaction.html#cb26-9" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson_e <span class="dt">\</span></span>
+<span id="cb26-10"><a href="12-Rarefaction.html#cb26-10" aria-hidden="true" tabindex="-1"></a>--p-metrics simpson <span class="dt">\</span></span>
+<span id="cb26-11"><a href="12-Rarefaction.html#cb26-11" aria-hidden="true" tabindex="-1"></a>--p-metrics shannon <span class="dt">\</span></span>
+<span id="cb26-12"><a href="12-Rarefaction.html#cb26-12" aria-hidden="true" tabindex="-1"></a>--p-metrics observed_features <span class="dt">\</span></span>
+<span id="cb26-13"><a href="12-Rarefaction.html#cb26-13" aria-hidden="true" tabindex="-1"></a>--p-metrics faith_pd <span class="dt">\</span></span>
+<span id="cb26-14"><a href="12-Rarefaction.html#cb26-14" aria-hidden="true" tabindex="-1"></a>--o-visualization rarefaction-curve.qzv</span></code></pre></div>
 <div id="parameters-15" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="12-Rarefaction.html#parameters-15" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><img src="figures/parameter_blue.png" width="10%" style="display: block; margin: auto;" /></p>
@@ -433,24 +442,24 @@ Figure 12.1: Example rarefaction curve: We can see that Series 1 plateaus at ~7,
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>At approximately what sequencing depth do the rarefaction of most of the samples (&gt;90%) plateau'd?
-<div id="radio_UMZSUBHAZI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UMZSUBHAZI" value=""></input> <span><strong>10,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UMZSUBHAZI" value=""></input> <span><strong>25,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UMZSUBHAZI" value="answer"></input> <span><strong>50,000</strong></span></label>
+<div id="radio_PQEZVHRLIA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PQEZVHRLIA" value=""></input> <span><strong>10,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PQEZVHRLIA" value=""></input> <span><strong>25,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PQEZVHRLIA" value="answer"></input> <span><strong>50,000</strong></span></label>
 </div></li>
 <li>Comparing the two <strong>Locations</strong>, which has higher evenness scores (simpson_e)?
-<div id="radio_EOMHXFQCVS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EOMHXFQCVS" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EOMHXFQCVS" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_ZAPJCIJZHE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZAPJCIJZHE" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZAPJCIJZHE" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>Comparing the two <strong>Locations</strong>, which has a higher Faith's PD scores?
-<div id="radio_ZSHZKMTOMO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZSHZKMTOMO" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZSHZKMTOMO" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_AKTBOBSOVL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AKTBOBSOVL" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AKTBOBSOVL" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>When comparing the two <strong>Places</strong>, at approximately what sequencing depth are there only 6 MainBuilding samples remaining?
-<div id="radio_MKGEGHFOCD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MKGEGHFOCD" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MKGEGHFOCD" value="answer"></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MKGEGHFOCD" value=""></input> <span><strong>115,000 </strong></span></label>
+<div id="radio_VLIHNXFTTS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VLIHNXFTTS" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VLIHNXFTTS" value="answer"></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VLIHNXFTTS" value=""></input> <span><strong>115,000 </strong></span></label>
 </div></li>
 <li>When comparing the two <strong>Places</strong>, at approximately what sequencing depth are there only 5 Entrance samples remaining?
-<div id="radio_YOSPHKNDQN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YOSPHKNDQN" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YOSPHKNDQN" value=""></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YOSPHKNDQN" value="answer"></input> <span><strong>115,000 </strong></span></label>
+<div id="radio_MUJSNSGDHA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MUJSNSGDHA" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MUJSNSGDHA" value=""></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MUJSNSGDHA" value="answer"></input> <span><strong>115,000 </strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -693,7 +702,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

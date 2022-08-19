@@ -42,7 +42,6 @@ qiime diversity alpha-rarefaction \
 --p-min-depth 5000 \
 --p-max-depth 130000 \
 --p-steps 500 \
-# Using average from 10 iterations for the diversity count
 --p-iterations 10 \
 --m-metadata-file metadata.file.txt \
 --p-metrics simpson_e \

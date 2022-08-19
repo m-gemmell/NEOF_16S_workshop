@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Trim the PCR primer sequences | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Trim the PCR primer sequences | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-18" />
+<meta name="date" content="2022-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,13 +246,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-mcqs"><i class="fa fa-check"></i><b>13.1.1</b> Diversity: MCQs</a></li>
+<li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
+<li class="chapter" data-level="14.3" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-summary"><i class="fa fa-check"></i><b>14.3</b> Alpha diversity: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a></li>
-<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
+<li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
@@ -356,20 +366,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_black.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>which sample has the lowest number of forward reads?
-<div id="radio_KYBJFQBEZC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KYBJFQBEZC" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_KYBJFQBEZC" value=""></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_KYBJFQBEZC" value="answer"></input> <span>3K1E</span></label>
+<div id="radio_PBCPQTUVNC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PBCPQTUVNC" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_PBCPQTUVNC" value=""></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_PBCPQTUVNC" value="answer"></input> <span>3K1E</span></label>
 </div></li>
 <li>Which sample has the highest number of forward reads?
-<div id="radio_ZMNIWTHFLW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZMNIWTHFLW" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_ZMNIWTHFLW" value="answer"></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_ZMNIWTHFLW" value=""></input> <span>3K1E</span></label>
+<div id="radio_HQUXWMRCAW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HQUXWMRCAW" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_HQUXWMRCAW" value="answer"></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_HQUXWMRCAW" value=""></input> <span>3K1E</span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)?
-<div id="radio_UIWYXQGKEB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UIWYXQGKEB" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_UIWYXQGKEB" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_UIWYXQGKEB" value="answer"></input> <span>&gt;220</span></label>
+<div id="radio_GKBCNTMSVR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GKBCNTMSVR" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_GKBCNTMSVR" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_GKBCNTMSVR" value="answer"></input> <span>&gt;220</span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)?
-<div id="radio_MSGSGBAAAI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MSGSGBAAAI" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_MSGSGBAAAI" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_MSGSGBAAAI" value="answer"></input> <span>&gt;220</span></label>
+<div id="radio_EUVWWMGWVY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EUVWWMGWVY" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_EUVWWMGWVY" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_EUVWWMGWVY" value="answer"></input> <span>&gt;220</span></label>
 </div></li>
 <li>What is the median length of the forward reads?</li>
 </ol>
@@ -608,7 +618,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

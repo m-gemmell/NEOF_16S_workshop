@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-18" />
+<meta name="date" content="2022-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,13 +246,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-mcqs"><i class="fa fa-check"></i><b>13.1.1</b> Diversity: MCQs</a></li>
+<li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
+<li class="chapter" data-level="14.3" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-summary"><i class="fa fa-check"></i><b>14.3</b> Alpha diversity: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a></li>
-<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
+<li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
@@ -306,22 +316,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="beta-diversity-statistical-analysis" class="section level1 hasAnchor" number="15">
-<h1><span class="header-section-number">Chapter 15</span> Beta diversity statistical analysis<a href="15-Beta_diversity_analysis.html#beta-diversity-statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="beta_stats" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Beta diversity statistical analysis<a href="15-Beta_diversity_analysis.html#beta_stats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/beta_div.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.</p>
-<p>To carry this out the 'PERMANOVA' analysis we will use the <code>distance_matrix.qza</code> which contains all the sample pairwise dissimilarity distances. For the <code>--p-permutations</code> option we will use the default value, 999.</p>
-<p>The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples, especially on Axis 2.</p>
+<p>We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.</p>
+<div id="beta-diveristy-pcoa" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Beta diveristy: PCoA<a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/Scatterplot_2.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Before running some statistical analysis let's look at one of the PCoA plots created in the the <a href="13-Diversity_analysis.html#diversity"><code>qiime diversity core-metrics-phylogenetic</code></a> command.</p>
+<ol style="list-style-type: decimal">
+<li>Open the file <code>weighted_uinifrac_emperor.qzv</code> in QIIME2 view.</li>
+<li>Set the <strong>"Select a Color Category"</strong> drop down to <strong>"Location"</strong>.</li>
+<li>Clicking and dragging on the plot, manipulate your view of the 3-D plot until you separate the <strong>"Corridor"</strong> and <strong>"Toilet"</strong> samples.</li>
+</ol>
+<p>We are able to visually separate these two groups in the plot, especially on Axis 2. However, will some statistics back this up?</p>
+</div>
+<div id="beta-diversity-run" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Beta diversity: run<a href="15-Beta_diversity_analysis.html#beta-diversity-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/play_green.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>To carry this out our first 'PERMANOVA' analysis we will use the <code>weighted_unifrac_distance_matrix.qza</code> file. It contains all the sample pairwise weighted unifrac dissimilarity distances.</p>
+<p>The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="15-Beta_diversity_analysis.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity beta-group-significance <span class="dt">\</span></span>
 <span id="cb30-2"><a href="15-Beta_diversity_analysis.html#cb30-2" aria-hidden="true" tabindex="-1"></a>--i-distance-matrix weighted_unifrac_distance_matrix.qza <span class="dt">\</span></span>
 <span id="cb30-3"><a href="15-Beta_diversity_analysis.html#cb30-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file ../metadata.file.txt <span class="dt">\</span></span>
 <span id="cb30-4"><a href="15-Beta_diversity_analysis.html#cb30-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
-<span id="cb30-5"><a href="15-Beta_diversity_analysis.html#cb30-5" aria-hidden="true" tabindex="-1"></a># prmanova default, anosim as alternative choice</span>
-<span id="cb30-6"><a href="15-Beta_diversity_analysis.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--p-method</span> permanova <span class="dt">\</span></span>
-<span id="cb30-7"><a href="15-Beta_diversity_analysis.html#cb30-7" aria-hidden="true" tabindex="-1"></a>--p-pairwise <span class="dt">\</span></span>
-<span id="cb30-8"><a href="15-Beta_diversity_analysis.html#cb30-8" aria-hidden="true" tabindex="-1"></a>--p-permutations 999 <span class="dt">\</span></span>
-<span id="cb30-9"><a href="15-Beta_diversity_analysis.html#cb30-9" aria-hidden="true" tabindex="-1"></a>--o-visualization weighted-unifrac-significance.location.qzv</span></code></pre></div>
-<p>Load the resulting visualisation file in QIIME2 view. You will see the following sections:</p>
+<span id="cb30-5"><a href="15-Beta_diversity_analysis.html#cb30-5" aria-hidden="true" tabindex="-1"></a>--p-method permanova <span class="dt">\</span></span>
+<span id="cb30-6"><a href="15-Beta_diversity_analysis.html#cb30-6" aria-hidden="true" tabindex="-1"></a>--p-pairwise <span class="dt">\</span></span>
+<span id="cb30-7"><a href="15-Beta_diversity_analysis.html#cb30-7" aria-hidden="true" tabindex="-1"></a>--p-permutations 999 <span class="dt">\</span></span>
+<span id="cb30-8"><a href="15-Beta_diversity_analysis.html#cb30-8" aria-hidden="true" tabindex="-1"></a>--o-visualization weighted-unifrac-significance.location.qzv</span></code></pre></div>
+<div id="parameters-18" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="15-Beta_diversity_analysis.html#parameters-18" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="figures/parameter_green.png" width="10%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong><code>--i-distance-matrix</code></strong>: Input artifact files containing the beta diversity values.</li>
+<li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
+<li><strong><code>--m-metadata-column</code></strong>: Metadata column within the metadata file to use for the statistical comparison.</li>
+<li><strong><code>--p-method</code></strong>: The group significance test to be applied.
+<ul>
+<li><code>permanova</code> is the default. <code>anosim</code> and <code>permdisp</code> are the other 2 options.</li>
+</ul></li>
+<li><strong><code>--p-pairwise</code></strong>: This means all pairwise tests between all pairs of groups in addition to the test across all groups will be carried out.
+<ul>
+<li>The other parameter choice is <code>--p-no-pairwise</code> meaning only the test across all groups will be carried out. This can be used if their are a lot of groups in the metadata column that may make the command take too long to run.</li>
+</ul></li>
+<li><strong><code>--p-permutations</code></strong>: The number of permutations to run when computing p-values.
+<ul>
+<li>The default is <code>999</code>.
+<strong><code>--o-visualization</code></strong>: The output artifact containing the visualisation.</li>
+</ul></li>
+</ul>
+<p><a href="https://docs.qiime2.org/2022.2/plugins/available/diversity/beta-group-significance/">QIIME2 docs on <code>qiime diversity beta-group-significance</code></a></p>
+</div>
+</div>
+<div id="beta-diversity-visualise" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Beta diversity: visualise<a href="15-Beta_diversity_analysis.html#beta-diversity-visualise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/eye_green.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Load the resulting visualisation (<code>weighted-unifrac-significance.location.qzv</code>) file in QIIME2 view. You will see the following sections:</p>
 <ul>
 <li><strong>Overview</strong>: An overview of the statistical analysis for the metadata column.</li>
 <li><strong>Group significance plot</strong>: These boxplots represent all the pairwise distances between the samples in the specified groups.
@@ -339,8 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>q-value: Always go for q-values over p-values.</li>
 </ul></li>
 </ul>
-<p>For an example with more groups in the metadata column please see:
-<a href="https://view.qiime2.org/visualization/?type=html&amp;src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv" class="uri">https://view.qiime2.org/visualization/?type=html&amp;src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv</a></p>
+<p><a href="https://view.qiime2.org/visualization/?type=html&amp;src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv">Example with more groups in the metadata column</a></p>
 <p><strong>Questions</strong>:</p>
 <ul>
 <li>Does the chosen grouping information result in a statistically significant difference?</li>
@@ -349,6 +398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>What about choosing a different grouping (metadata category)?</li>
 </ul>
 
+</div>
 </div>
 <script>
 
@@ -574,7 +624,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

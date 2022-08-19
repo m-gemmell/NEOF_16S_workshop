@@ -35,21 +35,27 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 - __`--output-dir`__: Output directory that will contain all the output files form the command.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
+[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2022.2/plugins/available/diversity/core-metrics-phylogenetic/)
+
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
 ```
 
-This command will produce all the results within the directory specified with the option `--output-dir`. The produced artifact `rarefied_table.qza` is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains artifacts for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (`emperor.qzv` files).
+This command will produce all the results within the directory specified with the option `--output-dir`. 
+
+These files include:
+
+- __`rarefied_table.qza`__: The abundance table normalised by rarefaction at the specified sampling size.
+- __`vector.qza`__: Artifact files containing the calculated alpha diversity values. 
+  - These will be used for alpha diversity statistical analysis in [chapter 14](#alpha_div_stats).
+- __`distance_matrix.qza`__: Artifact files containing the beta diversity values.
+  - These values are in the form of a table containing all pair wise distances between samples.
+  - These will be used in beta diversity statistical analysis in [chapter 15](#beta_stats).
+- __`pcoa_results.qza`__: PCoA results calculated from the `distance_matrix.qza` files.
+  - These were used to create the `emperor.qza` files described below.
+  - Generally you will not need these again.
+- __`emperor.qzv`__: Visualisation artifact files containing the beta-diversity ordination plots.
 
 In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
 `--i-phylogeny` option.
-
-### Diversity: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
-```
-
-+ Looking at the beta-diversity plot (`emperor.qzv`), one metric of your choice, is there any metadata category that produces clusters based on the groups? Note: You can reorientate the 3D plot.
-+ If you choose a different metric, do you get a different plot/result?
-+ Does a different sampling-depth give a different result? Try running the `core-metrics-phylogenetic` command with a different `--p-sampling-depth` and `--output-dir`.

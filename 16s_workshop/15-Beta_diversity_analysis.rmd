@@ -1,27 +1,67 @@
-# Beta diversity statistical analysis
+# Beta diversity statistical analysis {#beta_stats}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
-Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
+We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
-To carry this out the 'PERMANOVA' analysis we will use the `distance_matrix.qza` which contains all the sample pairwise dissimilarity distances. For the `--p-permutations` option we will use the default value, 999.
+## Beta diveristy: PCoA
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
+``` 
 
-The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples, especially on Axis 2.
+Before running some statistical analysis let's look at one of the PCoA plots created in the the [`qiime diversity core-metrics-phylogenetic`](#diversity) command.
+
+1. Open the file `weighted_uinifrac_emperor.qzv` in QIIME2 view.
+2. Set the __"Select a Color Category"__ drop down to __"Location"__.
+3. Clicking and dragging on the plot, manipulate your view of the 3-D plot until you separate the __"Corridor"__ and __"Toilet"__ samples.
+
+We are able to visually separate these two groups in the plot, especially on Axis 2. However, will some statistics back this up?
+
+## Beta diversity: run 
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
+``` 
+
+To carry this out our first 'PERMANOVA' analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise weighted unifrac dissimilarity distances.
+
+The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples.
 
 ```{bash, eval=FALSE}
 qiime diversity beta-group-significance \
 --i-distance-matrix weighted_unifrac_distance_matrix.qza \
 --m-metadata-file ../metadata.file.txt \
 --m-metadata-column Location \
-# prmanova default, anosim as alternative choice
 --p-method permanova \
 --p-pairwise \
 --p-permutations 999 \
 --o-visualization weighted-unifrac-significance.location.qzv
 ```
 
-Load the resulting visualisation file in QIIME2 view. You will see the following sections:
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
+```
+
+- __`--i-distance-matrix`__: Input artifact files containing the beta diversity values.
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--m-metadata-column`__: Metadata column within the metadata file to use for the statistical comparison.
+- __`--p-method`__: The group significance test to be applied.
+  - `permanova` is the default. `anosim` and `permdisp` are the other 2 options.
+- __`--p-pairwise`__: This means all pairwise tests between all pairs of groups in addition to the test across all groups will be carried out.
+  - The other parameter choice is `--p-no-pairwise` meaning only the test across all groups will be carried out. This can be used if their are a lot of groups in the metadata column that may make the command take too long to run.
+- __`--p-permutations`__: The number of permutations to run when computing p-values.
+  - The default is `999`.
+__`--o-visualization`__: The output artifact containing the visualisation.
+
+[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2022.2/plugins/available/diversity/beta-group-significance/)
+
+## Beta diversity: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
+```
+
+Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) file in QIIME2 view. You will see the following sections:
 
 - __Overview__: An overview of the statistical analysis for the metadata column.
 - __Group significance plot__: These boxplots represent all the pairwise distances between the samples in the specified groups.
@@ -33,8 +73,7 @@ Load the resulting visualisation file in QIIME2 view. You will see the following
    - Sample size: Good to determine if there are enough samples for statistical strength.
    - q-value: Always go for q-values over p-values.
    
-For an example with more groups in the metadata column please see:
-https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv
+[Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
 __Questions__:
 

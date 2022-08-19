@@ -1607,7 +1607,6 @@ qiime diversity alpha-rarefaction \
 --p-min-depth 5000 \
 --p-max-depth 130000 \
 --p-steps 500 \
-# Using average from 10 iterations for the diversity count
 --p-iterations 10 \
 --m-metadata-file metadata.file.txt \
 --p-metrics simpson_e \
@@ -1795,24 +1794,30 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 - __`--output-dir`__: Output directory that will contain all the output files form the command.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
+[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2022.2/plugins/available/diversity/core-metrics-phylogenetic/)
+
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
 ```
 
-This command will produce all the results within the directory specified with the option `--output-dir`. The produced artifact `rarefied_table.qza` is the abundance table normalised by rarefaction at the specified sampling size. The output directory contains artifacts for each used diversity metrics (for alpha- and beta-diversity). The beta-diversity ordination plots are also included in visualisation objects (`emperor.qzv` files).
+This command will produce all the results within the directory specified with the option `--output-dir`. 
+
+These files include:
+
+- __`rarefied_table.qza`__: The abundance table normalised by rarefaction at the specified sampling size.
+- __`vector.qza`__: Artifact files containing the calculated alpha diversity values. 
+  - These will be used for alpha diversity statistical analysis in [chapter 14](#alpha_div_stats).
+- __`distance_matrix.qza`__: Artifact files containing the beta diversity values.
+  - These values are in the form of a table containing all pair wise distances between samples.
+  - These will be used in beta diversity statistical analysis in [chapter 15](#beta_stats).
+- __`pcoa_results.qza`__: PCoA results calculated from the `distance_matrix.qza` files.
+  - These were used to create the `emperor.qza` files described below.
+  - Generally you will not need these again.
+- __`emperor.qzv`__: Visualisation artifact files containing the beta-diversity ordination plots.
 
 In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
 `--i-phylogeny` option.
-
-### Diversity: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
-```
-
-+ Looking at the beta-diversity plot (`emperor.qzv`), one metric of your choice, is there any metadata category that produces clusters based on the groups? Note: You can reorientate the 3D plot.
-+ If you choose a different metric, do you get a different plot/result?
-+ Does a different sampling-depth give a different result? Try running the `core-metrics-phylogenetic` command with a different `--p-sampling-depth` and `--output-dir`.
 
 <!--chapter:end:13-Diversity_analysis.Rmd-->
 
@@ -1833,19 +1838,24 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Alpha diveristy statistical analysis
+# Alpha diveristy statistical analysis {#alpha_div_stats}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
-We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly different.
+We can carry out some statistical analysis to compare the alpha diversity values between the different metadata data groups.
 
 The QIIME2 pipeline offers two alternative choices: 
 
-- Categorical data: Kruskal-Wallis test.
-- Numerical data: Ranked Spearman test.
+- Categorical metadata: Kruskal-Wallis test.
+- Numerical metadata: Ranked Spearman (correlation) test.
 
-As we have catergorical and numeric metadata columns we will carry out both types of tests. Let us do this for the shannon alpha diversity.
+## Alpha diversity: run 
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
+``` 
+
+As we have categorical (Location & Place) and numeric (Floor) metadata columns we will carry out both types of tests. Let's do this for the shannon alpha diversity.
 
 ```{bash, eval=FALSE}
 #Change directory into the output directory
@@ -1862,18 +1872,97 @@ qiime diversity alpha-correlation \
 --o-visualization shannon-group-significance.rs.qzv
 ```
 
-Load the produced files into QIIME2 view. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
+```
 
-In the visualisations you will see plots showing the diversity values and statistics below the plots. You can choose what metadata grouping to visualise with the __Column__ drop down selection. To determine if there is a statistical difference between the groups:
+Although we have used two different commands they both have the same parameters.
 
-- Kruskal-Wallis: It is best to look at the q-value/s in the pairwise section. The q-value is in essence the multiple comparison corrected p-value. As there is only one comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
-- Ranked Spearman: Can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
+- __`--i-alpha-diversity`__: Input artifact file containing the alpha diversity vectors (values).
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--o-visualization`__:  Output visualisation artifact containing the box plots and statistical table.
 
-__Questions__:
+[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-group-significance/)
 
-+ Are there any groups (for one or more metadata __Column__) showing a higher/lower alpha-diversity compared to the other/s in the same __Column__? 
-+ Is the p-value or q-value for this comparison significant? 
-+ If you choose a different metric do you get different results? Run both the Kruskal-Wallis and Ranked Spearman tests on another alpha diversity metric of your choice and visualise the results.
+[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-correlation/)
+
+## Alpha diveristy: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
+```
+
+Load the produced files (`shannon-group-significance.kw.qzv` & `shannon-group-significance.rs.qzv`) into QIIME2 view using 2 chrome tabs. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
+
+At the top of both the outputs is a drop down menu labelled __"Column"__ that can be used to display the plot and stats of your chosen metadata grouping. As there was only one numeric column (Floors) there will only be one option in the Ranked Spearman output.
+
+#### Kruskal-Wallis {-}
+
+The Kruskal-Wallis (`shannon-group-significance.kw.qzv`) visualisation artifact contains:
+
+- __Alpha Diversity Boxplots__: Displays the alpha diversity values plotted as box plots comparing the chosen metadata column.
+- __Kruskal-Wallis (all groups)__: Displays the stats for the all groups comparison. 
+  - These stats will be different to the pairwise comparisons if there are more than 2 groups.
+- __Kruskal-Wallis (pairwise)__: Displays the stats for the all the pairwise group comparison. 
+
+To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
+
+#### Ranked Spearman {-}
+
+The Ranked Spearman (`shannon-group-significance.rs.qzv`) visualisation artifact contains:
+
+- __Plot__: This plots the alpha diversity values as a scatterplot.
+  - The x-axis contains the numeric values form the metadata.
+  - The y-axis contains the alpha diversity values.
+- __Stats table__: The Spearman ranked correlation statistics table. 
+
+You can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
+
+### Alpha diversity: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = TRUE)
+```
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+1. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+2. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+3. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ? `r longmcq(opts_p)`
+
+For the below questions you will need to run some more `qiime diversity alpha-group-significance` and `qiime diversity alpha-correlation`. When creating and running these commands ensure you are giving the input and output artifacts the correct names.
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+4. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using observed features? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+5. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("Yes", answer="No")
+```
+6. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD? `r longmcq(opts_p)`
+
+## Alpha diversity: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
+```
+
+We have viewed alpha diversity output but unfortunately found no significant differences between groups. Hopefully in your future projects you will have more samples and more luck. Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.
+
+IN the next chapter we will look at the beta diversity output and carry out some more statistics.
 
 <!--chapter:end:14-Alpha_diversity.Rmd-->
 
@@ -1894,30 +1983,70 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
   }
 })
 ```
-# Beta diversity statistical analysis
+# Beta diversity statistical analysis {#beta_stats}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
-Next we can carry out statistical analysis of the beta diversity ordination plots. We will carry out a 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance. 
+We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
-To carry this out the 'PERMANOVA' analysis we will use the `distance_matrix.qza` which contains all the sample pairwise dissimilarity distances. For the `--p-permutations` option we will use the default value, 999.
+## Beta diveristy: PCoA
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
+``` 
 
-The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples, especially on Axis 2.
+Before running some statistical analysis let's look at one of the PCoA plots created in the the [`qiime diversity core-metrics-phylogenetic`](#diversity) command.
+
+1. Open the file `weighted_uinifrac_emperor.qzv` in QIIME2 view.
+2. Set the __"Select a Color Category"__ drop down to __"Location"__.
+3. Clicking and dragging on the plot, manipulate your view of the 3-D plot until you separate the __"Corridor"__ and __"Toilet"__ samples.
+
+We are able to visually separate these two groups in the plot, especially on Axis 2. However, will some statistics back this up?
+
+## Beta diversity: run 
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
+``` 
+
+To carry this out our first 'PERMANOVA' analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise weighted unifrac dissimilarity distances.
+
+The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples.
 
 ```{bash, eval=FALSE}
 qiime diversity beta-group-significance \
 --i-distance-matrix weighted_unifrac_distance_matrix.qza \
 --m-metadata-file ../metadata.file.txt \
 --m-metadata-column Location \
-# prmanova default, anosim as alternative choice
 --p-method permanova \
 --p-pairwise \
 --p-permutations 999 \
 --o-visualization weighted-unifrac-significance.location.qzv
 ```
 
-Load the resulting visualisation file in QIIME2 view. You will see the following sections:
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
+```
+
+- __`--i-distance-matrix`__: Input artifact files containing the beta diversity values.
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--m-metadata-column`__: Metadata column within the metadata file to use for the statistical comparison.
+- __`--p-method`__: The group significance test to be applied.
+  - `permanova` is the default. `anosim` and `permdisp` are the other 2 options.
+- __`--p-pairwise`__: This means all pairwise tests between all pairs of groups in addition to the test across all groups will be carried out.
+  - The other parameter choice is `--p-no-pairwise` meaning only the test across all groups will be carried out. This can be used if their are a lot of groups in the metadata column that may make the command take too long to run.
+- __`--p-permutations`__: The number of permutations to run when computing p-values.
+  - The default is `999`.
+__`--o-visualization`__: The output artifact containing the visualisation.
+
+[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2022.2/plugins/available/diversity/beta-group-significance/)
+
+## Beta diversity: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
+```
+
+Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) file in QIIME2 view. You will see the following sections:
 
 - __Overview__: An overview of the statistical analysis for the metadata column.
 - __Group significance plot__: These boxplots represent all the pairwise distances between the samples in the specified groups.
@@ -1929,8 +2058,7 @@ Load the resulting visualisation file in QIIME2 view. You will see the following
    - Sample size: Good to determine if there are enough samples for statistical strength.
    - q-value: Always go for q-values over p-values.
    
-For an example with more groups in the metadata column please see:
-https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv
+[Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
 __Questions__:
 

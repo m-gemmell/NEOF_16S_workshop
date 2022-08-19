@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 ASV taxonomic assignment | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 ASV taxonomic assignment | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-18" />
+<meta name="date" content="2022-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,13 +246,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-mcqs"><i class="fa fa-check"></i><b>13.1.1</b> Diversity: MCQs</a></li>
+<li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
+<li class="chapter" data-level="14.3" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-summary"><i class="fa fa-check"></i><b>14.3</b> Alpha diversity: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a></li>
-<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
+<li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
@@ -453,27 +463,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend)
-<div id="radio_NZSTOWHQWO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NZSTOWHQWO" value=""></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NZSTOWHQWO" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NZSTOWHQWO" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_PSSGCRJAGB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PSSGCRJAGB" value=""></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PSSGCRJAGB" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PSSGCRJAGB" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 <li>At taxonomic level 5, what is the most abundant taxon for sample 1TE?
-<div id="radio_SPFFOMGLBD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SPFFOMGLBD" value="answer"></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SPFFOMGLBD" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SPFFOMGLBD" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_MUKCNIMMOG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MUKCNIMMOG" value="answer"></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MUKCNIMMOG" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MUKCNIMMOG" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 </ol>
 <p><strong>Note</strong>: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, left sample is highest relative abundance) drop down to "Descending" may be useful.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Which sample has the highest relative abundance of the class Actinobacteria (Taxonomic level 3)?
-<div id="radio_EPLPEMHJWG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EPLPEMHJWG" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EPLPEMHJWG" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EPLPEMHJWG" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_MHVBTVEIPX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MHVBTVEIPX" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MHVBTVEIPX" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MHVBTVEIPX" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)?
-<div id="radio_MMPIPEYGVB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MMPIPEYGVB" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MMPIPEYGVB" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MMPIPEYGVB" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_CPFKYVHFUY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CPFKYVHFUY" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPFKYVHFUY" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPFKYVHFUY" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the third highest relative abundance of the phylum Bacteroidetes (Taxonomic level 2)?
-<div id="radio_GZOICWFRDO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GZOICWFRDO" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GZOICWFRDO" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GZOICWFRDO" value="answer"></input> <span><strong>3TM</strong></span></label>
+<div id="radio_TXBEDFACRJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TXBEDFACRJ" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXBEDFACRJ" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXBEDFACRJ" value="answer"></input> <span><strong>3TM</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -711,7 +721,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

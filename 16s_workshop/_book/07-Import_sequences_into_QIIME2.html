@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Sequence import | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Sequence import | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-18" />
+<meta name="date" content="2022-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,13 +246,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-mcqs"><i class="fa fa-check"></i><b>13.1.1</b> Diversity: MCQs</a></li>
+<li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
+<li class="chapter" data-level="14.3" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-summary"><i class="fa fa-check"></i><b>14.3</b> Alpha diversity: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a></li>
-<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
+<li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
@@ -401,32 +411,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_green.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>What is the minimum number of forward reads across the samples?
-<div id="radio_FIJSLOZAHM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FIJSLOZAHM" value="answer"></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_FIJSLOZAHM" value=""></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_FIJSLOZAHM" value=""></input> <span>174,951</span></label>
+<div id="radio_JROWHLTTJZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JROWHLTTJZ" value="answer"></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_JROWHLTTJZ" value=""></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_JROWHLTTJZ" value=""></input> <span>174,951</span></label>
 </div></li>
 <li>What is the maximum number of forward reads across the samples?
-<div id="radio_BHEVCKDPCR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BHEVCKDPCR" value=""></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_BHEVCKDPCR" value=""></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_BHEVCKDPCR" value="answer"></input> <span>174,951</span></label>
+<div id="radio_BCHYWYQFGU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BCHYWYQFGU" value=""></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_BCHYWYQFGU" value=""></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_BCHYWYQFGU" value="answer"></input> <span>174,951</span></label>
 </div></li>
 <li>What is the mean number of forward reads across the samples?
-<div id="radio_FXNNUCGXSI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FXNNUCGXSI" value=""></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_FXNNUCGXSI" value="answer"></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_FXNNUCGXSI" value=""></input> <span>174,951</span></label>
+<div id="radio_LOZGBWRBDX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LOZGBWRBDX" value=""></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_LOZGBWRBDX" value="answer"></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_LOZGBWRBDX" value=""></input> <span>174,951</span></label>
 </div></li>
 <li>Which sample has 134,737 forward reads?
-<div id="radio_OLJZWANXTS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OLJZWANXTS" value=""></input> <span>1TM</span></label><label><input type="radio" autocomplete="off" name="radio_OLJZWANXTS" value=""></input> <span>3K2E</span></label><label><input type="radio" autocomplete="off" name="radio_OLJZWANXTS" value="answer"></input> <span>3K1M</span></label>
+<div id="radio_AILWEGDUGL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AILWEGDUGL" value=""></input> <span>1TM</span></label><label><input type="radio" autocomplete="off" name="radio_AILWEGDUGL" value=""></input> <span>3K2E</span></label><label><input type="radio" autocomplete="off" name="radio_AILWEGDUGL" value="answer"></input> <span>3K1M</span></label>
 </div></li>
 <li>Which sample has 86,083 forward reads?
-<div id="radio_IAEXHZNXDO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IAEXHZNXDO" value="answer"></input> <span>1TM</span></label><label><input type="radio" autocomplete="off" name="radio_IAEXHZNXDO" value=""></input> <span>3K2E</span></label><label><input type="radio" autocomplete="off" name="radio_IAEXHZNXDO" value=""></input> <span>3k1M</span></label>
+<div id="radio_FHZEESSIBH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FHZEESSIBH" value="answer"></input> <span>1TM</span></label><label><input type="radio" autocomplete="off" name="radio_FHZEESSIBH" value=""></input> <span>3K2E</span></label><label><input type="radio" autocomplete="off" name="radio_FHZEESSIBH" value=""></input> <span>3k1M</span></label>
 </div></li>
 <li>Most of the read quality for the forward reads is above Q30?
-<div id="radio_WPQQCAJVRX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WPQQCAJVRX" value="answer"></input> <span>TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_WPQQCAJVRX" value=""></input> <span>FALSE</span></label>
+<div id="radio_PSGNFXZTSL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PSGNFXZTSL" value="answer"></input> <span>TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_PSGNFXZTSL" value=""></input> <span>FALSE</span></label>
 </div></li>
 <li>Most of the read quality for the reverse reads is above Q30?
-<div id="radio_KIQTYTRDKY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KIQTYTRDKY" value="answer"></input> <span>TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_KIQTYTRDKY" value=""></input> <span>FALSE</span></label>
+<div id="radio_KAVNOJGHIB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KAVNOJGHIB" value="answer"></input> <span>TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_KAVNOJGHIB" value=""></input> <span>FALSE</span></label>
 </div></li>
 </ol>
 </div>
@@ -661,7 +671,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Alpha diveristy statistical analysis | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Alpha diveristy statistical analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-18" />
+<meta name="date" content="2022-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,13 +246,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html"><i class="fa fa-check"></i><b>13</b> Diversity analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a>
+<li class="chapter" data-level="13.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-run"><i class="fa fa-check"></i><b>13.1</b> Diversity: run</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="13-Diversity_analysis.html"><a href="13-Diversity_analysis.html#diversity-mcqs"><i class="fa fa-check"></i><b>13.1.1</b> Diversity: MCQs</a></li>
+<li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
+<li class="chapter" data-level="14.3" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-summary"><i class="fa fa-check"></i><b>14.3</b> Alpha diversity: summary</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a></li>
-<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a></li>
+<li class="chapter" data-level="15" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html"><i class="fa fa-check"></i><b>15</b> Beta diversity statistical analysis</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
+<li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
@@ -306,16 +316,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="alpha-diveristy-statistical-analysis" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Alpha diveristy statistical analysis<a href="14-Alpha_diversity.html#alpha-diveristy-statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="alpha_div_stats" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Alpha diveristy statistical analysis<a href="14-Alpha_diversity.html#alpha_div_stats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/alpha_div.png" width="10%" style="display: block; margin: auto;" /></p>
-<p>We can carry out some statistical analysis to determine if difference between the alpha diversity values in metadata groups is significantly different.</p>
+<p>We can carry out some statistical analysis to compare the alpha diversity values between the different metadata data groups.</p>
 <p>The QIIME2 pipeline offers two alternative choices:</p>
 <ul>
-<li>Categorical data: Kruskal-Wallis test.</li>
-<li>Numerical data: Ranked Spearman test.</li>
+<li>Categorical metadata: Kruskal-Wallis test.</li>
+<li>Numerical metadata: Ranked Spearman (correlation) test.</li>
 </ul>
-<p>As we have catergorical and numeric metadata columns we will carry out both types of tests. Let us do this for the shannon alpha diversity.</p>
+<div id="alpha-diversity-run" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Alpha diversity: run<a href="14-Alpha_diversity.html#alpha-diversity-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/play_purple.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>As we have categorical (Location &amp; Place) and numeric (Floor) metadata columns we will carry out both types of tests. Let's do this for the shannon alpha diversity.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="14-Alpha_diversity.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Change directory into the output directory</span></span>
 <span id="cb29-2"><a href="14-Alpha_diversity.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> dada2-diversity-34583</span>
 <span id="cb29-3"><a href="14-Alpha_diversity.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For the Kruskal-Wallis test</span></span>
@@ -328,19 +341,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-10"><a href="14-Alpha_diversity.html#cb29-10" aria-hidden="true" tabindex="-1"></a>--i-alpha-diversity shannon_vector.qza <span class="dt">\</span></span>
 <span id="cb29-11"><a href="14-Alpha_diversity.html#cb29-11" aria-hidden="true" tabindex="-1"></a>--m-metadata-file ../metadata.file.txt <span class="dt">\</span></span>
 <span id="cb29-12"><a href="14-Alpha_diversity.html#cb29-12" aria-hidden="true" tabindex="-1"></a>--o-visualization shannon-group-significance.rs.qzv</span></code></pre></div>
-<p>Load the produced files into QIIME2 view. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).</p>
-<p>In the visualisations you will see plots showing the diversity values and statistics below the plots. You can choose what metadata grouping to visualise with the <strong>Column</strong> drop down selection. To determine if there is a statistical difference between the groups:</p>
+<div id="parameters-17" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="14-Alpha_diversity.html#parameters-17" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="figures/parameter_purple.png" width="10%" style="display: block; margin: auto;" /></p>
+<p>Although we have used two different commands they both have the same parameters.</p>
 <ul>
-<li>Kruskal-Wallis: It is best to look at the q-value/s in the pairwise section. The q-value is in essence the multiple comparison corrected p-value. As there is only one comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).</li>
-<li>Ranked Spearman: Can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.</li>
+<li><strong><code>--i-alpha-diversity</code></strong>: Input artifact file containing the alpha diversity vectors (values).</li>
+<li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
+<li><strong><code>--o-visualization</code></strong>: Output visualisation artifact containing the box plots and statistical table.</li>
 </ul>
-<p><strong>Questions</strong>:</p>
+<p><a href="https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-group-significance/">QIIME2 docs on <code>qiime diversity alpha-group-significance</code></a></p>
+<p><a href="https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-correlation/">QIIME2 docs on <code>qiime diversity alpha-correlation</code></a></p>
+</div>
+</div>
+<div id="alpha-diveristy-visualise" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Alpha diveristy: visualise<a href="14-Alpha_diversity.html#alpha-diveristy-visualise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/eye_purple.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Load the produced files (<code>shannon-group-significance.kw.qzv</code> &amp; <code>shannon-group-significance.rs.qzv</code>) into QIIME2 view using 2 chrome tabs. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).</p>
+<p>At the top of both the outputs is a drop down menu labelled <strong>"Column"</strong> that can be used to display the plot and stats of your chosen metadata grouping. As there was only one numeric column (Floors) there will only be one option in the Ranked Spearman output.</p>
+<div id="kruskal-wallis" class="section level4 unnumbered hasAnchor">
+<h4>Kruskal-Wallis<a href="14-Alpha_diversity.html#kruskal-wallis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The Kruskal-Wallis (<code>shannon-group-significance.kw.qzv</code>) visualisation artifact contains:</p>
 <ul>
-<li>Are there any groups (for one or more metadata <strong>Column</strong>) showing a higher/lower alpha-diversity compared to the other/s in the same <strong>Column</strong>?</li>
-<li>Is the p-value or q-value for this comparison significant?</li>
-<li>If you choose a different metric do you get different results? Run both the Kruskal-Wallis and Ranked Spearman tests on another alpha diversity metric of your choice and visualise the results.</li>
+<li><strong>Alpha Diversity Boxplots</strong>: Displays the alpha diversity values plotted as box plots comparing the chosen metadata column.</li>
+<li><strong>Kruskal-Wallis (all groups)</strong>: Displays the stats for the all groups comparison.
+<ul>
+<li>These stats will be different to the pairwise comparisons if there are more than 2 groups.</li>
+</ul></li>
+<li><strong>Kruskal-Wallis (pairwise)</strong>: Displays the stats for the all the pairwise group comparison.</li>
 </ul>
+<p>To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).</p>
+</div>
+<div id="ranked-spearman" class="section level4 unnumbered hasAnchor">
+<h4>Ranked Spearman<a href="14-Alpha_diversity.html#ranked-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The Ranked Spearman (<code>shannon-group-significance.rs.qzv</code>) visualisation artifact contains:</p>
+<ul>
+<li><strong>Plot</strong>: This plots the alpha diversity values as a scatterplot.
+<ul>
+<li>The x-axis contains the numeric values form the metadata.</li>
+<li>The y-axis contains the alpha diversity values.</li>
+</ul></li>
+<li><strong>Stats table</strong>: The Spearman ranked correlation statistics table.</li>
+</ul>
+<p>You can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.</p>
+</div>
+<div id="alpha-diversity-mcqs" class="section level3 hasAnchor" number="14.2.1">
+<h3><span class="header-section-number">14.2.1</span> Alpha diversity: MCQs<a href="14-Alpha_diversity.html#alpha-diversity-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="figures/question_bubble_purple.png" width="15%" style="display: block; margin: auto;" /></p>
+<ol style="list-style-type: decimal">
+<li>Is there a statistical significance (q-value &lt;0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity?
+<div id="radio_HGFVKRZTSU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HGFVKRZTSU" value=""></input> <span>Yes</span></label><label><input type="radio" autocomplete="off" name="radio_HGFVKRZTSU" value="answer"></input> <span>No</span></label>
+</div></li>
+<li>Is there a statistical significance (q-value &lt;0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ?
+<div id="radio_SIRTCIOZUU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SIRTCIOZUU" value=""></input> <span>Yes</span></label><label><input type="radio" autocomplete="off" name="radio_SIRTCIOZUU" value="answer"></input> <span>No</span></label>
+</div></li>
+<li>Is there a statistical significance (P-value &lt;0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ?
+<div id="radio_FICSSCTCRN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FICSSCTCRN" value=""></input> <span>Yes</span></label><label><input type="radio" autocomplete="off" name="radio_FICSSCTCRN" value="answer"></input> <span>No</span></label>
+</div></li>
+</ol>
+<p>For the below questions you will need to run some more <code>qiime diversity alpha-group-significance</code> and <code>qiime diversity alpha-correlation</code>. When creating and running these commands ensure you are giving the input and output artifacts the correct names.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Is there a statistical significance (q-value &lt;0.05) when comparing the Locations (Corridor vs Toilet) when using observed features?
+<div id="radio_ADWDYXPRGS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ADWDYXPRGS" value=""></input> <span>Yes</span></label><label><input type="radio" autocomplete="off" name="radio_ADWDYXPRGS" value="answer"></input> <span>No</span></label>
+</div></li>
+<li>Is there a statistical significance (q-value &lt;0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness?
+<div id="radio_CJTWPNDOXF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CJTWPNDOXF" value=""></input> <span>Yes</span></label><label><input type="radio" autocomplete="off" name="radio_CJTWPNDOXF" value="answer"></input> <span>No</span></label>
+</div></li>
+<li>Is there a statistical significance (P-value &lt;0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD?
+<div id="radio_CWTAJATUQL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CWTAJATUQL" value=""></input> <span>Yes</span></label><label><input type="radio" autocomplete="off" name="radio_CWTAJATUQL" value="answer"></input> <span>No</span></label>
+</div></li>
+</ol>
+</div>
+</div>
+<div id="alpha-diversity-summary" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Alpha diversity: summary<a href="14-Alpha_diversity.html#alpha-diversity-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/sum_purple.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>We have viewed alpha diversity output but unfortunately found no significant differences between groups. Hopefully in your future projects you will have more samples and more luck. Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.</p>
+<p>IN the next chapter we will look at the beta diversity output and carry out some more statistics.</p>
 
+</div>
 </div>
 <script>
 
@@ -566,7 +651,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
