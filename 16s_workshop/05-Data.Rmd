@@ -16,7 +16,7 @@ cd Metagenetics
 cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_5/* .
 ```
 
-Look at the contents of your current directory and then continue reading for explantions on their contents.
+Look at the contents of your current directory and then continue reading for explanations on their contents.
 
 ```{bash, eval=FALSE}
 ls
@@ -88,7 +88,7 @@ For more information on QIIME2 metadata please see: https://docs.qiime2.org/2021
 The above link includes:
 
 - Metadata Formatting Requirements
-- Info on empy rows
+- Info on empty rows
 - Recommendations for identifiers
 - Info on column types and number formatting
 - More

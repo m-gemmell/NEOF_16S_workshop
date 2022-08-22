@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-19" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
-<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxabar"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
 <li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy: MCQs</a></li>
 <li class="chapter" data-level="10.7" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-summary"><i class="fa fa-check"></i><b>10.7</b> Taxonomy: summary</a></li>
 </ul></li>
@@ -261,14 +261,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
 <li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
-<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-mcqs"><i class="fa fa-check"></i><b>15.3.1</b> Beta diversity: MCQs</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-summary"><i class="fa fa-check"></i><b>15.3.2</b> Beta diversity: summary</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>16.4</b> ANCOM visualisation</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -326,10 +332,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/play_black.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2.</p>
 <p><strong>Note</strong>: You can copy and paste (using right click) the forward and reverse primer from the fasta file "primers_seqs.fasta"</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="08-Trim_PCR_sequences.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Print primer sequences to screen for copying and poasting</span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="08-Trim_PCR_sequences.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Print primer sequences to screen for copying and pasting</span></span>
 <span id="cb9-2"><a href="08-Trim_PCR_sequences.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> primers_seqs.fasta</span>
 <span id="cb9-3"><a href="08-Trim_PCR_sequences.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="08-Trim_PCR_sequences.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Run cutadapt comman</span></span>
+<span id="cb9-4"><a href="08-Trim_PCR_sequences.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Run cutadapt command</span></span>
 <span id="cb9-5"><a href="08-Trim_PCR_sequences.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> cutadapt trim-paired <span class="dt">\</span></span>
 <span id="cb9-6"><a href="08-Trim_PCR_sequences.html#cb9-6" aria-hidden="true" tabindex="-1"></a>--i-demultiplexed-sequences paired-end-demux.qza <span class="dt">\</span></span>
 <span id="cb9-7"><a href="08-Trim_PCR_sequences.html#cb9-7" aria-hidden="true" tabindex="-1"></a>--p-front-f NNNNNGTGCCAGCMGCCGCGGTAA <span class="dt">\</span></span>
@@ -366,20 +372,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_black.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>which sample has the lowest number of forward reads?
-<div id="radio_PBCPQTUVNC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PBCPQTUVNC" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_PBCPQTUVNC" value=""></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_PBCPQTUVNC" value="answer"></input> <span>3K1E</span></label>
+<div id="radio_KQCOXNZMNO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KQCOXNZMNO" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KQCOXNZMNO" value=""></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KQCOXNZMNO" value="answer"></input> <span><strong>3K1E</strong></span></label>
 </div></li>
 <li>Which sample has the highest number of forward reads?
-<div id="radio_HQUXWMRCAW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HQUXWMRCAW" value=""></input> <span>1TE</span></label><label><input type="radio" autocomplete="off" name="radio_HQUXWMRCAW" value="answer"></input> <span>2K2E</span></label><label><input type="radio" autocomplete="off" name="radio_HQUXWMRCAW" value=""></input> <span>3K1E</span></label>
+<div id="radio_QJFRSWJPEN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QJFRSWJPEN" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QJFRSWJPEN" value="answer"></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QJFRSWJPEN" value=""></input> <span><strong>3K1E</strong></span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)?
-<div id="radio_GKBCNTMSVR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GKBCNTMSVR" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_GKBCNTMSVR" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_GKBCNTMSVR" value="answer"></input> <span>&gt;220</span></label>
+<div id="radio_ULHUWHYSBU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ULHUWHYSBU" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ULHUWHYSBU" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ULHUWHYSBU" value="answer"></input> <span><strong>&gt;220</strong></span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)?
-<div id="radio_EUVWWMGWVY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EUVWWMGWVY" value=""></input> <span>&lt;200</span></label><label><input type="radio" autocomplete="off" name="radio_EUVWWMGWVY" value=""></input> <span>200-220</span></label><label><input type="radio" autocomplete="off" name="radio_EUVWWMGWVY" value="answer"></input> <span>&gt;220</span></label>
+<div id="radio_PVJEPJBHKQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PVJEPJBHKQ" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PVJEPJBHKQ" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PVJEPJBHKQ" value="answer"></input> <span><strong>&gt;220</strong></span></label>
 </div></li>
 <li>What is the median length of the forward reads?</li>
 </ol>
@@ -387,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="cutadapt-summary" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Cutadapt: summary<a href="08-Trim_PCR_sequences.html#cutadapt-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/sum_black.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to &gt;=230. This is expected. We have alos kept a good amount of reads and the quality looks good so we can move to denoising.</p>
+<p>We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to &gt;=230. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.</p>
 
 </div>
 </div>

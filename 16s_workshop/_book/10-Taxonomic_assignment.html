@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-19" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
-<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxabar"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
 <li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy: MCQs</a></li>
 <li class="chapter" data-level="10.7" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-summary"><i class="fa fa-check"></i><b>10.7</b> Taxonomy: summary</a></li>
 </ul></li>
@@ -261,14 +261,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
 <li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
-<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-mcqs"><i class="fa fa-check"></i><b>15.3.1</b> Beta diversity: MCQs</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-summary"><i class="fa fa-check"></i><b>15.3.2</b> Beta diversity: summary</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>16.4</b> ANCOM visualisation</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -345,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><code>--type</code></strong>_: The type of data that is being imported.
 <ul>
 <li><code>FeatureData[Sequence]</code>: Sequence data for features (in this case OTUs).</li>
-<li><code>FeatureData[Taxonomy]</code>: Taxonomy infomration for features (in this case OTUs).</li>
+<li><code>FeatureData[Taxonomy]</code>: Taxonomy information for features (in this case OTUs).</li>
 </ul></li>
 <li><strong><code>--input-format</code></strong>: The format of the input.
 <ul>
@@ -385,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="copy-premade-results" class="section level4 unnumbered hasAnchor">
 <h4>Copy premade results<a href="10-Taxonomic_assignment.html#copy-premade-results" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:</p>
+<p>Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the pre-made results with the following command:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="10-Taxonomic_assignment.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .</span></code></pre></div>
 </div>
 </div>
@@ -435,8 +441,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/classify-sklearn/">QIIME2 docs on <code>qiime feature-classifier classify-sklearn</code></a></p>
 </div>
 </div>
-<div id="taxonomy-bar-chart-production" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> Taxonomy bar chart production<a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="taxabar" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Taxonomy bar chart production<a href="10-Taxonomic_assignment.html#taxabar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/bar_charts.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Create a taxonomy-abundance bar-chart visualisation artifact:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="10-Taxonomic_assignment.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa barplot <span class="dt">\</span></span>
@@ -449,7 +455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/parameter_blue.png" width="10%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><strong><code>--i-table</code></strong>: Input artifact containing the ASV abundance table.</li>
-<li><strong><code>--i-taxonomy</code></strong>: Input artifact containing the taxomomic classifications of the ASVs.</li>
+<li><strong><code>--i-taxonomy</code></strong>: Input artifact containing the taxonomic classifications of the ASVs.</li>
 <li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
 <li><strong><code>--o-visualization</code></strong>: Output visualisation file containing an interactive taxonomy-abundance bar-chart.</li>
 </ul>
@@ -463,27 +469,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend)
-<div id="radio_PSSGCRJAGB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PSSGCRJAGB" value=""></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PSSGCRJAGB" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PSSGCRJAGB" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_QEJFTHVCPV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QEJFTHVCPV" value=""></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QEJFTHVCPV" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QEJFTHVCPV" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 <li>At taxonomic level 5, what is the most abundant taxon for sample 1TE?
-<div id="radio_MUKCNIMMOG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MUKCNIMMOG" value="answer"></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MUKCNIMMOG" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MUKCNIMMOG" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_TZFPXRXQHC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TZFPXRXQHC" value="answer"></input> <span><strong>Corynebacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TZFPXRXQHC" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TZFPXRXQHC" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 </ol>
 <p><strong>Note</strong>: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, left sample is highest relative abundance) drop down to "Descending" may be useful.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Which sample has the highest relative abundance of the class Actinobacteria (Taxonomic level 3)?
-<div id="radio_MHVBTVEIPX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MHVBTVEIPX" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MHVBTVEIPX" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MHVBTVEIPX" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_DYLKBAJMHN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DYLKBAJMHN" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DYLKBAJMHN" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DYLKBAJMHN" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)?
-<div id="radio_CPFKYVHFUY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CPFKYVHFUY" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPFKYVHFUY" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPFKYVHFUY" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_JVWBAOTVFT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JVWBAOTVFT" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JVWBAOTVFT" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JVWBAOTVFT" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the third highest relative abundance of the phylum Bacteroidetes (Taxonomic level 2)?
-<div id="radio_TXBEDFACRJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TXBEDFACRJ" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXBEDFACRJ" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXBEDFACRJ" value="answer"></input> <span><strong>3TM</strong></span></label>
+<div id="radio_MXZSIEUJXJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MXZSIEUJXJ" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MXZSIEUJXJ" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MXZSIEUJXJ" value="answer"></input> <span><strong>3TM</strong></span></label>
 </div></li>
 </ol>
 </div>

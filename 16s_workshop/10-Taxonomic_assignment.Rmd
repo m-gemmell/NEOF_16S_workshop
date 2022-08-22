@@ -40,7 +40,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--output-path`__: Output sequence/taxonomy artifact file.
 - __`--type`___: The type of data that is being imported.
   - `FeatureData[Sequence]`: Sequence data for features (in this case OTUs).
-  - `FeatureData[Taxonomy]`: Taxonomy infomration for features (in this case OTUs).
+  - `FeatureData[Taxonomy]`: Taxonomy information for features (in this case OTUs).
 - __`--input-format`__: The format of the input. 
   - This is only needed for the taxonomy import with the option of `HeaderlessTSVTaxonomyFormat` that indicates the input file is a headerless tab separated value (TSV) file with taxonomy information.
 
@@ -84,7 +84,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 
 #### Copy premade results {-}
 
-Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:
+Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the pre-made results with the following command:
 
 ```{bash, eval=FALSE}
 cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
@@ -147,7 +147,7 @@ knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
 
 [QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/classify-sklearn/)
 
-## Taxonomy bar chart production
+## Taxonomy bar chart production {#taxabar}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_charts.png", auto_pdf = TRUE)
 ``` 
@@ -168,7 +168,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
 - __`--i-table`__: Input artifact containing the ASV abundance table.
-- __`--i-taxonomy`__: Input artifact containing the taxomomic classifications of the ASVs.
+- __`--i-taxonomy`__: Input artifact containing the taxonomic classifications of the ASVs.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 - __`--o-visualization`__: Output visualisation file containing an interactive taxonomy-abundance bar-chart.
 

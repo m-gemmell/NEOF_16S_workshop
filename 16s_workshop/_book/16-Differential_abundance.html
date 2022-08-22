@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-19" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
-<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxabar"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
 <li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy: MCQs</a></li>
 <li class="chapter" data-level="10.7" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-summary"><i class="fa fa-check"></i><b>10.7</b> Taxonomy: summary</a></li>
 </ul></li>
@@ -261,14 +261,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
 <li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
-<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-mcqs"><i class="fa fa-check"></i><b>15.3.1</b> Beta diversity: MCQs</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-summary"><i class="fa fa-check"></i><b>15.3.2</b> Beta diversity: summary</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>16.4</b> ANCOM visualisation</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -319,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="differential" class="section level1 hasAnchor" number="16">
 <h1><span class="header-section-number">Chapter 16</span> Differential abundance analysis<a href="16-Differential_abundance.html#differential" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/comparison.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>The ANCOM method aims to identify the differentially abundant taxa. It is a complex method requiring different steps, for the description of the script used please refer to the script page (<a href="https://docs.qiime2.org/2021.2/plugins/available/composition/ancom/" class="uri">https://docs.qiime2.org/2021.2/plugins/available/composition/ancom/</a>) and the ANCOM paper (<a href="https://www.ncbi.nlm.nih.gov/pubmed/26028277" class="uri">https://www.ncbi.nlm.nih.gov/pubmed/26028277</a>) .</p>
+<p>The ANCOM method aims to identify differentially abundant taxa between sample groups. It is a complex method requiring different steps.</p>
 <p>The steps to carry this out are:</p>
 <ol style="list-style-type: decimal">
 <li>Collapse the ASVs into taxa</li>
@@ -327,45 +333,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Run ANCOM selecting a categorical metadata to test</li>
 </ol>
 <p>If you are still in ‘dada2-diversity-34583’ directory, please remember to move out:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="16-Differential_abundance.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="16-Differential_abundance.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
 <div id="taxa-collapse" class="section level2 hasAnchor" number="16.1">
 <h2><span class="header-section-number">16.1</span> Taxa collapse<a href="16-Differential_abundance.html#taxa-collapse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/collapse.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="16-Differential_abundance.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="dt">\</span></span>
-<span id="cb32-2"><a href="16-Differential_abundance.html#cb32-2" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
-<span id="cb32-3"><a href="16-Differential_abundance.html#cb32-3" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
-<span id="cb32-4"><a href="16-Differential_abundance.html#cb32-4" aria-hidden="true" tabindex="-1"></a>--p-level 5 <span class="dt">\</span></span>
-<span id="cb32-5"><a href="16-Differential_abundance.html#cb32-5" aria-hidden="true" tabindex="-1"></a>--o-collapsed-table comp-ancom-table-l5.qza</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="16-Differential_abundance.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="dt">\</span></span>
+<span id="cb33-2"><a href="16-Differential_abundance.html#cb33-2" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
+<span id="cb33-3"><a href="16-Differential_abundance.html#cb33-3" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
+<span id="cb33-4"><a href="16-Differential_abundance.html#cb33-4" aria-hidden="true" tabindex="-1"></a>--p-level 5 <span class="dt">\</span></span>
+<span id="cb33-5"><a href="16-Differential_abundance.html#cb33-5" aria-hidden="true" tabindex="-1"></a>--o-collapsed-table comp-ancom-table-l5.qza</span></code></pre></div>
+<div id="parameters-19" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="16-Differential_abundance.html#parameters-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="figures/parameter_purple.png" width="10%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong><code>--i-table</code></strong>: Input artifact containing the abundance table (non-rarefied) for the identified variants.</li>
+<li><strong><code>--i-taxonomy</code></strong>: Input artifact containing the taxonomic classifications of the ASVs.</li>
+<li><strong><code>--p-level</code></strong>: The taxonomic level at which the features should be collapsed.
+<ul>
+<li>In this case the level refers to family. This can be checked via the <a href="10-Taxonomic_assignment.html#taxabar">taxonomy bar plot artifact</a></li>
+</ul></li>
+<li><strong><code>--o-collapsed-table</code></strong>: Output artifact containing the abundance table for the specified taxa level.</li>
+</ul>
+<p><a href="https://docs.qiime2.org/2022.2/plugins/available/taxa/collapse/">QIIME2 docs on <code>qiime taxa collapse</code></a></p>
+</div>
 </div>
 <div id="pseudo-counts" class="section level2 hasAnchor" number="16.2">
 <h2><span class="header-section-number">16.2</span> Pseudo counts<a href="16-Differential_abundance.html#pseudo-counts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/plus_1.png" width="15%" style="display: block; margin: auto;" />
 Add pseudo-count to the abundance table with the purpose of converting 0s to 1s. This is required as ANCOM will fail with abundance values of 0.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="16-Differential_abundance.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="dt">\</span></span>
-<span id="cb33-2"><a href="16-Differential_abundance.html#cb33-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5.qza <span class="dt">\</span></span>
-<span id="cb33-3"><a href="16-Differential_abundance.html#cb33-3" aria-hidden="true" tabindex="-1"></a>--p-pseudocount 1 <span class="dt">\</span></span>
-<span id="cb33-4"><a href="16-Differential_abundance.html#cb33-4" aria-hidden="true" tabindex="-1"></a>--o-composition-table comp-ancom-table-l5-pse.qza</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="16-Differential_abundance.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="dt">\</span></span>
+<span id="cb34-2"><a href="16-Differential_abundance.html#cb34-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5.qza <span class="dt">\</span></span>
+<span id="cb34-3"><a href="16-Differential_abundance.html#cb34-3" aria-hidden="true" tabindex="-1"></a>--p-pseudocount 1 <span class="dt">\</span></span>
+<span id="cb34-4"><a href="16-Differential_abundance.html#cb34-4" aria-hidden="true" tabindex="-1"></a>--o-composition-table comp-ancom-table-l5-pse.qza</span></code></pre></div>
+<div id="parameters-20" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="16-Differential_abundance.html#parameters-20" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="figures/parameter_black.png" width="10%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong><code>--i-table</code></strong>: Input artifact containing the abundance feature table.
+<ul>
+<li>In this case the features are families but it can be other taxa levels or even ASVs.</li>
+</ul></li>
+<li><strong><code>--p-pseudocount</code></strong>: Value to add to all counts in the feature table.</li>
+<li><strong><code>--o-composition-table</code></strong>: Output artifact containing feature abundance table with added pseudocounts.</li>
+</ul>
+<p><a href="https://docs.qiime2.org/2022.2/plugins/available/composition/add-pseudocount/">QIIME2 docs on <code>qiime composition add-pseudocount</code></a></p>
+</div>
 </div>
 <div id="ancom" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">16.3</span> ANCOM<a href="16-Differential_abundance.html#ancom" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/toilet_corridor.png" width="40%" style="display: block; margin: auto;" />
 Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between Corridor and Toilet.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="16-Differential_abundance.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="dt">\</span></span>
-<span id="cb34-2"><a href="16-Differential_abundance.html#cb34-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5-pse.qza <span class="dt">\</span></span>
-<span id="cb34-3"><a href="16-Differential_abundance.html#cb34-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
-<span id="cb34-4"><a href="16-Differential_abundance.html#cb34-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
-<span id="cb34-5"><a href="16-Differential_abundance.html#cb34-5" aria-hidden="true" tabindex="-1"></a>--o-visualization l5-ancom-Location.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="16-Differential_abundance.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="dt">\</span></span>
+<span id="cb35-2"><a href="16-Differential_abundance.html#cb35-2" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5-pse.qza <span class="dt">\</span></span>
+<span id="cb35-3"><a href="16-Differential_abundance.html#cb35-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb35-4"><a href="16-Differential_abundance.html#cb35-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
+<span id="cb35-5"><a href="16-Differential_abundance.html#cb35-5" aria-hidden="true" tabindex="-1"></a>--o-visualization l5-ancom-Location.qzv</span></code></pre></div>
+<div id="parameters-21" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="16-Differential_abundance.html#parameters-21" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="figures/parameter_green.png" width="10%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong><code>--i-table</code></strong>: Input artifact containing feature abundance table with added pseudocounts.</li>
+<li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
+<li><strong><code>--m-metadata-column</code></strong>: Metadata column within the metadata file to use for the differential abundance analysis.</li>
+<li><strong><code>--o-visualization</code></strong>: Output visualisation artifact containing the ANCOM results.</li>
+</ul>
+<p><a href="https://docs.qiime2.org/2022.2/plugins/available/composition/ancom/">QIIME2 docs on <code>qiime composition ancom</code></a></p>
 </div>
-<div id="ancom-visualisation" class="section level2 hasAnchor" number="16.4">
-<h2><span class="header-section-number">16.4</span> ANCOM visualisation<a href="16-Differential_abundance.html#ancom-visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This produces a visualisation file with the following sections:</p>
+</div>
+<div id="ancom-visualise" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> ANCOM: visualise<a href="16-Differential_abundance.html#ancom-visualise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/eye_red.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>This produces a visualisation file (<code>l5-ancom-Location.qzv</code>, opened with QIIME2 view) with the following sections:</p>
 <ul>
 <li><strong>ANCOM Volcano Plot</strong>: A dot plot of the W statistic (y) against the CLR (x).
 <ul>
 <li>Each dot represents a feature (family in this case) in the dataset.</li>
 <li>W statistic: The higher this value the more significant the feature is differentially abundant between groups.</li>
-<li>CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abudance.</li>
+<li>CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abundance.</li>
 </ul></li>
 <li><strong>ANCOM statistical results</strong>: This shows the name and W statistic of features found to be differentially abundant.
 <ul>
@@ -373,13 +418,83 @@ Finally, we run ANCOM. In this instance we will use Location as the metadata so 
 </ul></li>
 <li><strong>Percentile abundances of features by group</strong>: This is a table which can be thought of as containing the text version of a boxplot. This shows the abundances of the differentially abundant features for the different groups.</li>
 </ul>
-<p><strong>Questions</strong>:</p>
-<ul>
-<li>Which families are discovered as biomarkers?</li>
-<li>Investigating these families, does this make sense?</li>
-<li>Run ANCOM analysis for genus level (level 6). Do you get any genera as biomarkers that do not belong to families discovered as biomarkers?</li>
-<li>Does changing the metadata category let you infer something different?</li>
-</ul>
+<div class="webex-solution">
+<button>
+W-statistic
+</button>
+<p>The statistical definition of the W-statistic is:</p>
+<p>The number of times the log-ratio of a taxon with every other taxon being tested was detected to be significantly different across groups.</p>
+<p>For even more info you can check out this <a href="https://forum.qiime2.org/t/specify-w-cutoff-for-anacom/1844/10">response</a> on the QIIME 2 forum.</p>
+</div>
+</div>
+<div id="ancom-mcqs" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> ANCOM: MCQs<a href="16-Differential_abundance.html#ancom-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/question_bubble_red.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>Attempt the below MCQs.</p>
+<ol style="list-style-type: decimal">
+<li>Which family is detected as a biomarker? I.e. which family is differentially abundant between Corridor and Toilet?
+<div id="radio_WBALTDFBRE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WBALTDFBRE" value="answer"></input> <span><strong>Clostridiaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WBALTDFBRE" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WBALTDFBRE" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+</div></li>
+<li>Which sample group has a higher abundance of the detected biomarker family?
+<div id="radio_KJKSNPJRAR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KJKSNPJRAR" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KJKSNPJRAR" value="answer"></input> <span><strong>Toilet</strong></span></label>
+</div></li>
+</ol>
+<p>Run ANCOM analysis for genus level (level 6). You will have to start from the <code>qiime taxa collapse</code> command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.</p>
+<div class="webex-solution">
+<button>
+L6 ANCOM commands
+</button>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="16-Differential_abundance.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Collapse taxa</span></span>
+<span id="cb36-2"><a href="16-Differential_abundance.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> taxa collapse <span class="dt">\</span></span>
+<span id="cb36-3"><a href="16-Differential_abundance.html#cb36-3" aria-hidden="true" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
+<span id="cb36-4"><a href="16-Differential_abundance.html#cb36-4" aria-hidden="true" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
+<span id="cb36-5"><a href="16-Differential_abundance.html#cb36-5" aria-hidden="true" tabindex="-1"></a>--p-level 6 <span class="dt">\</span></span>
+<span id="cb36-6"><a href="16-Differential_abundance.html#cb36-6" aria-hidden="true" tabindex="-1"></a>--o-collapsed-table comp-ancom-table-l6.qza</span>
+<span id="cb36-7"><a href="16-Differential_abundance.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Add pseudo count</span></span>
+<span id="cb36-8"><a href="16-Differential_abundance.html#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition add-pseudocount <span class="dt">\</span></span>
+<span id="cb36-9"><a href="16-Differential_abundance.html#cb36-9" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l6.qza <span class="dt">\</span></span>
+<span id="cb36-10"><a href="16-Differential_abundance.html#cb36-10" aria-hidden="true" tabindex="-1"></a>--p-pseudocount 1 <span class="dt">\</span></span>
+<span id="cb36-11"><a href="16-Differential_abundance.html#cb36-11" aria-hidden="true" tabindex="-1"></a>--o-composition-table comp-ancom-table-l6-pse.qza</span>
+<span id="cb36-12"><a href="16-Differential_abundance.html#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co">#ANCOM</span></span>
+<span id="cb36-13"><a href="16-Differential_abundance.html#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="dt">\</span></span>
+<span id="cb36-14"><a href="16-Differential_abundance.html#cb36-14" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l6-pse.qza <span class="dt">\</span></span>
+<span id="cb36-15"><a href="16-Differential_abundance.html#cb36-15" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb36-16"><a href="16-Differential_abundance.html#cb36-16" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
+<span id="cb36-17"><a href="16-Differential_abundance.html#cb36-17" aria-hidden="true" tabindex="-1"></a>--o-visualization l6-ancom-Location.qzv</span></code></pre></div>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>How many genera are discovered as biomarkers?
+<div id="radio_FDLSVQAVJC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FDLSVQAVJC" value=""></input> <span><strong>1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FDLSVQAVJC" value="answer"></input> <span><strong>2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FDLSVQAVJC" value=""></input> <span><strong>3</strong></span></label>
+</div></li>
+</ol>
+<p>Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed and added psuedocounts to create an ANCOM-ready family abundance table. Therefore you will only need to rerun the <code>qiime composition ancom</code> with changed options. Try running these commands yourself before looking at the contents of the below box.</p>
+<div class="webex-solution">
+<button>
+Family ANCOM analysis with Place metadata comman
+</button>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="16-Differential_abundance.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ANCOM</span></span>
+<span id="cb37-2"><a href="16-Differential_abundance.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> composition ancom <span class="dt">\</span></span>
+<span id="cb37-3"><a href="16-Differential_abundance.html#cb37-3" aria-hidden="true" tabindex="-1"></a>--i-table comp-ancom-table-l5-pse.qza <span class="dt">\</span></span>
+<span id="cb37-4"><a href="16-Differential_abundance.html#cb37-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
+<span id="cb37-5"><a href="16-Differential_abundance.html#cb37-5" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Place <span class="dt">\</span></span>
+<span id="cb37-6"><a href="16-Differential_abundance.html#cb37-6" aria-hidden="true" tabindex="-1"></a>--o-visualization l5-ancom-Place.qzv</span></code></pre></div>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Are any families discovered as biomarkers when comparing the 2 Places?
+<div id="radio_QYWKXKPCEM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QYWKXKPCEM" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QYWKXKPCEM" value="answer"></input> <span><strong>No</strong></span></label>
+</div></li>
+</ol>
+</div>
+<div id="ancom-summary" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">16.6</span> ANCOM: summary<a href="16-Differential_abundance.html#ancom-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/sum_red.png" width="15%" style="display: block; margin: auto;" /></p>
+<p>We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family <em>Clostridiaceae</em> was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.</p>
+<p>In contrast, we found no biomarkers when comparing the Places, Entrance and MainBuilding. This matched with our lack of difference in the beta diversity distances.</p>
+<p>That is the last of the analysis. There is only one more chapter on future considerations.</p>
 
 </div>
 </div>

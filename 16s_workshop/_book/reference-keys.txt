@@ -52,7 +52,7 @@ import-taxonomy-database
 extract-16s-region-of-interest
 classifier-training
 taxonomy-assignment
-taxonomy-bar-chart-production
+taxabar
 taxonomy-mcqs
 taxonomy-summary
 phylogeny
@@ -79,11 +79,15 @@ beta_stats
 beta-diveristy-pcoa
 beta-diversity-run
 beta-diversity-visualise
+beta-diversity-mcqs
+beta-diversity-summary
 differential
 taxa-collapse
 pseudo-counts
 ancom
-ancom-visualisation
+ancom-visualise
+ancom-mcqs
+ancom-summary
 final
 resources
 suggested-readings

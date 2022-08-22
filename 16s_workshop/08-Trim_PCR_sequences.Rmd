@@ -17,10 +17,10 @@ We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequ
 __Note__: You can copy and paste (using right click) the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
 ```{bash, eval=FALSE}
-#Print primer sequences to screen for copying and poasting
+#Print primer sequences to screen for copying and pasting
 cat primers_seqs.fasta
 
-#Run cutadapt comman
+#Run cutadapt command
 qiime cutadapt trim-paired \
 --i-demultiplexed-sequences paired-end-demux.qza \
 --p-front-f NNNNNGTGCCAGCMGCCGCGGTAA \
@@ -71,27 +71,27 @@ knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = T
 ```
 
 ```{r, echo = FALSE}
-opts_p <- c("1TE", "2K2E", answer="3K1E")
+opts_p <- c("__1TE__", "__2K2E__", answer="__3K1E__")
 ```
 1. which sample has the lowest number of forward reads? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("1TE", answer="2K2E", "3K1E")
+opts_p <- c("__1TE__", answer="__2K2E__", "__3K1E__")
 ```
 2. Which sample has the highest number of forward reads? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("<200", "200-220", answer=">220")
+opts_p <- c("__<200__", "__200-220__", answer="__>220__")
 ```
 3. Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("<200", "200-220", answer=">220")
+opts_p <- c("__<200__", "__200-220__", answer="__>220__")
 ```
 4. Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="226", "230", "250")
+opts_p <- c(answer="__226__", "__230__", "__250__")
 ```
 5. What is the median length of the forward reads?
 
@@ -100,4 +100,4 @@ opts_p <- c(answer="226", "230", "250")
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 
-We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=230. This is expected. We have alos kept a good amount of reads and the quality looks good so we can move to denoising.
+We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=230. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.

@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-19" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
-<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxabar"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
 <li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy: MCQs</a></li>
 <li class="chapter" data-level="10.7" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-summary"><i class="fa fa-check"></i><b>10.7</b> Taxonomy: summary</a></li>
 </ul></li>
@@ -261,14 +261,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
 <li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
-<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-mcqs"><i class="fa fa-check"></i><b>15.3.1</b> Beta diversity: MCQs</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-summary"><i class="fa fa-check"></i><b>15.3.2</b> Beta diversity: summary</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>16.4</b> ANCOM visualisation</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -332,7 +338,7 @@ The first step is to align our representative sequences against each other. This
 <p><img src="figures/parameter_red.png" width="10%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><strong><code>--i-sequences</code></strong>: Input artifact containing the representative sequences of the features (ASVs) to be aligned.</li>
-<li><strong><code>--o-alignment</code></strong>: Output artifact containing the aligned represenative sequences.</li>
+<li><strong><code>--o-alignment</code></strong>: Output artifact containing the aligned representative sequences.</li>
 </ul>
 <p><a href="https://docs.qiime2.org/2022.2/plugins/available/alignment/mafft/">QIIME2 docs on <code>qiime alignment mafft</code></a></p>
 </div>
@@ -409,8 +415,8 @@ Finally the un-rooted tree is rooted.</p>
 <div id="phylogeny-summary" class="section level2 hasAnchor" number="11.5">
 <h2><span class="header-section-number">11.5</span> Phylogeny: summary<a href="11-Phylogentic_tree.html#phylogeny-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/sum_black.png" width="10%" style="display: block; margin: auto;" /></p>
-<p>All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiveristy measures that require phylogenetic information.</p>
-<p>The file ‘rooted-tree.qza’ contains a phylogentic tree that can be exported to a newick file. This is covered in the <a href="http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export">supplemental book</a>.</p>
+<p>All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.</p>
+<p>The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported to a newick file. This is covered in the <a href="http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export">supplemental book</a>.</p>
 
 </div>
 </div>

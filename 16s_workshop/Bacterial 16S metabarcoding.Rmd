@@ -270,7 +270,7 @@ Much of the work involved in the analysis of amplicon-based metagenomic data is 
 
 For sequencing purposes, an aliquot of PhiX phage DNA is added to each sample before sequencing, both DADA2 and deblur include a step aimed to exclude any PhiX associated reads. To remove PCR chimeric artefacts, a further filter step is applied by both. 
 
-QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing biases. It is possible to collate the denoised abundance tables and representative sequences afterward, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
+QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing biases. It is possible to collate the denoised abundance tables and representative sequences afterwards, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
 
 ## Assign a taxonomic classification to each ASV
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -331,7 +331,7 @@ The alpha-diversity metric used for the analysis must be chosen carefully, consi
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
-Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform nMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
+Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform NMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:
 
@@ -395,12 +395,10 @@ knitr::include_graphics(path = "figures/logon_pic.png", auto_pdf = TRUE)
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
-These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Ubuntu. 
+These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
 
-The following link is a guide to install Ubuntu:  
-https://www.ubuntu.com/download/desktop/install-ubuntu-desktop.  
-If you use a USB you need to create a bootable USB stick. The following link will assist:  
-https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows 
+The following link is a guide to install Mint Linux:  
+https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## The Terminal Window
 In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
@@ -454,7 +452,7 @@ cd Metagenetics
 cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_5/* .
 ```
 
-Look at the contents of your current directory and then continue reading for explantions on their contents.
+Look at the contents of your current directory and then continue reading for explanations on their contents.
 
 ```{bash, eval=FALSE}
 ls
@@ -526,7 +524,7 @@ For more information on QIIME2 metadata please see: https://docs.qiime2.org/2021
 The above link includes:
 
 - Metadata Formatting Requirements
-- Info on empy rows
+- Info on empty rows
 - Recommendations for identifiers
 - Info on column types and number formatting
 - More
@@ -580,7 +578,7 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
 ``` 
-You will need to activate the QIIME2 conda environment before continuning. Carry this out with the following command.
+You will need to activate the QIIME2 conda environment before continuing. Carry this out with the following command.
 
 __Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2021.2`
 
@@ -641,11 +639,11 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--type`__: The type of data being imported.
   - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contain quality. I.e. normal Illumina paired end fastq data.
 - __`--input-path`__: The input [manifest file](#manifestfile)
-- __`--output-path`__: Output QIIME2 artifact file contiang your sequence data.
+- __`--output-path`__: Output QIIME2 artifact file containing your sequence data.
   - The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). 
   - QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
 - __`--input-format`__: The format of the input files.
-  - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encodin can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
+  - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
 [QIIME2 docs on importing data](https://docs.qiime2.org/2022.2/tutorials/importing/)
 
@@ -717,7 +715,7 @@ The visualisation will have two tabs:
    - __Read frequency histograms__: Forward and Reverse reads histograms showing the how many samples have various numbers of sequences. 
    - __Per-sample sequence counts__: Table showing the number of forward and reverse reads in samples.
 2. __Interactive Quality Plots__: Contains similar information as fastQC analysis.
-   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
+   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Parametric seven-number summary" table.
    - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 ## Import: MCQs
@@ -726,37 +724,37 @@ knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = T
 ```
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="42,853", "126,670", "174,951")
+opts_p <- c(answer="__42,853__", "__126,670__", "__174,951__")
 ```
 1. What is the minimum number of forward reads across the samples? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("42,853", "126,670", answer="174,951")
+opts_p <- c("__42,853__", "__126,670__", answer="__174,951__")
 ```
 2. What is the maximum number of forward reads across the samples? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("42,853", answer="126,670", "174,951")
+opts_p <- c("__42,853__", answer="__126,670__", "__174,951__")
 ```
 3. What is the mean number of forward reads across the samples? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("1TM", "3K2E", answer="3K1M")
+opts_p <- c("__1TM__", "__3K2E__", answer="__3K1M__")
 ```
 4. Which sample has 134,737 forward reads? `r longmcq(opts_p)`
  
 ```{r, echo = FALSE}
-opts_p <- c(answer="1TM", "3K2E", "3k1M")
+opts_p <- c(answer="__1TM__", "__3K2E__", "__3k1M__")
 ```
 5. Which sample has 86,083 forward reads? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="TRUE", "FALSE")
+opts_p <- c(answer="__TRUE__", "__FALSE__")
 ```
 6. Most of the read quality for the forward reads is above Q30? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="TRUE", "FALSE")
+opts_p <- c(answer="__TRUE__", "__FALSE__")
 ```
 7. Most of the read quality for the reverse reads is above Q30? `r longmcq(opts_p)`
 
@@ -765,7 +763,7 @@ opts_p <- c(answer="TRUE", "FALSE")
 knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 ```
 
-We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need aymore.
+We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.
 
 <!--chapter:end:07-Import_sequences_into_QIIME2.Rmd-->
 
@@ -805,10 +803,10 @@ We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequ
 __Note__: You can copy and paste (using right click) the forward and reverse primer from the fasta file "primers_seqs.fasta"
 
 ```{bash, eval=FALSE}
-#Print primer sequences to screen for copying and poasting
+#Print primer sequences to screen for copying and pasting
 cat primers_seqs.fasta
 
-#Run cutadapt comman
+#Run cutadapt command
 qiime cutadapt trim-paired \
 --i-demultiplexed-sequences paired-end-demux.qza \
 --p-front-f NNNNNGTGCCAGCMGCCGCGGTAA \
@@ -859,27 +857,27 @@ knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = T
 ```
 
 ```{r, echo = FALSE}
-opts_p <- c("1TE", "2K2E", answer="3K1E")
+opts_p <- c("__1TE__", "__2K2E__", answer="__3K1E__")
 ```
 1. which sample has the lowest number of forward reads? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("1TE", answer="2K2E", "3K1E")
+opts_p <- c("__1TE__", answer="__2K2E__", "__3K1E__")
 ```
 2. Which sample has the highest number of forward reads? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("<200", "200-220", answer=">220")
+opts_p <- c("__<200__", "__200-220__", answer="__>220__")
 ```
 3. Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("<200", "200-220", answer=">220")
+opts_p <- c("__<200__", "__200-220__", answer="__>220__")
 ```
 4. Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="226", "230", "250")
+opts_p <- c(answer="__226__", "__230__", "__250__")
 ```
 5. What is the median length of the forward reads?
 
@@ -888,7 +886,7 @@ opts_p <- c(answer="226", "230", "250")
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 
-We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=230. This is expected. We have alos kept a good amount of reads and the quality looks good so we can move to denoising.
+We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=230. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.
 
 <!--chapter:end:08-Trim_PCR_sequences.Rmd-->
 
@@ -1046,7 +1044,7 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
          - __Plot Controls__: Below the controls is a section of text showing the number of features and samples retained by the chosen sampling depth.
 3. __Feature detail__: This is a table with 3 columns.
    - 1st column: This is the ASV id. This ID represents the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.
-   - __Frequency__: Number of sequences representing the ASV acorss all samples. I.e. the total abundance of the ASV.
+   - __Frequency__: Number of sequences representing the ASV across all samples. I.e. the total abundance of the ASV.
    - __# of Samples Observed in__: Number of samples the ASVs was detected in.
 
 ### table-dada2.qzv: MCQs
@@ -1113,7 +1111,7 @@ qiime metadata tabulate \
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
-- __`--m-input-file`__: Input artifact file containing the denosing stats from DADA2.
+- __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation artifact.
 
 [QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2022.2/plugins/available/metadata/tabulate/)
@@ -1226,7 +1224,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--output-path`__: Output sequence/taxonomy artifact file.
 - __`--type`___: The type of data that is being imported.
   - `FeatureData[Sequence]`: Sequence data for features (in this case OTUs).
-  - `FeatureData[Taxonomy]`: Taxonomy infomration for features (in this case OTUs).
+  - `FeatureData[Taxonomy]`: Taxonomy information for features (in this case OTUs).
 - __`--input-format`__: The format of the input. 
   - This is only needed for the taxonomy import with the option of `HeaderlessTSVTaxonomyFormat` that indicates the input file is a headerless tab separated value (TSV) file with taxonomy information.
 
@@ -1270,7 +1268,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 
 #### Copy premade results {-}
 
-Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the premade results with the following command:
+Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the pre-made results with the following command:
 
 ```{bash, eval=FALSE}
 cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
@@ -1333,7 +1331,7 @@ knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
 
 [QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/classify-sklearn/)
 
-## Taxonomy bar chart production
+## Taxonomy bar chart production {#taxabar}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_charts.png", auto_pdf = TRUE)
 ``` 
@@ -1354,7 +1352,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
 - __`--i-table`__: Input artifact containing the ASV abundance table.
-- __`--i-taxonomy`__: Input artifact containing the taxomomic classifications of the ASVs.
+- __`--i-taxonomy`__: Input artifact containing the taxonomic classifications of the ASVs.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 - __`--o-visualization`__: Output visualisation file containing an interactive taxonomy-abundance bar-chart.
 
@@ -1453,7 +1451,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
 - __`--i-sequences`__: Input artifact containing the representative sequences of the features (ASVs) to be aligned.
-- __`--o-alignment`__: Output artifact containing the aligned represenative sequences.
+- __`--o-alignment`__: Output artifact containing the aligned representative sequences.
 
 [QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mafft/)
 
@@ -1540,9 +1538,9 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 
-All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiveristy measures that require phylogenetic information.
+All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.
 
-The file ‘rooted-tree.qza’ contains a phylogentic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).
+The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).
 
 <!--chapter:end:11-Phylogentic_tree.Rmd-->
 
@@ -1680,7 +1678,7 @@ The visualisation has two plots.
 knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
 ```
 
-Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:
+Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best trade-off between:
 
 - Retaining sequencing depth within samples.
 - Not losing entire samples.
@@ -1702,7 +1700,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction of most of the samples (>90%) plateau'd?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction of most of the samples (>90%) plateaued?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
@@ -1720,7 +1718,7 @@ opts_p <- c("__70,000__", answer="__90,000__", "__115,000 __")
 4. When comparing the two __Places__, at approximately what sequencing depth are there only 6 MainBuilding samples remaining?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__70,000__", "__90,000__", answer="__115,000 __")
+opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 ```
 5. When comparing the two __Places__, at approximately what sequencing depth are there only 5 Entrance samples remaining? `r longmcq(opts_p)`
 
@@ -1765,7 +1763,7 @@ knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
 1948, Faith, 1992).
 
-Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupoune et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
+Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
 ## Diversity: run 
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1907,6 +1905,8 @@ The Kruskal-Wallis (`shannon-group-significance.kw.qzv`) visualisation artifact 
 
 To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
 
+[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2022.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
+
 #### Ranked Spearman {-}
 
 The Ranked Spearman (`shannon-group-significance.rs.qzv`) visualisation artifact contains:
@@ -1924,34 +1924,56 @@ knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = 
 ```
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 1. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 2. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 3. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ? `r longmcq(opts_p)`
 
 For the below questions you will need to run some more `qiime diversity alpha-group-significance` and `qiime diversity alpha-correlation`. When creating and running these commands ensure you are giving the input and output artifacts the correct names.
 
+If you are are having issue knowing how to run the commands you can look at the box below for the commands.
+
+`r hide("Alpha diveristy stats commands")`
+```{bash, eval=FALSE}
+# Q4: Observed features of Locations
+qiime diversity alpha-group-significance \
+--i-alpha-diversity observed_features_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization observed-features-group-significance.kw.qzv
+# Q5: Evenness of Locations
+qiime diversity alpha-group-significance \
+--i-alpha-diversity evenness_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization evenness-group-significance.kw.qzv
+# Q6: Faith's PD of Floors
+qiime diversity alpha-correlation \
+--i-alpha-diversity faith_pd_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization faith-pd-group-significance.rs.qzv
+```
+`r unhide()`
+
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 4. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using observed features? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 5. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 6. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD? `r longmcq(opts_p)`
 
@@ -1962,7 +1984,7 @@ knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
 
 We have viewed alpha diversity output but unfortunately found no significant differences between groups. Hopefully in your future projects you will have more samples and more luck. Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.
 
-IN the next chapter we will look at the beta diversity output and carry out some more statistics.
+In the next chapter we will look at the beta diversity output and carry out some more statistics.
 
 <!--chapter:end:14-Alpha_diversity.Rmd-->
 
@@ -2050,7 +2072,7 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
 
 - __Overview__: An overview of the statistical analysis for the metadata column.
 - __Group significance plot__: These boxplots represent all the pairwise distances between the samples in the specified groups.
-   - Distances to Corridor plot
+   - Example: Distances to Corridor plot
       - Corridor boxplot: This boxplot represents all the pairwise distances within the Corridor samples. If you had 3 corridor samples (C1-3) the boxplot would consist of the distances between C1-C2, C1-C3, and C2-C3.
       - Toilet boxplot: This boxplot represents the pairwise distances between all the corridor samples and toilet samples. If you had 3 corridor samples (C1-3) and 2 toilet samples (T1-2) the boxplot would consist of the distances between C1-T1, C1-T2, C2-T1, C2-T2, C3-T1, and C3-T2.
    - With these plots you can see if the distances within a group is lower than the distances between that group and other groups.
@@ -2060,12 +2082,50 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
    
 [Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
-__Questions__:
+### Beta diversity: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
+```
 
-+ Does the chosen grouping information result in a statistically significant difference? 
-+ Does using ‘anosim’ instead of ‘permanova’ change the result? 
-+ And using a different ordination metric? 
-+ What about choosing a different grouping (metadata category)?
+Attempt the below questions.
+
+__Note__: You will need to run the `qiime diversity beta-group-significance` with different options and view the new files to answer some of the questions.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+1. Is there a significant difference (q-value <0.05) between Corridor and Toilet (Location) for the weighted unifrac distances when using PERMANOVA? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Corridor__", answer="__Toilet__")
+```
+2. Which sample group, Corridor or Toilet, has larger weighted unifrac distances within the group? I.e. which boxplot has the bigger IQR: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Corridor__", "__Toilet__")
+```
+3. In the weighted unifrac distances "Distances to Corridor" box plots, which box plot has lower values? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Yes__", "__No__")
+```
+4. Is there a significant difference (q-value <0.05) between Corridor and Toilet (Location) for the Bray Curtis distances when using PERMANOVA? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Yes__", answer="__No__")
+```
+5. Is there a significant difference (q-value <0.05) between Entrance and MainBuilding (Place) for the Unweighted Unifrac distances when using ANOSIM? `r longmcq(opts_p)`
+
+### Beta diversity: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
+```
+
+Viewing the beta diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.
+
+Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.
+
+We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.
 
 <!--chapter:end:15-Beta_diversity_analysis.rmd-->
 
@@ -2091,7 +2151,7 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 
 
-The ANCOM method aims to identify the differentially abundant taxa. It  is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2021.2/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
+The ANCOM method aims to identify differentially abundant taxa between sample groups. It  is a complex method requiring different steps.
 
 The steps to carry this out are:
 
@@ -2120,6 +2180,19 @@ qiime taxa collapse \
 --o-collapsed-table comp-ancom-table-l5.qza
 ```
 
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing the abundance table (non-rarefied) for the identified variants.
+- __`--i-taxonomy`__: Input artifact containing the taxonomic classifications of the ASVs.
+- __`--p-level`__: The taxonomic level at which the features should be collapsed.
+  - In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
+- __`--o-collapsed-table`__: Output artifact containing the abundance table for the specified taxa level.
+
+[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2022.2/plugins/available/taxa/collapse/)
+
 ## Pseudo counts
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/plus_1.png", auto_pdf = TRUE)
@@ -2132,6 +2205,18 @@ qiime composition add-pseudocount \
 --p-pseudocount 1 \
 --o-composition-table comp-ancom-table-l5-pse.qza
 ```
+
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing the abundance feature table.
+  - In this case the features are families but it can be other taxa levels or even ASVs.
+- __`--p-pseudocount`__: Value to add to all counts in the feature table.
+- __`--o-composition-table`__: Output artifact containing feature abundance table with added pseudocounts.
+
+[QIIME2 docs on `qiime composition add-pseudocount`](https://docs.qiime2.org/2022.2/plugins/available/composition/add-pseudocount/)
 
 ## ANCOM
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
@@ -2147,24 +2232,117 @@ qiime composition ancom \
 --o-visualization l5-ancom-Location.qzv
 ```
 
-## ANCOM visualisation
-This produces a visualisation file with the following sections:
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing feature abundance table with added pseudocounts.
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--m-metadata-column`__: Metadata column within the metadata file to use for the differential abundance analysis.
+- __`--o-visualization`__: Output visualisation artifact containing the ANCOM results.
+
+[QIIME2 docs on `qiime composition ancom`](https://docs.qiime2.org/2022.2/plugins/available/composition/ancom/)
+
+## ANCOM: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_red.png", auto_pdf = TRUE)
+```
+
+This produces a visualisation file (`l5-ancom-Location.qzv`, opened with QIIME2 view) with the following sections:
 
 - __ANCOM Volcano Plot__: A dot plot of the W statistic (y) against the CLR (x).
    - Each dot represents a feature (family in this case) in the dataset.
    - W statistic: The higher this value the more significant the feature is differentially abundant between groups.
-   - CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abudance.
+   - CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abundance.
 - __ANCOM statistical results__: This shows the name and W statistic of features found to be differentially abundant.
    - ANCOM automatically chooses a W statistic threshold for significance.
 - __Percentile abundances of features by group__: This is a table which can be thought of as containing the text version of a boxplot. This shows the abundances of the differentially abundant features for the different groups.
 
+`r hide("W-statistic")`
+The statistical definition of the W-statistic is:
 
-__Questions__: 
+The number of times the log-ratio of a taxon with every other taxon being tested was detected to be significantly different across groups.
 
-+ Which families are discovered as biomarkers? 
-+ Investigating these families, does this make sense? 
-+ Run ANCOM analysis for genus level (level 6). Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
-+ Does changing the metadata category let you infer something different?
+For even more info you can check out this [response](https://forum.qiime2.org/t/specify-w-cutoff-for-anacom/1844/10) on the QIIME 2 forum.
+
+`r unhide()`
+
+## ANCOM: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
+```
+
+Attempt the below MCQs.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Clostridiaceae__", "__Moraxellaceae__", "__Pseudomonadaceae__")
+```
+1. Which family is detected as a biomarker? I.e. which family is differentially abundant between Corridor and Toilet? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Corridor__", answer="__Toilet__")
+```
+2. Which sample group has a higher abundance of the detected biomarker family? `r longmcq(opts_p)`
+
+Run ANCOM analysis for genus level (level 6). You will have to start from the `qiime taxa collapse` command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.
+
+`r hide("L6 ANCOM commands")`
+```{bash, eval=FALSE}
+#Collapse taxa
+qiime taxa collapse \
+--i-table table-dada2.qza \
+--i-taxonomy taxonomy.sklearn.qza \
+--p-level 6 \
+--o-collapsed-table comp-ancom-table-l6.qza
+#Add pseudo count
+qiime composition add-pseudocount \
+--i-table comp-ancom-table-l6.qza \
+--p-pseudocount 1 \
+--o-composition-table comp-ancom-table-l6-pse.qza
+#ANCOM
+qiime composition ancom \
+--i-table comp-ancom-table-l6-pse.qza \
+--m-metadata-file metadata.file.txt \
+--m-metadata-column Location \
+--o-visualization l6-ancom-Location.qzv
+```
+`r unhide()`
+
+```{r, echo = FALSE}
+opts_p <- c("__1__", answer="__2__", "__3__")
+```
+3. How many genera are discovered as biomarkers? `r longmcq(opts_p)`
+
+Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed and added psuedocounts to create an ANCOM-ready family abundance table. Therefore you will only need to rerun the `qiime composition ancom` with changed options. Try running these commands yourself before looking at the contents of the below box.
+
+`r hide("Family ANCOM analysis with Place metadata comman")`
+```{bash, eval=FALSE}
+#ANCOM
+qiime composition ancom \
+--i-table comp-ancom-table-l5-pse.qza \
+--m-metadata-file metadata.file.txt \
+--m-metadata-column Place \
+--o-visualization l5-ancom-Place.qzv
+```
+`r unhide()`
+
+```{r, echo = FALSE}
+opts_p <- c("__Yes__", answer="__No__")
+```
+4. Are any families discovered as biomarkers when comparing the 2 Places? `r longmcq(opts_p)`
+
+## ANCOM: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
+```
+
+We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family _Clostridiaceae_ was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.
+
+In contrast, we found no biomarkers when comparing the Places, Entrance and MainBuilding. This matched with our lack of difference in the beta diversity distances.
+
+That is the last of the analysis. There is only one more chapter on future considerations.
+
 
 <!--chapter:end:16-Differential_abundance.Rmd-->
 
@@ -2199,9 +2377,9 @@ The failure could be right at the beginning of the project design. It is worth c
 If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:
 
 + Functional analysis (PICRUSt2). We will cover this later!
-+ Inferring ecological interaction networks (SPIEC-EASI)
-+ More statistical analyses with STAMP
-+ Or you can import your results in R to post analyse them with Phyloseq
++ Inferring ecological interaction networks (SPIEC-EASI).
++ More statistical analyses with STAMP.
++ Or you can import your results in R to analyse them with Phyloseq.
 
 __CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!__
 If you have still time available you can move onto the Supplemental bookdown.

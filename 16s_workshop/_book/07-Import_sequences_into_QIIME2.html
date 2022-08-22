@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew Gemmell" />
 
 
-<meta name="date" content="2022-08-19" />
+<meta name="date" content="2022-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
-<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-bar-chart-production"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
+<li class="chapter" data-level="10.5" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxabar"><i class="fa fa-check"></i><b>10.5</b> Taxonomy bar chart production</a></li>
 <li class="chapter" data-level="10.6" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-mcqs"><i class="fa fa-check"></i><b>10.6</b> Taxonomy: MCQs</a></li>
 <li class="chapter" data-level="10.7" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-summary"><i class="fa fa-check"></i><b>10.7</b> Taxonomy: summary</a></li>
 </ul></li>
@@ -261,14 +261,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="15.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa"><i class="fa fa-check"></i><b>15.1</b> Beta diveristy: PCoA</a></li>
 <li class="chapter" data-level="15.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-run"><i class="fa fa-check"></i><b>15.2</b> Beta diversity: run</a></li>
-<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a></li>
+<li class="chapter" data-level="15.3" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-visualise"><i class="fa fa-check"></i><b>15.3</b> Beta diversity: visualise</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-mcqs"><i class="fa fa-check"></i><b>15.3.1</b> Beta diversity: MCQs</a></li>
+<li class="chapter" data-level="15.3.2" data-path="15-Beta_diversity_analysis.html"><a href="15-Beta_diversity_analysis.html#beta-diversity-summary"><i class="fa fa-check"></i><b>15.3.2</b> Beta diversity: summary</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
 <li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualisation"><i class="fa fa-check"></i><b>16.4</b> ANCOM visualisation</a></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -339,14 +345,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>'SampleData[PairedEndSequencesWithQuality]'</code> specifies we are importing Paired end sequence data that contain quality. I.e. normal Illumina paired end fastq data.</li>
 </ul></li>
 <li><strong><code>--input-path</code></strong>: The input <a href="05-Data.html#manifestfile">manifest file</a></li>
-<li><strong><code>--output-path</code></strong>: Output QIIME2 artifact file contiang your sequence data.
+<li><strong><code>--output-path</code></strong>: Output QIIME2 artifact file containing your sequence data.
 <ul>
 <li>The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples).</li>
 <li>QIIME2 artifacts use "-" as word separators in file names. This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.</li>
 </ul></li>
 <li><strong><code>--input-format</code></strong>: The format of the input files.
 <ul>
-<li><code>PairedEndFastqManifestPhred33</code>: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encodin can be found on <a href="#https://en.wikipedia.org/wiki/FASTQ_format#Encoding">wikipedia</a>.</li>
+<li><code>PairedEndFastqManifestPhred33</code>: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on <a href="#https://en.wikipedia.org/wiki/FASTQ_format#Encoding">wikipedia</a>.</li>
 </ul></li>
 </ul>
 <p><a href="https://docs.qiime2.org/2022.2/tutorials/importing/">QIIME2 docs on importing data</a></p>
@@ -400,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><strong>Interactive Quality Plots</strong>: Contains similar information as fastQC analysis.
 <ul>
-<li><strong>Interactive quality plots</strong>: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.</li>
+<li><strong>Interactive quality plots</strong>: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Parametric seven-number summary" table.</li>
 <li><strong>Demultiplexed sequence length summary</strong>: Table showing summary of sequence lengths for the forward and reverse reads.</li>
 </ul></li>
 </ol>
@@ -411,39 +417,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_green.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>What is the minimum number of forward reads across the samples?
-<div id="radio_JROWHLTTJZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JROWHLTTJZ" value="answer"></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_JROWHLTTJZ" value=""></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_JROWHLTTJZ" value=""></input> <span>174,951</span></label>
+<div id="radio_ZXJFMTVUOO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZXJFMTVUOO" value="answer"></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZXJFMTVUOO" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZXJFMTVUOO" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the maximum number of forward reads across the samples?
-<div id="radio_BCHYWYQFGU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BCHYWYQFGU" value=""></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_BCHYWYQFGU" value=""></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_BCHYWYQFGU" value="answer"></input> <span>174,951</span></label>
+<div id="radio_KPHUCPFLIM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KPHUCPFLIM" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KPHUCPFLIM" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KPHUCPFLIM" value="answer"></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the mean number of forward reads across the samples?
-<div id="radio_LOZGBWRBDX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LOZGBWRBDX" value=""></input> <span>42,853</span></label><label><input type="radio" autocomplete="off" name="radio_LOZGBWRBDX" value="answer"></input> <span>126,670</span></label><label><input type="radio" autocomplete="off" name="radio_LOZGBWRBDX" value=""></input> <span>174,951</span></label>
+<div id="radio_ZSSXALRFMB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZSSXALRFMB" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZSSXALRFMB" value="answer"></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZSSXALRFMB" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>Which sample has 134,737 forward reads?
-<div id="radio_AILWEGDUGL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AILWEGDUGL" value=""></input> <span>1TM</span></label><label><input type="radio" autocomplete="off" name="radio_AILWEGDUGL" value=""></input> <span>3K2E</span></label><label><input type="radio" autocomplete="off" name="radio_AILWEGDUGL" value="answer"></input> <span>3K1M</span></label>
+<div id="radio_SNCNPAYWCX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SNCNPAYWCX" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SNCNPAYWCX" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SNCNPAYWCX" value="answer"></input> <span><strong>3K1M</strong></span></label>
 </div></li>
 <li>Which sample has 86,083 forward reads?
-<div id="radio_FHZEESSIBH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FHZEESSIBH" value="answer"></input> <span>1TM</span></label><label><input type="radio" autocomplete="off" name="radio_FHZEESSIBH" value=""></input> <span>3K2E</span></label><label><input type="radio" autocomplete="off" name="radio_FHZEESSIBH" value=""></input> <span>3k1M</span></label>
+<div id="radio_XGYVLCXXBC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XGYVLCXXBC" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XGYVLCXXBC" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XGYVLCXXBC" value=""></input> <span><strong>3k1M</strong></span></label>
 </div></li>
 <li>Most of the read quality for the forward reads is above Q30?
-<div id="radio_PSGNFXZTSL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PSGNFXZTSL" value="answer"></input> <span>TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_PSGNFXZTSL" value=""></input> <span>FALSE</span></label>
+<div id="radio_APZUOEPXMJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_APZUOEPXMJ" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_APZUOEPXMJ" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 <li>Most of the read quality for the reverse reads is above Q30?
-<div id="radio_KAVNOJGHIB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KAVNOJGHIB" value="answer"></input> <span>TRUE</span></label><label><input type="radio" autocomplete="off" name="radio_KAVNOJGHIB" value=""></input> <span>FALSE</span></label>
+<div id="radio_XUIMLTUTZM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XUIMLTUTZM" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XUIMLTUTZM" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 </ol>
 </div>
 <div id="import-summary" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Import: summary<a href="07-Import_sequences_into_QIIME2.html#import-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/sum_green.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need aymore.</p>
+<p>We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.</p>
 
 </div>
 </div>

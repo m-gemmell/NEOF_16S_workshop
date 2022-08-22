@@ -12,9 +12,9 @@ The failure could be right at the beginning of the project design. It is worth c
 If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:
 
 + Functional analysis (PICRUSt2). We will cover this later!
-+ Inferring ecological interaction networks (SPIEC-EASI)
-+ More statistical analyses with STAMP
-+ Or you can import your results in R to post analyse them with Phyloseq
++ Inferring ecological interaction networks (SPIEC-EASI).
++ More statistical analyses with STAMP.
++ Or you can import your results in R to analyse them with Phyloseq.
 
 __CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!__
 If you have still time available you can move onto the Supplemental bookdown.

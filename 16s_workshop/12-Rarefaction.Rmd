@@ -115,7 +115,7 @@ The visualisation has two plots.
 knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
 ```
 
-Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best tradeoff between:
+Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best trade-off between:
 
 - Retaining sequencing depth within samples.
 - Not losing entire samples.
@@ -137,7 +137,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction of most of the samples (>90%) plateau'd?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction of most of the samples (>90%) plateaued?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
@@ -155,7 +155,7 @@ opts_p <- c("__70,000__", answer="__90,000__", "__115,000 __")
 4. When comparing the two __Places__, at approximately what sequencing depth are there only 6 MainBuilding samples remaining?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__70,000__", "__90,000__", answer="__115,000 __")
+opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 ```
 5. When comparing the two __Places__, at approximately what sequencing depth are there only 5 Entrance samples remaining? `r longmcq(opts_p)`
 

@@ -32,11 +32,11 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--type`__: The type of data being imported.
   - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contain quality. I.e. normal Illumina paired end fastq data.
 - __`--input-path`__: The input [manifest file](#manifestfile)
-- __`--output-path`__: Output QIIME2 artifact file contiang your sequence data.
+- __`--output-path`__: Output QIIME2 artifact file containing your sequence data.
   - The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). 
   - QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
 - __`--input-format`__: The format of the input files.
-  - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encodin can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
+  - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
 [QIIME2 docs on importing data](https://docs.qiime2.org/2022.2/tutorials/importing/)
 
@@ -108,7 +108,7 @@ The visualisation will have two tabs:
    - __Read frequency histograms__: Forward and Reverse reads histograms showing the how many samples have various numbers of sequences. 
    - __Per-sample sequence counts__: Table showing the number of forward and reverse reads in samples.
 2. __Interactive Quality Plots__: Contains similar information as fastQC analysis.
-   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Paramteric seven-number summary" table.
+   - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Parametric seven-number summary" table.
    - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 ## Import: MCQs
@@ -117,37 +117,37 @@ knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = T
 ```
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="42,853", "126,670", "174,951")
+opts_p <- c(answer="__42,853__", "__126,670__", "__174,951__")
 ```
 1. What is the minimum number of forward reads across the samples? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("42,853", "126,670", answer="174,951")
+opts_p <- c("__42,853__", "__126,670__", answer="__174,951__")
 ```
 2. What is the maximum number of forward reads across the samples? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("42,853", answer="126,670", "174,951")
+opts_p <- c("__42,853__", answer="__126,670__", "__174,951__")
 ```
 3. What is the mean number of forward reads across the samples? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("1TM", "3K2E", answer="3K1M")
+opts_p <- c("__1TM__", "__3K2E__", answer="__3K1M__")
 ```
 4. Which sample has 134,737 forward reads? `r longmcq(opts_p)`
  
 ```{r, echo = FALSE}
-opts_p <- c(answer="1TM", "3K2E", "3k1M")
+opts_p <- c(answer="__1TM__", "__3K2E__", "__3k1M__")
 ```
 5. Which sample has 86,083 forward reads? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="TRUE", "FALSE")
+opts_p <- c(answer="__TRUE__", "__FALSE__")
 ```
 6. Most of the read quality for the forward reads is above Q30? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="TRUE", "FALSE")
+opts_p <- c(answer="__TRUE__", "__FALSE__")
 ```
 7. Most of the read quality for the reverse reads is above Q30? `r longmcq(opts_p)`
 
@@ -156,4 +156,4 @@ opts_p <- c(answer="TRUE", "FALSE")
 knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 ```
 
-We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need aymore.
+We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.

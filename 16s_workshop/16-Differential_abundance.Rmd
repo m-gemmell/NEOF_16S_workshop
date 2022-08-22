@@ -3,7 +3,7 @@
 knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
 ``` 
 
-The ANCOM method aims to identify the differentially abundant taxa. It  is a complex method requiring different steps, for the description of the script used please refer to the script page (https://docs.qiime2.org/2021.2/plugins/available/composition/ancom/) and the ANCOM paper (https://www.ncbi.nlm.nih.gov/pubmed/26028277) .
+The ANCOM method aims to identify differentially abundant taxa between sample groups. It  is a complex method requiring different steps.
 
 The steps to carry this out are:
 
@@ -32,6 +32,19 @@ qiime taxa collapse \
 --o-collapsed-table comp-ancom-table-l5.qza
 ```
 
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing the abundance table (non-rarefied) for the identified variants.
+- __`--i-taxonomy`__: Input artifact containing the taxonomic classifications of the ASVs.
+- __`--p-level`__: The taxonomic level at which the features should be collapsed.
+  - In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
+- __`--o-collapsed-table`__: Output artifact containing the abundance table for the specified taxa level.
+
+[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2022.2/plugins/available/taxa/collapse/)
+
 ## Pseudo counts
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/plus_1.png", auto_pdf = TRUE)
@@ -44,6 +57,18 @@ qiime composition add-pseudocount \
 --p-pseudocount 1 \
 --o-composition-table comp-ancom-table-l5-pse.qza
 ```
+
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing the abundance feature table.
+  - In this case the features are families but it can be other taxa levels or even ASVs.
+- __`--p-pseudocount`__: Value to add to all counts in the feature table.
+- __`--o-composition-table`__: Output artifact containing feature abundance table with added pseudocounts.
+
+[QIIME2 docs on `qiime composition add-pseudocount`](https://docs.qiime2.org/2022.2/plugins/available/composition/add-pseudocount/)
 
 ## ANCOM
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
@@ -59,21 +84,114 @@ qiime composition ancom \
 --o-visualization l5-ancom-Location.qzv
 ```
 
-## ANCOM visualisation
-This produces a visualisation file with the following sections:
+#### Parameters {-}
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
+```
+
+- __`--i-table`__: Input artifact containing feature abundance table with added pseudocounts.
+- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
+- __`--m-metadata-column`__: Metadata column within the metadata file to use for the differential abundance analysis.
+- __`--o-visualization`__: Output visualisation artifact containing the ANCOM results.
+
+[QIIME2 docs on `qiime composition ancom`](https://docs.qiime2.org/2022.2/plugins/available/composition/ancom/)
+
+## ANCOM: visualise
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_red.png", auto_pdf = TRUE)
+```
+
+This produces a visualisation file (`l5-ancom-Location.qzv`, opened with QIIME2 view) with the following sections:
 
 - __ANCOM Volcano Plot__: A dot plot of the W statistic (y) against the CLR (x).
    - Each dot represents a feature (family in this case) in the dataset.
    - W statistic: The higher this value the more significant the feature is differentially abundant between groups.
-   - CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abudance.
+   - CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abundance.
 - __ANCOM statistical results__: This shows the name and W statistic of features found to be differentially abundant.
    - ANCOM automatically chooses a W statistic threshold for significance.
 - __Percentile abundances of features by group__: This is a table which can be thought of as containing the text version of a boxplot. This shows the abundances of the differentially abundant features for the different groups.
 
+`r hide("W-statistic")`
+The statistical definition of the W-statistic is:
 
-__Questions__: 
+The number of times the log-ratio of a taxon with every other taxon being tested was detected to be significantly different across groups.
 
-+ Which families are discovered as biomarkers? 
-+ Investigating these families, does this make sense? 
-+ Run ANCOM analysis for genus level (level 6). Do you get any genera as biomarkers that do not belong to families discovered as biomarkers? 
-+ Does changing the metadata category let you infer something different?
+For even more info you can check out this [response](https://forum.qiime2.org/t/specify-w-cutoff-for-anacom/1844/10) on the QIIME 2 forum.
+
+`r unhide()`
+
+## ANCOM: MCQs
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
+```
+
+Attempt the below MCQs.
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Clostridiaceae__", "__Moraxellaceae__", "__Pseudomonadaceae__")
+```
+1. Which family is detected as a biomarker? I.e. which family is differentially abundant between Corridor and Toilet? `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Corridor__", answer="__Toilet__")
+```
+2. Which sample group has a higher abundance of the detected biomarker family? `r longmcq(opts_p)`
+
+Run ANCOM analysis for genus level (level 6). You will have to start from the `qiime taxa collapse` command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.
+
+`r hide("L6 ANCOM commands")`
+```{bash, eval=FALSE}
+#Collapse taxa
+qiime taxa collapse \
+--i-table table-dada2.qza \
+--i-taxonomy taxonomy.sklearn.qza \
+--p-level 6 \
+--o-collapsed-table comp-ancom-table-l6.qza
+#Add pseudo count
+qiime composition add-pseudocount \
+--i-table comp-ancom-table-l6.qza \
+--p-pseudocount 1 \
+--o-composition-table comp-ancom-table-l6-pse.qza
+#ANCOM
+qiime composition ancom \
+--i-table comp-ancom-table-l6-pse.qza \
+--m-metadata-file metadata.file.txt \
+--m-metadata-column Location \
+--o-visualization l6-ancom-Location.qzv
+```
+`r unhide()`
+
+```{r, echo = FALSE}
+opts_p <- c("__1__", answer="__2__", "__3__")
+```
+3. How many genera are discovered as biomarkers? `r longmcq(opts_p)`
+
+Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed and added psuedocounts to create an ANCOM-ready family abundance table. Therefore you will only need to rerun the `qiime composition ancom` with changed options. Try running these commands yourself before looking at the contents of the below box.
+
+`r hide("Family ANCOM analysis with Place metadata comman")`
+```{bash, eval=FALSE}
+#ANCOM
+qiime composition ancom \
+--i-table comp-ancom-table-l5-pse.qza \
+--m-metadata-file metadata.file.txt \
+--m-metadata-column Place \
+--o-visualization l5-ancom-Place.qzv
+```
+`r unhide()`
+
+```{r, echo = FALSE}
+opts_p <- c("__Yes__", answer="__No__")
+```
+4. Are any families discovered as biomarkers when comparing the 2 Places? `r longmcq(opts_p)`
+
+## ANCOM: summary
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
+```
+
+We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family _Clostridiaceae_ was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.
+
+In contrast, we found no biomarkers when comparing the Places, Entrance and MainBuilding. This matched with our lack of difference in the beta diversity distances.
+
+That is the last of the analysis. There is only one more chapter on future considerations.
+

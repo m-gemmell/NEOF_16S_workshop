@@ -86,34 +86,56 @@ knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = 
 ```
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 1. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 2. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 3. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ? `r longmcq(opts_p)`
 
 For the below questions you will need to run some more `qiime diversity alpha-group-significance` and `qiime diversity alpha-correlation`. When creating and running these commands ensure you are giving the input and output artifacts the correct names.
 
+If you are are having issue knowing how to run the commands you can look at the box below for the commands.
+
+`r hide("Alpha diveristy stats commands")`
+```{bash, eval=FALSE}
+# Q4: Observed features of Locations
+qiime diversity alpha-group-significance \
+--i-alpha-diversity observed_features_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization observed-features-group-significance.kw.qzv
+# Q5: Evenness of Locations
+qiime diversity alpha-group-significance \
+--i-alpha-diversity evenness_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization evenness-group-significance.kw.qzv
+# Q6: Faith's PD of Floors
+qiime diversity alpha-correlation \
+--i-alpha-diversity faith_pd_vector.qza \
+--m-metadata-file ../metadata.file.txt \
+--o-visualization faith-pd-group-significance.rs.qzv
+```
+`r unhide()`
+
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 4. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using observed features? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 5. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("Yes", answer="No")
+opts_p <- c("__Yes__", answer="__No__")
 ```
 6. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD? `r longmcq(opts_p)`
 
@@ -124,4 +146,4 @@ knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
 
 We have viewed alpha diversity output but unfortunately found no significant differences between groups. Hopefully in your future projects you will have more samples and more luck. Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.
 
-IN the next chapter we will look at the beta diversity output and carry out some more statistics.
+In the next chapter we will look at the beta diversity output and carry out some more statistics.

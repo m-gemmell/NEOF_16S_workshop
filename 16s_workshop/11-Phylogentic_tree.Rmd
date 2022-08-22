@@ -23,7 +23,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
 - __`--i-sequences`__: Input artifact containing the representative sequences of the features (ASVs) to be aligned.
-- __`--o-alignment`__: Output artifact containing the aligned represenative sequences.
+- __`--o-alignment`__: Output artifact containing the aligned representative sequences.
 
 [QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mafft/)
 
@@ -110,6 +110,6 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 
-All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiveristy measures that require phylogenetic information.
+All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.
 
-The file ‘rooted-tree.qza’ contains a phylogentic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).
+The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).

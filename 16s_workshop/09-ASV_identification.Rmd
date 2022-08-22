@@ -135,7 +135,7 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
          - __Plot Controls__: Below the controls is a section of text showing the number of features and samples retained by the chosen sampling depth.
 3. __Feature detail__: This is a table with 3 columns.
    - 1st column: This is the ASV id. This ID represents the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.
-   - __Frequency__: Number of sequences representing the ASV acorss all samples. I.e. the total abundance of the ASV.
+   - __Frequency__: Number of sequences representing the ASV across all samples. I.e. the total abundance of the ASV.
    - __# of Samples Observed in__: Number of samples the ASVs was detected in.
 
 ### table-dada2.qzv: MCQs
@@ -202,7 +202,7 @@ qiime metadata tabulate \
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
-- __`--m-input-file`__: Input artifact file containing the denosing stats from DADA2.
+- __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation artifact.
 
 [QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2022.2/plugins/available/metadata/tabulate/)
