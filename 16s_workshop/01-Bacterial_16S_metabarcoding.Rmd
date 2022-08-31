@@ -1,6 +1,6 @@
 --- 
 title: "Bacterial 16S metabarcoding"
-author: "Luca Lenzi and Matthew Gemmell"
+author: "Luca Lenzi and Matthew R. Gemmell"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook

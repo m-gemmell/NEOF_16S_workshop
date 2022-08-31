@@ -1,6 +1,6 @@
 --- 
 title: "Bacterial 16S metabarcoding"
-author: "Luca Lenzi and Matthew Gemmell"
+author: "Luca Lenzi and Matthew R. Gemmell"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -8,9 +8,9 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-favicon: figures/NEOF_favicon.png
+favicon: figures/CGR_favicon.png
 description: NEOF book for the Bacterial 16S metabarcoding workshop
-cover-image: "figures/NEOF.png"
+cover-image: "figures/"
 ---
 ```{r include=FALSE, cache=FALSE}
 suppressPackageStartupMessages({
