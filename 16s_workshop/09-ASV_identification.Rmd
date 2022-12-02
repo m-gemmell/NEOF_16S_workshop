@@ -19,9 +19,7 @@ qiime dada2 denoise-paired \
 --i-demultiplexed-seqs paired-end-demux.trim.qza \
 --p-trunc-len-f 220 \
 --p-trunc-len-r 220 \
-# Object containing the identified sequence variants
 --o-representative-sequences rep-seqs-dada2.qza \
-# Object containing abundance table for the identified variants
 --o-table table-dada2.qza \
 --o-denoising-stats dada2-stats.qza \
 --verbose
