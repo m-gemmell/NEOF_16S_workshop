@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Trim the PCR primer sequences | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Trim the PCR primer sequences | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2022-12-02" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -372,22 +372,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_black.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>which sample has the lowest number of forward reads?
-<div id="radio_TUHGFYEQCR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TUHGFYEQCR" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TUHGFYEQCR" value=""></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TUHGFYEQCR" value="answer"></input> <span><strong>3K1E</strong></span></label>
+<div id="radio_ZHHMADRGBH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZHHMADRGBH" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZHHMADRGBH" value=""></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZHHMADRGBH" value="answer"></input> <span><strong>3K1E</strong></span></label>
 </div></li>
 <li>Which sample has the highest number of forward reads?
-<div id="radio_DYIJZEEFPR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DYIJZEEFPR" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DYIJZEEFPR" value="answer"></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DYIJZEEFPR" value=""></input> <span><strong>3K1E</strong></span></label>
+<div id="radio_LUHSPAJUXG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LUHSPAJUXG" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LUHSPAJUXG" value="answer"></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LUHSPAJUXG" value=""></input> <span><strong>3K1E</strong></span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)?
-<div id="radio_PPSKCCIMTI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PPSKCCIMTI" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PPSKCCIMTI" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PPSKCCIMTI" value="answer"></input> <span><strong>&gt;220</strong></span></label>
+<div id="radio_PKWMXYSWVY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PKWMXYSWVY" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PKWMXYSWVY" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PKWMXYSWVY" value="answer"></input> <span><strong>&gt;220</strong></span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)?
-<div id="radio_BEQBPZUTPG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BEQBPZUTPG" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BEQBPZUTPG" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BEQBPZUTPG" value="answer"></input> <span><strong>&gt;220</strong></span></label>
+<div id="radio_FVXWCOARQD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FVXWCOARQD" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FVXWCOARQD" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FVXWCOARQD" value="answer"></input> <span><strong>&gt;220</strong></span></label>
 </div></li>
-<li>What is the median length of the forward reads?</li>
+<li>What is the median length of the forward reads?
+<div id="radio_HWGGTXWWTB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HWGGTXWWTB" value="answer"></input> <span><strong>226</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HWGGTXWWTB" value=""></input> <span><strong>230</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HWGGTXWWTB" value=""></input> <span><strong>250</strong></span></label>
+</div></li>
 </ol>
 </div>
 <div id="cutadapt-summary" class="section level2 hasAnchor" number="8.4">
@@ -624,7 +627,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

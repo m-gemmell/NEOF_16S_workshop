@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2022-12-02" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -403,24 +403,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Note</strong>: You will need to run the <code>qiime diversity beta-group-significance</code> with different options and view the new files to answer some of the questions.</p>
 <ol style="list-style-type: decimal">
 <li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the weighted unifrac distances when using PERMANOVA?
-<div id="radio_ZDKDSWMJMN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZDKDSWMJMN" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZDKDSWMJMN" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_QMWNPLOMZG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QMWNPLOMZG" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QMWNPLOMZG" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which sample group, Corridor or Toilet, has larger weighted unifrac distances within the group? I.e. which boxplot has the bigger IQR: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot?
-<div id="radio_SSUVXQJUUH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SSUVXQJUUH" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SSUVXQJUUH" value="answer"></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_FIAZENXXXS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FIAZENXXXS" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FIAZENXXXS" value="answer"></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>In the weighted unifrac distances "Distances to Corridor" box plots, which box plot has lower values?
-<div id="radio_ZKFYTSRMGI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZKFYTSRMGI" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZKFYTSRMGI" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_XZHJCQDXVV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XZHJCQDXVV" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XZHJCQDXVV" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the Bray Curtis distances when using PERMANOVA?
-<div id="radio_REGWWAJKAH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_REGWWAJKAH" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_REGWWAJKAH" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_IQMKHAYHDP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IQMKHAYHDP" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IQMKHAYHDP" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between Entrance and MainBuilding (Place) for the Unweighted Unifrac distances when using ANOSIM?
-<div id="radio_BVDPFSCJBK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BVDPFSCJBK" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BVDPFSCJBK" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_CFYGLNGISV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CFYGLNGISV" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CFYGLNGISV" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -658,7 +658,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

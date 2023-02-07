@@ -879,7 +879,7 @@ opts_p <- c("__<200__", "__200-220__", answer="__>220__")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__226__", "__230__", "__250__")
 ```
-5. What is the median length of the forward reads?
+5. What is the median length of the forward reads? `r longmcq(opts_p)`
 
 ## Cutadapt: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }

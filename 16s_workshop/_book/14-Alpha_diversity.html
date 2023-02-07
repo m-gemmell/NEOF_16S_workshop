@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Alpha diveristy statistical analysis | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Alpha diveristy statistical analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2022-12-02" />
+<meta name="date" content="2023-02-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -397,16 +397,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_purple.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity?
-<div id="radio_ZPAXDETGZS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZPAXDETGZS" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZPAXDETGZS" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_TCJIEZZJYB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TCJIEZZJYB" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TCJIEZZJYB" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ?
-<div id="radio_BSHHKSZVVI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BSHHKSZVVI" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BSHHKSZVVI" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_IOTAGLMSGS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IOTAGLMSGS" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IOTAGLMSGS" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ?
-<div id="radio_GSOETBUGOZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GSOETBUGOZ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GSOETBUGOZ" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_TXBLUFOJBR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TXBLUFOJBR" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXBLUFOJBR" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 <p>For the below questions you will need to run some more <code>qiime diversity alpha-group-significance</code> and <code>qiime diversity alpha-correlation</code>. When creating and running these commands ensure you are giving the input and output artifacts the correct names.</p>
@@ -433,16 +433,16 @@ Alpha diveristy stats commands
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Locations (Corridor vs Toilet) when using observed features?
-<div id="radio_TSPWFYELSQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TSPWFYELSQ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TSPWFYELSQ" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_OAURXRGQRC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OAURXRGQRC" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OAURXRGQRC" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness?
-<div id="radio_NZEEDWRTYV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NZEEDWRTYV" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NZEEDWRTYV" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_XVEQEJSRMN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XVEQEJSRMN" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XVEQEJSRMN" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD?
-<div id="radio_MRSGQETAYK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MRSGQETAYK" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MRSGQETAYK" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_DXSSWPTLAW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DXSSWPTLAW" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DXSSWPTLAW" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -679,7 +679,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
