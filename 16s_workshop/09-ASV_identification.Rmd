@@ -171,7 +171,7 @@ opts_p <- c("__4__", answer="__5__", "__13__")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__5__", "__13__")
 ```
-6. How many MainBuilding (Metadata Category: Entrance) samples have >=120,000 sequences? `r longmcq(opts_p)`
+6. How many MainBuilding (Metadata Category: Place) samples have >=120,000 sequences? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__15__", answer="__225,752__", "__258,440__")

@@ -27,7 +27,7 @@ knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 
 ```{r, echo=FALSE, warning=FALSE, }
 library("vembedr")
-embed_url("https://www.youtube.com/watch?v=xMkFJWHJVa8")
+embed_url("https://www.youtube.com/watch?v=2n5lNe1kboI")
 ```
 
 [__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16S_intro.pdf)
@@ -36,7 +36,7 @@ embed_url("https://www.youtube.com/watch?v=xMkFJWHJVa8")
 
 ```{r, echo=FALSE, warning=FALSE, }
 library("vembedr")
-embed_url("https://www.youtube.com/watch?v=DziQKIfKK4w")
+embed_url("https://www.youtube.com/watch?v=URsKM0t9tCE")
 ```
 
 [__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16s_moving_pictures.pdf)
