@@ -137,7 +137,7 @@ opts_p <- c("__1TM__", "__3K2E__", answer="__3K1M__")
 4. Which sample has 134,737 forward reads? `r longmcq(opts_p)`
  
 ```{r, echo = FALSE}
-opts_p <- c(answer="__1TM__", "__3K2E__", "__3k1M__")
+opts_p <- c(answer="__1TM__", "__3K2E__", "__3K1M__")
 ```
 5. Which sample has 86,083 forward reads? `r longmcq(opts_p)`
 
