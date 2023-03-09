@@ -25,28 +25,28 @@ knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 
 ## Intro
 
-```{r, echo=FALSE, warning=FALSE, }
-library("vembedr")
-embed_url("https://www.youtube.com/watch?v=2n5lNe1kboI")
-```
+<div class="container">
+<iframe src="https://www.youtube.com/embed/2n5lNe1kboI" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
 
 [__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16S_intro.pdf)
 
 ## Moving pictures QIIME2 example
 
-```{r, echo=FALSE, warning=FALSE, }
-library("vembedr")
-embed_url("https://www.youtube.com/watch?v=URsKM0t9tCE")
-```
+<div class="container">
+<iframe src="https://www.youtube.com/embed/URsKM0t9tCE" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
 
 [__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16s_moving_pictures.pdf)
 
 ## Other tutorials, tools, and methods
 
-```{r, echo=FALSE, warning=FALSE, }
-library("vembedr")
-embed_url("https://www.youtube.com/watch?v=lSi6FwePSAc")
-```
+<div class="container">
+<iframe src="https://www.youtube.com/embed/lSi6FwePSAc" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
 
 [__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16s_other-tools.pdf)
 
