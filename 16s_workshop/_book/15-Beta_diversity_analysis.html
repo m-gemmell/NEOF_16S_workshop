@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-03-01" />
+<meta name="date" content="2023-06-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="www/webex.css" type="text/css" />
@@ -342,14 +346,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/play_green.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>To carry this out our first 'PERMANOVA' analysis we will use the <code>weighted_unifrac_distance_matrix.qza</code> file. It contains all the sample pairwise weighted unifrac dissimilarity distances.</p>
 <p>The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="15-Beta_diversity_analysis.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qiime</span> diversity beta-group-significance <span class="dt">\</span></span>
-<span id="cb31-2"><a href="15-Beta_diversity_analysis.html#cb31-2" aria-hidden="true" tabindex="-1"></a>--i-distance-matrix weighted_unifrac_distance_matrix.qza <span class="dt">\</span></span>
-<span id="cb31-3"><a href="15-Beta_diversity_analysis.html#cb31-3" aria-hidden="true" tabindex="-1"></a>--m-metadata-file ../metadata.file.txt <span class="dt">\</span></span>
-<span id="cb31-4"><a href="15-Beta_diversity_analysis.html#cb31-4" aria-hidden="true" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
-<span id="cb31-5"><a href="15-Beta_diversity_analysis.html#cb31-5" aria-hidden="true" tabindex="-1"></a>--p-method permanova <span class="dt">\</span></span>
-<span id="cb31-6"><a href="15-Beta_diversity_analysis.html#cb31-6" aria-hidden="true" tabindex="-1"></a>--p-pairwise <span class="dt">\</span></span>
-<span id="cb31-7"><a href="15-Beta_diversity_analysis.html#cb31-7" aria-hidden="true" tabindex="-1"></a>--p-permutations 999 <span class="dt">\</span></span>
-<span id="cb31-8"><a href="15-Beta_diversity_analysis.html#cb31-8" aria-hidden="true" tabindex="-1"></a>--o-visualization weighted-unifrac-significance.location.qzv</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="15-Beta_diversity_analysis.html#cb31-1" tabindex="-1"></a><span class="ex">qiime</span> diversity beta-group-significance <span class="dt">\</span></span>
+<span id="cb31-2"><a href="15-Beta_diversity_analysis.html#cb31-2" tabindex="-1"></a>--i-distance-matrix weighted_unifrac_distance_matrix.qza <span class="dt">\</span></span>
+<span id="cb31-3"><a href="15-Beta_diversity_analysis.html#cb31-3" tabindex="-1"></a>--m-metadata-file ../metadata.file.txt <span class="dt">\</span></span>
+<span id="cb31-4"><a href="15-Beta_diversity_analysis.html#cb31-4" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
+<span id="cb31-5"><a href="15-Beta_diversity_analysis.html#cb31-5" tabindex="-1"></a>--p-method permanova <span class="dt">\</span></span>
+<span id="cb31-6"><a href="15-Beta_diversity_analysis.html#cb31-6" tabindex="-1"></a>--p-pairwise <span class="dt">\</span></span>
+<span id="cb31-7"><a href="15-Beta_diversity_analysis.html#cb31-7" tabindex="-1"></a>--p-permutations 999 <span class="dt">\</span></span>
+<span id="cb31-8"><a href="15-Beta_diversity_analysis.html#cb31-8" tabindex="-1"></a>--o-visualization weighted-unifrac-significance.location.qzv</span></code></pre></div>
 <div id="parameters-18" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="15-Beta_diversity_analysis.html#parameters-18" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><img src="figures/parameter_green.png" width="10%" style="display: block; margin: auto;" /></p>
@@ -403,24 +407,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Note</strong>: You will need to run the <code>qiime diversity beta-group-significance</code> with different options and view the new files to answer some of the questions.</p>
 <ol style="list-style-type: decimal">
 <li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the weighted unifrac distances when using PERMANOVA?
-<div id="radio_QJXADJPMGV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QJXADJPMGV" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QJXADJPMGV" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_NGGHQGKEMK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NGGHQGKEMK" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NGGHQGKEMK" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which sample group, Corridor or Toilet, has larger weighted unifrac distances within the group? I.e. which boxplot has the bigger IQR: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot?
-<div id="radio_WPILCWYGUM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WPILCWYGUM" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WPILCWYGUM" value="answer"></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_KWUIADIZNX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KWUIADIZNX" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KWUIADIZNX" value="answer"></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>In the weighted unifrac distances "Distances to Corridor" box plots, which box plot has lower values?
-<div id="radio_KVAGACISJH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KVAGACISJH" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KVAGACISJH" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_OGPBXQJLSN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OGPBXQJLSN" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OGPBXQJLSN" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the Bray Curtis distances when using PERMANOVA?
-<div id="radio_KBEHNAMKMS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KBEHNAMKMS" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KBEHNAMKMS" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_EPWHTSBINV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EPWHTSBINV" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EPWHTSBINV" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between Entrance and MainBuilding (Place) for the Unweighted Unifrac distances when using ANOSIM?
-<div id="radio_LWAQEDOAZB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LWAQEDOAZB" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LWAQEDOAZB" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_YKZSZONWJG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YKZSZONWJG" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YKZSZONWJG" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>
