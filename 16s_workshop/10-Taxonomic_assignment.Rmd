@@ -3,9 +3,39 @@
 knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 
 
-Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. Here, we use the `sk-learn` classifier to assign taxonomy based on the Greengenes database (DeSantis _et al_., 2006). 
+Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. We will use Greengenes2 for this. 
 
-Greengenes is a database containing quality-controlled microbial sequence data. Greengenes 16S rDNA sequences come from a large number of species which have been formatted for use in QIIME, by clustering the sequences at a given level of similarity (here, 99%). As for OTU-picking, the more stringent the similarity threshold, the more fine-grained the taxonomic designation (i.e. there are more Greengenes OTUs defined to the species level at 99% than at 97% similarity). The classifier maps the variant sequences to OTU representative sequences from the Greengenes set.
+Greengenes2 is a database containing quality-controlled microbial sequence data. It is based on whole genome information from the Web of Life, a phylogenoemic tree based on 381 marker genes. The phylogenitic tree is updated with 330k unique high quality full length 16S rRNA genes from the Living Tree Project. The devlopers then placed >20 million 16S rRNA V4 Deblur ASVs into the tree. 
+
+A taxonomy was constructed by integrating the Genome Taxonomy Database with the Living Tree Project. This taxonomy is added to the tree so it can be used for taxonomic annotation via the [`greengenes2`](https://github.com/biocore/q2-greengenes2) plugin for `QIIME2`. 
+
+This chapter will show you how to classify using Greengenes2. More information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
+
+We will be using the 2022 Greengenes databases. For your future anlaysis. You can download the databases files from their [ftp site](http://ftp.microbio.me/greengenes_release/2022.10/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
+
+`r hide("Download database files in linux terminal")`
+You can download the 2 files you need for Greengenes2 taxonomic classification with the following commands.
+```{bash, eval=FALSE}
+wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.taxonomy.asv.nwk.qza
+wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.full-length.fna.qza
+```
+Remember to first check if 2022.10 is the most recent version before downloading and using it for your own research.
+`r unhide()`
+
+## Map ASVs against Greengenes2
+
+The developers of Greengenes2 have done most of the hard work. Our first step is to map our ASV table and sequences to the full length sequences from the Green2genes2 database.
+
+```{bash, eval=FALSE}
+qiime greengenes2 non-v4-16s \
+--i-table table-dada2.qza \
+--i-sequences rep-seqs-dada2.qza \
+--i-backbone /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/2022.10.backbone.full-length.fna.qza \
+--o-mapped-table table-dada2.gg2.qza \
+--o-representatives rep-seqs-dada2.gg2.qza \
+--p-threads 12
+```
+
 
 ## Import taxonomy database
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -44,9 +74,9 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--input-format`__: The format of the input. 
   - This is only needed for the taxonomy import with the option of `HeaderlessTSVTaxonomyFormat` that indicates the input file is a headerless tab separated value (TSV) file with taxonomy information.
 
-[QIIME2 docs on importing data](https://docs.qiime2.org/2022.2/tutorials/importing/)
+[QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
 
-[QIIME2 docs on classifiers](https://docs.qiime2.org/2022.2/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
+[QIIME2 docs on classifiers](https://docs.qiime2.org/2023.5/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
 
 ## Extract 16s region of interest
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -80,7 +110,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
   - We are using `250` as this was the initial length of our Illumina reads.
 - `--o-reads`: The output read artifact containing our extracted 16S region as paired reads. This is needed for classifier training.
 
-[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/extract-reads/)
+[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/extract-reads/)
 
 #### Copy premade results {-}
 
@@ -115,7 +145,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--i-reference-taxonomy`__: Input artifact containing the taxonomy information of the features.
 - __`--o-classifier`__: Output artifact containing the trained classifier. This will be used for feature (ASV) taxonomy classification.
 
-[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
+[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
 
 ## Taxonomy assignment
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -145,7 +175,7 @@ knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
 - __`--i-reads`__: Input artifact containing the representative sequences of the features (ASVs) to be classified.
 - __`--o-classification`__: Output artifact containing the taxonomic assignments of the features (ASVs).
 
-[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/classify-sklearn/)
+[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/classify-sklearn/)
 
 ## Taxonomy bar chart production {#taxabar}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -174,7 +204,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 
 The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.
 
-[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2022.2/plugins/available/taxa/barplot/)
+[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2023.5/plugins/available/taxa/barplot/)
 
 ## Taxonomy: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -221,4 +251,4 @@ In your future analysis if you have sequenced any samples with known composition
 
 We are close to carrying out some biodiversity analysis. Before this we will produce a phylogenetic tree in the next chapter.
 
-[QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2022.2/tutorials/feature-classifier/)
+[QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2023.5/tutorials/feature-classifier/)

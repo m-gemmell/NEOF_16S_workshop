@@ -38,7 +38,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 - __`--o-denoising-stats`__: Output artifact containing the sequence numbers pre- and post- trimming and denoising.
 - __`--verbose`__: Causes command to display verbose output to screen.
 
-[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2022.2/plugins/available/dada2/denoise-paired/)
+[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2023.5/plugins/available/dada2/denoise-paired/)
 
 ### Truncation length
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -59,7 +59,7 @@ The command will take a long time, so stop the command (ctrl+c), if you started 
 
 ```{bash, eval=FALSE}
 #Copy the files from the specified directory to your working directory
-cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
+cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 ```
 
 Through the above command you will now have the following three files:
@@ -73,7 +73,7 @@ Through the above command you will now have the following three files:
 knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
 ```
 
-This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2023.5/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
@@ -99,7 +99,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 - __`--o-visualization`__: Output visualisation artifact.
 - __`--m-sample-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2022.2/plugins/available/feature-table/summarize/)
+[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2023.5/plugins/available/feature-table/summarize/)
 
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -117,7 +117,7 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
       - __Total frequency__: Total number of sequences (i.e. total abundance across all samples and ASVs).
    - __Frequency per sample__: Summary of number of sequences.
       - __IQR table__: Table showing the Interquartile range of sample frequencies.
-      - __Histogram of frequency per sample__: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies. The vertical dark blue lines on the x axis represent the specific frequencies of samples (1 vertical line per sample).
+      - __Histogram of frequency per sample__: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies.
    - __Frequency per feature__: Summary of number of sequences per feature (ASV/taxa).
       - __IQR table__: Table showing the Interquartile range of feature frequencies.
       - __Histogram of frequency per sample__: This shows a rough view of the number of features (y axis) with different frequencies (x axis). Note that the scales are logarithmic. The left side of the plot shows how many rare ASVs there are (ASVs represented by a low amount of sequences, i.e. low abundance ASVs). The right side of the plot shows the amount of high abundance ASVs.
@@ -181,7 +181,7 @@ opts_p <- c("__15__", answer="__225,752__", "__258,440__")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__15__", "__225,752__", "__258,440__")
 ```
-8. How many samples is the 10th most abundant AVS observed in? `r longmcq(opts_p)`
+8. How many samples is the 10th most abundant ASV observed in? `r longmcq(opts_p)`
 
 ## dada2-stats.qzv
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -203,7 +203,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 - __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation artifact.
 
-[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2022.2/plugins/available/metadata/tabulate/)
+[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2023.5/plugins/available/metadata/tabulate/)
 
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }

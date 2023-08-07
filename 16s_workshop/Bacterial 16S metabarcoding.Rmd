@@ -13,21 +13,7 @@ description: NEOF book for the Bacterial 16S metabarcoding workshop
 cover-image: "figures/NEOF.png"
 ---
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 
 ```{r cite-packages, include = FALSE}
@@ -36,6 +22,14 @@ knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
 knitr::write_bib(c(
   .packages(), 'bookdown', 'webexercises'
 ), 'packages.bib')
+```
+
+```{r, echo=FALSE}
+#Change colour, border, and text of code chunks
+#Check style.css for .Rchunk
+#https://stackoverflow.com/questions/65627531/change-r-chunk-background-color-in-bookdown-gitbook
+#https://bookdown.org/yihui/rmarkdown-cookbook/chunk-styling.html
+knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -69,21 +63,7 @@ This practical session aims to introduce you to the analysis of bacterial 16S me
 <!--chapter:end:01-Bacterial_16S_metabarcoding.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Background {#background}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -152,21 +132,7 @@ B) Representation of the number of sequences obtained for a sample, showing that
 <!--chapter:end:02-Background.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Introduction to QIIME2 {#introqiime2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -364,21 +330,7 @@ Examples of questions to answer:
 <!--chapter:end:03-Intro_to_qiime2.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Cluster Introduction {#cluster}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -418,21 +370,7 @@ __To open a new terminal window__, right click on the main screen, choose `Appli
 <!--chapter:end:04-Cluster_Introduction.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Data {#data}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -449,7 +387,7 @@ mkdir Metagenetics
 #Change directory to "Metagenetics"
 cd Metagenetics
 #Copy the contents of a directory to your current directory
-cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_5/* .
+cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_5/* .
 ```
 
 Look at the contents of your current directory and then continue reading for explanations on their contents.
@@ -505,7 +443,7 @@ The first 2 rows must be:
 
 1. Headers
    - Name of metadata fields.
-   - These are chosen by the user (except the sample-id column). Make sure to make these are informative and concise.
+   - These are chosen by the user (except the sample-id column). Ensure these are informative and concise.
    - We suggest to only use letters and not to use spaces.
 2. Column type
    - The value "#q2:types" must be used for the 1st column.
@@ -519,7 +457,7 @@ Have a look at the top 10 lines of the metadata file:
 head metadata.file.txt
 ```
    
-For more information on QIIME2 metadata please see: https://docs.qiime2.org/2021.2/tutorials/metadata/
+For more information on QIIME2 metadata please see: https://docs.qiime2.org/2023.5/tutorials/metadata/
 
 The above link includes:
 
@@ -540,21 +478,7 @@ For your own projects you will need to ask the lab that carried out the sequenci
 <!--chapter:end:05-Data.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # QIIME2 analysis workflow {#q2workflow}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -576,34 +500,20 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 
 ## Activate environment
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/conda.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ``` 
-You will need to activate the QIIME2 conda environment before continuing. Carry this out with the following command.
+You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.
 
-__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2021.2`
+__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2023.5`
 
 ```{bash eval=FALSE}
-. useqiime2-2021.2
+. useqiime2-2023.5
 ```
 
 <!--chapter:end:06-QIIME2_analysis_workflow.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) Preprocessing of data {-}
 
@@ -623,6 +533,8 @@ Import our read pairs into a QIIME2 artifact.
 
 __Note__: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.
 
+__Note 2__: If you are no familiar with the back slashes (`\`) in the below command please check our explanation of __[Bash escape](https://neof-workshops.github.io/Unix_nxcdf7/Course/05-Tips_and_tricks.html#bash-escape)__. Please also ask for a demonstration if you would like.
+
 ```{bash, eval=FALSE}
 qiime tools import \
 --type 'SampleData[PairedEndSequencesWithQuality]' \
@@ -637,15 +549,15 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
 - __`--type`__: The type of data being imported.
-  - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contain quality. I.e. normal Illumina paired end fastq data.
-- __`--input-path`__: The input [manifest file](#manifestfile)
+  - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contains quality information. I.e. normal Illumina paired end fastq data.
+- __`--input-path`__: The input [manifest file](#manifestfile).
 - __`--output-path`__: Output QIIME2 artifact file containing your sequence data.
   - The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). 
   - QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
 - __`--input-format`__: The format of the input files.
   - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
-[QIIME2 docs on importing data](https://docs.qiime2.org/2022.2/tutorials/importing/)
+[QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
 
 __Note__: All the QIIME2 links may be out of date and the below will appear:
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
@@ -680,28 +592,24 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--i-data`__: Input data artifact (`.qza`) to be summarised and visualised.
 - __`--o-visualization`__: Output visualisation artifact (`qzv`).
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2022.2/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
 
-#### Chrome {-}
+#### Firefox {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/chrome.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
 ```
 
-This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose `Applications` -> `Shell` -> `bash`). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run the following command in your new terminal:
+We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](view.qiime2.org).
 
-```{bash, eval=FALSE}
-chrome.sh
-```
-
-From now on leave the terminal you ran the above command on alone and don't close chrome.
+First we need to open up `Firefox`. Right click on the main screen (greyish background) and choose `firefox` from the dropdown menu.
 
 Then:
 
-- Navigate to the following web-site on chrome: ‘view.qiime2.org’
-- Click on the ‘Drag and drop or click here’ grey box
-- You can browse now to find and select the file ‘paired-end-demux.qzv’. 
+- Navigate to the following web-site on `firefox`: ‘https://view.qiime2.org’.
+- Click on the ‘Drag and drop or click here’ grey box.
+- Use the file browser to find and select the file ‘paired-end-demux.qzv’. 
 
-__Tip__: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+__Tip__: click "Home" on the top left, from there you can navigate to "Metagenetics" and choose your file.
 
 #### Output {-#chap7output}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -768,21 +676,7 @@ We have imported our read data and checked the number of reads per sample which 
 <!--chapter:end:07-Import_sequences_into_QIIME2.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Trim the PCR primer sequences {#pcrtrim}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -824,14 +718,14 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 - __`--p-front-r`__: Sequence for the reverse primer (`r``). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
 - __`--o-trimmed-sequences`__: The output artifact containing the trimmed sequence data.
 
-[QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2022.2/plugins/available/cutadapt/trim-paired/)
+[QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2023.5/plugins/available/cutadapt/trim-paired/)
 
 ## Cutadapt: visualise
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_brown.png", auto_pdf = TRUE)
 ``` 
 
-To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artefact. This is the same visualisation command as in [chapter 7](#chap7_vis) with different a different input and output.
+To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artifact. This is the same visualisation command as in [chapter 7](#chap7_vis) with different a different input and output.
 
 ```{bash, eval=FALSE}
 qiime demux summarize \
@@ -839,11 +733,9 @@ qiime demux summarize \
 --o-visualization paired-end-demux.trim.qzv
 ```
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2022.2/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
 
 Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’ website.
-
-__Remember to use the same chrome window!__ You can click the QIIME2 view logo on the top right of the previous `paired-end-demux.qzv` page and click "leave" on the "Do you want to leave this site?" pop-up. Now you will be on the QIIME2 view homepage.
 
 This visualisation contains the same sections as [`paired-end-demux.qzv`](#chap7output) but contains information on the PCR trimmed data.
 
@@ -886,26 +778,12 @@ opts_p <- c(answer="__226__", "__230__", "__250__")
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 
-We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=230. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.
+We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=226. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.
 
 <!--chapter:end:08-Trim_PCR_sequences.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) ASVs, Taxonomy, and phylogeny {-}
 
@@ -947,7 +825,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 - __`--o-denoising-stats`__: Output artifact containing the sequence numbers pre- and post- trimming and denoising.
 - __`--verbose`__: Causes command to display verbose output to screen.
 
-[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2022.2/plugins/available/dada2/denoise-paired/)
+[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2023.5/plugins/available/dada2/denoise-paired/)
 
 ### Truncation length
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -968,7 +846,7 @@ The command will take a long time, so stop the command (ctrl+c), if you started 
 
 ```{bash, eval=FALSE}
 #Copy the files from the specified directory to your working directory
-cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
+cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 ```
 
 Through the above command you will now have the following three files:
@@ -982,7 +860,7 @@ Through the above command you will now have the following three files:
 knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
 ```
 
-This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use ‘deblur’ to de-noise your data (after joining the reads with vsearch), which is generally faster.
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2023.5/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
@@ -1008,7 +886,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 - __`--o-visualization`__: Output visualisation artifact.
 - __`--m-sample-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2022.2/plugins/available/feature-table/summarize/)
+[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2023.5/plugins/available/feature-table/summarize/)
 
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -1026,7 +904,7 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
       - __Total frequency__: Total number of sequences (i.e. total abundance across all samples and ASVs).
    - __Frequency per sample__: Summary of number of sequences.
       - __IQR table__: Table showing the Interquartile range of sample frequencies.
-      - __Histogram of frequency per sample__: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies. The vertical dark blue lines on the x axis represent the specific frequencies of samples (1 vertical line per sample).
+      - __Histogram of frequency per sample__: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies.
    - __Frequency per feature__: Summary of number of sequences per feature (ASV/taxa).
       - __IQR table__: Table showing the Interquartile range of feature frequencies.
       - __Histogram of frequency per sample__: This shows a rough view of the number of features (y axis) with different frequencies (x axis). Note that the scales are logarithmic. The left side of the plot shows how many rare ASVs there are (ASVs represented by a low amount of sequences, i.e. low abundance ASVs). The right side of the plot shows the amount of high abundance ASVs.
@@ -1090,7 +968,7 @@ opts_p <- c("__15__", answer="__225,752__", "__258,440__")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__15__", "__225,752__", "__258,440__")
 ```
-8. How many samples is the 10th most abundant AVS observed in? `r longmcq(opts_p)`
+8. How many samples is the 10th most abundant ASV observed in? `r longmcq(opts_p)`
 
 ## dada2-stats.qzv
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1112,7 +990,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 - __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation artifact.
 
-[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2022.2/plugins/available/metadata/tabulate/)
+[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2023.5/plugins/available/metadata/tabulate/)
 
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -1164,21 +1042,7 @@ Through visualising the table and stats we can determine that there are a good a
 <!--chapter:end:09-ASV_identification.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # ASV taxonomic assignment {#taxa}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1226,9 +1090,9 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--input-format`__: The format of the input. 
   - This is only needed for the taxonomy import with the option of `HeaderlessTSVTaxonomyFormat` that indicates the input file is a headerless tab separated value (TSV) file with taxonomy information.
 
-[QIIME2 docs on importing data](https://docs.qiime2.org/2022.2/tutorials/importing/)
+[QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
 
-[QIIME2 docs on classifiers](https://docs.qiime2.org/2022.2/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
+[QIIME2 docs on classifiers](https://docs.qiime2.org/2023.5/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
 
 ## Extract 16s region of interest
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1262,7 +1126,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
   - We are using `250` as this was the initial length of our Illumina reads.
 - `--o-reads`: The output read artifact containing our extracted 16S region as paired reads. This is needed for classifier training.
 
-[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/extract-reads/)
+[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/extract-reads/)
 
 #### Copy premade results {-}
 
@@ -1297,7 +1161,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--i-reference-taxonomy`__: Input artifact containing the taxonomy information of the features.
 - __`--o-classifier`__: Output artifact containing the trained classifier. This will be used for feature (ASV) taxonomy classification.
 
-[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
+[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
 
 ## Taxonomy assignment
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1327,7 +1191,7 @@ knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
 - __`--i-reads`__: Input artifact containing the representative sequences of the features (ASVs) to be classified.
 - __`--o-classification`__: Output artifact containing the taxonomic assignments of the features (ASVs).
 
-[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2022.2/plugins/available/feature-classifier/classify-sklearn/)
+[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/classify-sklearn/)
 
 ## Taxonomy bar chart production {#taxabar}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1356,7 +1220,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 
 The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.
 
-[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2022.2/plugins/available/taxa/barplot/)
+[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2023.5/plugins/available/taxa/barplot/)
 
 ## Taxonomy: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1403,26 +1267,12 @@ In your future analysis if you have sequenced any samples with known composition
 
 We are close to carrying out some biodiversity analysis. Before this we will produce a phylogenetic tree in the next chapter.
 
-[QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2022.2/tutorials/feature-classifier/)
+[QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2023.5/tutorials/feature-classifier/)
 
 <!--chapter:end:10-Taxonomic_assignment.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Phylogenetic tree construction {#phylogeny}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1543,21 +1393,7 @@ The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported
 <!--chapter:end:11-Phylogentic_tree.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (PART\*) Analysis {-}
 
@@ -1737,21 +1573,7 @@ How do we know that the very exact number of 34,583 will keep all the samples? L
 <!--chapter:end:12-Rarefaction.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Diversity analysis {#diversity}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1818,21 +1640,7 @@ In case of ITS or any marker for which it is not possible to obtain phylogenetic
 <!--chapter:end:13-Diversity_analysis.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Alpha diveristy statistical analysis {#alpha_div_stats}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -1987,21 +1795,7 @@ In the next chapter we will look at the beta diversity output and carry out some
 <!--chapter:end:14-Alpha_diversity.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Beta diversity statistical analysis {#beta_stats}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -2128,21 +1922,7 @@ We know there is a difference between Corridor and Toilet samples, but are there
 <!--chapter:end:15-Beta_diversity_analysis.rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Differential abundance analysis {#differential}
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
@@ -2345,21 +2125,7 @@ That is the last of the analysis. There is only one more chapter on future consi
 <!--chapter:end:16-Differential_abundance.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # Final consideration {#final}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -2385,21 +2151,7 @@ If you have still time available you can move onto the Supplemental bookdown.
 <!--chapter:end:17-Final_consideration.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+library(webexercises)
 ```
 # (APPENDIX) Appendix {-}
 
@@ -2540,25 +2292,32 @@ __ANCOM__
 
 Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2015). Analysis of composition of microbiomes: a novel method for studying microbial composition. Microbial ecology in health and disease, 26(1), p.27663.
 
-<!--chapter:end:18-Resources.Rmd-->
+# Mamba installs
 
-```{r include=FALSE, cache=FALSE}
-suppressPackageStartupMessages({
-  library(webexercises)
-})
-
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      hide(options$webex.hide)
-    } else {
-      hide()
-    }
-  } else {
-    unhide()
-  }
-})
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
+
+## Mamba installation and environment {#mamba_install}
+
+Mamba is a reimplementation of conda. It is a great tool for installing bioinformatic packages including R packages.
+
+Mamba github: <https://github.com/mamba-org/mamba>
+
+Mamba installation: <https://github.com/conda-forge/miniforge#mambaforge>
+
+Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
+
+To create the mamba environment `qiime2-2023.5` run the below commands in your bash. You will need to have installed `mamba` first.
+
+```{bash, eval=FALSE}
+#QIIME2
+wget https://data.qiime2.org/distro/core/qiime2-2023.5-py38-linux-conda.yml
+mamba env create -n qiime2-2023.5 --file qiime2-2023.5-py38-linux-conda.yml
+```
+
+__Note__: You may want to install the most recent version of QIIME2. PLease see the following page for installation instructions: https://docs.qiime2.org/2023.5/install/native/
+
 # Diversity metrics
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
 knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
@@ -2684,5 +2443,5 @@ $$
 
 For more diveristy measure please see: https://forum.qiime2.org/t/alpha-and-beta-diversity-explanations-and-commands/2282
 
-<!--chapter:end:19-Appendix.Rmd-->
+<!--chapter:end:18-Appendix.Rmd-->
 

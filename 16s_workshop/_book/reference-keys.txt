@@ -93,6 +93,8 @@ resources
 suggested-readings
 other-useful-resources
 references
+mamba-installs
+mamba_install
 diversity-metrics
 alphamet
 obvs

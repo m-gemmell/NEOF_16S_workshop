@@ -13,7 +13,7 @@ mkdir Metagenetics
 #Change directory to "Metagenetics"
 cd Metagenetics
 #Copy the contents of a directory to your current directory
-cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_5/* .
+cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_5/* .
 ```
 
 Look at the contents of your current directory and then continue reading for explanations on their contents.
@@ -69,7 +69,7 @@ The first 2 rows must be:
 
 1. Headers
    - Name of metadata fields.
-   - These are chosen by the user (except the sample-id column). Make sure to make these are informative and concise.
+   - These are chosen by the user (except the sample-id column). Ensure these are informative and concise.
    - We suggest to only use letters and not to use spaces.
 2. Column type
    - The value "#q2:types" must be used for the 1st column.
@@ -83,7 +83,7 @@ Have a look at the top 10 lines of the metadata file:
 head metadata.file.txt
 ```
    
-For more information on QIIME2 metadata please see: https://docs.qiime2.org/2021.2/tutorials/metadata/
+For more information on QIIME2 metadata please see: https://docs.qiime2.org/2023.5/tutorials/metadata/
 
 The above link includes:
 

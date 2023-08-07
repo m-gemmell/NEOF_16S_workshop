@@ -16,6 +16,8 @@ Import our read pairs into a QIIME2 artifact.
 
 __Note__: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.
 
+__Note 2__: If you are no familiar with the back slashes (`\`) in the below command please check our explanation of __[Bash escape](https://neof-workshops.github.io/Unix_nxcdf7/Course/05-Tips_and_tricks.html#bash-escape)__. Please also ask for a demonstration if you would like.
+
 ```{bash, eval=FALSE}
 qiime tools import \
 --type 'SampleData[PairedEndSequencesWithQuality]' \
@@ -30,15 +32,15 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
 - __`--type`__: The type of data being imported.
-  - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contain quality. I.e. normal Illumina paired end fastq data.
-- __`--input-path`__: The input [manifest file](#manifestfile)
+  - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contains quality information. I.e. normal Illumina paired end fastq data.
+- __`--input-path`__: The input [manifest file](#manifestfile).
 - __`--output-path`__: Output QIIME2 artifact file containing your sequence data.
   - The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). 
   - QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
 - __`--input-format`__: The format of the input files.
   - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
-[QIIME2 docs on importing data](https://docs.qiime2.org/2022.2/tutorials/importing/)
+[QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
 
 __Note__: All the QIIME2 links may be out of date and the below will appear:
 ```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
@@ -73,28 +75,24 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--i-data`__: Input data artifact (`.qza`) to be summarised and visualised.
 - __`--o-visualization`__: Output visualisation artifact (`qzv`).
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2022.2/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
 
-#### Chrome {-}
+#### Firefox {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/chrome.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
 ```
 
-This next step is important! Make sure to open a new terminal and open chrome in it. Keep this terminal and chrome open (To open a new terminal, right click on the main screen, choose `Applications` -> `Shell` -> `bash`). Opening and closing chrome multiple times has proven to cause issues in past workshops. To open the browser ‘chrome’, run the following command in your new terminal:
+We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](view.qiime2.org).
 
-```{bash, eval=FALSE}
-chrome.sh
-```
-
-From now on leave the terminal you ran the above command on alone and don't close chrome.
+First we need to open up `Firefox`. Right click on the main screen (greyish background) and choose `firefox` from the dropdown menu.
 
 Then:
 
-- Navigate to the following web-site on chrome: ‘view.qiime2.org’
-- Click on the ‘Drag and drop or click here’ grey box
-- You can browse now to find and select the file ‘paired-end-demux.qzv’. 
+- Navigate to the following web-site on `firefox`: ‘https://view.qiime2.org’.
+- Click on the ‘Drag and drop or click here’ grey box.
+- Use the file browser to find and select the file ‘paired-end-demux.qzv’. 
 
-__Tip__: click "HOME" on the top right, from there you can navigate to "Metagenetics" and choose your file.
+__Tip__: click "Home" on the top left, from there you can navigate to "Metagenetics" and choose your file.
 
 #### Output {-#chap7output}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
