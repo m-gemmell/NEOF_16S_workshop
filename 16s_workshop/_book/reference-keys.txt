@@ -48,7 +48,7 @@ dada2-stats.qzv
 dada2-stats.qzv-mcqs
 dada2-summary
 taxa
-import-taxonomy-database
+greengenes2-database
 extract-16s-region-of-interest
 classifier-training
 taxonomy-assignment

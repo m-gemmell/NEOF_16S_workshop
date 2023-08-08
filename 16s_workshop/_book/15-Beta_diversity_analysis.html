@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-07" />
+<meta name="date" content="2023-08-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database</a></li>
+<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#greengenes2-database"><i class="fa fa-check"></i><b>10.1</b> Greengenes2 database</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
@@ -358,8 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-6"><a href="15-Beta_diversity_analysis.html#cb30-6" tabindex="-1"></a>--p-pairwise <span class="dt">\</span></span>
 <span id="cb30-7"><a href="15-Beta_diversity_analysis.html#cb30-7" tabindex="-1"></a>--p-permutations 999 <span class="dt">\</span></span>
 <span id="cb30-8"><a href="15-Beta_diversity_analysis.html#cb30-8" tabindex="-1"></a>--o-visualization weighted-unifrac-significance.location.qzv</span></code></pre></div>
-<div id="parameters-18" class="section level4 unnumbered hasAnchor">
-<h4>Parameters<a href="15-Beta_diversity_analysis.html#parameters-18" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="parameters-17" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="15-Beta_diversity_analysis.html#parameters-17" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><img src="figures/parameter_green.png" width="10%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><strong><code>--i-distance-matrix</code></strong>: Input artifact files containing the beta diversity values.</li>
@@ -411,24 +411,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Note</strong>: You will need to run the <code>qiime diversity beta-group-significance</code> with different options and view the new files to answer some of the questions.</p>
 <ol style="list-style-type: decimal">
 <li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the weighted unifrac distances when using PERMANOVA?
-<div id="radio_JXMSSMOAMU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JXMSSMOAMU" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JXMSSMOAMU" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_ZMSWNKQTEO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZMSWNKQTEO" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZMSWNKQTEO" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which sample group, Corridor or Toilet, has larger weighted unifrac distances within the group? I.e. which boxplot has the bigger IQR: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot?
-<div id="radio_SOJJGXYUCX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SOJJGXYUCX" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SOJJGXYUCX" value="answer"></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_ORXHWKPSFV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ORXHWKPSFV" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ORXHWKPSFV" value="answer"></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>In the weighted unifrac distances "Distances to Corridor" box plots, which box plot has lower values?
-<div id="radio_FAJQYAPGTD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FAJQYAPGTD" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FAJQYAPGTD" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_YSQZKJKIGO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YSQZKJKIGO" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YSQZKJKIGO" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the Bray Curtis distances when using PERMANOVA?
-<div id="radio_DCEJKIDJUK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DCEJKIDJUK" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DCEJKIDJUK" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_TXWPIJYQOW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TXWPIJYQOW" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXWPIJYQOW" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between Entrance and MainBuilding (Place) for the Unweighted Unifrac distances when using ANOSIM?
-<div id="radio_YABWFBCVLJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YABWFBCVLJ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YABWFBCVLJ" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_SIEJLTXCJL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SIEJLTXCJL" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SIEJLTXCJL" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>

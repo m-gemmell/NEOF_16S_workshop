@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-07" />
+<meta name="date" content="2023-08-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database</a></li>
+<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#greengenes2-database"><i class="fa fa-check"></i><b>10.1</b> Greengenes2 database</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
@@ -351,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-3"><a href="16-Differential_abundance.html#cb32-3" tabindex="-1"></a>--i-taxonomy taxonomy.sklearn.qza <span class="dt">\</span></span>
 <span id="cb32-4"><a href="16-Differential_abundance.html#cb32-4" tabindex="-1"></a>--p-level 5 <span class="dt">\</span></span>
 <span id="cb32-5"><a href="16-Differential_abundance.html#cb32-5" tabindex="-1"></a>--o-collapsed-table comp-ancom-table-l5.qza</span></code></pre></div>
-<div id="parameters-19" class="section level4 unnumbered hasAnchor">
-<h4>Parameters<a href="16-Differential_abundance.html#parameters-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="parameters-18" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="16-Differential_abundance.html#parameters-18" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><img src="figures/parameter_purple.png" width="10%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><strong><code>--i-table</code></strong>: Input artifact containing the abundance table (non-rarefied) for the identified variants.</li>
@@ -374,8 +374,8 @@ Add pseudo-count to the abundance table with the purpose of converting 0s to 1s.
 <span id="cb33-2"><a href="16-Differential_abundance.html#cb33-2" tabindex="-1"></a>--i-table comp-ancom-table-l5.qza <span class="dt">\</span></span>
 <span id="cb33-3"><a href="16-Differential_abundance.html#cb33-3" tabindex="-1"></a>--p-pseudocount 1 <span class="dt">\</span></span>
 <span id="cb33-4"><a href="16-Differential_abundance.html#cb33-4" tabindex="-1"></a>--o-composition-table comp-ancom-table-l5-pse.qza</span></code></pre></div>
-<div id="parameters-20" class="section level4 unnumbered hasAnchor">
-<h4>Parameters<a href="16-Differential_abundance.html#parameters-20" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="parameters-19" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="16-Differential_abundance.html#parameters-19" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><img src="figures/parameter_black.png" width="10%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><strong><code>--i-table</code></strong>: Input artifact containing the abundance feature table.
@@ -397,8 +397,8 @@ Finally, we run ANCOM. In this instance we will use Location as the metadata so 
 <span id="cb34-3"><a href="16-Differential_abundance.html#cb34-3" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
 <span id="cb34-4"><a href="16-Differential_abundance.html#cb34-4" tabindex="-1"></a>--m-metadata-column Location <span class="dt">\</span></span>
 <span id="cb34-5"><a href="16-Differential_abundance.html#cb34-5" tabindex="-1"></a>--o-visualization l5-ancom-Location.qzv</span></code></pre></div>
-<div id="parameters-21" class="section level4 unnumbered hasAnchor">
-<h4>Parameters<a href="16-Differential_abundance.html#parameters-21" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="parameters-20" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="16-Differential_abundance.html#parameters-20" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><img src="figures/parameter_green.png" width="10%" style="display: block; margin: auto;" /></p>
 <ul>
 <li><strong><code>--i-table</code></strong>: Input artifact containing feature abundance table with added pseudocounts.</li>
@@ -441,12 +441,12 @@ W-statistic
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>Which family is detected as a biomarker? I.e. which family is differentially abundant between Corridor and Toilet?
-<div id="radio_JWKHETOEEM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JWKHETOEEM" value="answer"></input> <span><strong>Clostridiaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JWKHETOEEM" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JWKHETOEEM" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_ABEPKKDEAT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ABEPKKDEAT" value="answer"></input> <span><strong>Clostridiaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ABEPKKDEAT" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ABEPKKDEAT" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 <li>Which sample group has a higher abundance of the detected biomarker family?
-<div id="radio_DIGMXPLQIX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DIGMXPLQIX" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DIGMXPLQIX" value="answer"></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_ALLICTBSGD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ALLICTBSGD" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ALLICTBSGD" value="answer"></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 </ol>
 <p>Run ANCOM analysis for genus level (level 6). You will have to start from the <code>qiime taxa collapse</code> command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.</p>
@@ -474,8 +474,8 @@ L6 ANCOM commands
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>How many genera are discovered as biomarkers?
-<div id="radio_ACNHFCWRVK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ACNHFCWRVK" value=""></input> <span><strong>1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ACNHFCWRVK" value="answer"></input> <span><strong>2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ACNHFCWRVK" value=""></input> <span><strong>3</strong></span></label>
+<div id="radio_HSKATPUHZP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HSKATPUHZP" value=""></input> <span><strong>1</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HSKATPUHZP" value="answer"></input> <span><strong>2</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HSKATPUHZP" value=""></input> <span><strong>3</strong></span></label>
 </div></li>
 </ol>
 <p>Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed and added psuedocounts to create an ANCOM-ready family abundance table. Therefore you will only need to rerun the <code>qiime composition ancom</code> with changed options. Try running these commands yourself before looking at the contents of the below box.</p>
@@ -492,8 +492,8 @@ Family ANCOM analysis with Place metadata comman
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Are any families discovered as biomarkers when comparing the 2 Places?
-<div id="radio_JRAJLYMZUP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JRAJLYMZUP" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JRAJLYMZUP" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_EIJZSDBGFQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EIJZSDBGFQ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EIJZSDBGFQ" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>

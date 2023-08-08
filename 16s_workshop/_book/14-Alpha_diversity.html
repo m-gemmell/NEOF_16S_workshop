@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-07" />
+<meta name="date" content="2023-08-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html"><i class="fa fa-check"></i><b>10</b> ASV taxonomic assignment</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#import-taxonomy-database"><i class="fa fa-check"></i><b>10.1</b> Import taxonomy database</a></li>
+<li class="chapter" data-level="10.1" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#greengenes2-database"><i class="fa fa-check"></i><b>10.1</b> Greengenes2 database</a></li>
 <li class="chapter" data-level="10.2" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#extract-16s-region-of-interest"><i class="fa fa-check"></i><b>10.2</b> Extract 16s region of interest</a></li>
 <li class="chapter" data-level="10.3" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#classifier-training"><i class="fa fa-check"></i><b>10.3</b> Classifier training</a></li>
 <li class="chapter" data-level="10.4" data-path="10-Taxonomic_assignment.html"><a href="10-Taxonomic_assignment.html#taxonomy-assignment"><i class="fa fa-check"></i><b>10.4</b> Taxonomy assignment</a></li>
@@ -355,8 +355,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-10"><a href="14-Alpha_diversity.html#cb28-10" tabindex="-1"></a>--i-alpha-diversity shannon_vector.qza <span class="dt">\</span></span>
 <span id="cb28-11"><a href="14-Alpha_diversity.html#cb28-11" tabindex="-1"></a>--m-metadata-file ../metadata.file.txt <span class="dt">\</span></span>
 <span id="cb28-12"><a href="14-Alpha_diversity.html#cb28-12" tabindex="-1"></a>--o-visualization shannon-group-significance.rs.qzv</span></code></pre></div>
-<div id="parameters-17" class="section level4 unnumbered hasAnchor">
-<h4>Parameters<a href="14-Alpha_diversity.html#parameters-17" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="parameters-16" class="section level4 unnumbered hasAnchor">
+<h4>Parameters<a href="14-Alpha_diversity.html#parameters-16" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><img src="figures/parameter_purple.png" width="10%" style="display: block; margin: auto;" /></p>
 <p>Although we have used two different commands they both have the same parameters.</p>
 <ul>
@@ -405,16 +405,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_purple.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity?
-<div id="radio_LGFUUSFYNN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LGFUUSFYNN" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LGFUUSFYNN" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_TSRRPZPRRA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TSRRPZPRRA" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TSRRPZPRRA" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ?
-<div id="radio_PXEGJUJBHL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PXEGJUJBHL" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PXEGJUJBHL" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_TJOUOZTIAS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TJOUOZTIAS" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TJOUOZTIAS" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ?
-<div id="radio_CUGKEKIDEK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CUGKEKIDEK" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CUGKEKIDEK" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_SSJWCNEQTM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SSJWCNEQTM" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SSJWCNEQTM" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 <p>For the below questions you will need to run some more <code>qiime diversity alpha-group-significance</code> and <code>qiime diversity alpha-correlation</code>. When creating and running these commands ensure you are giving the input and output artifacts the correct names.</p>
@@ -441,16 +441,16 @@ Alpha diveristy stats commands
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Locations (Corridor vs Toilet) when using observed features?
-<div id="radio_VHJHTXWURM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VHJHTXWURM" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VHJHTXWURM" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_RKCKJIOUZU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RKCKJIOUZU" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RKCKJIOUZU" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness?
-<div id="radio_QXAOGFIQWA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QXAOGFIQWA" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QXAOGFIQWA" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_YGCZBGHIVA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YGCZBGHIVA" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YGCZBGHIVA" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD?
-<div id="radio_IOJFDDNGGL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IOJFDDNGGL" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IOJFDDNGGL" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_GCGJACWXNQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GCGJACWXNQ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GCGJACWXNQ" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>
