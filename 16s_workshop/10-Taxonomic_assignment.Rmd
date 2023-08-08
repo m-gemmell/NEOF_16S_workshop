@@ -3,80 +3,53 @@
 knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 
 
-Now that we have defined the sequence variants in the samples, we can assign taxonomic labels to them. We will use Greengenes2 for this. 
+Now that we have defined the sequence variants in the samples, this chapter will show you how to classify using [Greengenes2](https://www.nature.com/articles/s41587-023-01845-1). More information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
 
-Greengenes2 is a database containing quality-controlled microbial sequence data. It is based on whole genome information from the Web of Life, a phylogenoemic tree based on 381 marker genes. The phylogenitic tree is updated with 330k unique high quality full length 16S rRNA genes from the Living Tree Project. The devlopers then placed >20 million 16S rRNA V4 Deblur ASVs into the tree. 
-
-A taxonomy was constructed by integrating the Genome Taxonomy Database with the Living Tree Project. This taxonomy is added to the tree so it can be used for taxonomic annotation via the [`greengenes2`](https://github.com/biocore/q2-greengenes2) plugin for `QIIME2`. 
-
-This chapter will show you how to classify using Greengenes2. More information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
-
-We will be using the 2022 Greengenes databases. For your future anlaysis. You can download the databases files from their [ftp site](http://ftp.microbio.me/greengenes_release/2022.10/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
+We will be using the 2022 Greengenes databases. For your future analysis you can download the databases files from their [ftp site](http://ftp.microbio.me/greengenes_release/2022.10/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
 
 `r hide("Download database files in linux terminal")`
 You can download the 2 files you need for Greengenes2 taxonomic classification with the following commands.
 ```{bash, eval=FALSE}
-wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.taxonomy.asv.nwk.qza
 wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.full-length.fna.qza
+wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.tax.qza
 ```
 Remember to first check if 2022.10 is the most recent version before downloading and using it for your own research.
 `r unhide()`
 
-## Map ASVs against Greengenes2
-
-The developers of Greengenes2 have done most of the hard work. Our first step is to map our ASV table and sequences to the full length sequences from the Green2genes2 database.
-
-```{bash, eval=FALSE}
-qiime greengenes2 non-v4-16s \
---i-table table-dada2.qza \
---i-sequences rep-seqs-dada2.qza \
---i-backbone /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/2022.10.backbone.full-length.fna.qza \
---o-mapped-table table-dada2.gg2.qza \
---o-representatives rep-seqs-dada2.gg2.qza \
---p-threads 12
-```
-
-
-## Import taxonomy database
+## Greengenes2 database
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/green_jeans.png", auto_pdf = TRUE)
 ``` 
 
-First, we need to import the Greengenes data into QIIME2 artifacts. These steps will create two objects containing the sequences and their taxonomy, respectively.
+Greengenes2 is a database containing quality-controlled microbial sequence data. It consists of a single massive reference tree that contains taxonomic and sequence information. It was created by combining:
 
-Import the Sequence data.
-```{bash, eval=FALSE}
-qiime tools import --input-path \
-/pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg_13_8_otus/rep_set/99_otus.fasta \
---output-path gg-13-8.99_otus.qza \
---type 'FeatureData[Sequence]'
-```
+- __Web of Life 2 (WoL2)__: A microbe base phylogenomic tree.
+  - __15,953__ bacterial and archaeal genomes.
+  - Accurate phylogenomic tree reconstructed by summarising __380__ global marker genes.
+  - Produced by new workflow [uDance](https://github.com/balabanmetin/uDance).
+- __16s rRNA sequences__ from different sources.
+  - __18,356__ full-length 16S rRNA sequences from the [Living Tree Project (LTP)](https://www.nature.com/articles/s41587-020-0501-8) January 2022 release.
+  - __1,725,274__ near-complete 16S rRNA genes from [Karst et al 2021](https://www.annualreviews.org/doi/10.1146/annurev-ecolsys-012121-095340) and the [Earth Microbiome Project 500 (EMP500)](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-16-S10-S1).
+  - All full-length 16S rRNA sequences from [GTDB r207](https://gtdb.ecogenomic.org/stats/r207).
+- __23,113,447__ short V4 16S rRNA ASVs denoised with Deblur v1.1.0 from [Qiita](https://qiita.ucsd.edu/)
+- Mitochondria and chloroplast 16S rRNA from [SILVA v138](https://www.arb-silva.de/documentation/release-138/) using [deep-learning-enabled phylogenetic placement (DEPP)](https://github.com/yueyujiang/DEPP).
 
-Import the Taxonomy data.
-```{bash, eval=FALSE}
-qiime tools import --input-path \
-/pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt \
---output-path gg-13-8.99.taxa.qza \
---input-format HeaderlessTSVTaxonomyFormat \
---type 'FeatureData[Taxonomy]'
-```
+This produces a reference tree with the following traits:
 
-#### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
+- Genome-based relationships (WoL2) were fixed whilst relationships between full-length 16S rRNA sequences were inferred.
+- Short fragments were then added independlty from each each with the genome and full-length 16S rRNA relationships fixed.
+- The final tree covered __21,074,442__ sequences from __31__ different [EMP Ontology 3 (EMPO3)](https://earthmicrobiome.org/protocols-and-standards/empo/) environments.
+- __46.5%__ of species-level leaves were covered by a complete genome.
+- Phylogenies are decorated with taxonomic labels.
+  - Taxonomy was based on GTDB r207, combined with the LTP January 2022 release.
+  - Taxonomy is planned to be updated every 6 months with the latest versions of GTDB & LTP.
+
+[Greengenes phylogenetic tree](https://www.nature.com/articles/s41587-023-01845-1/figures/1)
+```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+knitr::include_graphics(path = "figures/greengenes2_phylogeny_tree.png", auto_pdf = TRUE)
 ``` 
 
-- __`--input-path`__: Input fasta sequence/taxonomy file.
-- __`--output-path`__: Output sequence/taxonomy artifact file.
-- __`--type`___: The type of data that is being imported.
-  - `FeatureData[Sequence]`: Sequence data for features (in this case OTUs).
-  - `FeatureData[Taxonomy]`: Taxonomy information for features (in this case OTUs).
-- __`--input-format`__: The format of the input. 
-  - This is only needed for the taxonomy import with the option of `HeaderlessTSVTaxonomyFormat` that indicates the input file is a headerless tab separated value (TSV) file with taxonomy information.
-
-[QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
-
-[QIIME2 docs on classifiers](https://docs.qiime2.org/2023.5/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
+Greengenes2 can be used on shotgun metagenomic data. This can allow you to effectively compare taxonomic data from 16S and Shotgun metagenomic datasets. [Tutorial on clasisifying shotgun metageonimc data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
 
 ## Extract 16s region of interest
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -87,16 +60,23 @@ A classifier training step is required to reach optimum assignment performance.
 
 Prior to training we will extract our 16S region of interest. This is carried out by using the amplicon primer sequences. These are the same we used for [removing the PCR primer](#pcrtrim).
 
-__Note__: Do not run the below command for this tutorial, see `cp` command further down.
+__Note__: Do not run the below command for this tutorial as it will take a long time. See `cp` command further down.
 
 ```{bash, eval=FALSE}
 qiime feature-classifier extract-reads \
---i-sequences gg-13-8.99_otus.qza \
+--i-sequences /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/2022.10.backbone.full-length.fna.qza \
 --p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA \
 --p-r-primer GGACTACHVGGGTWTCTAAT \
 --p-trunc-len 250 \
---o-reads gg-13-8.99.ref.seqs.qza
+--o-reads gg-13-8.99.ref.seqs.qza \
+--p-n-jobs 12
 ```
+
+`r hide("Silva 16S rRNA database")`
+Another popular 16S rRNA database is [Silva](https://www.arb-silva.de/).
+
+You can download the required files for taxonomic classification from [here](https://docs.qiime2.org/2023.5/data-resources/#silva-16s-18s-rrna).
+`r unhide()`
 
 #### Parameters{-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -104,11 +84,14 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
 - __`--i-sequences`__: Input artifact containing the feature sequence data.
+  - In this case we are using the full length 16S rRNA sequences that are used within the Greenegenes2 phylogenomic tree.
+  - This was downloaded from http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.full-length.fna.qza.
 - __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
 - __`--p-front-r`__: Sequence for the reverse primer (`r``). The sequence is ligated to the 5 prime end (`front`), this is the normal.
 - __`--p-trunc-len`__: This cuts the forward and left reads we are creating to the specified truncation length.
   - We are using `250` as this was the initial length of our Illumina reads.
-- `--o-reads`: The output read artifact containing our extracted 16S region as paired reads. This is needed for classifier training.
+- __`--o-reads`__: The output read artifact containing our extracted 16S region as paired reads. This is needed for classifier training.
+- __`--p-n-jobs`__: Number of separate processes to use.
 
 [QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/extract-reads/)
 
@@ -117,7 +100,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 Given that the above command may require more than 14h to finish, we won’t be able to run it on this occasion. Copy over the pre-made results with the following command:
 
 ```{bash, eval=FALSE}
-cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_10/gg-13-8.99.ref.seqs.qza .
+cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.ref.seqs.qza .
 ```
 
 ## Classifier training
@@ -127,13 +110,21 @@ knitr::include_graphics(path = "figures/train.png", auto_pdf = TRUE)
 
 Now we train the classifier on this set of extracted reads (approx. 25 mins). 
 
-This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we won't explain it here..
+This uses Naive Bayes which is a very complicated algorithm. Thankfully we don't need to know how it works so we won't explain it here.
+
+__Note__: You can run the code or copy a pre-made file.
 
 ```{bash, eval=FALSE}
 qiime feature-classifier fit-classifier-naive-bayes \
---i-reference-reads gg-13-8.99.ref.seqs.qza \
---i-reference-taxonomy gg-13-8.99.taxa.qza \
---o-classifier classifier.trained.qza
+--i-reference-reads gg2-v4.ref.seqs.qza \
+--i-reference-taxonomy /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/2022.10.backbone.tax.qza \
+--o-classifier gg2-v4.classifier.trained.qza
+```
+
+Copy pre-made file if you didn't run the code above.
+
+```{bash, eval=FALSE}
+cp /pub14/tea/nsc006/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza .
 ```
 
 #### Parameters{-}
@@ -143,6 +134,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 
 - __`--i-reference-reads`__: Input artifact containing the extracted 16S region as paired reads.
 - __`--i-reference-taxonomy`__: Input artifact containing the taxonomy information of the features.
+  - This was downloaded from: http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.tax.qza.
 - __`--o-classifier`__: Output artifact containing the trained classifier. This will be used for feature (ASV) taxonomy classification.
 
 [QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
@@ -156,10 +148,11 @@ With our trained classifier we can assign taxonomic assignments to the ASV repre
 
 ```{bash, eval=FALSE}
 qiime feature-classifier classify-sklearn \
---i-classifier classifier.trained.qza \
+--i-classifier gg2-v4.classifier.trained.qza \
 --p-confidence 0.7 \
 --i-reads rep-seqs-dada2.qza \
---o-classification taxonomy.sklearn.qza
+--o-classification taxonomy.sklearn.qza \
+--p-njobs 12
 ```
 
 #### Parameters{-}
@@ -174,6 +167,7 @@ knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
   - This could cause an ASV to be classified to Genus level but not species level as the species level assignment had a confidence of <0.7 whilst the confidence of the genus and higher assignments was >=0.7.
 - __`--i-reads`__: Input artifact containing the representative sequences of the features (ASVs) to be classified.
 - __`--o-classification`__: Output artifact containing the taxonomic assignments of the features (ASVs).
+- __`--p-n-jobs`__: Number of separate processes to use.
 
 [QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/classify-sklearn/)
 
@@ -214,21 +208,21 @@ knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TR
 Attempt the below MCQs.
 
 ```{r, echo = FALSE}
-opts_p <- c("__Corynebacteriaceae__", answer="__Moraxellaceae__", "__Pseudomonadaceae__")
+opts_p <- c(answer="__Moraxellaceae__", "__Mycobacteriaceae__","__Pseudomonadaceae__")
 ```
 1. At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend) `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Corynebacteriaceae__", "__Moraxellaceae__", "__Pseudomonadaceae__")
+opts_p <- c("__Moraxellaceae__", answer="__Mycobacteriaceae__", "__Pseudomonadaceae__")
 ```
 2. At taxonomic level 5, what is the most abundant taxon for sample 1TE?  `r longmcq(opts_p)`
 
-__Note__: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, left sample is highest relative abundance) drop down to "Descending" may be useful.
+__Note__: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, right sample has the highest relative abundance) drop down to "Descending" may be useful.
 
 ```{r, echo = FALSE}
 opts_p <- c("__1K2E__", answer="__1TM__", "__3TM__")
 ```
-3. Which sample has the highest relative abundance of the class Actinobacteria (Taxonomic level 3)? `r longmcq(opts_p)`
+3. Which sample has the highest relative abundance of the class Actinomycetia (Taxonomic level 3)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__1K2E__", "__1TM__", "__3TM__")
@@ -238,7 +232,7 @@ opts_p <- c(answer="__1K2E__", "__1TM__", "__3TM__")
 ```{r, echo = FALSE}
 opts_p <- c("__1K2E__", "__1TM__", answer="__3TM__")
 ```
-5. Which sample has the third highest relative abundance of the phylum Bacteroidetes (Taxonomic level 2)? `r longmcq(opts_p)`
+5. Which sample has the fourth highest relative abundance of the phylum Bacteroidota (Taxonomic level 2)? `r longmcq(opts_p)`
 
 ## Taxonomy: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
