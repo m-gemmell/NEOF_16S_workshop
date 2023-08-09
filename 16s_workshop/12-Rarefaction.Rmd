@@ -8,7 +8,7 @@ knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
 
 To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction. 
-Rarefaction is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
+Rarefaction is performed by reducing all the samples to the same sequence count, by random sub-sampling of the sequences.
 
 For example, if we rarefy to a depth of 2000 for all samples:
 
@@ -16,7 +16,7 @@ For example, if we rarefy to a depth of 2000 for all samples:
 - Samples with depths of 2000 will be unchanged.
 - Samples with depths of >2000 will have all reads removed except for a random subsample of 2000.
 
-Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample smaller subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
 knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
@@ -27,7 +27,7 @@ knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRU
 knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
 ``` 
 
-Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
 
 __Note__: See the [appendix](#alphamet) at the end of this bookdown for details on each metric.
 
@@ -74,7 +74,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
   - This parameter can be specified multiple times for different metrics.
 - __`--o-visualization`__: Output visualisation artifact containing the rarefaction plots. 
 
-[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-rarefaction/)
+[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-rarefaction/)
 
 ### Copy rarefaction output {#cprarefaction}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -101,7 +101,7 @@ The visualisation has two plots.
    - Primarily used to determine if the richness of the samples has been fully observed or sequenced.
    - If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected. 
    - If the lines in the observed feature plot do not level out:
-      - The richness of the samples may have not been fully observed (because too few sequences were collected)
+      - The richness of the samples may have not been fully observed (because too few sequences were collected).
       - Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
 - __Bottom plot: Number of samples (Y) against sequencing depth (X)__
    - This is important when grouping samples by metadata.
@@ -137,7 +137,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction of most of the samples (>90%) plateaued?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateaue?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")

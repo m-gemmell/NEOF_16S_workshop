@@ -3,7 +3,7 @@
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
-We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
+We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use __'PERMANOVA'__ analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
 ## Beta diveristy: PCoA
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -23,9 +23,9 @@ We are able to visually separate these two groups in the plot, especially on Axi
 knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
 ``` 
 
-To carry this out our first 'PERMANOVA' analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise weighted unifrac dissimilarity distances.
+To carry this out our first __'PERMANOVA'__ analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise __weighted unifrac__ dissimilarity distances.
 
-The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples.
+The __'Location'__ metadata column with the __weighted UniFrac__ metric will be used as there appears to be a separation between the Corridor and Toilet samples.
 
 ```{bash, eval=FALSE}
 qiime diversity beta-group-significance \
@@ -54,7 +54,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
   - The default is `999`.
 __`--o-visualization`__: The output artifact containing the visualisation.
 
-[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2022.2/plugins/available/diversity/beta-group-significance/)
+[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/beta-group-significance/)
 
 ## Beta diversity: visualise
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -68,12 +68,12 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
    - Example: Distances to Corridor plot
       - Corridor boxplot: This boxplot represents all the pairwise distances within the Corridor samples. If you had 3 corridor samples (C1-3) the boxplot would consist of the distances between C1-C2, C1-C3, and C2-C3.
       - Toilet boxplot: This boxplot represents the pairwise distances between all the corridor samples and toilet samples. If you had 3 corridor samples (C1-3) and 2 toilet samples (T1-2) the boxplot would consist of the distances between C1-T1, C1-T2, C2-T1, C2-T2, C3-T1, and C3-T2.
-   - With these plots you can see if the distances within a group is lower than the distances between that group and other groups.
+   - With these plots you can see if the distances within a group are smaller than the distances between that group and other groups.
 - __Pairwise results__: This section shows the statistical results comparing the different groups in pairwise fashion. The best values to look at are:
    - Sample size: Good to determine if there are enough samples for statistical strength.
    - q-value: Always go for q-values over p-values.
    
-[Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
+[Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
 ### Beta diversity: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -87,27 +87,27 @@ __Note__: You will need to run the `qiime diversity beta-group-significance` wit
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-1. Is there a significant difference (q-value <0.05) between Corridor and Toilet (Location) for the weighted unifrac distances when using PERMANOVA? `r longmcq(opts_p)`
+1. Is there a significant difference (q-value <0.05) between __Corridor and Toilet (Location)__ for the __weighted unifrac__ distances when using __PERMANOVA__? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Corridor__", answer="__Toilet__")
 ```
-2. Which sample group, Corridor or Toilet, has larger weighted unifrac distances within the group? I.e. which boxplot has the bigger IQR: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot? `r longmcq(opts_p)`
+2. Which sample group, Corridor or Toilet, has larger __weighted unifrac__ distances within the group? I.e. which boxplot has the IQR with the largest values: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
 ```
-3. In the weighted unifrac distances "Distances to Corridor" box plots, which box plot has lower values? `r longmcq(opts_p)`
+3. In the __weighted unifrac__ distances "Distances to Corridor" box plots, which box plot has lower values? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-4. Is there a significant difference (q-value <0.05) between Corridor and Toilet (Location) for the Bray Curtis distances when using PERMANOVA? `r longmcq(opts_p)`
+4. Is there a significant difference (q-value <0.05) between __Corridor and Toilet (Location)__ for the __Bray Curtis__ distances when using __PERMANOVA__? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-5. Is there a significant difference (q-value <0.05) between Entrance and MainBuilding (Place) for the Unweighted Unifrac distances when using ANOSIM? `r longmcq(opts_p)`
+5. Is there a significant difference (q-value <0.05) between __Entrance and MainBuilding (Place)__ for the __Unweighted Unifrac__ distances when using __ANOSIM__? `r longmcq(opts_p)`
 
 ### Beta diversity: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -117,5 +117,7 @@ knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 Viewing the beta diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.
 
 Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.
+
+If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin] (https://docs.qiime2.org/2023.5/plugins/available/diversity/adonis/).
 
 We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.

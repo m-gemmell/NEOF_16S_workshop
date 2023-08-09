@@ -3,7 +3,7 @@
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
-In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
+In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetically aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
 
 ## MAFFT alignment
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -25,7 +25,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 - __`--i-sequences`__: Input artifact containing the representative sequences of the features (ASVs) to be aligned.
 - __`--o-alignment`__: Output artifact containing the aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mafft/)
+[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mafft/)
 
 ## Masking
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -52,14 +52,15 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
   - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
   - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
   - 1.0 was chosen as it is the default option. Unless you have good reason this is what you should use for your future 16S analysis.
-- __`--p-min-conservation`__: This is the minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
+- __`--p-min-conservation`__: The minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
   - This option is provided with a number from 0-1.
   - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
     - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
     - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
-  0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
+    - 0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
+- __`--o-masked-alignment`__: Output artifact containing the masked aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mask/)
+[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mask/)
 
 ## Un-rooted tree creation with FASTTREE
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -81,7 +82,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 - __`--i-alignment`__: Input artifact containing the masked aligned representative sequences.
 - __`--o-tree`__: Output artifact containing the un-rooted tree.
 
-[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/fasttree/)
+[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/fasttree/)
 
 ## Rooted tree creation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -103,7 +104,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 - __`--i-tree`__: Input artifact containing the un-rooted tree
 - __`--o-rooted-tree`__: Output artifact containing the rooted tree.
 
-[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/midpoint-root/)
+[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/midpoint-root/)
 
 ## Phylogeny: summary
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }

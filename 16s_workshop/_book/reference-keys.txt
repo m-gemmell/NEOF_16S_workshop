@@ -72,7 +72,7 @@ diversity
 diversity-run
 alpha_div_stats
 alpha-diversity-run
-alpha-diveristy-visualise
+alpha-diversity-visualise
 alpha-diversity-mcqs
 alpha-diversity-summary
 beta_stats

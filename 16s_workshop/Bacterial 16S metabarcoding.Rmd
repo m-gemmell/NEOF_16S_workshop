@@ -1049,18 +1049,7 @@ library(webexercises)
 knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 
 
-Now that we have defined the sequence variants in the samples, this chapter will show you how to classify using [Greengenes2](https://www.nature.com/articles/s41587-023-01845-1). More information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
-
-We will be using the 2022 Greengenes databases. For your future analysis you can download the databases files from their [ftp site](http://ftp.microbio.me/greengenes_release/2022.10/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
-
-`r hide("Download database files in linux terminal")`
-You can download the 2 files you need for Greengenes2 taxonomic classification with the following commands.
-```{bash, eval=FALSE}
-wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.full-length.fna.qza
-wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.tax.qza
-```
-Remember to first check if 2022.10 is the most recent version before downloading and using it for your own research.
-`r unhide()`
+Now that we have defined the sequence variants in the samples, this chapter will show you how to carry out taxonomic classification using [Greengenes2](https://www.nature.com/articles/s41587-023-01845-1). More information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
 
 ## Greengenes2 database
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1096,6 +1085,17 @@ knitr::include_graphics(path = "figures/greengenes2_phylogeny_tree.png", auto_pd
 ``` 
 
 Greengenes2 can be used on shotgun metagenomic data. This can allow you to effectively compare taxonomic data from 16S and Shotgun metagenomic datasets. [Tutorial on clasisifying shotgun metageonimc data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
+
+For your future analysis you can download the databases files from their [ftp site](http://ftp.microbio.me/greengenes_release/2022.10/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
+
+`r hide("Download database files in linux terminal")`
+You can download the 2 files you need for Greengenes2 taxonomic classification with the following commands.
+```{bash, eval=FALSE}
+wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.full-length.fna.qza
+wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.tax.qza
+```
+Remember to first check if 2022.10 is the most recent version before downloading and using it for your own research.
+`r unhide()`
 
 ## Extract 16s region of interest
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1303,7 +1303,7 @@ library(webexercises)
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
-In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetic aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
+In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetically aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
 
 ## MAFFT alignment
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
@@ -1325,7 +1325,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 - __`--i-sequences`__: Input artifact containing the representative sequences of the features (ASVs) to be aligned.
 - __`--o-alignment`__: Output artifact containing the aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mafft/)
+[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mafft/)
 
 ## Masking
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1352,14 +1352,15 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
   - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
   - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
   - 1.0 was chosen as it is the default option. Unless you have good reason this is what you should use for your future 16S analysis.
-- __`--p-min-conservation`__: This is the minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
+- __`--p-min-conservation`__: The minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
   - This option is provided with a number from 0-1.
   - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
     - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
     - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
-  0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
+    - 0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
+- __`--o-masked-alignment`__: Output artifact containing the masked aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2022.2/plugins/available/alignment/mask/)
+[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mask/)
 
 ## Un-rooted tree creation with FASTTREE
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1381,7 +1382,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 - __`--i-alignment`__: Input artifact containing the masked aligned representative sequences.
 - __`--o-tree`__: Output artifact containing the un-rooted tree.
 
-[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/fasttree/)
+[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/fasttree/)
 
 ## Rooted tree creation
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1403,7 +1404,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 - __`--i-tree`__: Input artifact containing the un-rooted tree
 - __`--o-rooted-tree`__: Output artifact containing the rooted tree.
 
-[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2022.2/plugins/available/phylogeny/midpoint-root/)
+[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/midpoint-root/)
 
 ## Phylogeny: summary
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -1429,7 +1430,7 @@ knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
 
 To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction. 
-Rarefaction is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
+Rarefaction is performed by reducing all the samples to the same sequence count, by random sub-sampling of the sequences.
 
 For example, if we rarefy to a depth of 2000 for all samples:
 
@@ -1437,7 +1438,7 @@ For example, if we rarefy to a depth of 2000 for all samples:
 - Samples with depths of 2000 will be unchanged.
 - Samples with depths of >2000 will have all reads removed except for a random subsample of 2000.
 
-Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample smaller subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
 knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
@@ -1448,7 +1449,7 @@ knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRU
 knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
 ``` 
 
-Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
 
 __Note__: See the [appendix](#alphamet) at the end of this bookdown for details on each metric.
 
@@ -1495,7 +1496,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
   - This parameter can be specified multiple times for different metrics.
 - __`--o-visualization`__: Output visualisation artifact containing the rarefaction plots. 
 
-[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-rarefaction/)
+[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-rarefaction/)
 
 ### Copy rarefaction output {#cprarefaction}
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1522,7 +1523,7 @@ The visualisation has two plots.
    - Primarily used to determine if the richness of the samples has been fully observed or sequenced.
    - If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected. 
    - If the lines in the observed feature plot do not level out:
-      - The richness of the samples may have not been fully observed (because too few sequences were collected)
+      - The richness of the samples may have not been fully observed (because too few sequences were collected).
       - Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).
 - __Bottom plot: Number of samples (Y) against sequencing depth (X)__
    - This is important when grouping samples by metadata.
@@ -1558,7 +1559,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction of most of the samples (>90%) plateaued?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateaue?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
@@ -1607,14 +1608,14 @@ knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
 1948, Faith, 1992).
 
-Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
+Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
 ## Diversity: run 
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/play_red.png", auto_pdf = TRUE)
 ``` 
 
-QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2021.2/plugins/available/diversity/).
+QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2023.5/plugins/available/diversity/).
 
 ```{bash, eval=FALSE}
 qiime diversity core-metrics-phylogenetic \
@@ -1636,7 +1637,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 - __`--output-dir`__: Output directory that will contain all the output files form the command.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2022.2/plugins/available/diversity/core-metrics-phylogenetic/)
+[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2023.5/plugins/available/diversity/core-metrics-phylogenetic/)
 
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
@@ -1658,7 +1659,7 @@ These files include:
   - Generally you will not need these again.
 - __`emperor.qzv`__: Visualisation artifact files containing the beta-diversity ordination plots.
 
-In case of ITS or any marker for which it is not possible to obtain phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
+In case of ITS or any marker for which it is not possible to obtain a phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
 `--i-phylogeny` option.
 
 <!--chapter:end:13-Diversity_analysis.Rmd-->
@@ -1711,11 +1712,11 @@ Although we have used two different commands they both have the same parameters.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 - __`--o-visualization`__:  Output visualisation artifact containing the box plots and statistical table.
 
-[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-group-significance/)
+[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-group-significance/)
 
-[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-correlation/)
+[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-correlation/)
 
-## Alpha diveristy: visualise
+## Alpha diversity: visualise
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
 ```
@@ -1735,7 +1736,7 @@ The Kruskal-Wallis (`shannon-group-significance.kw.qzv`) visualisation artifact 
 
 To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
 
-[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2022.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
+[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
 
 #### Ranked Spearman {-}
 
@@ -1756,23 +1757,23 @@ knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-1. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using Shannon diversity? `r longmcq(opts_p)`
+1. Is there a statistical significance (q-value <0.05) when comparing the __Locations (Corridor vs Toilet)__ when using __Shannon__ diversity? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-2. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using Shannon diversity? ? `r longmcq(opts_p)`
+2. Is there a statistical significance (q-value <0.05) when comparing the __Places (Entrance vs MainBuilding)__ when using __Shannon__ diversity? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-3. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Shannon diversity? ? `r longmcq(opts_p)`
+3. Is there a statistical significance (P-value <0.05) when comparing the __Floors (1 vs 2 vs 3)__ when using __Shannon__ diversity? ? `r longmcq(opts_p)`
 
 For the below questions you will need to run some more `qiime diversity alpha-group-significance` and `qiime diversity alpha-correlation`. When creating and running these commands ensure you are giving the input and output artifacts the correct names.
 
 If you are are having issue knowing how to run the commands you can look at the box below for the commands.
 
-`r hide("Alpha diveristy stats commands")`
+`r hide("Alpha diversity stats commands")`
 ```{bash, eval=FALSE}
 # Q4: Observed features of Locations
 qiime diversity alpha-group-significance \
@@ -1795,17 +1796,17 @@ qiime diversity alpha-correlation \
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-4. Is there a statistical significance (q-value <0.05) when comparing the Locations (Corridor vs Toilet) when using observed features? `r longmcq(opts_p)`
+4. Is there a statistical significance (q-value <0.05) when comparing the __Locations (Corridor vs Toilet)__ when using __observed features__? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-5. Is there a statistical significance (q-value <0.05) when comparing the Places (Entrance vs MainBuilding) when using evenness? `r longmcq(opts_p)`
+5. Is there a statistical significance (q-value <0.05) when comparing the __Places (Entrance vs MainBuilding)__ when using __evenness__? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-6. Is there a statistical significance (P-value <0.05) when comparing the Floors (1 vs 2 vs 3) when using Faith's PD? `r longmcq(opts_p)`
+6. Is there a statistical significance (P-value <0.05) when comparing the __Floors (1 vs 2 vs 3)__ when using __Faith's PD__? `r longmcq(opts_p)`
 
 ## Alpha diversity: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1826,7 +1827,7 @@ library(webexercises)
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
-We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
+We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use __'PERMANOVA'__ analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
 ## Beta diveristy: PCoA
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1846,9 +1847,9 @@ We are able to visually separate these two groups in the plot, especially on Axi
 knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
 ``` 
 
-To carry this out our first 'PERMANOVA' analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise weighted unifrac dissimilarity distances.
+To carry this out our first __'PERMANOVA'__ analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise __weighted unifrac__ dissimilarity distances.
 
-The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples.
+The __'Location'__ metadata column with the __weighted UniFrac__ metric will be used as there appears to be a separation between the Corridor and Toilet samples.
 
 ```{bash, eval=FALSE}
 qiime diversity beta-group-significance \
@@ -1877,7 +1878,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
   - The default is `999`.
 __`--o-visualization`__: The output artifact containing the visualisation.
 
-[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2022.2/plugins/available/diversity/beta-group-significance/)
+[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/beta-group-significance/)
 
 ## Beta diversity: visualise
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1891,12 +1892,12 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
    - Example: Distances to Corridor plot
       - Corridor boxplot: This boxplot represents all the pairwise distances within the Corridor samples. If you had 3 corridor samples (C1-3) the boxplot would consist of the distances between C1-C2, C1-C3, and C2-C3.
       - Toilet boxplot: This boxplot represents the pairwise distances between all the corridor samples and toilet samples. If you had 3 corridor samples (C1-3) and 2 toilet samples (T1-2) the boxplot would consist of the distances between C1-T1, C1-T2, C2-T1, C2-T2, C3-T1, and C3-T2.
-   - With these plots you can see if the distances within a group is lower than the distances between that group and other groups.
+   - With these plots you can see if the distances within a group are smaller than the distances between that group and other groups.
 - __Pairwise results__: This section shows the statistical results comparing the different groups in pairwise fashion. The best values to look at are:
    - Sample size: Good to determine if there are enough samples for statistical strength.
    - q-value: Always go for q-values over p-values.
    
-[Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
+[Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
 ### Beta diversity: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1910,27 +1911,27 @@ __Note__: You will need to run the `qiime diversity beta-group-significance` wit
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-1. Is there a significant difference (q-value <0.05) between Corridor and Toilet (Location) for the weighted unifrac distances when using PERMANOVA? `r longmcq(opts_p)`
+1. Is there a significant difference (q-value <0.05) between __Corridor and Toilet (Location)__ for the __weighted unifrac__ distances when using __PERMANOVA__? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Corridor__", answer="__Toilet__")
 ```
-2. Which sample group, Corridor or Toilet, has larger weighted unifrac distances within the group? I.e. which boxplot has the bigger IQR: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot? `r longmcq(opts_p)`
+2. Which sample group, Corridor or Toilet, has larger __weighted unifrac__ distances within the group? I.e. which boxplot has the IQR with the largest values: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
 ```
-3. In the weighted unifrac distances "Distances to Corridor" box plots, which box plot has lower values? `r longmcq(opts_p)`
+3. In the __weighted unifrac__ distances "Distances to Corridor" box plots, which box plot has lower values? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Yes__", "__No__")
 ```
-4. Is there a significant difference (q-value <0.05) between Corridor and Toilet (Location) for the Bray Curtis distances when using PERMANOVA? `r longmcq(opts_p)`
+4. Is there a significant difference (q-value <0.05) between __Corridor and Toilet (Location)__ for the __Bray Curtis__ distances when using __PERMANOVA__? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
 ```
-5. Is there a significant difference (q-value <0.05) between Entrance and MainBuilding (Place) for the Unweighted Unifrac distances when using ANOSIM? `r longmcq(opts_p)`
+5. Is there a significant difference (q-value <0.05) between __Entrance and MainBuilding (Place)__ for the __Unweighted Unifrac__ distances when using __ANOSIM__? `r longmcq(opts_p)`
 
 ### Beta diversity: summary
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -1940,6 +1941,8 @@ knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 Viewing the beta diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.
 
 Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.
+
+If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin] (https://docs.qiime2.org/2023.5/plugins/available/diversity/adonis/).
 
 We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.
 
@@ -1993,7 +1996,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
   - In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
 - __`--o-collapsed-table`__: Output artifact containing the abundance table for the specified taxa level.
 
-[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2022.2/plugins/available/taxa/collapse/)
+[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2023.5/plugins/available/taxa/collapse/)
 
 ## Pseudo counts
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -2018,7 +2021,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 - __`--p-pseudocount`__: Value to add to all counts in the feature table.
 - __`--o-composition-table`__: Output artifact containing feature abundance table with added pseudocounts.
 
-[QIIME2 docs on `qiime composition add-pseudocount`](https://docs.qiime2.org/2022.2/plugins/available/composition/add-pseudocount/)
+[QIIME2 docs on `qiime composition add-pseudocount`](https://docs.qiime2.org/2023.5/plugins/available/composition/add-pseudocount/)
 
 ## ANCOM
 ```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
@@ -2044,7 +2047,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--m-metadata-column`__: Metadata column within the metadata file to use for the differential abundance analysis.
 - __`--o-visualization`__: Output visualisation artifact containing the ANCOM results.
 
-[QIIME2 docs on `qiime composition ancom`](https://docs.qiime2.org/2022.2/plugins/available/composition/ancom/)
+[QIIME2 docs on `qiime composition ancom`](https://docs.qiime2.org/2023.5/plugins/available/composition/ancom/)
 
 ## ANCOM: visualise
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }

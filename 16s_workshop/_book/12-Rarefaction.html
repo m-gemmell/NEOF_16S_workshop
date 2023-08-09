@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-08-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
-<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diversity: visualise</a>
 <ul>
 <li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
@@ -335,14 +335,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/rarefaction.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community.</p>
 <p>To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction.
-Rarefaction is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.</p>
+Rarefaction is performed by reducing all the samples to the same sequence count, by random sub-sampling of the sequences.</p>
 <p>For example, if we rarefy to a depth of 2000 for all samples:</p>
 <ul>
 <li>Samples with depths of &lt;2000 will be removed.</li>
 <li>Samples with depths of 2000 will be unchanged.</li>
 <li>Samples with depths of &gt;2000 will have all reads removed except for a random subsample of 2000.</li>
 </ul>
-<p>Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample smaller subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled).</p>
+<p>Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-149"></span>
 <img src="figures/rarefaction_example.png" alt="Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau." width="80%" />
 <p class="caption">
@@ -352,7 +352,7 @@ Figure 12.1: Example rarefaction curve: We can see that Series 1 plateaus at ~7,
 <div id="rarefaction-run" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Rarefaction: run<a href="12-Rarefaction.html#rarefaction-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/play_blue.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot the rarefaction curve using different alpha-diversity metrics. Here, we will use diversity metrics (<a href="18-Appendix.html#obvs">observed features</a>, <a href="18-Appendix.html#simpson">Simpson</a>, <a href="18-Appendix.html#shannon">Shannon</a>, <a href="18-Appendix.html#faith">Faith’s PD</a>) as well as an evenness metric (<a href="18-Appendix.html#simpsone">Simpson’s evenness</a>).</p>
+<p>Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different alpha-diversity metrics. Here, we will use diversity metrics (<a href="18-Appendix.html#obvs">observed features</a>, <a href="18-Appendix.html#simpson">Simpson</a>, <a href="18-Appendix.html#shannon">Shannon</a>, <a href="18-Appendix.html#faith">Faith’s PD</a>) as well as an evenness metric (<a href="18-Appendix.html#simpsone">Simpson’s evenness</a>).</p>
 <p><strong>Note</strong>: See the <a href="18-Appendix.html#alphamet">appendix</a> at the end of this bookdown for details on each metric.</p>
 <p>You may want to exclude <code>--i-phylogeny rooted-tree.qza</code> and <code>--p-metrics faith_pd</code> for markers such as ITS where you will not create a phylogenetic tree.</p>
 <p><strong>Important</strong>: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it. Optionally, you can <a href="12-Rarefaction.html#cprarefaction">copy the output</a> instead of running it.</p>
@@ -399,7 +399,7 @@ Figure 12.1: Example rarefaction curve: We can see that Series 1 plateaus at ~7,
 </ul></li>
 <li><strong><code>--o-visualization</code></strong>: Output visualisation artifact containing the rarefaction plots.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2022.2/plugins/available/diversity/alpha-rarefaction/">QIIME2 docs on <code>qiime diversity alpha-rarefaction</code></a></p>
+<p><a href="https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-rarefaction/">QIIME2 docs on <code>qiime diversity alpha-rarefaction</code></a></p>
 </div>
 <div id="cprarefaction" class="section level3 hasAnchor" number="12.1.1">
 <h3><span class="header-section-number">12.1.1</span> Copy rarefaction output<a href="12-Rarefaction.html#cprarefaction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -420,7 +420,7 @@ Figure 12.1: Example rarefaction curve: We can see that Series 1 plateaus at ~7,
 <li>If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected.</li>
 <li>If the lines in the observed feature plot do not level out:
 <ul>
-<li>The richness of the samples may have not been fully observed (because too few sequences were collected)</li>
+<li>The richness of the samples may have not been fully observed (because too few sequences were collected).</li>
 <li>Or it could be an indicator that a lot of sequencing errors remain in the data (which is being mistaken for novel diversity).</li>
 </ul></li>
 </ul></li>
@@ -455,25 +455,25 @@ Figure 12.1: Example rarefaction curve: We can see that Series 1 plateaus at ~7,
 <p><img src="figures/question_bubble_blue.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
-<li>At approximately what sequencing depth do the rarefaction of most of the samples (&gt;90%) plateaued?
-<div id="radio_KCDILNTAZS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KCDILNTAZS" value=""></input> <span><strong>10,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KCDILNTAZS" value=""></input> <span><strong>25,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KCDILNTAZS" value="answer"></input> <span><strong>50,000</strong></span></label>
+<li>At approximately what sequencing depth do the rarefaction curves of most of the samples (&gt;90%) plateaue?
+<div id="radio_HAQRUORACP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HAQRUORACP" value=""></input> <span><strong>10,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HAQRUORACP" value=""></input> <span><strong>25,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HAQRUORACP" value="answer"></input> <span><strong>50,000</strong></span></label>
 </div></li>
 <li>Comparing the two <strong>Locations</strong>, which has higher evenness scores (simpson_e)?
-<div id="radio_CKAWAZGVUX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CKAWAZGVUX" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CKAWAZGVUX" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_FMKDYCFZCI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FMKDYCFZCI" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FMKDYCFZCI" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>Comparing the two <strong>Locations</strong>, which has a higher Faith's PD scores?
-<div id="radio_JGSOFDORVC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JGSOFDORVC" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JGSOFDORVC" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_HYPRUHLLVZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HYPRUHLLVZ" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HYPRUHLLVZ" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>When comparing the two <strong>Places</strong>, at approximately what sequencing depth are there only 6 MainBuilding samples remaining?
-<div id="radio_NRFEABVOBK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NRFEABVOBK" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NRFEABVOBK" value="answer"></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NRFEABVOBK" value=""></input> <span><strong>115,000 </strong></span></label>
+<div id="radio_ZBVXNYSHFB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZBVXNYSHFB" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZBVXNYSHFB" value="answer"></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZBVXNYSHFB" value=""></input> <span><strong>115,000 </strong></span></label>
 </div></li>
 <li>When comparing the two <strong>Places</strong>, at approximately what sequencing depth are there only 5 Entrance samples remaining?
-<div id="radio_NPWYWSYQUZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NPWYWSYQUZ" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NPWYWSYQUZ" value=""></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NPWYWSYQUZ" value="answer"></input> <span><strong>115,000</strong></span></label>
+<div id="radio_TUEKQQECJW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TUEKQQECJW" value=""></input> <span><strong>70,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TUEKQQECJW" value=""></input> <span><strong>90,000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TUEKQQECJW" value="answer"></input> <span><strong>115,000</strong></span></label>
 </div></li>
 </ol>
 </div>

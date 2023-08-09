@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-08-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html"><i class="fa fa-check"></i><b>14</b> Alpha diveristy statistical analysis</a>
 <ul>
 <li class="chapter" data-level="14.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-run"><i class="fa fa-check"></i><b>14.1</b> Alpha diversity: run</a></li>
-<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diveristy-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diveristy: visualise</a>
+<li class="chapter" data-level="14.2" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-visualise"><i class="fa fa-check"></i><b>14.2</b> Alpha diversity: visualise</a>
 <ul>
 <li class="chapter" data-level="14.2.1" data-path="14-Alpha_diversity.html"><a href="14-Alpha_diversity.html#alpha-diversity-mcqs"><i class="fa fa-check"></i><b>14.2.1</b> Alpha diversity: MCQs</a></li>
 </ul></li>
@@ -333,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta_stats" class="section level1 hasAnchor" number="15">
 <h1><span class="header-section-number">Chapter 15</span> Beta diversity statistical analysis<a href="15-Beta_diversity_analysis.html#beta_stats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/beta_div.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use 'PERMANOVA' analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.</p>
+<p>We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use <strong>'PERMANOVA'</strong> analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.</p>
 <div id="beta-diveristy-pcoa" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Beta diveristy: PCoA<a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/Scatterplot_2.png" width="15%" style="display: block; margin: auto;" /></p>
@@ -348,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta-diversity-run" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> Beta diversity: run<a href="15-Beta_diversity_analysis.html#beta-diversity-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="figures/play_green.png" width="15%" style="display: block; margin: auto;" /></p>
-<p>To carry this out our first 'PERMANOVA' analysis we will use the <code>weighted_unifrac_distance_matrix.qza</code> file. It contains all the sample pairwise weighted unifrac dissimilarity distances.</p>
-<p>The 'Location' metadata column with the weighted UniFrac metric will be used as there appeared to be a separation between the Corridor and Toilet samples.</p>
+<p>To carry this out our first <strong>'PERMANOVA'</strong> analysis we will use the <code>weighted_unifrac_distance_matrix.qza</code> file. It contains all the sample pairwise <strong>weighted unifrac</strong> dissimilarity distances.</p>
+<p>The <strong>'Location'</strong> metadata column with the <strong>weighted UniFrac</strong> metric will be used as there appears to be a separation between the Corridor and Toilet samples.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb30-1"><a href="15-Beta_diversity_analysis.html#cb30-1" tabindex="-1"></a><span class="ex">qiime</span> diversity beta-group-significance <span class="dt">\</span></span>
 <span id="cb30-2"><a href="15-Beta_diversity_analysis.html#cb30-2" tabindex="-1"></a>--i-distance-matrix weighted_unifrac_distance_matrix.qza <span class="dt">\</span></span>
 <span id="cb30-3"><a href="15-Beta_diversity_analysis.html#cb30-3" tabindex="-1"></a>--m-metadata-file ../metadata.file.txt <span class="dt">\</span></span>
@@ -379,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong><code>--o-visualization</code></strong>: The output artifact containing the visualisation.</li>
 </ul></li>
 </ul>
-<p><a href="https://docs.qiime2.org/2022.2/plugins/available/diversity/beta-group-significance/">QIIME2 docs on <code>qiime diversity beta-group-significance</code></a></p>
+<p><a href="https://docs.qiime2.org/2023.5/plugins/available/diversity/beta-group-significance/">QIIME2 docs on <code>qiime diversity beta-group-significance</code></a></p>
 </div>
 </div>
 <div id="beta-diversity-visualise" class="section level2 hasAnchor" number="15.3">
@@ -395,7 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Corridor boxplot: This boxplot represents all the pairwise distances within the Corridor samples. If you had 3 corridor samples (C1-3) the boxplot would consist of the distances between C1-C2, C1-C3, and C2-C3.</li>
 <li>Toilet boxplot: This boxplot represents the pairwise distances between all the corridor samples and toilet samples. If you had 3 corridor samples (C1-3) and 2 toilet samples (T1-2) the boxplot would consist of the distances between C1-T1, C1-T2, C2-T1, C2-T2, C3-T1, and C3-T2.</li>
 </ul></li>
-<li>With these plots you can see if the distances within a group is lower than the distances between that group and other groups.</li>
+<li>With these plots you can see if the distances within a group are smaller than the distances between that group and other groups.</li>
 </ul></li>
 <li><strong>Pairwise results</strong>: This section shows the statistical results comparing the different groups in pairwise fashion. The best values to look at are:
 <ul>
@@ -403,32 +403,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>q-value: Always go for q-values over p-values.</li>
 </ul></li>
 </ul>
-<p><a href="https://view.qiime2.org/visualization/?type=html&amp;src=https%3A%2F%2Fdocs.qiime2.org%2F2021.2%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv">Example with more groups in the metadata column</a></p>
+<p><a href="https://view.qiime2.org/visualization/?type=html&amp;src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv">Example with more groups in the metadata column</a></p>
 <div id="beta-diversity-mcqs" class="section level3 hasAnchor" number="15.3.1">
 <h3><span class="header-section-number">15.3.1</span> Beta diversity: MCQs<a href="15-Beta_diversity_analysis.html#beta-diversity-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><img src="figures/question_bubble_green.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Attempt the below questions.</p>
 <p><strong>Note</strong>: You will need to run the <code>qiime diversity beta-group-significance</code> with different options and view the new files to answer some of the questions.</p>
 <ol style="list-style-type: decimal">
-<li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the weighted unifrac distances when using PERMANOVA?
-<div id="radio_ZMSWNKQTEO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZMSWNKQTEO" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZMSWNKQTEO" value=""></input> <span><strong>No</strong></span></label>
+<li>Is there a significant difference (q-value &lt;0.05) between <strong>Corridor and Toilet (Location)</strong> for the <strong>weighted unifrac</strong> distances when using <strong>PERMANOVA</strong>?
+<div id="radio_WBUEAKGXYH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WBUEAKGXYH" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WBUEAKGXYH" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
-<li>Which sample group, Corridor or Toilet, has larger weighted unifrac distances within the group? I.e. which boxplot has the bigger IQR: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot?
-<div id="radio_ORXHWKPSFV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ORXHWKPSFV" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ORXHWKPSFV" value="answer"></input> <span><strong>Toilet</strong></span></label>
+<li>Which sample group, Corridor or Toilet, has larger <strong>weighted unifrac</strong> distances within the group? I.e. which boxplot has the IQR with the largest values: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot?
+<div id="radio_TMTBJFQMJL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TMTBJFQMJL" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TMTBJFQMJL" value="answer"></input> <span><strong>Toilet</strong></span></label>
 </div></li>
-<li>In the weighted unifrac distances "Distances to Corridor" box plots, which box plot has lower values?
-<div id="radio_YSQZKJKIGO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YSQZKJKIGO" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YSQZKJKIGO" value=""></input> <span><strong>Toilet</strong></span></label>
+<li>In the <strong>weighted unifrac</strong> distances "Distances to Corridor" box plots, which box plot has lower values?
+<div id="radio_KAMJGXHJUP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KAMJGXHJUP" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KAMJGXHJUP" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
-<li>Is there a significant difference (q-value &lt;0.05) between Corridor and Toilet (Location) for the Bray Curtis distances when using PERMANOVA?
-<div id="radio_TXWPIJYQOW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TXWPIJYQOW" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXWPIJYQOW" value=""></input> <span><strong>No</strong></span></label>
+<li>Is there a significant difference (q-value &lt;0.05) between <strong>Corridor and Toilet (Location)</strong> for the <strong>Bray Curtis</strong> distances when using <strong>PERMANOVA</strong>?
+<div id="radio_LDJDHOZBWT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LDJDHOZBWT" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LDJDHOZBWT" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
-<li>Is there a significant difference (q-value &lt;0.05) between Entrance and MainBuilding (Place) for the Unweighted Unifrac distances when using ANOSIM?
-<div id="radio_SIEJLTXCJL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SIEJLTXCJL" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SIEJLTXCJL" value="answer"></input> <span><strong>No</strong></span></label>
+<li>Is there a significant difference (q-value &lt;0.05) between <strong>Entrance and MainBuilding (Place)</strong> for the <strong>Unweighted Unifrac</strong> distances when using <strong>ANOSIM</strong>?
+<div id="radio_OAXPXSCCYM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OAXPXSCCYM" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OAXPXSCCYM" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -437,6 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/sum_green.png" width="15%" style="display: block; margin: auto;" /></p>
 <p>Viewing the beta diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.</p>
 <p>Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.</p>
+<p>If you want to carry out multi-way ADONIS tests you can use the [<code>qiime diversity adonis</code> plugin] (<a href="https://docs.qiime2.org/2023.5/plugins/available/diversity/adonis/" class="uri">https://docs.qiime2.org/2023.5/plugins/available/diversity/adonis/</a>).</p>
 <p>We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.</p>
 
 </div>
