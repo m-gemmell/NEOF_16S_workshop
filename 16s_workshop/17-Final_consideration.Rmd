@@ -13,7 +13,7 @@ If you are happy with the composition, you can then explore the ecological diffe
 
 + Inferring ecological interaction networks (SPIEC-EASI).
 + More statistical analyses with STAMP.
-+ Or you can import your results in R to analyse them with Phyloseq.
++ Or you can import your results in R to analyse them with Phyloseq. We have workshop on this, check our [training webpage](https://neof.org.uk/training/) to see if it is open for registration.
 
 __CONGRATULATIONS YOU HAVE FINISHED THE ANALYSIS!__
 If you have still time available you can move onto the Supplemental bookdown.

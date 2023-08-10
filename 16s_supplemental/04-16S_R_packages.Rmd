@@ -3,7 +3,7 @@
 knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
 ```  
 
-There are various R packages that can be used to analyse 16S data. Generally these will take the output from QIIME2 so you can carry out further downstream analysis on the QIIME2 created ASV table, taxonomy, and phylogenetic tree.
+There are various R packages that can be used to analyse 16S data. We have a workshop on how to use the below tools, check our [training page](https://neof.org.uk/training/) to see if it open for registration. Generally these will take the output from QIIME2 so you can carry out further downstream analysis on the QIIME2 created ASV table, taxonomy, and phylogenetic tree.
 
 I would recommend only those with a good foundation in R to use these packages. If you do not have this I would recommend trying to gain it.
 
