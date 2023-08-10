@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-09" />
+<meta name="date" content="2023-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -274,11 +274,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
-<li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
-<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
-<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-bar-plots"><i class="fa fa-check"></i><b>16.4</b> ANCOMBC bar plots</a>
+<ul>
+<li class="chapter" data-level="16.4.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-bar-plots-visualise"><i class="fa fa-check"></i><b>16.4.1</b> ANCOM-BC bar plots: visualise</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM-BC: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM-BC: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -334,11 +340,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 17</span> Final consideration<a href="17-Final_consideration.html#final" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="figures/finish.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, you can consider the following points.</p>
-<p>Are there any missing taxa you know should be there? These taxa may be present but not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis.</p>
+<p>Are there any missing taxa you know should be there? These taxa may be present but are not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes2 or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis.</p>
 <p>The failure could be right at the beginning of the project design. It is worth checking if the PCR primers you are using can amplify these species. Are the primers known to impose bias on the community you are amplifying? Are the primers unable to amplify some taxon whose 16S rRNA sequences are too distant from the rest of the community? The literature may be able to help you on this topic.</p>
 <p>If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:</p>
 <ul>
-<li>Functional analysis (PICRUSt2). We will cover this later!</li>
+<li>Functional analysis (PICRUSt2). Covered in supplemental!</li>
 <li>Inferring ecological interaction networks (SPIEC-EASI).</li>
 <li>More statistical analyses with STAMP.</li>
 <li>Or you can import your results in R to analyse them with Phyloseq.</li>

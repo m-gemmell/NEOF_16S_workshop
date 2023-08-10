@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-09" />
+<meta name="date" content="2023-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -274,11 +274,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
-<li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
-<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
-<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-bar-plots"><i class="fa fa-check"></i><b>16.4</b> ANCOMBC bar plots</a>
+<ul>
+<li class="chapter" data-level="16.4.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-bar-plots-visualise"><i class="fa fa-check"></i><b>16.4.1</b> ANCOM-BC bar plots: visualise</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM-BC: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM-BC: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -508,27 +514,27 @@ Silva 16S rRNA database
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend)
-<div id="radio_WAUNDOOEDZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WAUNDOOEDZ" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WAUNDOOEDZ" value=""></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WAUNDOOEDZ" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_CDEEDPYYOO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CDEEDPYYOO" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CDEEDPYYOO" value=""></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CDEEDPYYOO" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 <li>At taxonomic level 5, what is the most abundant taxon for sample 1TE?
-<div id="radio_LGKGEUVGAS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LGKGEUVGAS" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LGKGEUVGAS" value="answer"></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LGKGEUVGAS" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_SOJDCZVOHN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SOJDCZVOHN" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SOJDCZVOHN" value="answer"></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SOJDCZVOHN" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 </ol>
 <p><strong>Note</strong>: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, right sample has the highest relative abundance) drop down to "Descending" may be useful.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Which sample has the highest relative abundance of the class Actinomycetia (Taxonomic level 3)?
-<div id="radio_TWOMEDONDM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TWOMEDONDM" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TWOMEDONDM" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TWOMEDONDM" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_DPWVPYWFWQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DPWVPYWFWQ" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DPWVPYWFWQ" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DPWVPYWFWQ" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)?
-<div id="radio_UAQLDQACPV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UAQLDQACPV" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UAQLDQACPV" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UAQLDQACPV" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_YKLECSCQIZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YKLECSCQIZ" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YKLECSCQIZ" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YKLECSCQIZ" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the fourth highest relative abundance of the phylum Bacteroidota (Taxonomic level 2)?
-<div id="radio_OAFGRXKWFM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OAFGRXKWFM" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OAFGRXKWFM" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OAFGRXKWFM" value="answer"></input> <span><strong>3TM</strong></span></label>
+<div id="radio_CFGDOFDJGE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CFGDOFDJGE" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CFGDOFDJGE" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CFGDOFDJGE" value="answer"></input> <span><strong>3TM</strong></span></label>
 </div></li>
 </ol>
 </div>

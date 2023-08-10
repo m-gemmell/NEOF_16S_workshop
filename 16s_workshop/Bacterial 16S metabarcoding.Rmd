@@ -1952,202 +1952,310 @@ We know there is a difference between Corridor and Toilet samples, but are there
 library(webexercises)
 ```
 # Differential abundance analysis {#differential}
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
-``` 
+```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+knitr::include_graphics(path = "figures/balance_scale.png", auto_pdf = TRUE)
+```
 
-The ANCOM method aims to identify differentially abundant taxa between sample groups. It  is a complex method requiring different steps.
+The [ANCOM-BC](https://www.nature.com/articles/s41467-020-17041-7) method aims to identify differentially abundant taxa between sample groups. It is an improvement of the original ANCOM method but with added bias correction. This bias correction aims to account for the bias caused by the difference in sampling/depth across the samples.
 
-The steps to carry this out are:
+Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups. This can be used to detect organisms in high abundance in diseased states versus healthy states. This helps determine what are the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
 
-1. Collapse the ASVs into taxa
-2. Add pseudo-count to the abundance table to convert ‘0’ to ‘1’
-3. Run ANCOM selecting a categorical metadata to test
-
-If you are still in ‘dada2-diversity-34583’ directory, please remember to move out:
+If you are still in 'dada2-diversity-34583' directory, please remember to move out:
 
 ```{bash, eval=FALSE}
 cd ..
 ```
 
 ## Taxa collapse
+
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/collapse.png", auto_pdf = TRUE)
-``` 
+```
 
-First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose greengenes level 5 which equates to family.
+First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose Greengenes2 level 5 which equates to family.
 
 ```{bash, eval=FALSE}
 qiime taxa collapse \
 --i-table table-dada2.qza \
 --i-taxonomy taxonomy.sklearn.qza \
 --p-level 5 \
---o-collapsed-table comp-ancom-table-l5.qza
+--o-collapsed-table table-l5.qza
 ```
 
-#### Parameters {-}
+#### Parameters {.unnumbered}
+
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
-- __`--i-table`__: Input artifact containing the abundance table (non-rarefied) for the identified variants.
-- __`--i-taxonomy`__: Input artifact containing the taxonomic classifications of the ASVs.
-- __`--p-level`__: The taxonomic level at which the features should be collapsed.
-  - In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
-- __`--o-collapsed-table`__: Output artifact containing the abundance table for the specified taxa level.
+-   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) for the identified variants.
+-   **`--i-taxonomy`**: Input artifact containing the taxonomic classifications of the ASVs.
+-   **`--p-level`**: The taxonomic level at which the features should be collapsed.
+    -   In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
+-   **`--o-collapsed-table`**: Output artifact containing the abundance table for the specified taxa level.
 
 [QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2023.5/plugins/available/taxa/collapse/)
 
-## Pseudo counts
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/plus_1.png", auto_pdf = TRUE)
-``` 
-Add pseudo-count to the abundance table with the purpose of converting 0s to 1s. This is required as ANCOM will fail with abundance values of 0.
+## ANCOM-BC analysis
 
-```{bash, eval=FALSE}
-qiime composition add-pseudocount \
---i-table comp-ancom-table-l5.qza \
---p-pseudocount 1 \
---o-composition-table comp-ancom-table-l5-pse.qza
-```
-
-#### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
-```
-
-- __`--i-table`__: Input artifact containing the abundance feature table.
-  - In this case the features are families but it can be other taxa levels or even ASVs.
-- __`--p-pseudocount`__: Value to add to all counts in the feature table.
-- __`--o-composition-table`__: Output artifact containing feature abundance table with added pseudocounts.
-
-[QIIME2 docs on `qiime composition add-pseudocount`](https://docs.qiime2.org/2023.5/plugins/available/composition/add-pseudocount/)
-
-## ANCOM
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/toilet_corridor.png", auto_pdf = TRUE)
-``` 
-Finally, we run ANCOM. In this instance we will use Location as the metadata so we can find biomarkers that differentiate between Corridor and Toilet.
-
-```{bash, eval=FALSE}
-qiime composition ancom \
---i-table comp-ancom-table-l5-pse.qza \
---m-metadata-file metadata.file.txt \
---m-metadata-column Location \
---o-visualization l5-ancom-Location.qzv
 ```
 
-#### Parameters {-}
+With our family based abundance table we can carry out ANCOM-BC to produce the differentials file.
+
+```{bash, eval=FALSE}
+qiime composition ancombc \
+--i-table table-l5.qza \
+--m-metadata-file metadata.file.txt \
+--p-formula Location \
+--o-differentials l5-ancombc-Location.qza
+```
+
+#### Parameters {.unnumbered}
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
+```
+
+-   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.
+-   **`--m-metadata-file`**: [Metadata file](#metadata.file.txt) for our samples.
+-   **`--p-formula`**: A formula for how the microbial absolute abundances for each taxon depend on the variables within the `metadata`.
+    -   In this case we are specifying the metadata column, Location, within the metadata file to use for the statistical analysis. We will therefore see if there is any differentially abundant features between Corridor and Toilet.
+    -   Multiple metadata columns and reference groups can be used with an example in the [documentation](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/).
+-   **`--o-differentials`**: Output artifact containing the calculated differentials. This will be used to produce visualisation artifacts.
+
+[QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/)
+
+## ANCOMBC tabulate
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
+```
+
+Next we can create a visualisation artifact containing tabular views of the ANCOM-BC output.
+
+```{bash, eval=FALSE}
+qiime composition tabulate \
+--i-data l5-ancombc-Location.qza \
+--o-visualization l5-ancombc-Location.qzv
+```
+
+#### Parameters {.unnumbered}
+
 ```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
-- __`--i-table`__: Input artifact containing feature abundance table with added pseudocounts.
-- __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
-- __`--m-metadata-column`__: Metadata column within the metadata file to use for the differential abundance analysis.
-- __`--o-visualization`__: Output visualisation artifact containing the ANCOM results.
+-   **`--i-data`**: Input artifact files containing the calculated differentials. 
+- **`--o-visualization`**: The output artifact containing the tabular visualisations.
 
-[QIIME2 docs on `qiime composition ancom`](https://docs.qiime2.org/2023.5/plugins/available/composition/ancom/)
+[QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2023.5/plugins/available/composition/tabulate/)
 
-## ANCOM: visualise
+### ANCOMBC tabulate: visualise
+
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
+```
+
+Load the resulting visualisation (`l5-ancombc-Location.qzv`) file in QIIME2 view.
+
+There are tabs for the tables of five different metrics. These tables have a column for:
+
+- The intercept which can be ignored by most, as we will do
+- The value of the non reference group compared to the reference group.
+
+In this case the program chose the reference group as the first group in alphabetical order (Location::Corridor).
+
+`r hide("Change reference group to Toilet")` 
+For your interest, you could choose Toilet as the reference group by running the below command.
+```{bash, eval=FALSE}
+qiime composition ancombc \
+--i-table table-l5.qza \
+--m-metadata-file metadata.file.txt \
+--p-formula Location \
+--o-differentials l5-ancombc-Location-Toilet.qza \
+--p-reference-levels Location::Toilet
+```
+`r unhide()`
+
+-   **lfc**: This contains the log (natural log) fold changes with respect to the reference group.
+    -   For example The values for LocationToilet would equal LFC(Toilet - Corridor).
+    -   A positive value means the abundances are higher in the comparison group (Toilet) and lower in the ref (Corridor).
+    -   A negative value means the abundances are lower in the comparison group (Toilet) and higher in the ref (Corridor).
+    -   The intercept value is the grand mean and is likely not of interest.
+-   **p_val**: The P-value.
+-   **q_val**: The Q-value.
+    -   Values lower than 0.05 indicate the feature (taxon) is differentially abundant between the reference and comparison group.
+-   **se**: The standard error for the LFC values. 
+- **w**: The W statistic.
+    -   LFC value divided by the standard error.
+    -   The further away from 0 this value is the more significant the feature is differentially abundant between groups.
+
+## ANCOMBC bar plots
+```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+knitr::include_graphics(path = "figures/bar_chart_horizontal.png", auto_pdf = TRUE)
+```
+
+Next we can create a visualisation artifact containing bar plots of the ANCOM-BC output.
+
+```{bash, eval=FALSE}
+qiime composition da-barplot \
+--i-data l5-ancombc-Location.qza \
+--o-visualization l5-ancombc-Location-barplot.qzv \
+--p-level-delimiter ";"
+```
+
+#### Parameters {.unnumbered}
+
+```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
+```
+
+-   **`--i-data`**: Input artifact file containing the calculated differentials.
+-   **`--o-visualization`**: The output artifact containing the bar plot visualisations.
+-   **`--p-level-delimiter`**: Splits levels of hierarchical taxonomic information.
+    -   We chose ";" as Greengenes2 splits the taxonomic levels with this delimiter.
+    -   You can check which delimiter is used in your [**"taxa-bar-plot.dada2.qzv" file**](#taxabar).
+
+[QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2023.5/plugins/available/composition/da-barplot/)
+
+### ANCOM-BC bar plots: visualise
+
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_red.png", auto_pdf = TRUE)
 ```
 
-This produces a visualisation file (`l5-ancom-Location.qzv`, opened with QIIME2 view) with the following sections:
+Load the resulting visualisation (`l5-ancombc-Location-barplot.qzv`) file in QIIME2 view.
 
-- __ANCOM Volcano Plot__: A dot plot of the W statistic (y) against the CLR (x).
-   - Each dot represents a feature (family in this case) in the dataset.
-   - W statistic: The higher this value the more significant the feature is differentially abundant between groups.
-   - CLR (centred log ratio): In practical terms this is how different the abundance of the feature is between the metadata groups in terms of log-fold change. The further the value is from 0 the more different the abundance.
-- __ANCOM statistical results__: This shows the name and W statistic of features found to be differentially abundant.
-   - ANCOM automatically chooses a W statistic threshold for significance.
-- __Percentile abundances of features by group__: This is a table which can be thought of as containing the text version of a boxplot. This shows the abundances of the differentially abundant features for the different groups.
+This contains one large bar plot. This displays the LFC values (x-axis) against the features found as differentially abundant (y-axis). The LFC bars also display their standard error as black lines.
 
-`r hide("W-statistic")`
-The statistical definition of the W-statistic is:
+**Reminder**: Just like in the tabular visualisation, positive values are in higher abundance in the comparison group (Toilet) compared to the reference group (Corridor). I.e. positive values are enriched in the comparison group compared to the reference group.
 
-The number of times the log-ratio of a taxon with every other taxon being tested was detected to be significantly different across groups.
+You can hover over a bar to view more details on the biomarker (differentially abundant feature).
 
-For even more info you can check out this [response](https://forum.qiime2.org/t/specify-w-cutoff-for-anacom/1844/10) on the QIIME 2 forum.
+## ANCOM-BC: MCQs
 
-`r unhide()`
-
-## ANCOM: MCQs
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
 ```
 
-Attempt the below MCQs.
+Attempt the below MCQs using the table and bar plot visualisation files.
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Clostridiaceae__", "__Moraxellaceae__", "__Pseudomonadaceae__")
+opts_p <- c(answer="__Clostridiaceae_222000__", "__Gemellaceae__", "__Weeksellaceae__")
 ```
-1. Which family is detected as a biomarker? I.e. which family is differentially abundant between Corridor and Toilet? `r longmcq(opts_p)`
+
+1.  Which family has the highest positive LFC value? I.e. The family with the highest enrichment in Toilet (comparison) compared to Corridor (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Corridor__", answer="__Toilet__")
+opts_p <- c("__Clostridiaceae_222000__", "__Gemellaceae__", answer="__Weeksellaceae__")
 ```
-2. Which sample group has a higher abundance of the detected biomarker family? `r longmcq(opts_p)`
 
-Run ANCOM analysis for genus level (level 6). You will have to start from the `qiime taxa collapse` command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.
+2.  Which family has the lowest positive LFC value? I.e. The family with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Clostridiaceae_222000__", answer="__Gemellaceae__", "__Weeksellaceae__")
+```
+
+3.  Which family has a W statistic of -1.080713? `r longmcq(opts_p)`
+
+Run ANCOM-BC analysis for genus level (level 6). You will have to start from the `qiime taxa collapse` command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.
 
 `r hide("L6 ANCOM commands")`
+
 ```{bash, eval=FALSE}
 #Collapse taxa
 qiime taxa collapse \
 --i-table table-dada2.qza \
 --i-taxonomy taxonomy.sklearn.qza \
 --p-level 6 \
---o-collapsed-table comp-ancom-table-l6.qza
-#Add pseudo count
-qiime composition add-pseudocount \
---i-table comp-ancom-table-l6.qza \
---p-pseudocount 1 \
---o-composition-table comp-ancom-table-l6-pse.qza
-#ANCOM
-qiime composition ancom \
---i-table comp-ancom-table-l6-pse.qza \
+--o-collapsed-table table-l6.qza
+#ANCOM-BC
+qiime composition ancombc \
+--i-table table-l6.qza \
 --m-metadata-file metadata.file.txt \
---m-metadata-column Location \
---o-visualization l6-ancom-Location.qzv
+--p-formula Location \
+--o-differentials l6-ancombc-Location.qza
+#Tabulate
+qiime composition tabulate \
+--i-data l6-ancombc-Location.qza \
+--o-visualization l6-ancombc-Location.qzv
+#Bar plots
+qiime composition da-barplot \
+--i-data l6-ancombc-Location.qza \
+--o-visualization l6-ancombc-Location-barplot.qzv \
+--p-level-delimiter ";"
 ```
+
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c("__1__", answer="__2__", "__3__")
+opts_p <- c("__Chryseobacterium_796703__", answer="__Clostridium_T__",  "__Dialister__")
 ```
-3. How many genera are discovered as biomarkers? `r longmcq(opts_p)`
 
-Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed and added psuedocounts to create an ANCOM-ready family abundance table. Therefore you will only need to rerun the `qiime composition ancom` with changed options. Try running these commands yourself before looking at the contents of the below box.
+4.  Which genus has the highest positive LFC value? I.e. The genus with the highest enrichment in Toilet (comparison) compared to Corridor (reference). `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c(answer="__Chryseobacterium_796703__", "__Clostridium_T__",  "__Dialister__")
+```
+
+5.  Which genus has the lowest positive LFC value? I.e. The genus with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Chryseobacterium_796703__", "__Clostridium_T__",  answer="__Dialister__")
+```
+
+6.  Which genus has a standard error of 0.582710? `r longmcq(opts_p)`
+
+Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed the taxa. Therefore you can rerun the commands from the `qiime composition ancombc` step with changed options. Try running these commands yourself before looking at the contents of the below box.
 
 `r hide("Family ANCOM analysis with Place metadata comman")`
 ```{bash, eval=FALSE}
-#ANCOM
-qiime composition ancom \
---i-table comp-ancom-table-l5-pse.qza \
+#ANCOM-BC
+qiime composition ancombc \
+--i-table table-l5.qza \
 --m-metadata-file metadata.file.txt \
---m-metadata-column Place \
---o-visualization l5-ancom-Place.qzv
+--p-formula Place \
+--o-differentials l5-ancombc-Place.qza
+#Tabulate
+qiime composition tabulate \
+--i-data l5-ancombc-Place.qza \
+--o-visualization l5-ancombc-Place.qzv
+#Bar plots
+qiime composition da-barplot \
+--i-data l5-ancombc-Place.qza \
+--o-visualization l5-ancombc-Place-barplot.qzv \
+--p-level-delimiter ";"
 ```
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Yes__", answer="__No__")
+opts_p <- c(answer="__Akkermansiaceae__", "__Pseudomonadaceae__" , "__Rhodospirillaceae__")
 ```
-4. Are any families discovered as biomarkers when comparing the 2 Places? `r longmcq(opts_p)`
 
-## ANCOM: summary
+7.  Which family has the 3rd highest positive LFC value? I.e. The family with the highest enrichment in Main building (comparison) compared to Entrance (reference). `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Akkermansiaceae__", answer="__Pseudomonadaceae__" , "__Rhodospirillaceae__")
+```
+
+8.  Which family has the lowest positive LFC value? I.e. The family with the highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
+
+```{r, echo = FALSE}
+opts_p <- c("__Akkermansiaceae__", "__Pseudomonadaceae__" , answer="__Rhodospirillaceae__")
+```
+
+9.  Which family has a LFC of -0.795598 `r longmcq(opts_p)`
+
+## ANCOM-BC: summary
+
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
 ```
 
-We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family _Clostridiaceae_ was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.
-
-In contrast, we found no biomarkers when comparing the Places, Entrance and MainBuilding. This matched with our lack of difference in the beta diversity distances.
+We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family *Clostridiaceae* was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.
 
 That is the last of the analysis. There is only one more chapter on future considerations.
-
 
 <!--chapter:end:16-Differential_abundance.Rmd-->
 
@@ -2161,13 +2269,13 @@ knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 
 Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, you can consider the following points.
 
-Are there any missing taxa you know should be there? These taxa may be present but not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis. 
+Are there any missing taxa you know should be there? These taxa may be present but are not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes2 or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis. 
 
 The failure could be right at the beginning of the project design. It is worth checking if the PCR primers you are using can amplify these species. Are the primers known to impose bias on the community you are amplifying? Are the primers unable to amplify some taxon whose 16S rRNA sequences are too distant from the rest of the community? The literature may be able to help you on this topic.
 
 If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:
 
-+ Functional analysis (PICRUSt2). We will cover this later!
++ Functional analysis (PICRUSt2). Covered in supplemental!
 + Inferring ecological interaction networks (SPIEC-EASI).
 + More statistical analyses with STAMP.
 + Or you can import your results in R to analyse them with Phyloseq.

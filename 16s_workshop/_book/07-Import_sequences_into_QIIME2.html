@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-09" />
+<meta name="date" content="2023-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -274,11 +274,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#pseudo-counts"><i class="fa fa-check"></i><b>16.2</b> Pseudo counts</a></li>
-<li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom"><i class="fa fa-check"></i><b>16.3</b> ANCOM</a></li>
-<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-visualise"><i class="fa fa-check"></i><b>16.4</b> ANCOM: visualise</a></li>
-<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM: MCQs</a></li>
-<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM: summary</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-bar-plots"><i class="fa fa-check"></i><b>16.4</b> ANCOMBC bar plots</a>
+<ul>
+<li class="chapter" data-level="16.4.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-bar-plots-visualise"><i class="fa fa-check"></i><b>16.4.1</b> ANCOM-BC bar plots: visualise</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-mcqs"><i class="fa fa-check"></i><b>16.5</b> ANCOM-BC: MCQs</a></li>
+<li class="chapter" data-level="16.6" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-summary"><i class="fa fa-check"></i><b>16.6</b> ANCOM-BC: summary</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="17-Final_consideration.html"><a href="17-Final_consideration.html"><i class="fa fa-check"></i><b>17</b> Final consideration</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -425,32 +431,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_green.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>What is the minimum number of forward reads across the samples?
-<div id="radio_RIMKRDGRDS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RIMKRDGRDS" value="answer"></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RIMKRDGRDS" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RIMKRDGRDS" value=""></input> <span><strong>174,951</strong></span></label>
+<div id="radio_KCRFQCKPKQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KCRFQCKPKQ" value="answer"></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KCRFQCKPKQ" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KCRFQCKPKQ" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the maximum number of forward reads across the samples?
-<div id="radio_JGCPKBWFKG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JGCPKBWFKG" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JGCPKBWFKG" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JGCPKBWFKG" value="answer"></input> <span><strong>174,951</strong></span></label>
+<div id="radio_MTWPYCJZJV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MTWPYCJZJV" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MTWPYCJZJV" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MTWPYCJZJV" value="answer"></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the mean number of forward reads across the samples?
-<div id="radio_WBTDCLVGTB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WBTDCLVGTB" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WBTDCLVGTB" value="answer"></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WBTDCLVGTB" value=""></input> <span><strong>174,951</strong></span></label>
+<div id="radio_CDRYECPLAS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CDRYECPLAS" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CDRYECPLAS" value="answer"></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CDRYECPLAS" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>Which sample has 134,737 forward reads?
-<div id="radio_YPIIFEJTAU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YPIIFEJTAU" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YPIIFEJTAU" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YPIIFEJTAU" value="answer"></input> <span><strong>3K1M</strong></span></label>
+<div id="radio_JJOEBFRXJW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JJOEBFRXJW" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJOEBFRXJW" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JJOEBFRXJW" value="answer"></input> <span><strong>3K1M</strong></span></label>
 </div></li>
 <li>Which sample has 86,083 forward reads?
-<div id="radio_BBBBGNMXRS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BBBBGNMXRS" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BBBBGNMXRS" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BBBBGNMXRS" value=""></input> <span><strong>3K1M</strong></span></label>
+<div id="radio_VQCWZSVXJB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VQCWZSVXJB" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VQCWZSVXJB" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VQCWZSVXJB" value=""></input> <span><strong>3K1M</strong></span></label>
 </div></li>
 <li>Most of the read quality for the forward reads is above Q30?
-<div id="radio_AGOCILPKGX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AGOCILPKGX" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AGOCILPKGX" value=""></input> <span><strong>FALSE</strong></span></label>
+<div id="radio_WEMRWDNQDG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WEMRWDNQDG" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WEMRWDNQDG" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 <li>Most of the read quality for the reverse reads is above Q30?
-<div id="radio_JZUCKDXVXZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JZUCKDXVXZ" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JZUCKDXVXZ" value=""></input> <span><strong>FALSE</strong></span></label>
+<div id="radio_DXYGZOSWGJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DXYGZOSWGJ" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DXYGZOSWGJ" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 </ol>
 </div>

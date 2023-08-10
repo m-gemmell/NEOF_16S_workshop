@@ -3,7 +3,7 @@
 knitr::include_graphics(path = "figures/artefact_to_tsv.png", auto_pdf = TRUE)
 ```  
 
-Artifact files are very useful when carrying out analysis in QIIME2. However they are impossible to use (I think) with anything outside of QIIME2. Therefore it can be very useful to know how to export data out of Artifact files.
+Artifact files are very useful when carrying out analysis in QIIME2. However they are impossible to directly use (I think) with anything outside of QIIME2. Therefore it can be very useful to know how to export data out of Artifact files.
 
 This section will show how to export various different artifact files into text files. However, for some data types they must be converted into a BIOM file first. 
 
@@ -24,7 +24,7 @@ knitr::include_graphics(path = "figures/setup.png", auto_pdf = TRUE)
 First copy a new directory that will contain all the QIIME2 output you need and then change directory to it.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/matthew/NEOF/16s_workshop/16s_export ~/Metagenetics
+cp -r /pub14/tea/nsc206/NEOF/16s_workshop/16s_export ~/Metagenetics
 cd ~/Metagenetics/16s_export
 ```
 
@@ -110,6 +110,8 @@ qiime tools export --input-path rooted-tree.qza \
 #Move and rename the exported newick file
 mv export/tree.nwk final_exports/fasttree_rooted_tree.nwk
 ```
+
+If you would like to view the tree you can open `firefox` and go to __"https://itol.embl.de"__. Then you can upload the `.nwk` to quickly view it.
 
 ## ASV table with taxonomy export
 ```{r, fig.align = 'center',out.width= '25%', echo=FALSE }
@@ -231,7 +233,7 @@ knitr::include_graphics(path = "figures/noun_Family_137805.png", auto_pdf = TRUE
 
 The last recipe I will show you is how to create and then export a taxonomy abundance table.
 
-First we collapse our ASV table to a specific taxonomy level. This is carried out by specifying a number to the option `--p-level` in the command below. With Silva and Greengenes the numbers normally correspond to:
+First we collapse our ASV table to a specific taxonomy level. This is carried out by specifying a number to the option `--p-level` in the command below. With Silva and Greengenes2 the numbers normally correspond to:
 
 1. Kingdom
 2. Phylum
