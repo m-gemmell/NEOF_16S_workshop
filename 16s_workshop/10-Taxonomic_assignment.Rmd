@@ -68,7 +68,7 @@ qiime feature-classifier extract-reads \
 --p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA \
 --p-r-primer GGACTACHVGGGTWTCTAAT \
 --p-trunc-len 250 \
---o-reads gg-13-8.99.ref.seqs.qza \
+--o-reads gg2-v4.ref.seqs.qza \
 --p-n-jobs 12
 ```
 
