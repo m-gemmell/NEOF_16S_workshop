@@ -1198,7 +1198,7 @@ qiime feature-classifier classify-sklearn \
 --p-confidence 0.7 \
 --i-reads rep-seqs-dada2.qza \
 --o-classification taxonomy.sklearn.qza \
---p-njobs 12
+--p-n-jobs 12
 ```
 
 #### Parameters{-}
