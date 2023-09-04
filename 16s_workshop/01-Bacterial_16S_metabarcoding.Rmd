@@ -41,53 +41,52 @@ knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 
 This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
 
-+:----------------------------------------------------:+:---------------------------------------------------:+
-| [**Background on the biology**](#background)         | [**Introduction to QIIME2**](#introqiime2)          |
-|                                                      |                                                     |
-| ![](figures/background.png){width="150"}             | ![](figures/q2docs.png){width="469"}                |
-+------------------------------------------------------+-----------------------------------------------------+
-| [**Cluster and webVNC information**](#cluster)       | [**Information on initial data**](#data)            |
-|                                                      |                                                     |
-| ![](figures/cluster.png){width="153"}                | ![](figures/data_files.png){width="125"}            |
-+------------------------------------------------------+-----------------------------------------------------+
-| [**QIIME2 analysis workflow**](#q2workflow)          | [**Sequence import**](#import)                      |
-|                                                      |                                                     |
-| ![](figures/workflow.png){width="154"}               | ![](figures/import.png){width="149"}                |
-+------------------------------------------------------+-----------------------------------------------------+
-| [**PCR primer trimming**](#pcrtrim)                  | [**DADA2 denoising**](#dada2)                       |
-|                                                      |                                                     |
-| ![](figures/prepare.png){width="154"}                | ![](figures/clusters.png){width="164"}              |
-+------------------------------------------------------+-----------------------------------------------------+
-| [**Taxonomic classification**](#taxa)                | [**Phylogenetic tree construction**](#phylogeny)    |
-|                                                      |                                                     |
-| ![](figures/classification.png){width="158"}         | ![](figures/phylo_tree.png){width="130"}            |
-+------------------------------------------------------+-----------------------------------------------------+
-| [**Rarefaction curve**](#rarefaction)                | [**Alpha and beta diversity analysis**](#diversity) |
-|                                                      |                                                     |
-| ![](figures/rarefaction.png){width="140"}            | ![](figures/diversity.png){width="150"}             |
-+------------------------------------------------------+-----------------------------------------------------+
-| [**Differential abundance analysis**](#differential) | [**Final considerations**](#final)                  |
-|                                                      |                                                     |
-| ![](figures/classification.png){width="158"}         | ![](figures/classification.png){width="158"}        |
-+------------------------------------------------------+-----------------------------------------------------+
-| [**Appendix**](#resources)                           |                                                     |
-|                                                      |                                                     |
-| ![](figures/classification.png){width="158"}         |                                                     |
-+------------------------------------------------------+-----------------------------------------------------+
-
--   [Background on the biology](#background)
--   [Introduction to QIIME2](#introqiime2)
--   [Cluster and webVNC information](#cluster)
--   [Information on initial data](#data)
--   [QIIME2 analysis workflow](#q2workflow)
--   [Sequence import](#import)
--   [PCR primer trimming](#pcrtrim)
--   [DADA2 denoising](#dada2)
--   [Taxonomic classification](#taxa)
--   [Phylogenetic tree construction](#phylogeny)
--   [Rarefaction curve](#rarefaction)
--   [Alpha and beta diversity analysis](#diversity)
--   [Differential abundance analysis](#differential)
--   [Final considerations](#final)
+```{r, echo=FALSE, align="centre"}
+#Create 2 coilumn dataframe
+column_1 <- c(
+ '[**Background on the biology**](#background)', 
+ '[![](figures/background.png){height="150"}](#background)',
+ '[**Cluster and webVNC information**](#cluster)',
+ '[![](figures/cluster.png){height="150"}](#cluster)',
+ '[**QIIME2 analysis workflow**](#q2workflow)',
+ '[![](figures/workflow.png){height="150"}](#q2workflow)',
+ '[**PCR primer trimming**](#pcrtrim)',
+ '[![](figures/prepare.png){height="150"}](#pcrtrim)',
+ '[**Taxonomic classification**](#taxa)',
+ '[![](figures/classification.png){height="150"}](#taxa)',
+ '[**Rarefaction curve**](#rarefaction)',
+ '[![](figures/rarefaction.png){height="150"}](#rarefaction)',
+ '[**Differential abundance analysis**](#differential)',
+ '[![](figures/balance_scale.png){height="150"}](#differential)',
+ '[**Appendix**](#resources)',
+ '[![](figures/resources.png){height="150"}](#resources)'
+)
+column_2 <- c(
+  '[**Introduction to QIIME2**](#introqiime2)',
+ '[![](figures/intro_logo.png){height="150"}](#introqiime2)',
+ '[**Introduction to QIIME2**](#introqiime2)',
+ '[![](figures/data_files.png){height="150"}](#data)',
+ '[**Sequence import**](#import)',
+ '[![](figures/import.png){height="150"}](#import)',
+ '[**DADA2 denoising**](#dada2)',
+ '[![](figures/clusters.png){height="150"}](#dada2)',
+ '[**Phylogenetic tree construction**](#phylogeny)',
+ '[![](figures/phylo_tree.png){height="150"}](#phylogeny)',
+ '[**Alpha and beta diversity analysis**](#diversity)',
+ '[![](figures/diversity.png){height="150"}](#diversity)',
+ '[**Final considerations**](#final)',
+ '[![](figures/finish.png){height="150"}](#final)',
+ "",""
+)
+table_df <- data.frame(column_1, column_2)
+#Kable and kableextra libraries
+library(knitr)
+library(kableExtra)
+#Create table
+#ALign both column in centre (align = "cc")
+table_df %>%
+  kbl(align= "cc", col.names = NULL) %>%
+  kable_minimal()
+```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons Licence" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

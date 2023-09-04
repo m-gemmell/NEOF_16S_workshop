@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Alpha diveristy statistical analysis | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Alpha diveristy statistical analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-30" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -411,16 +415,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_purple.png" width="15%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Locations (Corridor vs Toilet)</strong> when using <strong>Shannon</strong> diversity?
-<div id="radio_JDHZQRGJSC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JDHZQRGJSC" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JDHZQRGJSC" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_GZLVBMGFUW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GZLVBMGFUW" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GZLVBMGFUW" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Places (Entrance vs MainBuilding)</strong> when using <strong>Shannon</strong> diversity?
-<div id="radio_KLBPPZQDMY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KLBPPZQDMY" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KLBPPZQDMY" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_MVJDTOTDYQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MVJDTOTDYQ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MVJDTOTDYQ" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the <strong>Floors (1 vs 2 vs 3)</strong> when using <strong>Shannon</strong> diversity? ?
-<div id="radio_TYWVUUSLJF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TYWVUUSLJF" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TYWVUUSLJF" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_GCITRFIJKY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GCITRFIJKY" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GCITRFIJKY" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 <p>For the below questions you will need to run some more <code>qiime diversity alpha-group-significance</code> and <code>qiime diversity alpha-correlation</code>. When creating and running these commands ensure you are giving the input and output artifacts the correct names.</p>
@@ -447,16 +451,16 @@ Alpha diversity stats commands
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Locations (Corridor vs Toilet)</strong> when using <strong>observed features</strong>?
-<div id="radio_QSCADWJCMJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QSCADWJCMJ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QSCADWJCMJ" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_AZDGAOHZUO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AZDGAOHZUO" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AZDGAOHZUO" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Places (Entrance vs MainBuilding)</strong> when using <strong>evenness</strong>?
-<div id="radio_RNMKSRVTXP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RNMKSRVTXP" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RNMKSRVTXP" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_WJZDQAZNWG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WJZDQAZNWG" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WJZDQAZNWG" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the <strong>Floors (1 vs 2 vs 3)</strong> when using <strong>Faith's PD</strong>?
-<div id="radio_TFLWKLFIML" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TFLWKLFIML" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TFLWKLFIML" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_ZYVJTMZEAC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZYVJTMZEAC" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZYVJTMZEAC" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 Beta diversity statistical analysis | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2023-08-30" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -417,24 +421,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Note</strong>: You will need to run the <code>qiime diversity beta-group-significance</code> with different options and view the new files to answer some of the questions.</p>
 <ol style="list-style-type: decimal">
 <li>Is there a significant difference (q-value &lt;0.05) between <strong>Corridor and Toilet (Location)</strong> for the <strong>weighted unifrac</strong> distances when using <strong>PERMANOVA</strong>?
-<div id="radio_PGTZQHIKXR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PGTZQHIKXR" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PGTZQHIKXR" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_UETBJTFRCE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UETBJTFRCE" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UETBJTFRCE" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which sample group, Corridor or Toilet, has larger <strong>weighted unifrac</strong> distances within the group? I.e. which boxplot has the IQR with the largest values: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot?
-<div id="radio_DNNYUCHMXJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DNNYUCHMXJ" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DNNYUCHMXJ" value="answer"></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_HWJYINAHHS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HWJYINAHHS" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HWJYINAHHS" value="answer"></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>In the <strong>weighted unifrac</strong> distances "Distances to Corridor" box plots, which box plot has lower values?
-<div id="radio_PFXADRWBJF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PFXADRWBJF" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PFXADRWBJF" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_GRURDUVDNN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GRURDUVDNN" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GRURDUVDNN" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between <strong>Corridor and Toilet (Location)</strong> for the <strong>Bray Curtis</strong> distances when using <strong>PERMANOVA</strong>?
-<div id="radio_ZIXMSXSOYY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZIXMSXSOYY" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZIXMSXSOYY" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_XBPDBWIXJV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XBPDBWIXJV" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XBPDBWIXJV" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between <strong>Entrance and MainBuilding (Place)</strong> for the <strong>Unweighted Unifrac</strong> distances when using <strong>ANOSIM</strong>?
-<div id="radio_MYPCHFXZAU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MYPCHFXZAU" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MYPCHFXZAU" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_ILCTPKLTEZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ILCTPKLTEZ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ILCTPKLTEZ" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>
