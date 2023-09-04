@@ -1,4 +1,4 @@
---- 
+---
 title: "Bacterial 16S metabarcoding"
 author: "Luca Lenzi and Matthew R. Gemmell"
 date: "`r Sys.Date()`"
@@ -31,28 +31,63 @@ knitr::opts_chunk$set(class.source="Rchunk")
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
-``` 
+```
 
 # Introduction
+
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
 knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
-``` 
+```
 
 This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
 
-- [Background on the biology](#background)
-- [Introduction to QIIME2](#introqiime2)
-- [Cluster and webVNC information](#cluster)
-- [Information on initial data](#data)
-- [QIIME2 analysis workflow](#q2workflow)
-- [Sequence import](#import)
-- [PCR primer trimming](#pcrtrim)
-- [DADA2 denoising](#dada2)
-- [Taxonomic classification](#taxa)
-- [Phylogenetic tree construction](#phylogeny)
-- [Rarefaction curve](#rarefaction)
-- [Alpha and beta diversity analysis](#diversity)
-- [Differential abundance analysis](#differential)
-- [Final considerations](#final)
++:----------------------------------------------------:+:---------------------------------------------------:+
+| [**Background on the biology**](#background)         | [**Introduction to QIIME2**](#introqiime2)          |
+|                                                      |                                                     |
+| ![](figures/background.png){width="150"}             | ![](figures/q2docs.png){width="469"}                |
++------------------------------------------------------+-----------------------------------------------------+
+| [**Cluster and webVNC information**](#cluster)       | [**Information on initial data**](#data)            |
+|                                                      |                                                     |
+| ![](figures/cluster.png){width="153"}                | ![](figures/data_files.png){width="125"}            |
++------------------------------------------------------+-----------------------------------------------------+
+| [**QIIME2 analysis workflow**](#q2workflow)          | [**Sequence import**](#import)                      |
+|                                                      |                                                     |
+| ![](figures/workflow.png){width="154"}               | ![](figures/import.png){width="149"}                |
++------------------------------------------------------+-----------------------------------------------------+
+| [**PCR primer trimming**](#pcrtrim)                  | [**DADA2 denoising**](#dada2)                       |
+|                                                      |                                                     |
+| ![](figures/prepare.png){width="154"}                | ![](figures/clusters.png){width="164"}              |
++------------------------------------------------------+-----------------------------------------------------+
+| [**Taxonomic classification**](#taxa)                | [**Phylogenetic tree construction**](#phylogeny)    |
+|                                                      |                                                     |
+| ![](figures/classification.png){width="158"}         | ![](figures/phylo_tree.png){width="130"}            |
++------------------------------------------------------+-----------------------------------------------------+
+| [**Rarefaction curve**](#rarefaction)                | [**Alpha and beta diversity analysis**](#diversity) |
+|                                                      |                                                     |
+| ![](figures/rarefaction.png){width="140"}            | ![](figures/diversity.png){width="150"}             |
++------------------------------------------------------+-----------------------------------------------------+
+| [**Differential abundance analysis**](#differential) | [**Final considerations**](#final)                  |
+|                                                      |                                                     |
+| ![](figures/classification.png){width="158"}         | ![](figures/classification.png){width="158"}        |
++------------------------------------------------------+-----------------------------------------------------+
+| [**Appendix**](#resources)                           |                                                     |
+|                                                      |                                                     |
+| ![](figures/classification.png){width="158"}         |                                                     |
++------------------------------------------------------+-----------------------------------------------------+
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+-   [Background on the biology](#background)
+-   [Introduction to QIIME2](#introqiime2)
+-   [Cluster and webVNC information](#cluster)
+-   [Information on initial data](#data)
+-   [QIIME2 analysis workflow](#q2workflow)
+-   [Sequence import](#import)
+-   [PCR primer trimming](#pcrtrim)
+-   [DADA2 denoising](#dada2)
+-   [Taxonomic classification](#taxa)
+-   [Phylogenetic tree construction](#phylogeny)
+-   [Rarefaction curve](#rarefaction)
+-   [Alpha and beta diversity analysis](#diversity)
+-   [Differential abundance analysis](#differential)
+-   [Final considerations](#final)
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons Licence" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
