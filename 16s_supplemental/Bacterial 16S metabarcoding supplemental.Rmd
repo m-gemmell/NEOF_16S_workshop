@@ -374,13 +374,13 @@ Next we will use two long commands with many pipes (`|`) to append the lines we 
 
 ```{bash eval=FALSE}
 #Append lines for forward reads
-find /pub39/tea/matthew/NEOF/16s_workshop/RawReads/ -name *R1*fastq.gz | \
+find /pub14/tea/nsc206/NEOF/16s_workshop/RawReads/ -name *R1*fastq.gz | \
 while read path ; do \
 sample=$(basename $path  | sed "s/_.*//") ; \
 echo ${sample},${path},forward ; \
 done >> manifest.csv
 #Append lines for reverse reads
-find /pub39/tea/matthew/NEOF/16s_workshop/RawReads/ -name *R2*fastq.gz | \
+find /pub14/tea/nsc206/NEOF/16s_workshop/RawReads/ -name *R2*fastq.gz | \
 while read path ; do \
 sample=$(basename $path | sed "s/_.*//") ; \
 echo ${sample},${path},reverse ; \
@@ -511,7 +511,7 @@ qiime feature-table summarize \
 --o-visualization experiments_1_2_3_table.qzv
 ```
 
-If you were merging the output from multiple dada2 commands you would also need to merge the representative sequence artifacts. Below is an example command  (don't run the below one as we don't have files).
+If you were merging the output from multiple dada2 commands you would also need to merge the representative sequence artifacts. Below is an example command  (don't run the below one as we don't have the files).
 
 ```{bash eval=FALSE}
 qiime feature-table merge-seqs \
