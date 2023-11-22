@@ -39,7 +39,23 @@ knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 ```
 
-This practical session aims to introduce you to the analysis of bacterial 16S metabarcoding with QIIME2. The topics covered are:
+Sequencing of the 16S rRNA gene is a well established method of determining the bacterial taxonomic composition of microbiomes. This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments. This course will give you the ability to describe the advantages and disadvantages of 16S rRNA sequencing, and analyse 16S rRNA datasets with the QIIME2 bioinformatics platform.
+
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory and practice code. Multiple choice questions will guide the interpretation of results.
+
+At the end of the course learners will be able to:
+
+- Utilise and understand the use of QIIME2 with 16S rRNA data.
+- Import sequencing data and metadata into QIIME2 artifacts.
+- Cluster and denoise 16S sequences with DADA2.
+- Assign taxonomies to ASVs and produce a phylogenetic tree.
+- Evaluate and normalise sequencing depth across their samples.
+- Produce alpha and beta diversity metrics and statistics.
+- Carry out differential abundance analysis.
+
+There are [supplementary materials](https://neof-workshops.github.io/16S_yg84o9/Supplemental/01-16S_supplemental.html) including exporting of QIIME2 artifacts, various handy QIIME2 commands, and introduction to some useful R packages. These can be run through after the course by the learner.
+
+## Table of contents {-}
 
 ```{r, echo=FALSE, align="centre"}
 #Create 2 coilumn dataframe
