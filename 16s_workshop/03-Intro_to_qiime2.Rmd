@@ -1,6 +1,6 @@
 # Introduction to QIIME2 {#introqiime2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/q2docs.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/q2docs_bordered.png", auto_pdf = TRUE)
 ``` 
 
 Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on February 2021 (given the active development on the tool this may not be the most recent release at the time of this workshop). 

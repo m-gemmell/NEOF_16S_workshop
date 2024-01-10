@@ -30,7 +30,7 @@ knitr::opts_chunk$set(class.source="Rchunk")
 ```
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/NEOF_bordered.png", auto_pdf = TRUE)
 ```
 
 # Introduction

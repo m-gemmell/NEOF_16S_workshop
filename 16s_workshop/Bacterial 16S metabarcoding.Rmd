@@ -33,7 +33,7 @@ knitr::opts_chunk$set(class.source="Rchunk")
 ```
 
 ```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/NEOF_bordered.png", auto_pdf = TRUE)
 ```
 
 # Introduction
@@ -186,7 +186,7 @@ library(webexercises)
 ```
 # Introduction to QIIME2 {#introqiime2}
 ```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/q2docs.png", auto_pdf = TRUE)
+knitr::include_graphics(path = "figures/q2docs_bordered.png", auto_pdf = TRUE)
 ``` 
 
 Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on February 2021 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
@@ -391,7 +391,7 @@ knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
 For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
 
 You will now be in a logged-in Linux VNC desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '700px', echo=FALSE }
 knitr::include_graphics(path = "figures/logon_pic.png", auto_pdf = TRUE)
 ``` 
 
@@ -404,7 +404,7 @@ https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## The Terminal Window
 In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '800px', echo=FALSE }
 knitr::include_graphics(path = "figures/terminal_window.png", auto_pdf = TRUE)
 ``` 
 
