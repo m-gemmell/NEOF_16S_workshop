@@ -84,7 +84,7 @@ knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
 Instead of running the command you can copy the output to your directory.
 
 ```{bash eval=FALSE}
-cp /pub39/tea/nsc006/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
+cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 ```
 
 

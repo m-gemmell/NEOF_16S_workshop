@@ -118,6 +118,6 @@ Viewing the beta diversity ordination plots and the statistical output we can se
 
 Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.
 
-If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin] (https://docs.qiime2.org/2023.5/plugins/available/diversity/adonis/).
+If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin](https://docs.qiime2.org/2023.5/plugins/available/diversity/adonis/).
 
 We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.
