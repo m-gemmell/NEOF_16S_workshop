@@ -2201,7 +2201,7 @@ opts_p <- c(answer="__Clostridiaceae_222000__", "__Gemellaceae__", "__Weeksellac
 opts_p <- c("__Clostridiaceae_222000__", "__Gemellaceae__", answer="__Weeksellaceae__")
 ```
 
-2.  Which family has the lowest positive LFC value? I.e. The family with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
+2.  Which family has the lowest negative LFC value? I.e. The family with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Clostridiaceae_222000__", answer="__Gemellaceae__", "__Weeksellaceae__")
@@ -2249,7 +2249,7 @@ opts_p <- c("__Chryseobacterium_796703__", answer="__Clostridium_T__",  "__Diali
 opts_p <- c(answer="__Chryseobacterium_796703__", "__Clostridium_T__",  "__Dialister__")
 ```
 
-5.  Which genus has the lowest positive LFC value? I.e. The genus with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
+5.  Which genus has the lowest negative LFC value? I.e. The genus with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Chryseobacterium_796703__", "__Clostridium_T__",  answer="__Dialister__")
@@ -2283,13 +2283,13 @@ qiime composition da-barplot \
 opts_p <- c(answer="__Akkermansiaceae__", "__Pseudomonadaceae__" , "__Rhodospirillaceae__")
 ```
 
-7.  Which family has the 3rd highest positive LFC value? I.e. The family with the highest enrichment in Main building (comparison) compared to Entrance (reference). `r longmcq(opts_p)`
+7.  Which family has the 3rd highest positive LFC value? I.e. The family with the third highest enrichment in Main building (comparison) compared to Entrance (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Akkermansiaceae__", answer="__Pseudomonadaceae__" , "__Rhodospirillaceae__")
 ```
 
-8.  Which family has the lowest positive LFC value? I.e. The family with the highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
+8.  Which family has the lowest negative LFC value? I.e. The family with the highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__Akkermansiaceae__", "__Pseudomonadaceae__" , answer="__Rhodospirillaceae__")
