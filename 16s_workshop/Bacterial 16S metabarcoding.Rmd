@@ -189,10 +189,10 @@ library(webexercises)
 knitr::include_graphics(path = "figures/q2docs_bordered.png", auto_pdf = TRUE)
 ``` 
 
-Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on February 2021 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
+Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on May 2023 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
 If you want to install QIIME2 on your own machine, please refer to: 
-https://docs.qiime2.org/2021.2/install/
+https://docs.qiime2.org/2023.5/install/
 
 ## Artifacts
 ```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
@@ -209,7 +209,7 @@ The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data a
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ``` 
 
-The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2021.2/tutorials/.
+The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2023.5/tutorials/.
 
 ```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
 knitr::include_graphics(path = "figures/16_tutorial_diagram.png", auto_pdf = TRUE)
@@ -410,8 +410,8 @@ knitr::include_graphics(path = "figures/terminal_window.png", auto_pdf = TRUE)
 
 Already there is useful information for us on the terminal window.
 
-- __nsc006__: This is the login name, also known as the username. In this case nsc006 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
-- __gauss03__: This is the machine name the user is logged into.
+- __nsc206__: This is the login name, also known as the username. In this case nsc006 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+- __ada02__: This is the machine name the user is logged into.
 - __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __'~'__ is a shortcut to the user's home directory.
 - Everything after the __'$'__ is where commands are typed into the terminal. This is also referred to as the command line.
 
@@ -2346,7 +2346,7 @@ knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
 
 ## Suggested readings
 
-The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2021.2/tutorials/).
+The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2023.5/tutorials/).
 
 The QIIME scripts collection (http://qiime.org/scripts/index.html) includes many other useful scripts that we have not described, each script with its own description and tips for using it. We encourage you to explore this resource.
 
