@@ -82,7 +82,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
 ```
 
-We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](view.qiime2.org).
+We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](https://view.qiime2.org).
 
 First we need to open up `Firefox`. Right click on the main screen (greyish background) and choose `firefox` from the dropdown menu.
 

@@ -649,7 +649,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
 ```
 
-We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](view.qiime2.org).
+We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](https://view.qiime2.org).
 
 First we need to open up `Firefox`. Right click on the main screen (greyish background) and choose `firefox` from the dropdown menu.
 
@@ -1220,7 +1220,7 @@ qiime feature-classifier fit-classifier-naive-bayes \
 Copy pre-made file if you didn't run the code above.
 
 ```{bash, eval=FALSE}
-cp /pub14/tea/nsc006/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza .
+cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza .
 ```
 
 #### Parameters{-}

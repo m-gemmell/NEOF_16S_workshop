@@ -124,7 +124,7 @@ qiime feature-classifier fit-classifier-naive-bayes \
 Copy pre-made file if you didn't run the code above.
 
 ```{bash, eval=FALSE}
-cp /pub14/tea/nsc006/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza .
+cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza .
 ```
 
 #### Parameters{-}
