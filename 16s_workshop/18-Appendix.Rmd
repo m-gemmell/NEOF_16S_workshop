@@ -1,7 +1,7 @@
 # (APPENDIX) Appendix {-}
 
 # Resources
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
 ``` 
 
@@ -139,7 +139,7 @@ Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2
 
 # Mamba installs
 
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
 
@@ -167,12 +167,12 @@ pip install q2-greengenes2
 __Note__: You may want to install the most recent version of QIIME2. PLease see the following page for installation instructions: https://docs.qiime2.org/2023.5/install/native/
 
 # Diversity metrics
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
 ``` 
 
 ## Alpha diversity metrics {#alphamet}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
@@ -197,7 +197,7 @@ Faith's PD represents the minimum total branch length that covers all taxa withi
 
 A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
 
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '600px', echo=FALSE }
 knitr::include_graphics(path = "figures/faith_pd.png", auto_pdf = TRUE)
 ``` 
 
@@ -253,7 +253,7 @@ $$
 - N = Total feature abundance of sample
 
 ## Beta diversity metrics
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 

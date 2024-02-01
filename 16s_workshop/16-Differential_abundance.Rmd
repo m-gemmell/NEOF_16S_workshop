@@ -1,5 +1,5 @@
 # Differential abundance analysis {#differential}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/balance_scale.png", auto_pdf = TRUE)
 ```
 
@@ -15,7 +15,7 @@ cd ..
 
 ## Taxa collapse
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/collapse.png", auto_pdf = TRUE)
 ```
 
@@ -31,7 +31,7 @@ qiime taxa collapse \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
@@ -45,7 +45,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 
 ## ANCOM-BC analysis
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '300px', echo=FALSE }
 knitr::include_graphics(path = "figures/toilet_corridor.png", auto_pdf = TRUE)
 ```
 
@@ -61,7 +61,7 @@ qiime composition ancombc \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
@@ -75,7 +75,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/)
 
 ## ANCOMBC tabulate
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
 ```
 
@@ -89,7 +89,7 @@ qiime composition tabulate \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
@@ -100,7 +100,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 
 ### ANCOMBC tabulate: visualise
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
 ```
 
@@ -139,7 +139,7 @@ qiime composition ancombc \
     -   The further away from 0 this value is the more significant the feature is differentially abundant between groups.
 
 ## ANCOMBC bar plots
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart_horizontal.png", auto_pdf = TRUE)
 ```
 
@@ -154,7 +154,7 @@ qiime composition da-barplot \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
@@ -168,7 +168,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 
 ### ANCOM-BC bar plots: visualise
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_red.png", auto_pdf = TRUE)
 ```
 
@@ -182,7 +182,7 @@ You can hover over a bar to view more details on the biomarker (differentially a
 
 ## ANCOM-BC: MCQs
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
 ```
 
@@ -296,7 +296,7 @@ opts_p <- c("__Akkermansiaceae__", "__Pseudomonadaceae__" , answer="__Rhodospiri
 
 ## ANCOM-BC: summary
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
 ```
 

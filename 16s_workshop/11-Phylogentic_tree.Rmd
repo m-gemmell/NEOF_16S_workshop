@@ -1,12 +1,12 @@
 # Phylogenetic tree construction {#phylogeny}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
 In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetically aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
 
 ## MAFFT alignment
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
 ``` 
 The first step is to align our representative sequences against each other. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
@@ -18,7 +18,7 @@ qiime alignment mafft \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
@@ -28,7 +28,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mafft/)
 
 ## Masking
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
 ``` 
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
@@ -42,28 +42,28 @@ qiime alignment mask \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
 - __`--i-alignment`__: Input artifact containing aligned representative sequences.
 - __`--p-max-gap-frequency`__: This determines the relative frequency of gap characters in an aligned column for the column to be retained.
   - This option is provided with a number from 0-1.
-  - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
-  - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
+  - 0.0 = Columns consisting of <=00px gaps will be retained. I.e. a column must have no gaps to be retained.
+  - 1.0 = Columns consisting of <=1000px gaps will be retained. I.e. no column will be removed based on number of gaps.
   - 1.0 was chosen as it is the default option. Unless you have good reason this is what you should use for your future 16S analysis.
 - __`--p-min-conservation`__: The minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
   - This option is provided with a number from 0-1.
-  - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
+  - 0.4 = A column will  be retained if it contains at least one character that is present in at least 400px of the sequences. 
     - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
-    - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
+    - A column consisting of 400px A, 200px G, 200px C, and 200px T __will__ be retained.
     - 0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
 - __`--o-masked-alignment`__: Output artifact containing the masked aligned representative sequences.
 
 [QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mask/)
 
 ## Un-rooted tree creation with FASTTREE
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
 ``` 
 Create an un-rooted maximum-likelihood tree from our masked alignment with the Fasttree 2 tool. 
@@ -75,7 +75,7 @@ qiime phylogeny fasttree \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
@@ -85,7 +85,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/fasttree/)
 
 ## Rooted tree creation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/tree_rooted.png", auto_pdf = TRUE)
 ``` 
 Finally the un-rooted tree is rooted.
@@ -97,7 +97,7 @@ qiime phylogeny midpoint-root \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 ```
 
@@ -107,7 +107,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/midpoint-root/)
 
 ## Phylogeny: summary
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 

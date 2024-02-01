@@ -32,15 +32,11 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF_bordered.png", auto_pdf = TRUE)
-```
+<center>![](figures/NEOF_bordered.png){style="width:300px"}</center>
 
 # Introduction
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/intro_logo.png){style="width: 300px"}</center>
 
 Sequencing of the 16S rRNA gene is a well established method of determining the bacterial taxonomic composition of microbiomes. This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments. This course will give you the ability to describe the advantages and disadvantages of 16S rRNA sequencing, and analyse 16S rRNA datasets with the QIIME2 bioinformatics platform.
 
@@ -116,9 +112,8 @@ table_df %>%
 library(webexercises)
 ```
 # Background {#background}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/background.png", auto_pdf = TRUE)
-```  
+<center>![](figures/background.png){style="width:200px"}</center>
+
 One of the most common aims of metagenomic analyses is to quantify the composition and diversity of a community (usually a community of prokaryotes). This can be done in several ways. A common approach is high-throughput amplicon sequencing, usually of a region of the bacterial 16S SSU rRNA gene. Another approach is shotgun metagenomic sequencing, where the whole genomic content of a sample is sequenced.
 
 In the first approach, amplicons act as ‘tags’ identifying the different bacterial species present in the sample, which can be both identified and quantified to describe the composition of the bacterial community (also called _metagenetics_ or _metaprofiling_). In the second approach, whole genomes, rather than just representative amplicons, are sequenced (_shotgun metagenomics_). This DNA can be assembled, or the source of the reads can be identified and quantified in a broadly similar way to 16S analysis.
@@ -133,13 +128,11 @@ The 16S rRNA gene is utilised in reconstructing phylogenies due to its slow rate
 
 The 16S rRNA gene is ~1,500bp long and consists of 9 variable regions separated by conserved regions. The variable regions evolve at a faster rate allowing differentiation between bacterial taxa. The conserved regions evolve at a slower rate which allows areas to carry out universal amplification on the gene. The nine variable regions are generally called V1, V2, V3 etc.
 
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
-knitr::include_graphics(path = "figures/16srna.png", auto_pdf = TRUE)
-```  
+<center>![](figures/16srna.png){style="width: 600px"}</center>
 Secondary structure of 16S rRNA of Esherichia coli (Yarza _et al_, 2014)
 
 ## ITS and other possible marker genes
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/ITS.png", auto_pdf = TRUE)
 ```  
 It is very common to perform analysis with marker genes other than 16S, e.g. to study communities of fungi, insects or any other eukaryote species. From the perspective of the bioinformatics analysis, the same overall pipeline can be used for most of the marker genes. 
@@ -167,7 +160,7 @@ On the negative side, there are many steps which may potentially introduce biase
 
 All these aspects need to be taken into account in the discussion of the results.
 
-```{r, fig.align = 'center',out.width= '90%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '900px', echo=FALSE }
 knitr::include_graphics(path = "figures/amplicon_sequencing_representation.png", auto_pdf = TRUE)
 ```
 Above shows a representation of amplicon sequencing.
@@ -185,9 +178,7 @@ B) Representation of the number of sequences obtained for a sample, showing that
 library(webexercises)
 ```
 # Introduction to QIIME2 {#introqiime2}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/q2docs_bordered.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/q2docs_bordered.png){style="width:200px"}</center>
 
 Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on May 2023 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
@@ -195,9 +186,7 @@ If you want to install QIIME2 on your own machine, please refer to:
 https://docs.qiime2.org/2023.5/install/
 
 ## Artifacts
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/artefact.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/artefact.png){style="width:150px"}</center>
 
 The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data and metadata and may be of two types: result or visualisation. 
 
@@ -205,15 +194,11 @@ The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data a
 - __Visualisation files (.qzv)__: This file type contains the results of a specific procedure to obtain an object that can only be used to visualize the results. These files can be loaded into the following web-site https://view.qiime2.org, where the interactive visualisations can be viewed. Please note that only chrome and Firefox are supported by this QIIME2 website.
 
 ## Workflow
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/workflow.png){style="width:150px"}</center>
 
 The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2023.5/tutorials/.
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/16_tutorial_diagram.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/16_tutorial_diagram.png){style="width:800px"}</center>
 Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp-content/uploads/2016/10/20170712_microbiome_16s_tutorial_non-interactive.pdf)
 
 1. Prepare the sequence dataset
@@ -233,9 +218,7 @@ Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp
 8. Differential abundance analysis
 
 ## Prepare the sequence dataset
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/prepare.png){style="width:150px"}</center>
 
 The read set you will be using in this tutorial will be a raw dataset. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences. 
 
@@ -248,9 +231,7 @@ If the analysis is based on a marker gene different than 16S, other quality trim
 The key element of this type of metagenomic analysis is the identification of the different rRNA variants in the sample. 
 
 ### OTUs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/clusters.png){style="width:150px"}</center>
 
 The most used procedure to identify OTUs (Operational Taxonomic Units) is through the clustering of reads into groups that are sufficiently similar to one another. These grouped reads are likely to come from the same rRNA gene, genome or taxa group. 
 
@@ -266,9 +247,7 @@ There is no single perfect tool for this step; but a few of the most widely used
 The number of reads in each OTU should reflect the number of copies of the gene in the sample, thus providing a quantitative measure of diversity. 
 
 ### ASVs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/mangify_glass.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/mangify_glass.png){style="width:150px"}</center>
 
 There are now many bioinformatics methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
 
@@ -278,9 +257,7 @@ Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biologi
 
 The following picture shows how DADA2 (an ASV method) and OTU processes compare to each other. This shows how the canonical creation of OTUs by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE }
-knitr::include_graphics(path = "figures/ASC_otu_comparison.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/ASC_otu_comparison.png){style="width:800px"}</center>
 
 Much of the work involved in the analysis of amplicon-based metagenomic data is that of separating true variants from errors introduced by sequencing. These errors include miscalling of nucleotides and the generation of chimeric sequences.
 
@@ -289,9 +266,7 @@ For sequencing purposes, an aliquot of PhiX phage DNA is added to each sample be
 QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing biases. It is possible to collate the denoised abundance tables and representative sequences afterwards, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
 
 ## Assign a taxonomic classification to each ASV
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/classification.png){style="width:150px"}</center>
 
 The sequence of each ASV is compared with the selected database, to identify the most likely taxonomy for each ASV. Unfortunately different parts of the taxonomic identification step may lead to different results for the same ASV. 
 
@@ -300,18 +275,14 @@ Different databases may result in different taxonomic classification for the sam
 In the practical we will use Scikit-learn (similar to the RDP tool widely used so far). It has been shown that (at least in the case of 16S analysis) taxonomic classification accuracy improves when the classifier is trained with sequences derived from the amplicon region only (Werner _et al_., 2012).
 
 ## Phylogenetic tree creation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/phylo_tree.png){style="width:150px"}</center>
 
 To include phylogenetic diversity metrics in the diversity analysis, such as UniFrac distance metrics, the construction of a phylogenetic tree for the identified ASVs is required. QIIME2 supports MAFFT for the alignment and MASK to mask the alignment sections that are not phylogenetically informative. Unrooted and rooted trees may be created. 
 
 For some marker genes it is not possible to build a phylogenetic tree (ITS is among these), and it is therefore important to know the properties of the marker in use. Consequently, it is not possible to use any diversity metrics that requires the phylogenetic distance as input.
 
 ## Data normalisation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/normalisation.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/normalisation.png){style="width:150px"}</center>
 
 Any further analyses to compare the identified ASVs among sample groups (either alpha- or beta-diversity or differential abundance) should account for the features of the abundance table that can cause erroneous results (Weiss et al., 2017). These features are:
 
@@ -335,18 +306,16 @@ These normalisation methods were compared by Weiss and colleagues (2017), but th
 In this tutorial, following the QIIME2 current tutorial, we will apply the ‘rarefaction’ method, in the context of the alpha- and beta-diversity analysis.
 
 ## Alpha-diversity
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/alpha_div.png){style="width:150px"}</center>
+
 Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of features in the sample) and evenness (a measure of the relative abundances of different features that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
 ASVs).
 
 The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation to the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/beta_div.png){style="width:200px"}</center>
+
 Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform NMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:
@@ -361,9 +330,7 @@ As discussed for the alpha-diversity, before proceeding with the beta-diversity 
 The choice of the beta-diversity distance metric to use will strongly affect the results. Therefore it is common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
 ## Differential Abundance Analysis
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/comparison.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/comparison.png){style="width:200px"}</center>
 
 The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).
 
@@ -383,17 +350,13 @@ Examples of questions to answer:
 library(webexercises)
 ```
 # Cluster Introduction {#cluster}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
-knitr::include_graphics(path = "figures/cluster.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/cluster.png){style="width:200px"}</center>
 
 ## Logon instructions
 For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
 
 You will now be in a logged-in Linux VNC desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-```{r, fig.align = 'center',out.width= '700px', echo=FALSE }
-knitr::include_graphics(path = "figures/logon_pic.png", auto_pdf = TRUE)
-``` 
+<center>![](figures/logon_pic.png){style="width:700px"}</center>
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
@@ -404,9 +367,8 @@ https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
 ## The Terminal Window
 In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
-```{r, fig.align = 'center',out.width= '800px', echo=FALSE }
-knitr::include_graphics(path = "figures/terminal_window.png", auto_pdf = TRUE)
-``` 
+
+<center>![](figures/terminal_window.png){style="width:800px"}</center>
 
 Already there is useful information for us on the terminal window.
 
@@ -423,7 +385,7 @@ __To open a new terminal window__, right click on the main screen, choose `Appli
 library(webexercises)
 ```
 # Data {#data}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/data_files.png", auto_pdf = TRUE)
 ``` 
 
@@ -447,7 +409,7 @@ ls
 ```
 
 ## PairedEndFastqManifestPhred33.csv {#manifestfile}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/manifest.png", auto_pdf = TRUE)
 ``` 
 
@@ -479,7 +441,7 @@ less PairedEndFastqManifestPhred33.csv
 This file will be used in chapter 7.
 
 ## metadata.file.txt
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/tags.png", auto_pdf = TRUE)
 ``` 
 
@@ -531,7 +493,7 @@ For your own projects you will need to ask the lab that carried out the sequenci
 library(webexercises)
 ```
 # QIIME2 analysis workflow {#q2workflow}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ``` 
 
@@ -549,7 +511,7 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 8. Differential abundance analysis of ASVs across different conditions
 
 ## Activate environment
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ``` 
 You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.
@@ -568,14 +530,14 @@ library(webexercises)
 # (PART\*) Preprocessing of data {-}
 
 # Sequence import {#import}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
 ``` 
 
 Before we can work with our data in QIIME2 we need to import the data into a QIIME2 artifact.
 
 ## Import: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
 ``` 
 
@@ -594,7 +556,7 @@ qiime tools import \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
@@ -610,19 +572,19 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 [QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
 
 __Note__: All the QIIME2 links may be out of date and the below will appear:
-```{r, fig.align = 'center',out.width= '100%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '1000px', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2_website_out_of_date.png", auto_pdf = TRUE)
 ``` 
 
 If this occurs click "Show me the content on this page".
 
 You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2_version_box.png", auto_pdf = TRUE)
 ``` 
 
 ## Import: visualise {#chap7_vis}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
 ``` 
 
@@ -635,7 +597,7 @@ qiime demux summarize \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
@@ -645,7 +607,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
 
 #### Firefox {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
 ```
 
@@ -662,7 +624,7 @@ Then:
 __Tip__: click "Home" on the top left, from there you can navigate to "Metagenetics" and choose your file.
 
 #### Output {-#chap7output}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_green.png", auto_pdf = TRUE)
 ```
 
@@ -677,7 +639,7 @@ The visualisation will have two tabs:
    - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 ## Import: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
 ```
 
@@ -717,7 +679,7 @@ opts_p <- c(answer="__TRUE__", "__FALSE__")
 7. Most of the read quality for the reverse reads is above Q30? `r longmcq(opts_p)`
 
 ## Import: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 ```
 
@@ -729,7 +691,7 @@ We have imported our read data and checked the number of reads per sample which 
 library(webexercises)
 ```
 # Trim the PCR primer sequences {#pcrtrim}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 ``` 
 
@@ -738,7 +700,7 @@ Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the
 However, before we carry this out we will need to remove any sequence data that is not biologically relevant. This includes the primer sequences that were used in the Illumina sequencing.
 
 ## Cutadapt: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_black.png", auto_pdf = TRUE)
 ``` 
 
@@ -759,7 +721,7 @@ qiime cutadapt trim-paired \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 ```
 
@@ -771,7 +733,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2023.5/plugins/available/cutadapt/trim-paired/)
 
 ## Cutadapt: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_brown.png", auto_pdf = TRUE)
 ``` 
 
@@ -794,7 +756,7 @@ If you are working with the ITS region, to trim off the conserved regions from t
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 
 ## Cutadapt: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
 ```
 
@@ -824,7 +786,7 @@ opts_p <- c(answer="__226__", "__230__", "__250__")
 5. What is the median length of the forward reads? `r longmcq(opts_p)`
 
 ## Cutadapt: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 
@@ -838,14 +800,14 @@ library(webexercises)
 # (PART\*) ASVs, Taxonomy, and phylogeny {-}
 
 # De-novo amplicon sequence variants identification {#dada2}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
 ``` 
 
 We will use DADA2 to denoise and identify the amplicon sequence variants (ASVs) among all the samples. 
 
 ## DADA2: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
 ``` 
 
@@ -863,7 +825,7 @@ qiime dada2 denoise-paired \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
@@ -878,7 +840,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2023.5/plugins/available/dada2/denoise-paired/)
 
 ### Truncation length
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/measuring_tape.png", auto_pdf = TRUE)
 ```
 
@@ -888,7 +850,7 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 As a reminder we are using the primer 515FB-806RB for the V4 16S rRNA gene. The name 515FB-806RB represents the location within an __E.coli__ 16S gene that the primers will hit (515 for the forward, 806 for the reverse). Therefore the amplicon length for __E.coli__ will be 806 - 515 = 291bp. As with all genes this size will vary in length across all the bacterial taxa but only by a few base pairs.
 
 ### Copy DADA2 output {#cpdada2}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
 ```
 
@@ -906,7 +868,7 @@ Through the above command you will now have the following three files:
 - `dada2-stats.qza`: Artifact which summarises the statistics after the denoising steps.
 
 ### DADA2 considerations
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
 ```
 
@@ -915,7 +877,7 @@ This may be one of the longest steps of the whole pipeline. The running time is 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
 ## table-dada2.qzv {#tabledada2qzv}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/table.png", auto_pdf = TRUE)
 ``` 
 To visualise information on the ASV table we will run:
@@ -928,7 +890,7 @@ qiime feature-table summarize \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
@@ -939,7 +901,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2023.5/plugins/available/feature-table/summarize/)
 
 #### Output {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_purple.png", auto_pdf = TRUE)
 ```
 
@@ -974,7 +936,7 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
    - __# of Samples Observed in__: Number of samples the ASVs was detected in.
 
 ### table-dada2.qzv: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = TRUE)
 ```
 
@@ -1021,7 +983,7 @@ opts_p <- c(answer="__15__", "__225,752__", "__258,440__")
 8. How many samples is the 10th most abundant ASV observed in? `r longmcq(opts_p)`
 
 ## dada2-stats.qzv
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/filter.png", auto_pdf = TRUE)
 ``` 
 Next we'll look at the denoising stats. Run the following command.
@@ -1033,7 +995,7 @@ qiime metadata tabulate \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1043,7 +1005,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2023.5/plugins/available/metadata/tabulate/)
 
 #### Output {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1064,7 +1026,7 @@ You will now see a denoising stats table with the following columns:
 This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not have enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.
 
 ### dada2-stats.qzv: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1081,7 +1043,7 @@ opts_p <- c("__1K1MB__", "__1K1E__", answer="__1K2M__")
 2. Which sample retained the smallest percentage of its input at the end (i.e. after filtering, denoising, merging, and chimera removal)?  `r longmcq(opts_p)`
 
 ## DADA2: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1095,14 +1057,14 @@ Through visualising the table and stats we can determine that there are a good a
 library(webexercises)
 ```
 # ASV taxonomic assignment {#taxa}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 
 
 Now that we have defined the sequence variants in the samples, this chapter will show you how to carry out taxonomic classification using [Greengenes2](https://www.nature.com/articles/s41587-023-01845-1). More information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
 
 ## Greengenes2 database
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/green_jeans.png", auto_pdf = TRUE)
 ``` 
 
@@ -1130,7 +1092,7 @@ This produces a reference tree with the following traits:
   - Taxonomy is planned to be updated every 6 months with the latest versions of GTDB & LTP.
 
 [Greengenes phylogenetic tree](https://www.nature.com/articles/s41587-023-01845-1/figures/1)
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '600px', echo=FALSE }
 knitr::include_graphics(path = "figures/greengenes2_phylogeny_tree.png", auto_pdf = TRUE)
 ``` 
 
@@ -1148,7 +1110,7 @@ Remember to first check if 2022.10 is the most recent version before downloading
 `r unhide()`
 
 ## Extract 16s region of interest
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/scissor_cut.png", auto_pdf = TRUE)
 ``` 
 
@@ -1175,7 +1137,7 @@ You can download the required files for taxonomic classification from [here](htt
 `r unhide()`
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
@@ -1200,7 +1162,7 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.ref.seqs.qza .
 ```
 
 ## Classifier training
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/train.png", auto_pdf = TRUE)
 ``` 
 
@@ -1224,7 +1186,7 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
@@ -1236,7 +1198,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
 
 ## Taxonomy assignment
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
 ``` 
 
@@ -1252,7 +1214,7 @@ qiime feature-classifier classify-sklearn \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
 ```
 
@@ -1268,7 +1230,7 @@ knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/classify-sklearn/)
 
 ## Taxonomy bar chart production {#taxabar}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_charts.png", auto_pdf = TRUE)
 ``` 
 
@@ -1283,7 +1245,7 @@ qiime taxa barplot \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1297,7 +1259,7 @@ The visualisation consists of an interactive taxonomy bar chart. You can specify
 [QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2023.5/plugins/available/taxa/barplot/)
 
 ## Taxonomy: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1331,7 +1293,7 @@ opts_p <- c("__1K2E__", "__1TM__", answer="__3TM__")
 5. Which sample has the fourth highest relative abundance of the phylum Bacteroidota (Taxonomic level 2)? `r longmcq(opts_p)`
 
 ## Taxonomy: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1349,14 +1311,14 @@ We are close to carrying out some biodiversity analysis. Before this we will pro
 library(webexercises)
 ```
 # Phylogenetic tree construction {#phylogeny}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
 ``` 
 
 In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetically aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
 
 ## MAFFT alignment
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
 ``` 
 The first step is to align our representative sequences against each other. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
@@ -1368,7 +1330,7 @@ qiime alignment mafft \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
@@ -1378,7 +1340,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mafft/)
 
 ## Masking
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
 ``` 
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
@@ -1392,28 +1354,28 @@ qiime alignment mask \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
 - __`--i-alignment`__: Input artifact containing aligned representative sequences.
 - __`--p-max-gap-frequency`__: This determines the relative frequency of gap characters in an aligned column for the column to be retained.
   - This option is provided with a number from 0-1.
-  - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
-  - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
+  - 0.0 = Columns consisting of <=00px gaps will be retained. I.e. a column must have no gaps to be retained.
+  - 1.0 = Columns consisting of <=1000px gaps will be retained. I.e. no column will be removed based on number of gaps.
   - 1.0 was chosen as it is the default option. Unless you have good reason this is what you should use for your future 16S analysis.
 - __`--p-min-conservation`__: The minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
   - This option is provided with a number from 0-1.
-  - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
+  - 0.4 = A column will  be retained if it contains at least one character that is present in at least 400px of the sequences. 
     - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
-    - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
+    - A column consisting of 400px A, 200px G, 200px C, and 200px T __will__ be retained.
     - 0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
 - __`--o-masked-alignment`__: Output artifact containing the masked aligned representative sequences.
 
 [QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mask/)
 
 ## Un-rooted tree creation with FASTTREE
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
 ``` 
 Create an un-rooted maximum-likelihood tree from our masked alignment with the Fasttree 2 tool. 
@@ -1425,7 +1387,7 @@ qiime phylogeny fasttree \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
@@ -1435,7 +1397,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/fasttree/)
 
 ## Rooted tree creation
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/tree_rooted.png", auto_pdf = TRUE)
 ``` 
 Finally the un-rooted tree is rooted.
@@ -1447,7 +1409,7 @@ qiime phylogeny midpoint-root \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 ```
 
@@ -1457,7 +1419,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/midpoint-root/)
 
 ## Phylogeny: summary
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 
@@ -1473,7 +1435,7 @@ library(webexercises)
 # (PART\*) Analysis {-}
 
 # Sequencing depth evaluation {#rarefaction}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ``` 
 
@@ -1490,12 +1452,12 @@ For example, if we rarefy to a depth of 2000 for all samples:
 
 Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
+```{r, fig.align = 'center',out.width= '800px', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
 knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
 ``` 
 
 ## Rarefaction: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -1525,7 +1487,7 @@ qiime diversity alpha-rarefaction \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1549,7 +1511,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-rarefaction/)
 
 ### Copy rarefaction output {#cprarefaction}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
 ```
 
@@ -1561,7 +1523,7 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 
 
 ## Rarefaction: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1583,7 +1545,7 @@ The visualisation has two plots.
       - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 ### Rarefaction considerations
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
 ```
 
@@ -1600,7 +1562,7 @@ Other considerations for rarefaction threshold:
 - Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diversity. With higher diversity you will need a larger rarefaction threshold.
 
 ### Rarefaction: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1609,7 +1571,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateaue?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>900px) plateaue?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
@@ -1632,7 +1594,7 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 5. When comparing the two __Places__, at approximately what sequencing depth are there only 5 Entrance samples remaining? `r longmcq(opts_p)`
 
 ## Rarefaction: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 
@@ -1651,7 +1613,7 @@ How do we know that the very exact number of 34,583 will keep all the samples? L
 library(webexercises)
 ```
 # Diversity analysis {#diversity}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ``` 
 
@@ -1661,7 +1623,7 @@ Alpha diversity is a representation of the diversity within a sample. There are 
 Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
 ## Diversity: run 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_red.png", auto_pdf = TRUE)
 ``` 
 
@@ -1677,7 +1639,7 @@ qiime diversity core-metrics-phylogenetic \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
@@ -1690,7 +1652,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2023.5/plugins/available/diversity/core-metrics-phylogenetic/)
 
 #### Output {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
 ```
 
@@ -1718,7 +1680,7 @@ In case of ITS or any marker for which it is not possible to obtain a phylogenet
 library(webexercises)
 ```
 # Alpha diveristy statistical analysis {#alpha_div_stats}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
@@ -1730,7 +1692,7 @@ The QIIME2 pipeline offers two alternative choices:
 - Numerical metadata: Ranked Spearman (correlation) test.
 
 ## Alpha diversity: run 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
 ``` 
 
@@ -1752,7 +1714,7 @@ qiime diversity alpha-correlation \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
@@ -1767,7 +1729,7 @@ Although we have used two different commands they both have the same parameters.
 [QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-correlation/)
 
 ## Alpha diversity: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
 ```
 
@@ -1800,7 +1762,7 @@ The Ranked Spearman (`shannon-group-significance.rs.qzv`) visualisation artifact
 You can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
 
 ### Alpha diversity: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = TRUE)
 ```
 
@@ -1859,7 +1821,7 @@ opts_p <- c("__Yes__", answer="__No__")
 6. Is there a statistical significance (P-value <0.05) when comparing the __Floors (1 vs 2 vs 3)__ when using __Faith's PD__? `r longmcq(opts_p)`
 
 ## Alpha diversity: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
 ```
 
@@ -1873,14 +1835,14 @@ In the next chapter we will look at the beta diversity output and carry out some
 library(webexercises)
 ```
 # Beta diversity statistical analysis {#beta_stats}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
 We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use __'PERMANOVA'__ analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
 ## Beta diveristy: PCoA
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
 ``` 
 
@@ -1893,7 +1855,7 @@ Before running some statistical analysis let's look at one of the PCoA plots cre
 We are able to visually separate these two groups in the plot, especially on Axis 2. However, will some statistics back this up?
 
 ## Beta diversity: run 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
 ``` 
 
@@ -1913,7 +1875,7 @@ qiime diversity beta-group-significance \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
@@ -1931,7 +1893,7 @@ __`--o-visualization`__: The output artifact containing the visualisation.
 [QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/beta-group-significance/)
 
 ## Beta diversity: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
 ```
 
@@ -1950,7 +1912,7 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
 [Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
 ### Beta diversity: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
 ```
 
@@ -1984,7 +1946,7 @@ opts_p <- c("__Yes__", answer="__No__")
 5. Is there a significant difference (q-value <0.05) between __Entrance and MainBuilding (Place)__ for the __Unweighted Unifrac__ distances when using __ANOSIM__? `r longmcq(opts_p)`
 
 ### Beta diversity: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 ```
 
@@ -2002,7 +1964,7 @@ We know there is a difference between Corridor and Toilet samples, but are there
 library(webexercises)
 ```
 # Differential abundance analysis {#differential}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/balance_scale.png", auto_pdf = TRUE)
 ```
 
@@ -2018,7 +1980,7 @@ cd ..
 
 ## Taxa collapse
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/collapse.png", auto_pdf = TRUE)
 ```
 
@@ -2034,7 +1996,7 @@ qiime taxa collapse \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 ```
 
@@ -2048,7 +2010,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 
 ## ANCOM-BC analysis
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '300px', echo=FALSE }
 knitr::include_graphics(path = "figures/toilet_corridor.png", auto_pdf = TRUE)
 ```
 
@@ -2064,7 +2026,7 @@ qiime composition ancombc \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
@@ -2078,7 +2040,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/)
 
 ## ANCOMBC tabulate
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
 ```
 
@@ -2092,7 +2054,7 @@ qiime composition tabulate \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
@@ -2103,7 +2065,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 
 ### ANCOMBC tabulate: visualise
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
 ```
 
@@ -2142,7 +2104,7 @@ qiime composition ancombc \
     -   The further away from 0 this value is the more significant the feature is differentially abundant between groups.
 
 ## ANCOMBC bar plots
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/bar_chart_horizontal.png", auto_pdf = TRUE)
 ```
 
@@ -2157,7 +2119,7 @@ qiime composition da-barplot \
 
 #### Parameters {.unnumbered}
 
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
@@ -2171,7 +2133,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 
 ### ANCOM-BC bar plots: visualise
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_red.png", auto_pdf = TRUE)
 ```
 
@@ -2185,7 +2147,7 @@ You can hover over a bar to view more details on the biomarker (differentially a
 
 ## ANCOM-BC: MCQs
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
 ```
 
@@ -2299,7 +2261,7 @@ opts_p <- c("__Akkermansiaceae__", "__Pseudomonadaceae__" , answer="__Rhodospiri
 
 ## ANCOM-BC: summary
 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
 ```
 
@@ -2313,7 +2275,7 @@ That is the last of the analysis. There is only one more chapter on future consi
 library(webexercises)
 ```
 # Final consideration {#final}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ``` 
 
@@ -2340,7 +2302,7 @@ library(webexercises)
 # (APPENDIX) Appendix {-}
 
 # Resources
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
 ``` 
 
@@ -2478,7 +2440,7 @@ Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2
 
 # Mamba installs
 
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ```
 
@@ -2506,12 +2468,12 @@ pip install q2-greengenes2
 __Note__: You may want to install the most recent version of QIIME2. PLease see the following page for installation instructions: https://docs.qiime2.org/2023.5/install/native/
 
 # Diversity metrics
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
 ``` 
 
 ## Alpha diversity metrics {#alphamet}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
 ``` 
 
@@ -2536,7 +2498,7 @@ Faith's PD represents the minimum total branch length that covers all taxa withi
 
 A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
 
-```{r, fig.align = 'center',out.width= '60%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '600px', echo=FALSE }
 knitr::include_graphics(path = "figures/faith_pd.png", auto_pdf = TRUE)
 ``` 
 
@@ -2592,7 +2554,7 @@ $$
 - N = Total feature abundance of sample
 
 ## Beta diversity metrics
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 

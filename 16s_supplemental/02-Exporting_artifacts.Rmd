@@ -1,5 +1,5 @@
 # Exporting Artifacts {#export}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/artefact_to_tsv.png", auto_pdf = TRUE)
 ```  
 
@@ -8,7 +8,7 @@ Artifact files are very useful when carrying out analysis in QIIME2. However the
 This section will show how to export various different artifact files into text files. However, for some data types they must be converted into a BIOM file first. 
 
 ## BIOM files
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/biom.png", auto_pdf = TRUE)
 ```
 BIOM stands for BIological Observation Matrix. BIOM files generally contain abundance tables. These files are not human-readable but can be used with certain programs. Here we will only manipulate them in such ways to get the text files we need.
@@ -18,7 +18,7 @@ For more information on the BIOM format please see: https://biom-format.org/
 We will be using the command `biom convert` to convert BIOM files to TSV (Tab Separated Value) files. For more info on this please see: https://biom-format.org/documentation/biom_conversion.html
 
 ## Setup
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/setup.png", auto_pdf = TRUE)
 ```
 First copy a new directory that will contain all the QIIME2 output you need and then change directory to it.
@@ -41,7 +41,7 @@ mkdir final_exports
 - `final_exports`: This directory will contain the final exported files we would generaly want to keep.
 
 ## Abundance table export
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/noun_Table_250445_000000.png", auto_pdf = TRUE)
 ```
 
@@ -70,7 +70,7 @@ The option `--to-tsv` (or alternative) must be provided or the command will not 
 Use a text viewer/editor of your choice to inspect the final file. Make sure to do this for all the files in this tutorial.
 
 ## Taxonomy info export
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/noun_ranking_165760.png", auto_pdf = TRUE)
 ```
 
@@ -84,7 +84,7 @@ mv export/taxonomy.tsv final_exports
 ```
 
 ## Representative sequences export
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/noun_DNA_947999.png", auto_pdf = TRUE)
 ```
 
@@ -98,7 +98,7 @@ mv export/dna-sequences.fasta final_exports/ASV_rep_seqs.fasta
 ```
 
 ## Phylogenetic tree export
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/noun_Tree_1857655.png", auto_pdf = TRUE)
 ```
 
@@ -114,7 +114,7 @@ mv export/tree.nwk final_exports/fasttree_rooted_tree.nwk
 If you would like to view the tree you can open `firefox` and go to __"https://itol.embl.de"__. Then you can upload the `.nwk` to quickly view it.
 
 ## ASV table with taxonomy export
-```{r, fig.align = 'center',out.width= '25%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '250px', echo=FALSE }
 knitr::include_graphics(path = "figures/table_w_tax.png", auto_pdf = TRUE)
 ```
 
@@ -150,7 +150,7 @@ biom convert \
 ```
 
 ## Rarified table export
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/noun_curve_3542841.png", auto_pdf = TRUE)
 ```
 
@@ -189,7 +189,7 @@ biom convert \
 ```
 
 ## Relative abundance table export
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/noun_Percent_3560962.png", auto_pdf = TRUE)
 ```
 
@@ -227,7 +227,7 @@ biom convert \
 ```
 
 ## Taxonomy abundance table export
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/noun_Family_137805.png", auto_pdf = TRUE)
 ```
 

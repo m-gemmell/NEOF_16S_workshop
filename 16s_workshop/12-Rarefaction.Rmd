@@ -1,7 +1,7 @@
 # (PART\*) Analysis {-}
 
 # Sequencing depth evaluation {#rarefaction}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
 ``` 
 
@@ -18,12 +18,12 @@ For example, if we rarefy to a depth of 2000 for all samples:
 
 Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
-```{r, fig.align = 'center',out.width= '80%', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
+```{r, fig.align = 'center',out.width= '800px', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
 knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
 ``` 
 
 ## Rarefaction: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
 ``` 
 
@@ -53,7 +53,7 @@ qiime diversity alpha-rarefaction \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 ```
 
@@ -77,7 +77,7 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-rarefaction/)
 
 ### Copy rarefaction output {#cprarefaction}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
 ```
 
@@ -89,7 +89,7 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 
 
 ## Rarefaction: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_blue.png", auto_pdf = TRUE)
 ```
 
@@ -111,7 +111,7 @@ The visualisation has two plots.
       - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 ### Rarefaction considerations
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
 ```
 
@@ -128,7 +128,7 @@ Other considerations for rarefaction threshold:
 - Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diversity. With higher diversity you will need a larger rarefaction threshold.
 
 ### Rarefaction: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
 ```
 
@@ -137,7 +137,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateaue?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>900px) plateaue?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
@@ -160,7 +160,7 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 5. When comparing the two __Places__, at approximately what sequencing depth are there only 5 Entrance samples remaining? `r longmcq(opts_p)`
 
 ## Rarefaction: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
 ```
 

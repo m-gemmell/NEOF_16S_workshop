@@ -1,5 +1,5 @@
 # QIIME2 analysis workflow {#q2workflow}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
 ``` 
 
@@ -17,7 +17,7 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 8. Differential abundance analysis of ASVs across different conditions
 
 ## Activate environment
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
 ``` 
 You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.

@@ -1,5 +1,5 @@
 # 16S R packages {#rpackages}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/R.png", auto_pdf = TRUE)
 ```  
 
@@ -8,7 +8,7 @@ There are various R packages that can be used to analyse 16S data. We have a wor
 I would recommend only those with a good foundation in R to use these packages. If you do not have this I would recommend trying to gain it.
 
 ## qiime2R
-```{r, fig.align = 'center',out.width= '40%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '400px', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2r.png", auto_pdf = TRUE)
 ```  
 
@@ -19,7 +19,7 @@ qiime2R is an R package to import QIIME2 artifacts into R compatible files. It c
 One of its most useful commands is `qza_to_phyloseq()` which converts a .qza artifact into the phyloseq data structure.
 
 ## phyloseq
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/phyloseq_logo.png", auto_pdf = TRUE)
 ```  
 
