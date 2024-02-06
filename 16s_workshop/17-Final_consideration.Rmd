@@ -1,5 +1,5 @@
 # Final consideration {#final}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
 ``` 
 

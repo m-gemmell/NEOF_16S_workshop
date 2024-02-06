@@ -29,15 +29,11 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/NEOF_bordered.png", auto_pdf = TRUE)
-```
+<center>![](figures/NEOF_bordered.png){style="width:300px"}</center>
 
 # Introduction
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
-knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
-```
+<center>![](figures/intro_logo.png){style="width: 300px"}</center>
 
 Sequencing of the 16S rRNA gene is a well established method of determining the bacterial taxonomic composition of microbiomes. This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments. This course will give you the ability to describe the advantages and disadvantages of 16S rRNA sequencing, and analyse 16S rRNA datasets with the QIIME2 bioinformatics platform.
 

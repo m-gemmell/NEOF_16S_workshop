@@ -1,12 +1,12 @@
 # Beta diversity statistical analysis {#beta_stats}
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
 ``` 
 
 We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use __'PERMANOVA'__ analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
 ## Beta diveristy: PCoA
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
 ``` 
 
@@ -19,7 +19,7 @@ Before running some statistical analysis let's look at one of the PCoA plots cre
 We are able to visually separate these two groups in the plot, especially on Axis 2. However, will some statistics back this up?
 
 ## Beta diversity: run 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
 ``` 
 
@@ -39,7 +39,7 @@ qiime diversity beta-group-significance \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 ```
 
@@ -57,7 +57,7 @@ __`--o-visualization`__: The output artifact containing the visualisation.
 [QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/beta-group-significance/)
 
 ## Beta diversity: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
 ```
 
@@ -76,7 +76,7 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
 [Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
 ### Beta diversity: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
 ```
 
@@ -110,7 +110,7 @@ opts_p <- c("__Yes__", answer="__No__")
 5. Is there a significant difference (q-value <0.05) between __Entrance and MainBuilding (Place)__ for the __Unweighted Unifrac__ distances when using __ANOSIM__? `r longmcq(opts_p)`
 
 ### Beta diversity: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
 ```
 

@@ -1,5 +1,5 @@
 # Data {#data}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/data_files.png", auto_pdf = TRUE)
 ``` 
 
@@ -23,7 +23,7 @@ ls
 ```
 
 ## PairedEndFastqManifestPhred33.csv {#manifestfile}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/manifest.png", auto_pdf = TRUE)
 ``` 
 
@@ -55,7 +55,7 @@ less PairedEndFastqManifestPhred33.csv
 This file will be used in chapter 7.
 
 ## metadata.file.txt
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/tags.png", auto_pdf = TRUE)
 ``` 
 

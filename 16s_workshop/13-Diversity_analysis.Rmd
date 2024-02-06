@@ -1,5 +1,5 @@
 # Diversity analysis {#diversity}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
 ``` 
 
@@ -9,7 +9,7 @@ Alpha diversity is a representation of the diversity within a sample. There are 
 Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
 ## Diversity: run 
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_red.png", auto_pdf = TRUE)
 ``` 
 
@@ -25,7 +25,7 @@ qiime diversity core-metrics-phylogenetic \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 ```
 
@@ -38,7 +38,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2023.5/plugins/available/diversity/core-metrics-phylogenetic/)
 
 #### Output {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
 ```
 

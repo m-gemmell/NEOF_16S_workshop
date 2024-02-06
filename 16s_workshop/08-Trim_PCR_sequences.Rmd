@@ -1,5 +1,5 @@
 # Trim the PCR primer sequences {#pcrtrim}
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
 ``` 
 
@@ -8,7 +8,7 @@ Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the
 However, before we carry this out we will need to remove any sequence data that is not biologically relevant. This includes the primer sequences that were used in the Illumina sequencing.
 
 ## Cutadapt: run
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/play_black.png", auto_pdf = TRUE)
 ``` 
 
@@ -29,7 +29,7 @@ qiime cutadapt trim-paired \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '10%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
 knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 ```
 
@@ -41,7 +41,7 @@ knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2023.5/plugins/available/cutadapt/trim-paired/)
 
 ## Cutadapt: visualise
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/eye_brown.png", auto_pdf = TRUE)
 ``` 
 
@@ -64,7 +64,7 @@ If you are working with the ITS region, to trim off the conserved regions from t
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 
 ## Cutadapt: MCQs
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
 ```
 
@@ -94,7 +94,7 @@ opts_p <- c(answer="__226__", "__230__", "__250__")
 5. What is the median length of the forward reads? `r longmcq(opts_p)`
 
 ## Cutadapt: summary
-```{r, fig.align = 'center',out.width= '15%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
 knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
 ```
 

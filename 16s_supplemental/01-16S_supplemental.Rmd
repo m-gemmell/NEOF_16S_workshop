@@ -21,12 +21,12 @@ cover-image: "figures/NEOF.png"
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-```{r, fig.align = 'center',out.width= '30%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '300px', echo=FALSE }
 knitr::include_graphics(path = "figures/NEOF.png", auto_pdf = TRUE)
 ``` 
 
 # Introduction
-```{r, fig.align = 'center',out.width= '20%', echo=FALSE }
+```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
 knitr::include_graphics(path = "figures/qiime2_supplement.png", auto_pdf = TRUE)
 ``` 
 
