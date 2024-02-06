@@ -8,7 +8,7 @@ This section will contain a few useful commands for QIIME2 analysis.
 Copy over a directory with the content you will need and move into it for this section.
 
 ```{bash eval=FALSE}
-cp -r /pub39/tea/matthew/NEOF/16s_workshop/handy_qiime2_cmds ~/Metagenetics
+cp -r /pub14/tea/nsc206/NEOF/16s_workshop/handy_qiime2_cmds ~/Metagenetics
 cd ~/Metagenetics/handy_qiime2_cmds
 ```
 
@@ -44,8 +44,8 @@ done >> manifest.csv
 
 Note the above is quite complicated and you may get away with just changing the specified directory for your own analyses. Always make sure you check the output manifest file before importing with it. If it is wrong make sure to start from the first step so you reset your file.
 
-- `find /pub39/tea/matthew/NEOF/16sworkshop/RawReads/ -name *R1*fastq.gz`
-   - This will find all the absolute paths from the specified directory and its subdirectories (`/pub39/tea/matthew/NEOF/16sworkshop/RawReads/`) that contain "R1" and end with "fastq.gz" (`-name *R1*fastq.gz`). Ensure the specified directory and its subdirectories only contain your fastq files of interest.
+- `find /pub14/tea/nsc206/NEOF/16sworkshop/RawReads/ -name *R1*fastq.gz`
+   - This will find all the absolute paths from the specified directory and its subdirectories (`/pub14/tea/nsc206/16sworkshop/RawReads/`) that contain "R1" and end with "fastq.gz" (`-name *R1*fastq.gz`). Ensure the specified directory and its subdirectories only contain your fastq files of interest.
 - `while read path ;`
    - This is a loop that will loop through all the returned file paths. Everything between the `do` and `done` are the commands run in the loop. `path` is the variable name of the aboslute file path that is used in each instance of the loop. The `;` separates commands within the loop.
 - `sample=$(basename $path  |sed "s/_.*//")`
