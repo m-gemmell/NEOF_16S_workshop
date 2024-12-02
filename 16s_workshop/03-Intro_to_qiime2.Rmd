@@ -1,13 +1,17 @@
 # Introduction to QIIME2 {#introqiime2}
-<center>![](figures/q2docs_bordered.png){style="width:200px"}</center>
+<center>
+![](figures/q2docs.png){style="width:200px; background:white; border-radius:5px; border: white 2px solid"}
+</center>
 
-Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 released on May 2023 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
+Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 version released on May 2023 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
 If you want to install QIIME2 on your own machine, please refer to: 
 https://docs.qiime2.org/2023.5/install/
 
 ## Artifacts
-<center>![](figures/artefact.png){style="width:150px"}</center>
+<center>
+![](figures/artefact.png){style="width:150px"}
+</center>
 
 The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data and metadata and may be of two types: result or visualisation. 
 
@@ -15,11 +19,15 @@ The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data a
 - __Visualisation files (.qzv)__: This file type contains the results of a specific procedure to obtain an object that can only be used to visualize the results. These files can be loaded into the following web-site https://view.qiime2.org, where the interactive visualisations can be viewed. Please note that only chrome and Firefox are supported by this QIIME2 website.
 
 ## Workflow
-<center>![](figures/workflow.png){style="width:150px"}</center>
+<center>
+![](figures/workflow.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2023.5/tutorials/.
 
-<center>![](figures/16_tutorial_diagram.png){style="width:800px"}</center>
+<center>
+![](figures/16_tutorial_diagram.png){style="width:800px"}
+</center>
 Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp-content/uploads/2016/10/20170712_microbiome_16s_tutorial_non-interactive.pdf)
 
 1. Prepare the sequence dataset
@@ -39,7 +47,9 @@ Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp
 8. Differential abundance analysis
 
 ## Prepare the sequence dataset
-<center>![](figures/prepare.png){style="width:150px"}</center>
+<center>
+![](figures/prepare.png){style="width:150px"}
+</center>
 
 The read set you will be using in this tutorial will be a raw dataset. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences. 
 
@@ -52,7 +62,9 @@ If the analysis is based on a marker gene different than 16S, other quality trim
 The key element of this type of metagenomic analysis is the identification of the different rRNA variants in the sample. 
 
 ### OTUs
-<center>![](figures/clusters.png){style="width:150px"}</center>
+<center>
+![](figures/clusters.png){style="width:150px"}
+</center>
 
 The most used procedure to identify OTUs (Operational Taxonomic Units) is through the clustering of reads into groups that are sufficiently similar to one another. These grouped reads are likely to come from the same rRNA gene, genome or taxa group. 
 
@@ -68,7 +80,9 @@ There is no single perfect tool for this step; but a few of the most widely used
 The number of reads in each OTU should reflect the number of copies of the gene in the sample, thus providing a quantitative measure of diversity. 
 
 ### ASVs
-<center>![](figures/mangify_glass.png){style="width:150px"}</center>
+<center>
+![](figures/mangify_glass.png){style="width:150px"}
+</center>
 
 There are now many bioinformatics methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
 
@@ -78,7 +92,9 @@ Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biologi
 
 The following picture shows how DADA2 (an ASV method) and OTU processes compare to each other. This shows how the canonical creation of OTUs by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.
 
-<center>![](figures/ASC_otu_comparison.png){style="width:800px"}</center>
+<center>
+![](figures/ASC_otu_comparison.png){style="width:800px; border-radius:2px"}
+</center>
 
 Much of the work involved in the analysis of amplicon-based metagenomic data is that of separating true variants from errors introduced by sequencing. These errors include miscalling of nucleotides and the generation of chimeric sequences.
 
@@ -87,7 +103,9 @@ For sequencing purposes, an aliquot of PhiX phage DNA is added to each sample be
 QIIME 2 Authors suggest using DADA2 for read pairs and ‘deblur’ for already paired (stitched/joined) sequences. Please note that it is good practice to remove/trim out sequences containing Ns before the error correction step. It is not suggested to denoise with DADA2 samples from different sequencing lanes, because each lane may introduce different sequencing biases. It is possible to collate the denoised abundance tables and representative sequences afterwards, recording the sequencing lane for each sample in a specific metadata column. The ‘deblur’ denoise tool may be used in this case because it should be less sensitive to these possible biases, however it is good practice to keep the lane of origin in the metadata (with the second benefit that ‘deblur’ is also faster than ‘DADA2’).
 
 ## Assign a taxonomic classification to each ASV
-<center>![](figures/classification.png){style="width:150px"}</center>
+<center>
+![](figures/classification.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 The sequence of each ASV is compared with the selected database, to identify the most likely taxonomy for each ASV. Unfortunately different parts of the taxonomic identification step may lead to different results for the same ASV. 
 
@@ -96,14 +114,18 @@ Different databases may result in different taxonomic classification for the sam
 In the practical we will use Scikit-learn (similar to the RDP tool widely used so far). It has been shown that (at least in the case of 16S analysis) taxonomic classification accuracy improves when the classifier is trained with sequences derived from the amplicon region only (Werner _et al_., 2012).
 
 ## Phylogenetic tree creation
-<center>![](figures/phylo_tree.png){style="width:150px"}</center>
+<center>
+![](figures/phylo_tree.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 To include phylogenetic diversity metrics in the diversity analysis, such as UniFrac distance metrics, the construction of a phylogenetic tree for the identified ASVs is required. QIIME2 supports MAFFT for the alignment and MASK to mask the alignment sections that are not phylogenetically informative. Unrooted and rooted trees may be created. 
 
 For some marker genes it is not possible to build a phylogenetic tree (ITS is among these), and it is therefore important to know the properties of the marker in use. Consequently, it is not possible to use any diversity metrics that requires the phylogenetic distance as input.
 
 ## Data normalisation
-<center>![](figures/normalisation.png){style="width:150px"}</center>
+<center>
+![](figures/normalisation.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 Any further analyses to compare the identified ASVs among sample groups (either alpha- or beta-diversity or differential abundance) should account for the features of the abundance table that can cause erroneous results (Weiss et al., 2017). These features are:
 
@@ -127,7 +149,9 @@ These normalisation methods were compared by Weiss and colleagues (2017), but th
 In this tutorial, following the QIIME2 current tutorial, we will apply the ‘rarefaction’ method, in the context of the alpha- and beta-diversity analysis.
 
 ## Alpha-diversity
-<center>![](figures/alpha_div.png){style="width:150px"}</center>
+<center>
+![](figures/alpha_div.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 Alpha-diversity is used to measure the diversity within a sample. It is calculated as a value for each sample. Different metrics were developed to calculate diversity in different ways. It combines richness (a measure of the number of features in the sample) and evenness (a measure of the relative abundances of different features that make up the richness of that sample). Alpha diversity measures cannot be compared unless they have been normalised for the difference in sequencing depth between samples. The QIIME2 release we will use supports the following alpha-diversity measures, amongst others: Chao1, Shannon, Simpson, Simpson evenness, Faith’s Phylogenetic Diversity (the only one considering the phylogenetic relationships among the
 ASVs).
@@ -135,7 +159,9 @@ ASVs).
 The alpha-diversity metric used for the analysis must be chosen carefully, considering its mathematical definition in relation to the behaviour of the tools used for the previous steps. An important point to consider is whether the chosen metric uses ASVs with only 1 sequence (‘singletons’) to perform some estimation on the dataset or not. The Chao1, as one example for this, uses the number of singletons in the dataset to infer the total number of singletons in the population. However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
 ## Beta-diversity
-<center>![](figures/beta_div.png){style="width:200px"}</center>
+<center>
+![](figures/beta_div.png){style="width:200px; background: white; border-radius:5px"}
+</center>
 
 Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform NMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
@@ -151,7 +177,9 @@ As discussed for the alpha-diversity, before proceeding with the beta-diversity 
 The choice of the beta-diversity distance metric to use will strongly affect the results. Therefore it is common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
 ## Differential Abundance Analysis
-<center>![](figures/comparison.png){style="width:200px"}</center>
+<center>
+![](figures/comparison.png){style="width:200px; background: white; border-radius:5px"}
+</center>
 
 The identification of taxa that are differentially abundant across experimental conditions may be an important result for many types of metagenetics analyses. This step is extremely dependent on the normalization methods used to compare the samples: using different normalisation methods may lead to different results (consequently this is another active area of research).
 

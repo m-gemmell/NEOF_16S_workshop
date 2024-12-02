@@ -29,15 +29,19 @@ knitr::write_bib(c(
 knitr::opts_chunk$set(class.source="Rchunk") 
 ```
 
-<center>![](figures/NEOF_bordered.png){style="width:300px"}</center>
+<center>
+![](figures/neof_rounded_corners.png){style="width:300px"}
+</center>
 
 # Introduction
 
-<center>![](figures/intro_logo.png){style="width: 300px"}</center>
+<center>
+![](figures/intro_logo.png){style="width: 300px"}
+</center>
 
 Sequencing of the 16S rRNA gene is a well established method of determining the bacterial taxonomic composition of microbiomes. This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments. This course will give you the ability to describe the advantages and disadvantages of 16S rRNA sequencing, and analyse 16S rRNA datasets with the QIIME2 bioinformatics platform.
 
-Sessions will start with a brief presentation followed by self-paced computer practicals guided by an online interactive book. The book will contain theory and practice code. Multiple choice questions will guide the interpretation of results.
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book will contain theory and practice code. Multiple choice questions will guide the interpretation of results.
 
 At the end of the course learners will be able to:
 
@@ -49,7 +53,7 @@ At the end of the course learners will be able to:
 - Produce alpha and beta diversity metrics and statistics.
 - Carry out differential abundance analysis.
 
-There are [supplementary materials](https://neof-workshops.github.io/16S_yg84o9/Supplemental/01-16S_supplemental.html) including exporting of QIIME2 artifacts, various handy QIIME2 commands, and introduction to some useful R packages. These can be run through after the course by the learner.
+There are [supplementary materials](https://neof-workshops.github.io/16S_yg84o9/Supplemental/01-16S_supplemental.html) including exporting of QIIME2 artifacts, various handy QIIME2 commands, and introduction to some useful R packages. These can be run through after the course.
 
 ## Table of contents {-}
 
@@ -76,7 +80,7 @@ column_1 <- c(
 column_2 <- c(
   '[**Introduction to QIIME2**](#introqiime2)',
  '[![](figures/intro_logo.png){height="150"}](#introqiime2)',
- '[**Introduction to QIIME2**](#introqiime2)',
+ '[**Data**](#data)',
  '[![](figures/data_files.png){height="150"}](#data)',
  '[**Sequence import**](#import)',
  '[![](figures/import.png){height="150"}](#import)',

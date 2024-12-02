@@ -1,5 +1,7 @@
 # Background {#background}
-<center>![](figures/background.png){style="width:200px"}</center>
+<center>
+![](figures/background.png){style="width:200px"}
+</center>
 
 One of the most common aims of metagenomic analyses is to quantify the composition and diversity of a community (usually a community of prokaryotes). This can be done in several ways. A common approach is high-throughput amplicon sequencing, usually of a region of the bacterial 16S SSU rRNA gene. Another approach is shotgun metagenomic sequencing, where the whole genomic content of a sample is sequenced.
 
@@ -15,13 +17,16 @@ The 16S rRNA gene is utilised in reconstructing phylogenies due to its slow rate
 
 The 16S rRNA gene is ~1,500bp long and consists of 9 variable regions separated by conserved regions. The variable regions evolve at a faster rate allowing differentiation between bacterial taxa. The conserved regions evolve at a slower rate which allows areas to carry out universal amplification on the gene. The nine variable regions are generally called V1, V2, V3 etc.
 
-<center>![](figures/16srna.png){style="width: 600px"}</center>
+<center>
+![](figures/16srna.png){style="width: 600px"}
+</center>
 Secondary structure of 16S rRNA of Esherichia coli (Yarza _et al_, 2014)
 
 ## ITS and other possible marker genes
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/ITS.png", auto_pdf = TRUE)
-```  
+<center>
+![](figures/ITS.png){style="width: 200px"}
+</center>
+  
 It is very common to perform analysis with marker genes other than 16S, e.g. to study communities of fungi, insects or any other eukaryote species. From the perspective of the bioinformatics analysis, the same overall pipeline can be used for most of the marker genes. 
 
 ITS (Internal Transcribed Spacer) is a commonly used marker alternative to 16S. QIIME2 can be used to analyse ITS with a few steps and commands required which are unnecessary for 16S rRNA data. In this  tutorial, locations will be highlighted where you should consider a pipeline variation if you are using ITS. In general, we recommend searching the literature so you can be aware of the state-of-the-art methods for the analysis of your marker of interest.
@@ -47,9 +52,10 @@ On the negative side, there are many steps which may potentially introduce biase
 
 All these aspects need to be taken into account in the discussion of the results.
 
-```{r, fig.align = 'center',out.width= '900px', echo=FALSE }
-knitr::include_graphics(path = "figures/amplicon_sequencing_representation.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/amplicon_sequencing_representation.png){style="width:900px"}
+</center>
+
 Above shows a representation of amplicon sequencing.
 
 A) Different species are shown as different colours, with the indication of which species are in the site under investigation. Some species may be excluded from the sequencing because they are:
