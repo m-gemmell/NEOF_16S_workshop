@@ -51,7 +51,7 @@ Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp
 ![](figures/prepare.png){style="width:150px"}
 </center>
 
-The read set you will be using in this tutorial will be a raw dataset. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences. 
+You will be using a raw dataset as the tutorial data. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences. 
 
 The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step. 
 
@@ -84,7 +84,7 @@ The number of reads in each OTU should reflect the number of copies of the gene 
 ![](figures/mangify_glass.png){style="width:150px"}
 </center>
 
-There are now many bioinformatics methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
+There are now many bioinformatic methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
 
 ASV methods infer the biological sequences in the sample prior to the introduction of amplification and sequencing errors, and distinguish sequence variants differing by as little as one nucleotide. The methods use a de novo process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than error-containing sequences.
 
@@ -133,7 +133,7 @@ Any further analyses to compare the identified ASVs among sample groups (either 
 2. The abundance table is usually sparse. That is, most of the ASVs are present only in a few samples and therefore the abundance table contains many ‘0’ values (it is also possible that a particular species is present in a sample but below the detection limit of the methods).
 3. The total number of sequences obtained reflect the relative abundance of species sequenced rather that the absolute abundance of the species present in the sample (this is commonly referred as ‘compositional nature’ of the data). The relative abundances for the taxa are therefore not independent as in the underlying assumption of many frequently used statistical methods (Gloor _et al_., 2017).
 
-A normalisation step for the data is required to mitigate these effects and to allow an easier data interpretation. The most used normalisation methods are: 
+A normalisation step for the data is required to mitigate these effects and to allow easier data interpretation. The most used normalisation methods are: 
 
 a. Normalisation by rarefaction. This is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
     - This method may lead to a potential reduction of the species in your dataset (alpha-diversity) and to the exclusion of any samples not reaching the selected total count per sample.
@@ -163,14 +163,14 @@ The alpha-diversity metric used for the analysis must be chosen carefully, consi
 ![](figures/beta_div.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform NMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
+Beta-diversity is a term for the comparison of samples to each other. It is also referred to as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:
 
-- Jaccard: A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.
-- Bray-Curtis: A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.
-- Un-weighted UniFrac: Uses the presence and absence of ASVs and their phylogenies.
-- Weighted UniFrac: Uses the abundance information of ASVs and their phylogenies.
+- __Jaccard:__ A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.
+- __Bray-Curtis:__ A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.
+- __Un-weighted UniFrac:__ Uses the presence and absence of ASVs and their phylogenies.
+- __Weighted UniFrac:__ Uses the abundance information of ASVs and their phylogenies.
 
 As discussed for the alpha-diversity, before proceeding with the beta-diversity analysis the raw abundance table for the identified ASVs needs to be normalised. QIIME2 suggests using the rarefaction methods, in particular at the same rarefaction threshold used for the alpha diversity.
 
