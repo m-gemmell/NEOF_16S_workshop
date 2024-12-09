@@ -155,16 +155,19 @@ Miniforge installation: <https://github.com/conda-forge/miniforge>
 
 Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
-To create the mamba environment `qiime2-2023.5` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `qiime2-amplicon-2024.10` run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
 #QIIME2
-wget https://data.qiime2.org/distro/core/qiime2-2023.5-py38-linux-conda.yml
-mamba env create -n qiime2-2023.5 --file qiime2-2023.5-py38-linux-conda.yml
+conda env create -n qiime2-amplicon-2024.10 --file https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml
+
+#MATTHEW, DO YOU STILL NEED THIS HERE?
 pip install q2-greengenes2
 ```
 
-__Note__: You may want to install the most recent version of QIIME2. PLease see the following page for installation instructions: https://docs.qiime2.org/2023.5/install/native/
+__Note__: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: https://docs.qiime2.org/2024.10/install/native/. Ensure to follow the "QIIME 2 Amplicon Distribution" step if you are going to use QIIME2 for amplicon analysis.
+
+
 
 # Diversity metrics
 ```{r, fig.align = 'center',out.width= '200px', echo=FALSE }

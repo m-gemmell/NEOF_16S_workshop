@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-02" />
+<meta name="date" content="2024-12-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/prepare.png" style="width:150px" />
 </center>
-<p>The read set you will be using in this tutorial will be a raw dataset. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences.</p>
+<p>You will be using a raw dataset as the tutorial data. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences.</p>
 <p>The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step.</p>
 <p>If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers <em>et al</em>., 2018) is designed for this specific task and it is available as a QIIME2 plug-in, though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (<a href="https://library.qiime2.org/plugins/" class="uri">https://library.qiime2.org/plugins/</a> ).</p>
 </div>
@@ -429,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/mangify_glass.png" style="width:150px" />
 </center>
-<p>There are now many bioinformatics methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.</p>
+<p>There are now many bioinformatic methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.</p>
 <p>ASV methods infer the biological sequences in the sample prior to the introduction of amplification and sequencing errors, and distinguish sequence variants differing by as little as one nucleotide. The methods use a de novo process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than error-containing sequences.</p>
 <p>Unlike de novo OTUs, ASVs are consistent labels because ASVs represent a biological reality that exists outside of the data being analysed: the DNA sequence of the assayed organism. Thus, ASVs inferred independently from different studies or different samples can be compared.</p>
 <p>The following picture shows how DADA2 (an ASV method) and OTU processes compare to each other. This shows how the canonical creation of OTUs by clustering may lead to an overestimation of the size of the OTUs due to the presence of errors, from either PCR or sequencing.</p>
@@ -469,7 +469,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The abundance table is usually sparse. That is, most of the ASVs are present only in a few samples and therefore the abundance table contains many ‘0’ values (it is also possible that a particular species is present in a sample but below the detection limit of the methods).</li>
 <li>The total number of sequences obtained reflect the relative abundance of species sequenced rather that the absolute abundance of the species present in the sample (this is commonly referred as ‘compositional nature’ of the data). The relative abundances for the taxa are therefore not independent as in the underlying assumption of many frequently used statistical methods (Gloor <em>et al</em>., 2017).</li>
 </ol>
-<p>A normalisation step for the data is required to mitigate these effects and to allow an easier data interpretation. The most used normalisation methods are:</p>
+<p>A normalisation step for the data is required to mitigate these effects and to allow easier data interpretation. The most used normalisation methods are:</p>
 <ol style="list-style-type: lower-alpha">
 <li>Normalisation by rarefaction. This is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
 <ul>
@@ -500,13 +500,13 @@ ASVs).</p>
 <center>
 <img src="figures/beta_div.png" style="width:200px; background: white; border-radius:5px" />
 </center>
-<p>Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform NMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns.</p>
+<p>Beta-diversity is a term for the comparison of samples to each other. It is also referred to as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns.</p>
 <p>A few of the commonly used beta diversity metrics supported by QIIME2 are:</p>
 <ul>
-<li>Jaccard: A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.</li>
-<li>Bray-Curtis: A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.</li>
-<li>Un-weighted UniFrac: Uses the presence and absence of ASVs and their phylogenies.</li>
-<li>Weighted UniFrac: Uses the abundance information of ASVs and their phylogenies.</li>
+<li><strong>Jaccard:</strong> A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.</li>
+<li><strong>Bray-Curtis:</strong> A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.</li>
+<li><strong>Un-weighted UniFrac:</strong> Uses the presence and absence of ASVs and their phylogenies.</li>
+<li><strong>Weighted UniFrac:</strong> Uses the abundance information of ASVs and their phylogenies.</li>
 </ul>
 <p>As discussed for the alpha-diversity, before proceeding with the beta-diversity analysis the raw abundance table for the identified ASVs needs to be normalised. QIIME2 suggests using the rarefaction methods, in particular at the same rarefaction threshold used for the alpha diversity.</p>
 <p>The choice of the beta-diversity distance metric to use will strongly affect the results. Therefore it is common practice to compare the results obtained with different metrics. Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.</p>

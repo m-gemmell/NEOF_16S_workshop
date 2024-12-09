@@ -1,7 +1,7 @@
 # Data {#data}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/data_files.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/data_files.png){style="width:200px"}
+</center>
 
 Prior to starting analysis you will need three files. To acquire these three files run the following commands.
 
@@ -23,9 +23,9 @@ ls
 ```
 
 ## PairedEndFastqManifestPhred33.csv {#manifestfile}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/manifest.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/manifest.png){style="width:200px"}
+</center>
 
 This "manifest" file contains three columns that are separated by commas (.csv = comma separated values). This is vital for importing your sequencing data into QIIME2.
 
@@ -55,9 +55,9 @@ less PairedEndFastqManifestPhred33.csv
 This file will be used in chapter 7.
 
 ## metadata.file.txt
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/tags.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/tags.png){style="width:200px"}
+</center>
 
 This file contains metadata. It consists of columns separated by tabs. 
 
@@ -74,7 +74,7 @@ The first 2 rows must be:
 2. Column type
    - The value "#q2:types" must be used for the 1st column.
    - For all other columns the value must be:
-      - "categorical": For categorical metadata.This will be the most common choice.
+      - "categorical": For categorical metadata. This will be the most common choice.
       - "numeric": For numerical metadata. 
       
 Have a look at the top 10 lines of the metadata file:
@@ -92,6 +92,18 @@ The above link includes:
 - Recommendations for identifiers
 - Info on column types and number formatting
 - More
+
+__Note__: All the QIIME2 links may be out of date and the below will appear:
+<center>
+![](figures/qiime2_website_out_of_date.png){style="width:800px"}
+</center>
+
+If this occurs click "Show me the content on this page".
+
+You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
+<center>
+![](figures/qiime2_version_box.png){style="width:200px"}
+</center>
 
 ## primers_seqs.fasta
 

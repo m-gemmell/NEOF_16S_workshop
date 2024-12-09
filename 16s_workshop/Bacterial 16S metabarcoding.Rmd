@@ -240,7 +240,7 @@ Representation of the step proposed for the analysis (http://compbio.ucsd.edu/wp
 ![](figures/prepare.png){style="width:150px"}
 </center>
 
-The read set you will be using in this tutorial will be a raw dataset. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences. 
+You will be using a raw dataset as the tutorial data. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences. 
 
 The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step. 
 
@@ -273,7 +273,7 @@ The number of reads in each OTU should reflect the number of copies of the gene 
 ![](figures/mangify_glass.png){style="width:150px"}
 </center>
 
-There are now many bioinformatics methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
+There are now many bioinformatic methods to resolve amplicon sequence variants (ASVs) from Illumina data. These methods do not impose the arbitrary dissimilarity thresholds that define molecular OTUs. The two methods available in QIIME2 are DADA2 and deblur.
 
 ASV methods infer the biological sequences in the sample prior to the introduction of amplification and sequencing errors, and distinguish sequence variants differing by as little as one nucleotide. The methods use a de novo process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than error-containing sequences.
 
@@ -322,7 +322,7 @@ Any further analyses to compare the identified ASVs among sample groups (either 
 2. The abundance table is usually sparse. That is, most of the ASVs are present only in a few samples and therefore the abundance table contains many ‘0’ values (it is also possible that a particular species is present in a sample but below the detection limit of the methods).
 3. The total number of sequences obtained reflect the relative abundance of species sequenced rather that the absolute abundance of the species present in the sample (this is commonly referred as ‘compositional nature’ of the data). The relative abundances for the taxa are therefore not independent as in the underlying assumption of many frequently used statistical methods (Gloor _et al_., 2017).
 
-A normalisation step for the data is required to mitigate these effects and to allow an easier data interpretation. The most used normalisation methods are: 
+A normalisation step for the data is required to mitigate these effects and to allow easier data interpretation. The most used normalisation methods are: 
 
 a. Normalisation by rarefaction. This is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
     - This method may lead to a potential reduction of the species in your dataset (alpha-diversity) and to the exclusion of any samples not reaching the selected total count per sample.
@@ -352,14 +352,14 @@ The alpha-diversity metric used for the analysis must be chosen carefully, consi
 ![](figures/beta_div.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-Beta-diversity is a term for the comparison of samples to each other. It is also referred as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The current QIIME2 release supports only the Principal Coordinates Analysis (PCoA) method to investigate beta-diversity (within the old QIIME1 pipeline you could perform NMDS as well). The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
+Beta-diversity is a term for the comparison of samples to each other. It is also referred to as beta-diversity ordination, because it uses one (or more) technique/s to arrange samples along axes on the basis of their composition to highlight the differences. The starting point of the analysis is a dissimilarity matrix, which is used to perform a Principal Component Analysis (PCA) to reduce the dimension for display purpose. The axes obtained from the PCA analysis are then compared with the categories in the metadata file to identify patterns. 
 
 A few of the commonly used beta diversity metrics supported by QIIME2 are:
 
-- Jaccard: A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.
-- Bray-Curtis: A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.
-- Un-weighted UniFrac: Uses the presence and absence of ASVs and their phylogenies.
-- Weighted UniFrac: Uses the abundance information of ASVs and their phylogenies.
+- __Jaccard:__ A non-phylogeny based method that takes into account the presence/absence of ASVs to measure the distance between two samples.
+- __Bray-Curtis:__ A non-phylogeny based method that takes into account the number of ASVs and their abundance to determine the distance between two samples.
+- __Un-weighted UniFrac:__ Uses the presence and absence of ASVs and their phylogenies.
+- __Weighted UniFrac:__ Uses the abundance information of ASVs and their phylogenies.
 
 As discussed for the alpha-diversity, before proceeding with the beta-diversity analysis the raw abundance table for the identified ASVs needs to be normalised. QIIME2 suggests using the rarefaction methods, in particular at the same rarefaction threshold used for the alpha diversity.
 
@@ -388,29 +388,39 @@ Examples of questions to answer:
 library(webexercises)
 ```
 # Cluster Introduction {#cluster}
-<center>![](figures/cluster.png){style="width:200px"}</center>
+<center>
+![](figures/cluster.png){style="width:200px"}
+</center>
 
 ## Logon instructions
 For this workshop we will be using Virtual Network Computing (VNC). Connect to the VNC with a browser by using the webVNC link you were sent.
 
 You will now be in a logged-in Linux VNC desktop with two terminals. You will see something as below (there may be only one terminal which is fine). If you do not see something similar please ask for assistance.
-<center>![](figures/logon_pic.png){style="width:700px"}</center>
+
+<center>
+![](figures/logon_pic.png){style="width:700px"}
+</center>
 
 If the VNC is taking up too much/little space of your browser you can use the zoom of your browser to adjust the size. Ensure you can see one whole terminal.
 
-These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux 
+These instructions will not work outside of this workshop. If you would like to install your own Linux OS on your desktop or laptop we would recommend Mint Linux or WSL.
 
-The following link is a guide to install Mint Linux:  
+The following link is a guide to install the Mint Linux OS:
 https://linuxmint-installation-guide.readthedocs.io/en/latest/
 
-## The Terminal Window
-In our case the terminal window looks like the picture below. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
+WSL is a way to have both Windows and Linux on a Windows machine. The following link is a guide to install Linux on Windows with WSL:
+https://learn.microsoft.com/en-us/windows/wsl/install
 
-<center>![](figures/terminal_window.png){style="width:800px"}</center>
+## The Terminal Window
+In our case the terminal window looks like the below image. We are using the terminal window as our shell to interpret our commands to the kernel. Depending on your system and preferences it may look different.
+
+<center>
+![](figures/terminal_window.png){style="width:800px"}
+</center>
 
 Already there is useful information for us on the terminal window.
 
-- __nsc206__: This is the login name, also known as the username. In this case nsc006 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
+- __nsc206__: This is the login name, also known as the username. In this case nsc206 is a demonstrator's account. Your screen should show a different account name which will be your username for the Linux machine/cluster you are logged into.
 - __ada02__: This is the machine name the user is logged into.
 - __\~__: This represents the current directory of the user, or the directory a command was run in. In the Linux OS and others __'~'__ is a shortcut to the user's home directory.
 - Everything after the __'$'__ is where commands are typed into the terminal. This is also referred to as the command line.
@@ -423,9 +433,9 @@ __To open a new terminal window__, right click on the main screen (the grey bit)
 library(webexercises)
 ```
 # Data {#data}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/data_files.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/data_files.png){style="width:200px"}
+</center>
 
 Prior to starting analysis you will need three files. To acquire these three files run the following commands.
 
@@ -447,9 +457,9 @@ ls
 ```
 
 ## PairedEndFastqManifestPhred33.csv {#manifestfile}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/manifest.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/manifest.png){style="width:200px"}
+</center>
 
 This "manifest" file contains three columns that are separated by commas (.csv = comma separated values). This is vital for importing your sequencing data into QIIME2.
 
@@ -479,9 +489,9 @@ less PairedEndFastqManifestPhred33.csv
 This file will be used in chapter 7.
 
 ## metadata.file.txt
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/tags.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/tags.png){style="width:200px"}
+</center>
 
 This file contains metadata. It consists of columns separated by tabs. 
 
@@ -498,7 +508,7 @@ The first 2 rows must be:
 2. Column type
    - The value "#q2:types" must be used for the 1st column.
    - For all other columns the value must be:
-      - "categorical": For categorical metadata.This will be the most common choice.
+      - "categorical": For categorical metadata. This will be the most common choice.
       - "numeric": For numerical metadata. 
       
 Have a look at the top 10 lines of the metadata file:
@@ -517,6 +527,18 @@ The above link includes:
 - Info on column types and number formatting
 - More
 
+__Note__: All the QIIME2 links may be out of date and the below will appear:
+<center>
+![](figures/qiime2_website_out_of_date.png){style="width:800px"}
+</center>
+
+If this occurs click "Show me the content on this page".
+
+You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
+<center>
+![](figures/qiime2_version_box.png){style="width:200px"}
+</center>
+
 ## primers_seqs.fasta
 
 This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for the PCR trimming step (chapter 8) and the classifier training step (chapter 10).
@@ -531,9 +553,9 @@ For your own projects you will need to ask the lab that carried out the sequenci
 library(webexercises)
 ```
 # QIIME2 analysis workflow {#q2workflow}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/workflow.png){style="width:200px; background: white; border-radius:5px"}
+</center>
 
 ## Workflow
 
@@ -549,9 +571,10 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 8. Differential abundance analysis of ASVs across different conditions
 
 ## Activate environment
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:5px"}
+</center>
+
 You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.
 
 __Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2023.5`
@@ -559,6 +582,8 @@ __Note__: Ensure you include the dot and space (`. `) at the start before `useqi
 ```{bash eval=FALSE}
 . useqiime2-2023.5
 ```
+
+Information on installing #mamba' and cretaing the environment are in the [appendix](#mamba_install)
 
 <!--chapter:end:06-QIIME2_analysis_workflow.Rmd-->
 
@@ -568,22 +593,22 @@ library(webexercises)
 # (PART\*) Preprocessing of data {-}
 
 # Sequence import {#import}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/import.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/import.png){style="width:200px"}
+</center>
 
 Before we can work with our data in QIIME2 we need to import the data into a QIIME2 artifact.
 
 ## Import: run
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_green.png){style="width:150px"}
+</center>
 
 Import our read pairs into a QIIME2 artifact.
 
 __Note__: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.
 
-__Note 2__: If you are no familiar with the back slashes (`\`) in the below command please check our explanation of __[Bash escape](https://neof-workshops.github.io/Unix_nxcdf7/Course/05-Tips_and_tricks.html#bash-escape)__. Please also ask for a demonstration if you would like.
+__Note 2__: If you are not familiar with the back slashes (`\`) in the below command please check our explanation of __[Bash escape](https://neof-workshops.github.io/Unix_nxcdf7/Course/05-Tips_and_tricks.html#bash-escape)__. Please also ask for a demonstration if you would like or you can watch a [video demonstration on YouTube](https://www.youtube.com/watch?v=968QURuAplk&t=607s).
 
 ```{bash, eval=FALSE}
 qiime tools import \
@@ -594,9 +619,9 @@ qiime tools import \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_green.png){style="width:100px"}
+</center>
 
 - __`--type`__: The type of data being imported.
   - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contains quality information. I.e. normal Illumina paired end fastq data.
@@ -609,22 +634,10 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
  
 [QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
 
-__Note__: All the QIIME2 links may be out of date and the below will appear:
-```{r, fig.align = 'center',out.width= '1000px', echo=FALSE }
-knitr::include_graphics(path = "figures/qiime2_website_out_of_date.png", auto_pdf = TRUE)
-``` 
-
-If this occurs click "Show me the content on this page".
-
-You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/qiime2_version_box.png", auto_pdf = TRUE)
-``` 
-
 ## Import: visualise {#chap7_vis}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/eye_green.png){style="width:200px"}
+</center>
 
 To visualise the samples loaded, the following command will create a visualisation artifact.
 
@@ -635,9 +648,9 @@ qiime demux summarize \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_green.png){style="width:100px"}
+</center>
 
 - __`--i-data`__: Input data artifact (`.qza`) to be summarised and visualised.
 - __`--o-visualization`__: Output visualisation artifact (`qzv`).
@@ -645,9 +658,9 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
 
 #### Firefox {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/firefox.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/firefox.png){style="width:100px"}
+</center>
 
 We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](https://view.qiime2.org).
 
@@ -662,24 +675,24 @@ Then:
 __Tip__: click "Home" on the top left, from there you can navigate to "Metagenetics" and choose your file.
 
 #### Output {-#chap7output}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/output_file_green.png){style="width:100px"}
+</center>
 
 The visualisation will have two tabs:
 
 1. __Overview__: This contains 3 main sections relating to the sequence count of samples.
    - __Demultiplexxed sequence counts summary__: Summary table of number of sequences per sample divided by forward and reverse reads.
-   - __Read frequency histograms__: Forward and Reverse reads histograms showing the how many samples have various numbers of sequences. 
+   - __Read frequency histograms__: Forward and Reverse reads histograms showing how many samples have various numbers of sequences. 
    - __Per-sample sequence counts__: Table showing the number of forward and reverse reads in samples.
 2. __Interactive Quality Plots__: Contains similar information as fastQC analysis.
    - __Interactive quality plots__: These show the quality of your forward and reverse reads using a random sampling of 10000 reads. You can click on a part of the plot to get info in the below "Parametric seven-number summary" table.
    - __Demultiplexed sequence length summary__: Table showing summary of sequence lengths for the forward and reverse reads.
 
 ## Import: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_green.png){style="width:150px"}
+</center>
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__42,853__", "__126,670__", "__174,951__")
@@ -709,17 +722,17 @@ opts_p <- c(answer="__1TM__", "__3K2E__", "__3K1M__")
 ```{r, echo = FALSE}
 opts_p <- c(answer="__TRUE__", "__FALSE__")
 ```
-6. Most of the read quality for the forward reads is above Q30? `r longmcq(opts_p)`
+6. Is most of the read quality for the forward reads above Q30? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__TRUE__", "__FALSE__")
 ```
-7. Most of the read quality for the reverse reads is above Q30? `r longmcq(opts_p)`
+7. Is most of the read quality for the reverse reads above Q30? `r longmcq(opts_p)`
 
 ## Import: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_green.png){style="width:150px"}
+</center>
 
 We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.
 
@@ -729,18 +742,18 @@ We have imported our read data and checked the number of reads per sample which 
 library(webexercises)
 ```
 # Trim the PCR primer sequences {#pcrtrim}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/prepare.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/prepare.png){style="width:200px"}
+</center>
 
 Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
 
 However, before we carry this out we will need to remove any sequence data that is not biologically relevant. This includes the primer sequences that were used in the Illumina sequencing.
 
 ## Cutadapt: run
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_black.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_black.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
+</center>
 
 We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2.
 
@@ -759,23 +772,23 @@ qiime cutadapt trim-paired \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_black.png){style="width:100px; background:white; border-radius:5px; border:5px white solid"}
+</center>
 
 - __`--i-demultiplexed-sequences`__: The input demultiplexed sequence artifact.
-- __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
-- __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
+- __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
+- __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
 - __`--o-trimmed-sequences`__: The output artifact containing the trimmed sequence data.
 
 [QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2023.5/plugins/available/cutadapt/trim-paired/)
 
 ## Cutadapt: visualise
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_brown.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/eye_brown.png){style="width:200px; background:white; border-radius:5px; border:5px white solid"}
+</center>
 
-To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artifact. This is the same visualisation command as in [chapter 7](#chap7_vis) with different a different input and output.
+To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artifact. This is the same visualisation command as in [chapter 7](#chap7_vis) with a different input and output.
 
 ```{bash, eval=FALSE}
 qiime demux summarize \
@@ -794,14 +807,14 @@ If you are working with the ITS region, to trim off the conserved regions from t
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 
 ## Cutadapt: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_black.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
+</center>
 
 ```{r, echo = FALSE}
 opts_p <- c("__1TE__", "__2K2E__", answer="__3K1E__")
 ```
-1. which sample has the lowest number of forward reads? `r longmcq(opts_p)`
+1. Which sample has the lowest number of forward reads? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c("__1TE__", answer="__2K2E__", "__3K1E__")
@@ -824,9 +837,9 @@ opts_p <- c(answer="__226__", "__230__", "__250__")
 5. What is the median length of the forward reads? `r longmcq(opts_p)`
 
 ## Cutadapt: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_black.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
+</center>
 
 We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=226. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.
 
@@ -838,16 +851,16 @@ library(webexercises)
 # (PART\*) ASVs, Taxonomy, and phylogeny {-}
 
 # De-novo amplicon sequence variants identification {#dada2}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/clusters.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/clusters.png){style="width:200px"}
+</center>
 
 We will use DADA2 to denoise and identify the amplicon sequence variants (ASVs) among all the samples. 
 
 ## DADA2: run
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_purple.png){style="width:150px"}
+</center>
 
 To perform the variant sequence identification step with DADA2, the command is (__don't run this command, [see below command](#cpdada2)__):
 
@@ -863,9 +876,9 @@ qiime dada2 denoise-paired \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_purple.png){style="width:100px"}
+</center>
 
 - __`--i-demultiplexed-seqs`__: Input artifact file containing the trimmed demultiplexed sequences.
 - __`--p-trunc-len-f`__: This will truncate (trim) the forward sequences to retain only the first `220` bases.
@@ -878,9 +891,9 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2023.5/plugins/available/dada2/denoise-paired/)
 
 ### Truncation length
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/measuring_tape.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/measuring_tape.png){style="width:150px"}
+</center>
 
 We chose `220` for `--p-trunc-len-f` & `--p-trunc-len-r` as the read quality was very good up to the 220 bp position for both the forward and reverse reads.
 Additionally, our amplicon length is ~291bp. The combined length of our forward and reverse reads is 440bp, therefore we would have an overlap greater than 100bp which is very good (440 - 291 = 149bp).
@@ -888,9 +901,9 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 As a reminder we are using the primer 515FB-806RB for the V4 16S rRNA gene. The name 515FB-806RB represents the location within an __E.coli__ 16S gene that the primers will hit (515 for the forward, 806 for the reverse). Therefore the amplicon length for __E.coli__ will be 806 - 515 = 291bp. As with all genes this size will vary in length across all the bacterial taxa but only by a few base pairs.
 
 ### Copy DADA2 output {#cpdada2}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/copy.png){style="width:150px"}
+</center>
 
 The command will take a long time, so stop the command (ctrl+c), if you started it, and copy the final output files, which have been previously made, to your current directory:
 
@@ -906,18 +919,19 @@ Through the above command you will now have the following three files:
 - `dada2-stats.qza`: Artifact which summarises the statistics after the denoising steps.
 
 ### DADA2 considerations
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/considerations.png){style="width:150px"}
+</center>
 
 This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2023.5/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
 ## table-dada2.qzv {#tabledada2qzv}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/table.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/table.png){style="width:150px"}
+</center>
+
 To visualise information on the ASV table we will run:
 
 ```{bash, eval=FALSE}
@@ -928,9 +942,9 @@ qiime feature-table summarize \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_purple.png){style="width:100px"}
+</center>
 
 - __`--i-table`__: Input artifact file containing the abundance table of the ASVs.
 - __`--o-visualization`__: Output visualisation artifact.
@@ -939,9 +953,9 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2023.5/plugins/available/feature-table/summarize/)
 
 #### Output {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/output_file_purple.png){style="width:100px"}
+</center>
 
 Now load the obtained `table-dada2.qzv` into the ‘view.qiime2.org’ website.
 
@@ -974,9 +988,9 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
    - __# of Samples Observed in__: Number of samples the ASVs was detected in.
 
 ### table-dada2.qzv: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_purple.png){style="width:150px"}
+</center>
 
 Attempt the below MCQs.
 
@@ -1021,9 +1035,10 @@ opts_p <- c(answer="__15__", "__225,752__", "__258,440__")
 8. How many samples is the 10th most abundant ASV observed in? `r longmcq(opts_p)`
 
 ## dada2-stats.qzv
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/filter.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/filter.png){style="width:150px; background:white; border-radius:5px"}
+</center>
+
 Next we'll look at the denoising stats. Run the following command.
 
 ```{bash, eval=FALSE}
@@ -1033,9 +1048,9 @@ qiime metadata tabulate \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_blue.png){style="width:100px"}
+</center>
 
 - __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation artifact.
@@ -1043,9 +1058,9 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2023.5/plugins/available/metadata/tabulate/)
 
 #### Output {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/output_file_blue.png){style="width:100px"}
+</center>
 
 Open the `dada2-stats.qzv` visualisation with QIIME2 view.
 
@@ -1064,9 +1079,9 @@ You will now see a denoising stats table with the following columns:
 This visualisation is very useful to see where our sequences are being filtered. It is possible to be too stringent and not have enough sequences for some samples. This will give you an idea on how you can repeat the denoising stats with changed options to retain more samples.
 
 ### dada2-stats.qzv: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_blue.png){style="width:150px"}
+</center>
 
 Attempt the below MCQs?
 
@@ -1081,9 +1096,9 @@ opts_p <- c("__1K1MB__", "__1K1E__", answer="__1K2M__")
 2. Which sample retained the smallest percentage of its input at the end (i.e. after filtering, denoising, merging, and chimera removal)?  `r longmcq(opts_p)`
 
 ## DADA2: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:150px"}
+</center>
 
 Our reads have been filtered, denoised, and merged. Additionally, chimeras have been removed. With this carried out we have an ASV abundance table, representative sequences, and stats on the various steps that have been carried out.
 

@@ -1,7 +1,7 @@
 # QIIME2 analysis workflow {#q2workflow}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/workflow.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/workflow.png){style="width:200px; background: white; border-radius:5px"}
+</center>
 
 ## Workflow
 
@@ -17,13 +17,16 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 8. Differential abundance analysis of ASVs across different conditions
 
 ## Activate environment
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:5px"}
+</center>
+
 You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.
 
-__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2023.5`
+__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-amplicon-2024.10`
 
 ```{bash eval=FALSE}
-. useqiime2-2023.5
+. useqiime2-amplicon-2024.10
 ```
+
+Information on installing #mamba' and cretaing the environment are in the [appendix](#mamba_install)
