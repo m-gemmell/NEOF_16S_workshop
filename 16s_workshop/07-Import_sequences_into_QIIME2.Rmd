@@ -40,7 +40,7 @@ qiime tools import \
 - __`--input-format`__: The format of the input files.
   - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
-[QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
+[QIIME2 docs on importing data](https://docs.qiime2.org/2024.10/tutorials/importing/)
 
 ## Import: visualise {#chap7_vis}
 <center>
@@ -63,7 +63,7 @@ qiime demux summarize \
 - __`--i-data`__: Input data artifact (`.qza`) to be summarised and visualised.
 - __`--o-visualization`__: Output visualisation artifact (`qzv`).
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
 
 #### Firefox {-}
 <center>

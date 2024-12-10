@@ -43,9 +43,9 @@ Although we have used two different commands they both have the same parameters.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 - __`--o-visualization`__:  Output visualisation artifact containing the box plots and statistical table.
 
-[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-group-significance/)
+[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-group-significance/)
 
-[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-correlation/)
+[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-correlation/)
 
 ## Alpha diversity: visualise
 ```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
@@ -67,7 +67,7 @@ The Kruskal-Wallis (`shannon-group-significance.kw.qzv`) visualisation artifact 
 
 To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
 
-[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
+[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2024.10%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
 
 #### Ranked Spearman {-}
 

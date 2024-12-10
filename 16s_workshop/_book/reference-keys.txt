@@ -1,4 +1,3 @@
-fig:unnamed-chunk-90
 introduction
 background
 s-rrna

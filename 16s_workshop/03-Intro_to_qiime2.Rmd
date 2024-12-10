@@ -6,7 +6,7 @@
 Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 version released on May 2023 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
 If you want to install QIIME2 on your own machine, please refer to: 
-https://docs.qiime2.org/2023.5/install/
+https://docs.qiime2.org/2024.10/install/
 
 ## Artifacts
 <center>
@@ -23,7 +23,7 @@ The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data a
 ![](figures/workflow.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
-The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2023.5/tutorials/.
+The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2024.10/tutorials/.
 
 <center>
 ![](figures/16_tutorial_diagram.png){style="width:800px"}
@@ -55,7 +55,7 @@ You will be using a raw dataset as the tutorial data. It still includes low qual
 
 The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step. 
 
-If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (https://library.qiime2.org/plugins/ ).
+If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (https://docs.qiime2.org/2024.5/plugins/available/).
 
 ## Amplicon Sequence Variants identification
 

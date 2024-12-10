@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-09" />
+<meta name="date" content="2024-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -377,8 +377,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
 <li><strong><code>--o-visualization</code></strong>: Output visualisation artifact containing the box plots and statistical table.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-group-significance/">QIIME2 docs on <code>qiime diversity alpha-group-significance</code></a></p>
-<p><a href="https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-correlation/">QIIME2 docs on <code>qiime diversity alpha-correlation</code></a></p>
+<p><a href="https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-group-significance/">QIIME2 docs on <code>qiime diversity alpha-group-significance</code></a></p>
+<p><a href="https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-correlation/">QIIME2 docs on <code>qiime diversity alpha-correlation</code></a></p>
 </div>
 </div>
 <div id="alpha-diversity-visualise" class="section level2 hasAnchor" number="14.2">
@@ -398,7 +398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Kruskal-Wallis (pairwise)</strong>: Displays the stats for the all the pairwise group comparison.</li>
 </ul>
 <p>To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).</p>
-<p><a href="https://view.qiime2.org/visualization/?type=html&amp;src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv">Example with more groups in the metadata columns</a></p>
+<p><a href="https://view.qiime2.org/visualization/?type=html&amp;src=https%3A%2F%2Fdocs.qiime2.org%2F2024.10%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv">Example with more groups in the metadata columns</a></p>
 </div>
 <div id="ranked-spearman" class="section level4 unnumbered hasAnchor">
 <h4>Ranked Spearman<a href="14-Alpha_diversity.html#ranked-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -418,16 +418,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figures/question_bubble_purple.png" width="150px" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Locations (Corridor vs Toilet)</strong> when using <strong>Shannon</strong> diversity?
-<div id="radio_OSNAFFLCHN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OSNAFFLCHN" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OSNAFFLCHN" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_YPQMVDWWJS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YPQMVDWWJS" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YPQMVDWWJS" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Places (Entrance vs MainBuilding)</strong> when using <strong>Shannon</strong> diversity?
-<div id="radio_IJUORUPUWG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IJUORUPUWG" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IJUORUPUWG" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_EWNSVMDBXJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EWNSVMDBXJ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EWNSVMDBXJ" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the <strong>Floors (1 vs 2 vs 3)</strong> when using <strong>Shannon</strong> diversity? ?
-<div id="radio_XWVGMGNTTJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XWVGMGNTTJ" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XWVGMGNTTJ" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_SCDSUKOMGT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SCDSUKOMGT" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SCDSUKOMGT" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 <p>For the below questions you will need to run some more <code>qiime diversity alpha-group-significance</code> and <code>qiime diversity alpha-correlation</code>. When creating and running these commands ensure you are giving the input and output artifacts the correct names.</p>
@@ -454,16 +454,16 @@ Alpha diversity stats commands
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Locations (Corridor vs Toilet)</strong> when using <strong>observed features</strong>?
-<div id="radio_AGJTNNSXNY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AGJTNNSXNY" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AGJTNNSXNY" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_TXOHMNMMMM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TXOHMNMMMM" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TXOHMNMMMM" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (q-value &lt;0.05) when comparing the <strong>Places (Entrance vs MainBuilding)</strong> when using <strong>evenness</strong>?
-<div id="radio_IHRCYPXBVS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IHRCYPXBVS" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IHRCYPXBVS" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_TBGBERCPLD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TBGBERCPLD" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TBGBERCPLD" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a statistical significance (P-value &lt;0.05) when comparing the <strong>Floors (1 vs 2 vs 3)</strong> when using <strong>Faith's PD</strong>?
-<div id="radio_UHTBSSAKND" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UHTBSSAKND" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UHTBSSAKND" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_GXOKFNBEKS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GXOKFNBEKS" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GXOKFNBEKS" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>

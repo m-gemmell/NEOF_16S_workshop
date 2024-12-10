@@ -83,7 +83,7 @@ Have a look at the top 10 lines of the metadata file:
 head metadata.file.txt
 ```
    
-For more information on QIIME2 metadata please see: https://docs.qiime2.org/2023.5/tutorials/metadata/
+For more information on QIIME2 metadata please see: https://docs.qiime2.org/2024.10/tutorials/metadata/
 
 The above link includes:
 

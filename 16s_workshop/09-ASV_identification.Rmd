@@ -38,7 +38,7 @@ qiime dada2 denoise-paired \
 - __`--o-denoising-stats`__: Output artifact containing the sequence numbers pre- and post- trimming and denoising.
 - __`--verbose`__: Causes command to display verbose output to screen.
 
-[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2023.5/plugins/available/dada2/denoise-paired/)
+[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2024.10/plugins/available/dada2/denoise-paired/)
 
 ### Truncation length
 <center>
@@ -73,7 +73,7 @@ Through the above command you will now have the following three files:
 ![](figures/considerations.png){style="width:150px; background:white; border-radius:5px"}
 </center>
 
-This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2023.5/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2024.10/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with a high variability in amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
@@ -100,7 +100,7 @@ qiime feature-table summarize \
 - __`--o-visualization`__: Output visualisation artifact.
 - __`--m-sample-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2023.5/plugins/available/feature-table/summarize/)
+[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2024.10/plugins/available/feature-table/summarize/)
 
 #### Output {-}
 <center>
@@ -145,17 +145,17 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
 Attempt the below MCQs.
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__2,139__", "__118,703.5__", "__258,440__")
+opts_p <- c(answer="__2,138__", "__118,704__", "__258,440__")
 ```
 1. How many ASVs (features) were detected in the dataset? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__2,139__", answer="__118,703.5__", "__258,440__")
+opts_p <- c("__2,138__", answer="__118,704__", "__258,440__")
 ```
 2. What is the median number of sequences per sample? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__2,139__", "__118,703.5__", answer="__258,440__")
+opts_p <- c("__2,138__", "__118,704__", answer="__258,440__")
 ```
 3. What is the maximum number of sequences per ASV? `r longmcq(opts_p)`
 
@@ -167,7 +167,7 @@ opts_p <- c("__4__", "__5__", answer="__13__")
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__5__", "__13__")
 ```
-5. How many Toilet (Metadata Category: Location) samples have >=80,00 sequences? `r longmcq(opts_p)`
+5. How many Toilet (Metadata Category: Location) samples have >=80,000 sequences? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__5__", "__13__")
@@ -205,7 +205,7 @@ qiime metadata tabulate \
 - __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation artifact.
 
-[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2023.5/plugins/available/metadata/tabulate/)
+[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2024.10/plugins/available/metadata/tabulate/)
 
 #### Output {-}
 <center>

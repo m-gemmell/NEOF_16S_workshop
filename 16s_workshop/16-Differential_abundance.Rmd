@@ -41,7 +41,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
     -   In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
 -   **`--o-collapsed-table`**: Output artifact containing the abundance table for the specified taxa level.
 
-[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2023.5/plugins/available/taxa/collapse/)
+[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2024.10/plugins/available/taxa/collapse/)
 
 ## ANCOM-BC analysis
 
@@ -69,10 +69,10 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 -   **`--m-metadata-file`**: [Metadata file](#metadata.file.txt) for our samples.
 -   **`--p-formula`**: A formula for how the microbial absolute abundances for each taxon depend on the variables within the `metadata`.
     -   In this case we are specifying the metadata column, Location, within the metadata file to use for the statistical analysis. We will therefore see if there is any differentially abundant features between Corridor and Toilet.
-    -   Multiple metadata columns and reference groups can be used with an example in the [documentation](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/).
+    -   Multiple metadata columns and reference groups can be used with an example in the [documentation](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/).
 -   **`--o-differentials`**: Output artifact containing the calculated differentials. This will be used to produce visualisation artifacts.
 
-[QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/)
+[QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/)
 
 ## ANCOMBC tabulate
 ```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
@@ -96,7 +96,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 -   **`--i-data`**: Input artifact files containing the calculated differentials. 
 - **`--o-visualization`**: The output artifact containing the tabular visualisations.
 
-[QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2023.5/plugins/available/composition/tabulate/)
+[QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2024.10/plugins/available/composition/tabulate/)
 
 ### ANCOMBC tabulate: visualise
 
@@ -164,7 +164,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
     -   We chose ";" as Greengenes2 splits the taxonomic levels with this delimiter.
     -   You can check which delimiter is used in your [**"taxa-bar-plot.dada2.qzv" file**](#taxabar).
 
-[QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2023.5/plugins/available/composition/da-barplot/)
+[QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2024.10/plugins/available/composition/da-barplot/)
 
 ### ANCOM-BC bar plots: visualise
 

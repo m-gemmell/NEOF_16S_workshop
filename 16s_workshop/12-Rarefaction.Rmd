@@ -1,9 +1,9 @@
 # (PART\*) Analysis {-}
 
 # Sequencing depth evaluation {#rarefaction}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/rarefaction.png){style="width:200px"}
+</center>
 
 The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
 
@@ -16,22 +16,23 @@ For example, if we rarefy to a depth of 2000 for all samples:
 - Samples with depths of 2000 will be unchanged.
 - Samples with depths of >2000 will have all reads removed except for a random subsample of 2000.
 
-Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively subsample from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
-```{r, fig.align = 'center',out.width= '800px', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
-knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/rarefaction_example.png){style="width:800px"}
+</center>
+Figure: Example rarefaction curve. We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
 
 ## Rarefaction: run
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_blue.png){style="width:150px"}
+</center>
 
 Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
 
 __Note__: See the [appendix](#alphamet) at the end of this bookdown for details on each metric.
 
-You may want to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_pd` for markers such as ITS where you will not create a phylogenetic tree.
+You will need to to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_pd` for markers such as ITS where you cannot create a phylogenetic tree.
 
 __Important__: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it. Optionally, you can [copy the output](#cprarefaction) instead of running it.
 
@@ -53,9 +54,9 @@ qiime diversity alpha-rarefaction \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_blue.png){style="width:100px"}
+</center>
 
 - __`--i-table`__: Input artifact containing the abundance table for the identified variants.
 - __`--i-phylogeny`__: Input artifact containing the rooted tree.
@@ -74,12 +75,12 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
   - This parameter can be specified multiple times for different metrics.
 - __`--o-visualization`__: Output visualisation artifact containing the rarefaction plots. 
 
-[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-rarefaction/)
+[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-rarefaction/)
 
 ### Copy rarefaction output {#cprarefaction}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/copy.png){style="width:150px"}
+</center>
 
 Instead of running the command you can copy the output to your directory.
 
@@ -89,9 +90,9 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 
 
 ## Rarefaction: visualise
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_blue.png){style="width:200px"}
+</center>
 
 Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the groupings (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the [__observed_features__](#obvs) metric is the best __Metric__ to view.
 
@@ -111,9 +112,9 @@ The visualisation has two plots.
       - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 ### Rarefaction considerations
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/considerations.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best trade-off between:
 
@@ -128,9 +129,9 @@ Other considerations for rarefaction threshold:
 - Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diversity. With higher diversity you will need a larger rarefaction threshold.
 
 ### Rarefaction: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_blue.png){style="width:150px"}
+</center>
 
 Attempt the below MCQs.
 
@@ -160,9 +161,9 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 5. When comparing the two __Places__, at approximately what sequencing depth are there only 5 Entrance samples remaining? `r longmcq(opts_p)`
 
 ## Rarefaction: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:150px"}
+</center>
 
 For the next step we will use a rarefaction size of 34,583. We have chosen this depth because:
 

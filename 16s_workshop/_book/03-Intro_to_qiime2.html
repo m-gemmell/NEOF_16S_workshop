@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2024-12-09" />
+<meta name="date" content="2024-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -350,7 +350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 version released on May 2023 (given the active development on the tool this may not be the most recent release at the time of this workshop).</p>
 <p>If you want to install QIIME2 on your own machine, please refer to:
-<a href="https://docs.qiime2.org/2023.5/install/" class="uri">https://docs.qiime2.org/2023.5/install/</a></p>
+<a href="https://docs.qiime2.org/2024.10/install/" class="uri">https://docs.qiime2.org/2024.10/install/</a></p>
 <div id="artifacts" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Artifacts<a href="03-Intro_to_qiime2.html#artifacts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
@@ -367,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/workflow.png" style="width:150px; background: white; border-radius:5px" />
 </center>
-<p>The steps for the analysis are listed below, mainly taken from <a href="https://docs.qiime2.org/2023.5/tutorials/" class="uri">https://docs.qiime2.org/2023.5/tutorials/</a>.</p>
+<p>The steps for the analysis are listed below, mainly taken from <a href="https://docs.qiime2.org/2024.10/tutorials/" class="uri">https://docs.qiime2.org/2024.10/tutorials/</a>.</p>
 <center>
 <img src="figures/16_tutorial_diagram.png" style="width:800px" />
 </center>
@@ -403,7 +403,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>You will be using a raw dataset as the tutorial data. It still includes low quality sequences, Illumina sequencing adapters as well as PCR primers. Before proceeding with the analysis, it is a good strategy to investigate the quality of the sequences.</p>
 <p>The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step.</p>
-<p>If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers <em>et al</em>., 2018) is designed for this specific task and it is available as a QIIME2 plug-in, though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (<a href="https://library.qiime2.org/plugins/" class="uri">https://library.qiime2.org/plugins/</a> ).</p>
+<p>If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers <em>et al</em>., 2018) is designed for this specific task and it is available as a QIIME2 plug-in, though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (<a href="https://docs.qiime2.org/2024.5/plugins/available/" class="uri">https://docs.qiime2.org/2024.5/plugins/available/</a>).</p>
 </div>
 <div id="amplicon-sequence-variants-identification" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Amplicon Sequence Variants identification<a href="03-Intro_to_qiime2.html#amplicon-sequence-variants-identification" class="anchor-section" aria-label="Anchor link to header"></a></h2>

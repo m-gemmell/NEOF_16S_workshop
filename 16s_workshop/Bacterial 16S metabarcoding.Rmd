@@ -195,7 +195,7 @@ library(webexercises)
 Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse amplicon sequencing data. The QIIME1 scripts, in its latest release QIIME1.9.1, are still available (and their methods are still valid) however the suggestion is to use QIIME2, as QIIME1 is no longer supported. In the following practical we will use the QIIME2 version released on May 2023 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
 If you want to install QIIME2 on your own machine, please refer to: 
-https://docs.qiime2.org/2023.5/install/
+https://docs.qiime2.org/2024.10/install/
 
 ## Artifacts
 <center>
@@ -212,7 +212,7 @@ The QIIME2 pipeline produces and uses ‘artifact’ files. These contain data a
 ![](figures/workflow.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
-The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2023.5/tutorials/.
+The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2024.10/tutorials/.
 
 <center>
 ![](figures/16_tutorial_diagram.png){style="width:800px"}
@@ -244,7 +244,7 @@ You will be using a raw dataset as the tutorial data. It still includes low qual
 
 The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step. 
 
-If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (https://library.qiime2.org/plugins/ ).
+If the analysis is based on a marker gene different than 16S, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. It could be found among the list of third-party QIIME2 available plug-ins (https://docs.qiime2.org/2024.5/plugins/available/).
 
 ## Amplicon Sequence Variants identification
 
@@ -517,7 +517,7 @@ Have a look at the top 10 lines of the metadata file:
 head metadata.file.txt
 ```
    
-For more information on QIIME2 metadata please see: https://docs.qiime2.org/2023.5/tutorials/metadata/
+For more information on QIIME2 metadata please see: https://docs.qiime2.org/2024.10/tutorials/metadata/
 
 The above link includes:
 
@@ -577,10 +577,10 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 
 You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.
 
-__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-2023.5`
+__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-amplicon-2024.10`
 
 ```{bash eval=FALSE}
-. useqiime2-2023.5
+. useqiime2-amplicon-2024.10
 ```
 
 Information on installing #mamba' and cretaing the environment are in the [appendix](#mamba_install)
@@ -632,7 +632,7 @@ qiime tools import \
 - __`--input-format`__: The format of the input files.
   - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
-[QIIME2 docs on importing data](https://docs.qiime2.org/2023.5/tutorials/importing/)
+[QIIME2 docs on importing data](https://docs.qiime2.org/2024.10/tutorials/importing/)
 
 ## Import: visualise {#chap7_vis}
 <center>
@@ -655,7 +655,7 @@ qiime demux summarize \
 - __`--i-data`__: Input data artifact (`.qza`) to be summarised and visualised.
 - __`--o-visualization`__: Output visualisation artifact (`qzv`).
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
 
 #### Firefox {-}
 <center>
@@ -781,7 +781,7 @@ qiime cutadapt trim-paired \
 - __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
 - __`--o-trimmed-sequences`__: The output artifact containing the trimmed sequence data.
 
-[QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2023.5/plugins/available/cutadapt/trim-paired/)
+[QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2024.10/plugins/available/cutadapt/trim-paired/)
 
 ## Cutadapt: visualise
 <center>
@@ -796,13 +796,13 @@ qiime demux summarize \
 --o-visualization paired-end-demux.trim.qzv
 ```
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2023.5/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
 
 Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’ website.
 
 This visualisation contains the same sections as [`paired-end-demux.qzv`](#chap7output) but contains information on the PCR trimmed data.
 
-If you are working with the ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://library.qiime2.org/plugins/q2-itsxpress/8/
+If you are working with the ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://github.com/USDA-ARS-GBRU/itsxpress/tree/main
 
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 
@@ -888,7 +888,7 @@ qiime dada2 denoise-paired \
 - __`--o-denoising-stats`__: Output artifact containing the sequence numbers pre- and post- trimming and denoising.
 - __`--verbose`__: Causes command to display verbose output to screen.
 
-[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2023.5/plugins/available/dada2/denoise-paired/)
+[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2024.10/plugins/available/dada2/denoise-paired/)
 
 ### Truncation length
 <center>
@@ -920,12 +920,12 @@ Through the above command you will now have the following three files:
 
 ### DADA2 considerations
 <center>
-![](figures/considerations.png){style="width:150px"}
+![](figures/considerations.png){style="width:150px; background:white; border-radius:5px"}
 </center>
 
-This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2023.5/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2024.10/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
-In the case of a marker gene with very variable amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
+In the case of a marker gene with a high variability in amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
 ## table-dada2.qzv {#tabledada2qzv}
 <center>
@@ -950,7 +950,7 @@ qiime feature-table summarize \
 - __`--o-visualization`__: Output visualisation artifact.
 - __`--m-sample-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2023.5/plugins/available/feature-table/summarize/)
+[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2024.10/plugins/available/feature-table/summarize/)
 
 #### Output {-}
 <center>
@@ -995,17 +995,17 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
 Attempt the below MCQs.
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__2,139__", "__118,703.5__", "__258,440__")
+opts_p <- c(answer="__2,138__", "__118,704__", "__258,440__")
 ```
 1. How many ASVs (features) were detected in the dataset? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__2,139__", answer="__118,703.5__", "__258,440__")
+opts_p <- c("__2,138__", answer="__118,704__", "__258,440__")
 ```
 2. What is the median number of sequences per sample? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__2,139__", "__118,703.5__", answer="__258,440__")
+opts_p <- c("__2,138__", "__118,704__", answer="__258,440__")
 ```
 3. What is the maximum number of sequences per ASV? `r longmcq(opts_p)`
 
@@ -1017,7 +1017,7 @@ opts_p <- c("__4__", "__5__", answer="__13__")
 ```{r, echo = FALSE}
 opts_p <- c("__4__", answer="__5__", "__13__")
 ```
-5. How many Toilet (Metadata Category: Location) samples have >=80,00 sequences? `r longmcq(opts_p)`
+5. How many Toilet (Metadata Category: Location) samples have >=80,000 sequences? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__4__", "__5__", "__13__")
@@ -1055,7 +1055,7 @@ qiime metadata tabulate \
 - __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation artifact.
 
-[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2023.5/plugins/available/metadata/tabulate/)
+[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2024.10/plugins/available/metadata/tabulate/)
 
 #### Output {-}
 <center>
@@ -1083,7 +1083,7 @@ This visualisation is very useful to see where our sequences are being filtered.
 ![](figures/question_bubble_blue.png){style="width:150px"}
 </center>
 
-Attempt the below MCQs?
+Attempt the below MCQs.
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Filtering__", "__Denoising and merging__", "__Chimera removal__")
@@ -1110,62 +1110,54 @@ Through visualising the table and stats we can determine that there are a good a
 library(webexercises)
 ```
 # ASV taxonomic assignment {#taxa}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/classification.png){style="width:200px"}
+</center>
 
-Now that we have defined the sequence variants in the samples, this chapter will show you how to carry out taxonomic classification using [Greengenes2](https://www.nature.com/articles/s41587-023-01845-1). More information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
+Now that we have defined the sequence variants in the samples, this chapter will show you how to carry out taxonomic classification using [Greengenes2](https://www.nature.com/articles/s41587-023-01845-1). 
+
+__Links__
+
+- Information on its use can be found in the following `QIIME2` forum post from one of the Greengenes2 developers: https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291
+- Announcement of Greengenes2 2024.9: https://forum.qiime2.org/t/greengenes2-2024-09/31606
 
 ## Greengenes2 database
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/green_jeans.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/green_jeans.png){style="width:150px"}
+</center>
 
-Greengenes2 is a database containing quality-controlled microbial sequence data. It consists of a single massive reference tree that contains taxonomic and sequence information. It was created by combining:
+Greengenes2 is a database containing quality-controlled microbial sequence data. It consists of a single massive reference tree that contains taxonomic and sequence information. The current version (2024.9) was created by combining:
 
-- __Web of Life 2 (WoL2)__: A microbe base phylogenomic tree.
-  - __15,953__ bacterial and archaeal genomes.
-  - Accurate phylogenomic tree reconstructed by summarising __380__ global marker genes.
-  - Produced by new workflow [uDance](https://github.com/balabanmetin/uDance).
-- __16s rRNA sequences__ from different sources.
-  - __18,356__ full-length 16S rRNA sequences from the [Living Tree Project (LTP)](https://www.nature.com/articles/s41587-020-0501-8) January 2022 release.
-  - __1,725,274__ near-complete 16S rRNA genes from [Karst et al 2021](https://www.annualreviews.org/doi/10.1146/annurev-ecolsys-012121-095340) and the [Earth Microbiome Project 500 (EMP500)](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-16-S10-S1).
-  - All full-length 16S rRNA sequences from [GTDB r207](https://gtdb.ecogenomic.org/stats/r207).
-- __23,113,447__ short V4 16S rRNA ASVs denoised with Deblur v1.1.0 from [Qiita](https://qiita.ucsd.edu/)
-- Mitochondria and chloroplast 16S rRNA from [SILVA v138](https://www.arb-silva.de/documentation/release-138/) using [deep-learning-enabled phylogenetic placement (DEPP)](https://github.com/yueyujiang/DEPP).
+- [Genome Taxonomy DataBase (GTDB)](https://gtdb.ecogenomic.org/)
+  - Release 220, 24th April 2024
+  - __596,859__ bacterial and archaeal genomes
+- [Living Tree Project (LTP)](https://imedea.uib-csic.es/mmg/ltp/)
+  - Release 08 2023
+  -  Greengenes2 uses the full length 16S sequences from LTP
+  - Includes mitochondria and chloroplast
+  
+[Greengenes2 v2022.10 phylogenetic tree](https://www.nature.com/articles/s41587-023-01845-1/figures/1)
+<center>
+![](figures/greengenes2_phylogeny_tree.png){style="width:600px"}
+</center>
 
-This produces a reference tree with the following traits:
+Greengenes2 can be used on shotgun metagenomic data. This can allow you to effectively compare taxonomic data from 16S and Shotgun metagenomic datasets. [Tutorial on classifying shotgun metageonimc data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
 
-- Genome-based relationships (WoL2) were fixed whilst relationships between full-length 16S rRNA sequences were inferred.
-- Short fragments were then added independlty from each each with the genome and full-length 16S rRNA relationships fixed.
-- The final tree covered __21,074,442__ sequences from __31__ different [EMP Ontology 3 (EMPO3)](https://earthmicrobiome.org/protocols-and-standards/empo/) environments.
-- __46.5%__ of species-level leaves were covered by a complete genome.
-- Phylogenies are decorated with taxonomic labels.
-  - Taxonomy was based on GTDB r207, combined with the LTP January 2022 release.
-  - Taxonomy is planned to be updated every 6 months with the latest versions of GTDB & LTP.
-
-[Greengenes phylogenetic tree](https://www.nature.com/articles/s41587-023-01845-1/figures/1)
-```{r, fig.align = 'center',out.width= '600px', echo=FALSE }
-knitr::include_graphics(path = "figures/greengenes2_phylogeny_tree.png", auto_pdf = TRUE)
-``` 
-
-Greengenes2 can be used on shotgun metagenomic data. This can allow you to effectively compare taxonomic data from 16S and Shotgun metagenomic datasets. [Tutorial on clasisifying shotgun metageonimc data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
-
-For your future analysis you can download the databases files from their [ftp site](http://ftp.microbio.me/greengenes_release/2022.10/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
+For your future analysis you can download the databases files from their [ftp site](https://ftp.microbio.me/greengenes_release/2024.09/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
 
 `r hide("Download database files in linux terminal")`
 You can download the 2 files you need for Greengenes2 taxonomic classification with the following commands.
 ```{bash, eval=FALSE}
-wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.full-length.fna.qza
-wget http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.tax.qza
+wget https://ftp.microbio.me/greengenes_release/2024.09/2024.09.backbone.full-length.fna.qza
+wget https://ftp.microbio.me/greengenes_release/2024.09/2024.09.backbone.tax.qza
 ```
-Remember to first check if 2022.10 is the most recent version before downloading and using it for your own research.
+Remember to first check if 2024.09 is the most recent version before downloading and using it for your own research.
 `r unhide()`
 
 ## Extract 16s region of interest
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/scissor_cut.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/scissor_cut.png){style="width:150px"}
+</center>
 
 A classifier training step is required to reach optimum assignment performance.
 
@@ -1175,7 +1167,7 @@ __Note__: Do not run the below command for this tutorial as it will take a long 
 
 ```{bash, eval=FALSE}
 qiime feature-classifier extract-reads \
---i-sequences /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/2022.10.backbone.full-length.fna.qza \
+--i-sequences /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/2024.09.backbone.full-length.fna.qza \
 --p-f-primer NNNNNGTGCCAGCMGCCGCGGTAA \
 --p-r-primer GGACTACHVGGGTWTCTAAT \
 --p-trunc-len 250 \
@@ -1186,25 +1178,25 @@ qiime feature-classifier extract-reads \
 `r hide("Silva 16S rRNA database")`
 Another popular 16S rRNA database is [Silva](https://www.arb-silva.de/).
 
-You can download the required files for taxonomic classification from [here](https://docs.qiime2.org/2023.5/data-resources/#silva-16s-18s-rrna).
+You can download the required files for taxonomic classification from [here](https://docs.qiime2.org/2024.10/data-resources/#silva-16s-18s-rrna).
 `r unhide()`
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_red.png){style="width:100px"}
+</center>
 
 - __`--i-sequences`__: Input artifact containing the feature sequence data.
   - In this case we are using the full length 16S rRNA sequences that are used within the Greenegenes2 phylogenomic tree.
-  - This was downloaded from http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.full-length.fna.qza.
-- __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is the normal. 
-- __`--p-front-r`__: Sequence for the reverse primer (`r``). The sequence is ligated to the 5 prime end (`front`), this is the normal.
+  - This was downloaded from https://ftp.microbio.me/greengenes_release/2024.09/2024.09.backbone.full-length.fna.qza.
+- __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
+- __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is normal.
 - __`--p-trunc-len`__: This cuts the forward and left reads we are creating to the specified truncation length.
   - We are using `250` as this was the initial length of our Illumina reads.
 - __`--o-reads`__: The output read artifact containing our extracted 16S region as paired reads. This is needed for classifier training.
 - __`--p-n-jobs`__: Number of separate processes to use.
 
-[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/extract-reads/)
+[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/extract-reads/)
 
 #### Copy premade results {-}
 
@@ -1215,9 +1207,9 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.ref.seqs.qza .
 ```
 
 ## Classifier training
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/train.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/train.png){style="width:150px"}
+</center>
 
 Now we train the classifier on this set of extracted reads (approx. 25 mins). 
 
@@ -1239,21 +1231,21 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_green.png){style="width:100px"}
+</center>
 
 - __`--i-reference-reads`__: Input artifact containing the extracted 16S region as paired reads.
 - __`--i-reference-taxonomy`__: Input artifact containing the taxonomy information of the features.
-  - This was downloaded from: http://ftp.microbio.me/greengenes_release/2022.10/2022.10.backbone.tax.qza.
+  - This was downloaded from: https://ftp.microbio.me/greengenes_release/2024.09/2024.09.backbone.tax.qza.
 - __`--o-classifier`__: Output artifact containing the trained classifier. This will be used for feature (ASV) taxonomy classification.
 
-[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
+[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
 
 ## Taxonomy assignment
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/classification.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/classification.png){style="width:150px"}
+</center>
 
 With our trained classifier we can assign taxonomic assignments to the ASV representative sequences.
 
@@ -1267,9 +1259,9 @@ qiime feature-classifier classify-sklearn \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_orange.png){style="width:100px"}
+</center>
 
 - __`--i-classifier`__: Input artifact containing the trained classifier.
 - __`--p-confidence`__: Confidence threshold for limiting taxonomic depth.
@@ -1280,12 +1272,12 @@ knitr::include_graphics(path = "figures/parameter_orange.png", auto_pdf = TRUE)
 - __`--o-classification`__: Output artifact containing the taxonomic assignments of the features (ASVs).
 - __`--p-n-jobs`__: Number of separate processes to use.
 
-[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2023.5/plugins/available/feature-classifier/classify-sklearn/)
+[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/classify-sklearn/)
 
 ## Taxonomy bar chart production {#taxabar}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/bar_charts.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/bar_charts.png){style="width:150px"}
+</center>
 
 Create a taxonomy-abundance bar-chart visualisation artifact:
 
@@ -1298,9 +1290,9 @@ qiime taxa barplot \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_blue.png){style="width:100px"}
+</center>
 
 - __`--i-table`__: Input artifact containing the ASV abundance table.
 - __`--i-taxonomy`__: Input artifact containing the taxonomic classifications of the ASVs.
@@ -1309,12 +1301,12 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 
 The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.
 
-[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2023.5/plugins/available/taxa/barplot/)
+[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2024.10/plugins/available/taxa/barplot/)
 
 ## Taxonomy: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_blue.png){style="width:150px"}
+</center>
 
 Attempt the below MCQs.
 
@@ -1333,7 +1325,7 @@ __Note__: The "Sort Samples By" drop down will be useful for the following quest
 ```{r, echo = FALSE}
 opts_p <- c("__1K2E__", answer="__1TM__", "__3TM__")
 ```
-3. Which sample has the highest relative abundance of the class Actinomycetia (Taxonomic level 3)? `r longmcq(opts_p)`
+3. Which sample has the highest relative abundance of the class Actinomycetes (Taxonomic level 3)? `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__1K2E__", "__1TM__", "__3TM__")
@@ -1343,12 +1335,12 @@ opts_p <- c(answer="__1K2E__", "__1TM__", "__3TM__")
 ```{r, echo = FALSE}
 opts_p <- c("__1K2E__", "__1TM__", answer="__3TM__")
 ```
-5. Which sample has the fourth highest relative abundance of the phylum Bacteroidota (Taxonomic level 2)? `r longmcq(opts_p)`
+5. Which sample has the third highest relative abundance of the phylum Bacteroidota (Taxonomic level 2)? `r longmcq(opts_p)`
 
 ## Taxonomy: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:150px"}
+</center>
 
 We have trimmed and denoised our data, producing ASVs. This has been followed by assigning taxonomic classifications to the ASVs. 
 
@@ -1356,7 +1348,7 @@ In your future analysis if you have sequenced any samples with known composition
 
 We are close to carrying out some biodiversity analysis. Before this we will produce a phylogenetic tree in the next chapter.
 
-[QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2023.5/tutorials/feature-classifier/)
+[QIIME2 documents on training feature classifiers](https://docs.qiime2.org/2024.10/tutorials/feature-classifier/)
 
 <!--chapter:end:10-Taxonomic_assignment.Rmd-->
 
@@ -1364,16 +1356,17 @@ We are close to carrying out some biodiversity analysis. Before this we will pro
 library(webexercises)
 ```
 # Phylogenetic tree construction {#phylogeny}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/phylo_tree.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/phylo_tree.png){style="width:200px; background: white; border-radius:5px"}
+</center>
 
 In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetically aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
 
 ## MAFFT alignment
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/dna_alignment.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/dna_alignment.png){style="width:200px; background: white; border-radius:5px"}
+</center>
+
 The first step is to align our representative sequences against each other. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
 
 ```{bash, eval=FALSE}
@@ -1383,19 +1376,20 @@ qiime alignment mafft \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_red.png){style="width:100px"}
+</center>
 
 - __`--i-sequences`__: Input artifact containing the representative sequences of the features (ASVs) to be aligned.
 - __`--o-alignment`__: Output artifact containing the aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mafft/)
+[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2024.10/plugins/available/alignment/mafft/)
 
 ## Masking
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/mask.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/mask.png){style="width:150px; border-radius: 5px ; background: white"}
+</center>
+
 After alignment non-informative regions are masked. This will make our phylogenetic construction quicker and better.
 
 ```{bash, eval=FALSE}
@@ -1407,30 +1401,31 @@ qiime alignment mask \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_blue.png){style="width:100px"}
+</center>
 
 - __`--i-alignment`__: Input artifact containing aligned representative sequences.
 - __`--p-max-gap-frequency`__: This determines the relative frequency of gap characters in an aligned column for the column to be retained.
   - This option is provided with a number from 0-1.
-  - 0.0 = Columns consisting of <=00px gaps will be retained. I.e. a column must have no gaps to be retained.
-  - 1.0 = Columns consisting of <=1000px gaps will be retained. I.e. no column will be removed based on number of gaps.
+  - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
+  - 1.0 = Columns consisting of <=100% gaps will be retained. I.e. no column will be removed based on number of gaps.
   - 1.0 was chosen as it is the default option. Unless you have good reason this is what you should use for your future 16S analysis.
 - __`--p-min-conservation`__: The minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
   - This option is provided with a number from 0-1.
   - 0.4 = A column will  be retained if it contains at least one character that is present in at least 400px of the sequences. 
     - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
-    - A column consisting of 400px A, 200px G, 200px C, and 200px T __will__ be retained.
+    - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
     - 0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
 - __`--o-masked-alignment`__: Output artifact containing the masked aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2023.5/plugins/available/alignment/mask/)
+[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2024.10/plugins/available/alignment/mask/)
 
 ## Un-rooted tree creation with FASTTREE
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/tree_unrooted.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/tree_unrooted.png){style="width:200px"}
+</center>
+
 Create an un-rooted maximum-likelihood tree from our masked alignment with the Fasttree 2 tool. 
 
 ```{bash, eval=FALSE}
@@ -1440,19 +1435,20 @@ qiime phylogeny fasttree \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_purple.png){style="width:100px"}
+</center>
 
 - __`--i-alignment`__: Input artifact containing the masked aligned representative sequences.
 - __`--o-tree`__: Output artifact containing the un-rooted tree.
 
-[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/fasttree/)
+[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2024.10/plugins/available/phylogeny/fasttree/)
 
 ## Rooted tree creation
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/tree_rooted.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/tree_rooted.png){style="width:150px; border-radius: 5px ; background: white"}
+</center>
+
 Finally the un-rooted tree is rooted.
 
 ```{bash, eval=FALSE}
@@ -1462,19 +1458,19 @@ qiime phylogeny midpoint-root \
 ```
 
 #### Parameters{-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_black.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
+</center>
 
 - __`--i-tree`__: Input artifact containing the un-rooted tree
 - __`--o-rooted-tree`__: Output artifact containing the rooted tree.
 
-[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2023.5/plugins/available/phylogeny/midpoint-root/)
+[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2024.10/plugins/available/phylogeny/midpoint-root/)
 
 ## Phylogeny: summary
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_black.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_black.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
+</center>
 
 All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.
 
@@ -1488,9 +1484,9 @@ library(webexercises)
 # (PART\*) Analysis {-}
 
 # Sequencing depth evaluation {#rarefaction}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/rarefaction.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/rarefaction.png){style="width:200px"}
+</center>
 
 The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
 
@@ -1505,14 +1501,15 @@ For example, if we rarefy to a depth of 2000 for all samples:
 
 Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
-```{r, fig.align = 'center',out.width= '800px', echo=FALSE, fig.cap= "Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau."}
-knitr::include_graphics(path = "figures/rarefaction_example.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/rarefaction_example.png){style="width:800px"}
+</center>
+Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
 
 ## Rarefaction: run
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_blue.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_blue.png){style="width:150px"}
+</center>
 
 Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
 
@@ -1540,9 +1537,9 @@ qiime diversity alpha-rarefaction \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_blue.png){style="width:100px"}
+</center>
 
 - __`--i-table`__: Input artifact containing the abundance table for the identified variants.
 - __`--i-phylogeny`__: Input artifact containing the rooted tree.
@@ -1561,12 +1558,12 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
   - This parameter can be specified multiple times for different metrics.
 - __`--o-visualization`__: Output visualisation artifact containing the rarefaction plots. 
 
-[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-rarefaction/)
+[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-rarefaction/)
 
 ### Copy rarefaction output {#cprarefaction}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/copy.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/copy.png){style="width:150px"}
+</center>
 
 Instead of running the command you can copy the output to your directory.
 
@@ -1576,9 +1573,9 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 
 
 ## Rarefaction: visualise
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_blue.png){style="width:200px"}
+</center>
 
 Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the groupings (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the [__observed_features__](#obvs) metric is the best __Metric__ to view.
 
@@ -1598,9 +1595,9 @@ The visualisation has two plots.
       - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
 
 ### Rarefaction considerations
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/considerations.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/considerations.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 Choosing a rarefaction threshold for the normalisation step, is ultimately identifying the best trade-off between:
 
@@ -1615,9 +1612,9 @@ Other considerations for rarefaction threshold:
 - Should your samples have relatively high (e.g. soil microbiomes) or low (e.g. human gut microbiome) diversity. With higher diversity you will need a larger rarefaction threshold.
 
 ### Rarefaction: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_blue.png){style="width:150px"}
+</center>
 
 Attempt the below MCQs.
 
@@ -1647,9 +1644,9 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 5. When comparing the two __Places__, at approximately what sequencing depth are there only 5 Entrance samples remaining? `r longmcq(opts_p)`
 
 ## Rarefaction: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_blue.png){style="width:150px"}
+</center>
 
 For the next step we will use a rarefaction size of 34,583. We have chosen this depth because:
 
@@ -1680,7 +1677,7 @@ Beta diversity is diversity among different communities. There are many possible
 knitr::include_graphics(path = "figures/play_red.png", auto_pdf = TRUE)
 ``` 
 
-QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2023.5/plugins/available/diversity/).
+QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2024.10/plugins/available/diversity/).
 
 ```{bash, eval=FALSE}
 qiime diversity core-metrics-phylogenetic \
@@ -1702,7 +1699,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 - __`--output-dir`__: Output directory that will contain all the output files form the command.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2023.5/plugins/available/diversity/core-metrics-phylogenetic/)
+[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2024.10/plugins/available/diversity/core-metrics-phylogenetic/)
 
 #### Output {-}
 ```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
@@ -1777,9 +1774,9 @@ Although we have used two different commands they both have the same parameters.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 - __`--o-visualization`__:  Output visualisation artifact containing the box plots and statistical table.
 
-[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-group-significance/)
+[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-group-significance/)
 
-[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2023.5/plugins/available/diversity/alpha-correlation/)
+[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-correlation/)
 
 ## Alpha diversity: visualise
 ```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
@@ -1801,7 +1798,7 @@ The Kruskal-Wallis (`shannon-group-significance.kw.qzv`) visualisation artifact 
 
 To determine if there is a statistical difference between the groups it is best to look at the q-value/s in the pairwise table. The q-value is in essence the multiple comparison corrected p-value. As there is only one pairwise comparison in each of the 2 categorical metadata groupings the q-value is the same as the p-value (no multiple testing carried out).
 
-[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
+[Example with more groups in the metadata columns](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2024.10%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Ffaith-pd-group-significance.qzv)
 
 #### Ranked Spearman {-}
 
@@ -2059,7 +2056,7 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
     -   In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
 -   **`--o-collapsed-table`**: Output artifact containing the abundance table for the specified taxa level.
 
-[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2023.5/plugins/available/taxa/collapse/)
+[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2024.10/plugins/available/taxa/collapse/)
 
 ## ANCOM-BC analysis
 
@@ -2087,10 +2084,10 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 -   **`--m-metadata-file`**: [Metadata file](#metadata.file.txt) for our samples.
 -   **`--p-formula`**: A formula for how the microbial absolute abundances for each taxon depend on the variables within the `metadata`.
     -   In this case we are specifying the metadata column, Location, within the metadata file to use for the statistical analysis. We will therefore see if there is any differentially abundant features between Corridor and Toilet.
-    -   Multiple metadata columns and reference groups can be used with an example in the [documentation](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/).
+    -   Multiple metadata columns and reference groups can be used with an example in the [documentation](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/).
 -   **`--o-differentials`**: Output artifact containing the calculated differentials. This will be used to produce visualisation artifacts.
 
-[QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2023.5/plugins/available/composition/ancombc/)
+[QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/)
 
 ## ANCOMBC tabulate
 ```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
@@ -2114,7 +2111,7 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 -   **`--i-data`**: Input artifact files containing the calculated differentials. 
 - **`--o-visualization`**: The output artifact containing the tabular visualisations.
 
-[QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2023.5/plugins/available/composition/tabulate/)
+[QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2024.10/plugins/available/composition/tabulate/)
 
 ### ANCOMBC tabulate: visualise
 
@@ -2182,7 +2179,7 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
     -   We chose ";" as Greengenes2 splits the taxonomic levels with this delimiter.
     -   You can check which delimiter is used in your [**"taxa-bar-plot.dada2.qzv" file**](#taxabar).
 
-[QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2023.5/plugins/available/composition/da-barplot/)
+[QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2024.10/plugins/available/composition/da-barplot/)
 
 ### ANCOM-BC bar plots: visualise
 
@@ -2361,7 +2358,7 @@ knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
 
 ## Suggested readings
 
-The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2023.5/tutorials/).
+The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2024.10/tutorials/).
 
 The QIIME scripts collection (http://qiime.org/scripts/index.html) includes many other useful scripts that we have not described, each script with its own description and tips for using it. We encourage you to explore this resource.
 
@@ -2509,16 +2506,19 @@ Miniforge installation: <https://github.com/conda-forge/miniforge>
 
 Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
-To create the mamba environment `qiime2-2023.5` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `qiime2-amplicon-2024.10` run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
 #QIIME2
-wget https://data.qiime2.org/distro/core/qiime2-2023.5-py38-linux-conda.yml
-mamba env create -n qiime2-2023.5 --file qiime2-2023.5-py38-linux-conda.yml
+conda env create -n qiime2-amplicon-2024.10 --file https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml
+
+#MATTHEW, DO YOU STILL NEED THIS HERE?
 pip install q2-greengenes2
 ```
 
-__Note__: You may want to install the most recent version of QIIME2. PLease see the following page for installation instructions: https://docs.qiime2.org/2023.5/install/native/
+__Note__: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: https://docs.qiime2.org/2024.10/install/native/. Ensure to follow the "QIIME 2 Amplicon Distribution" step if you are going to use QIIME2 for amplicon analysis.
+
+
 
 # Diversity metrics
 ```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
