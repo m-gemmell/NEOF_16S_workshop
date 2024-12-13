@@ -1,7 +1,7 @@
 # Final consideration {#final}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/finish.png){style="width:200px; background: white; border-radius:5px"}
+</center>
 
 Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, you can consider the following points.
 
@@ -9,7 +9,7 @@ Are there any missing taxa you know should be there? These taxa may be present b
 
 The failure could be right at the beginning of the project design. It is worth checking if the PCR primers you are using can amplify these species. Are the primers known to impose bias on the community you are amplifying? Are the primers unable to amplify some taxon whose 16S rRNA sequences are too distant from the rest of the community? The literature may be able to help you on this topic.
 
-If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:
+If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are other analyses you may want to approach including:
 
 + Inferring ecological interaction networks (SPIEC-EASI).
 + More statistical analyses with STAMP.

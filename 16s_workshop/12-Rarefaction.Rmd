@@ -21,7 +21,44 @@ Equally sized subsamples are directly comparable among different samples. Additi
 <center>
 ![](figures/rarefaction_example.png){style="width:800px"}
 </center>
-Figure: Example rarefaction curve. We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
+
+```{r, echo=FALSE, eval=FALSE}
+#This is set to not run
+#Left here in case the resultant plots needs to be recreated or edited
+#ggplot2
+library(ggplot2)
+#subsample sizes
+size_for_subsamples <- seq(from = 0, to = 20000, by = 1000)
+#number of ASVs will go up to a max of 250
+S1 <- c(0,100,150,175,181,185,189,seq(from = 190, by = 1, length.out=14))
+S2 <- seq(from = 0, to = 200, length.out = 21)
+S3 <- c(0,40,75,104,128,150,168,186,201,212,219,226,231,235,238,241,244,246,248,249,250)
+#combine to a long df
+df <- as.data.frame(matrix(data = NA, ncol = 3))
+colnames(df) <- c("Sample","ASVs","Subsample_size")
+df[1:21,"Sample"] <- "S1"
+df[1:21,"ASVs"] <- S1
+df[1:21,"Subsample_size"] <- size_for_subsamples
+df[22:42,"Sample"] <- "S2"
+df[22:42,"ASVs"] <- S2
+df[22:42,"Subsample_size"] <- size_for_subsamples
+df[43:63,"Sample"] <- "S3"
+df[43:63,"ASVs"] <- S3
+df[43:63,"Subsample_size"] <- size_for_subsamples
+#ggplot line plot
+gg_line <- ggplot(data = df, aes(y=ASVs, x=Subsample_size, group=Sample, color=Sample  )) +
+  geom_line(linewidth = 2) +
+  labs(x = "Size of subsample", y = "Number of ASVs" ) +
+  scale_color_manual(values=c("#dc267f", "#fe6100", "#648fff")) +
+  theme_gray(base_size = 24) +
+    theme(legend.position="bottom")
+ggsave("./figures/rarefaction_ggplot.png", plot = gg_line, 
+       units = "mm", width = 300, height = 175, dpi = 300)
+```
+<center>
+![](figures/rarefaction_ggplot.png){style="width:800px"}
+</center>
+Figure: Example rarefaction curve. We can see that S1 plateaus at ~6,000 sequences and S3 plateaus at ~16,000 sequences whilst S2 has not started to plateau.
 
 ## Rarefaction: run
 <center>
@@ -138,7 +175,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>900px) plateaue?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateaue?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
@@ -165,11 +202,11 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 ![](figures/sum_blue.png){style="width:150px"}
 </center>
 
-For the next step we will use a rarefaction size of 34,583. We have chosen this depth because:
+For the next step we will use a rarefaction size of 34,584. We have chosen this depth because:
 
 - This will keep all the samples.
 - The group based rarefaction curves (__Location__ and __Place__) are plateauing at this depth.
 - Many of the individual samples (__BarcodeSequence__) have plateaued at this depth.
 - We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
 
-How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the [`table-dada2.qzv`](#tabledada2qzv) visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
+How do we know that the very exact number of 34,584 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the [`table-dada2.qzv`](#tabledada2qzv) visualisation we can see that the lowest depth of a sample is 34,584 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.

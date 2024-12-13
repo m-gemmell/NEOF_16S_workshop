@@ -1,16 +1,17 @@
 # Exporting Artifacts {#export}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/artefact_to_tsv.png", auto_pdf = TRUE)
-```  
+<center>
+![](figures/artefact_to_tsv.png){style="width:200px; border-radius:5px"}
+</center>
 
 Artifact files are very useful when carrying out analysis in QIIME2. However they are impossible to directly use (I think) with anything outside of QIIME2. Therefore it can be very useful to know how to export data out of Artifact files.
 
 This section will show how to export various different artifact files into text files. However, for some data types they must be converted into a BIOM file first. 
 
 ## BIOM files
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/biom.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/biom.png){style="width:200px; border-radius:5px"}
+</center>
+
 BIOM stands for BIological Observation Matrix. BIOM files generally contain abundance tables. These files are not human-readable but can be used with certain programs. Here we will only manipulate them in such ways to get the text files we need.
 
 For more information on the BIOM format please see: https://biom-format.org/
@@ -18,9 +19,10 @@ For more information on the BIOM format please see: https://biom-format.org/
 We will be using the command `biom convert` to convert BIOM files to TSV (Tab Separated Value) files. For more info on this please see: https://biom-format.org/documentation/biom_conversion.html
 
 ## Setup
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/setup.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/setup.png){style="width:150px; background:white; border-radius:5px; border:white solid 5px"}
+</center>
+
 First copy a new directory that will contain all the QIIME2 output you need and then change directory to it.
 
 ```{bash eval=FALSE}
@@ -36,14 +38,14 @@ mkdir qiime2_exports
 mkdir final_exports
 ```
 
-- `export`: This directory is where we will point the various `qiime tools export` commands. You can only specify an output directory for this command and the command will give the exported file very generic names. This makes it very easy to overwrite files when using this command.
-- `qiime2_exports`: For some of the exported files we will move and rename them from `export` to this directory. This is an temporary directory for files we will not want at the end (mostly BIOM files).
+- `export`: This directory is where we will point the various `qiime tools export` commands. You can only specify an output directory for this command and the command will give the exported file a very generic name. This makes it very easy to overwrite files when using this command.
+- `qiime2_exports`: For some of the exported files we will move and rename them from `export` to this directory. This is a temporary directory for files we will not want at the end (mostly BIOM files).
 - `final_exports`: This directory will contain the final exported files we would generaly want to keep.
 
 ## Abundance table export
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/noun_Table_250445_000000.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/noun_Table_250445_000000.png){style="width:100px; background:white; border-radius:5px; border:white solid 5px"}
+</center>
 
 First we will export our ASV abundance table. We will have to convert the BIOM file produced by QIIME2 to a TSV file.
 
@@ -70,9 +72,9 @@ The option `--to-tsv` (or alternative) must be provided or the command will not 
 Use a text viewer/editor of your choice to inspect the final file. Make sure to do this for all the files in this tutorial.
 
 ## Taxonomy info export
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/noun_ranking_165760.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/noun_ranking_165760.png){style="width:100px; background:white; border-radius:5px"}
+</center>
 
 Exporting the taxonomy info.
 
@@ -84,9 +86,9 @@ mv export/taxonomy.tsv final_exports
 ```
 
 ## Representative sequences export
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/noun_DNA_947999.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/noun_DNA_947999.png){style="width:100px; background:white; border-radius:5px"}
+</center>
 
 Export the representative sequences to a fasta file.
 
@@ -98,9 +100,9 @@ mv export/dna-sequences.fasta final_exports/ASV_rep_seqs.fasta
 ```
 
 ## Phylogenetic tree export
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/noun_Tree_1857655.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/noun_Tree_1857655.png){style="width:100px; background:white; border-radius:5px"}
+</center>
 
 The below exports the specified phylogenetic tree into a newick format file. For more info on the Newick format please see:  https://en.wikipedia.org/wiki/Newick_format
 
@@ -111,12 +113,12 @@ qiime tools export --input-path rooted-tree.qza \
 mv export/tree.nwk final_exports/fasttree_rooted_tree.nwk
 ```
 
-If you would like to view the tree you can open `firefox` and go to __"https://itol.embl.de"__. Then you can upload the `.nwk` to quickly view it.
+If you would like to view the tree you can open `firefox` and go to https://itol.embl.de. Then you can upload the `.nwk` to quickly view it.
 
 ## ASV table with taxonomy export
-```{r, fig.align = 'center',out.width= '250px', echo=FALSE }
-knitr::include_graphics(path = "figures/table_w_tax.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/table_w_tax.png){style="width:250px; background:white; border-radius:5px"}
+</center>
 
 This step will produce a TSV file containing the ASV abundance table with the last column containing the taxonomy assignment of the ASV.
 
@@ -150,9 +152,9 @@ biom convert \
 ```
 
 ## Rarified table export
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/noun_curve_3542841.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/noun_curve_3542841.png){style="width:100px; background:white; border-radius:5px"}
+</center>
 
 You can export a rarefied table. The first step of this is to rarefy our ASV table artifact. 
 
@@ -165,7 +167,7 @@ qiime feature-table rarefy \
 --o-rarefied-table table-dada2.rarefied_20000.qza
 ```
 
-After that it is the normal export and convert commands. To be fancy we will include the taxonomy information in the final file.
+After that you can use normal export and convert commands. To be fancy we will include the taxonomy information in the final file.
 
 ```{bash eval=FALSE}
 #Qiime tools export
@@ -189,11 +191,11 @@ biom convert \
 ```
 
 ## Relative abundance table export
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/noun_Percent_3560962.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/noun_Percent_3560962.png){style="width:100px; background:white; border-radius:5px"}
+</center>
 
-Instead of an abundance table you may want a relative abundance table. Thankfully this can easily be done in QIIME 2 with the following command. 
+Instead of an abundance table you may want a relative abundance table. This can be done in QIIME 2 with the following command. 
 
 __Note__: You will most likely want to get the relative abundance from a rarefied table.
 
@@ -227,9 +229,9 @@ biom convert \
 ```
 
 ## Taxonomy abundance table export
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/noun_Family_137805.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/noun_Family_137805.png){style="width:100px; background:white; border-radius:5px"}
+</center>
 
 The last recipe I will show you is how to create and then export a taxonomy abundance table.
 

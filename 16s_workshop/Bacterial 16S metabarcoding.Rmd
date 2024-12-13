@@ -1499,12 +1499,49 @@ For example, if we rarefy to a depth of 2000 for all samples:
 - Samples with depths of 2000 will be unchanged.
 - Samples with depths of >2000 will have all reads removed except for a random subsample of 2000.
 
-Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively sample subsamples from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively subsample from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
 <center>
 ![](figures/rarefaction_example.png){style="width:800px"}
 </center>
-Example rarefaction curve: We can see that Series 1 plateaus at ~7,000 sequences and Series 3 plateaus at ~18,000 sequences whilst Series 2 has not started to plateau.
+
+```{r, echo=FALSE, eval=FALSE}
+#This is set to not run
+#Left here in case the resultant plots needs to be recreated or edited
+#ggplot2
+library(ggplot2)
+#subsample sizes
+size_for_subsamples <- seq(from = 0, to = 20000, by = 1000)
+#number of ASVs will go up to a max of 250
+S1 <- c(0,100,150,175,181,185,189,seq(from = 190, by = 1, length.out=14))
+S2 <- seq(from = 0, to = 200, length.out = 21)
+S3 <- c(0,40,75,104,128,150,168,186,201,212,219,226,231,235,238,241,244,246,248,249,250)
+#combine to a long df
+df <- as.data.frame(matrix(data = NA, ncol = 3))
+colnames(df) <- c("Sample","ASVs","Subsample_size")
+df[1:21,"Sample"] <- "S1"
+df[1:21,"ASVs"] <- S1
+df[1:21,"Subsample_size"] <- size_for_subsamples
+df[22:42,"Sample"] <- "S2"
+df[22:42,"ASVs"] <- S2
+df[22:42,"Subsample_size"] <- size_for_subsamples
+df[43:63,"Sample"] <- "S3"
+df[43:63,"ASVs"] <- S3
+df[43:63,"Subsample_size"] <- size_for_subsamples
+#ggplot line plot
+gg_line <- ggplot(data = df, aes(y=ASVs, x=Subsample_size, group=Sample, color=Sample  )) +
+  geom_line(linewidth = 2) +
+  labs(x = "Size of subsample", y = "Number of ASVs" ) +
+  scale_color_manual(values=c("#dc267f", "#fe6100", "#648fff")) +
+  theme_gray(base_size = 24) +
+    theme(legend.position="bottom")
+ggsave("./figures/rarefaction_ggplot.png", plot = gg_line, 
+       units = "mm", width = 300, height = 175, dpi = 300)
+```
+<center>
+![](figures/rarefaction_ggplot.png){style="width:800px"}
+</center>
+Figure: Example rarefaction curve. We can see that S1 plateaus at ~6,000 sequences and S3 plateaus at ~16,000 sequences whilst S2 has not started to plateau.
 
 ## Rarefaction: run
 <center>
@@ -1515,7 +1552,7 @@ Given an abundance table (and a phylogenetic tree for calculating phylogenetic d
 
 __Note__: See the [appendix](#alphamet) at the end of this bookdown for details on each metric.
 
-You may want to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_pd` for markers such as ITS where you will not create a phylogenetic tree.
+You will need to to exclude `--i-phylogeny rooted-tree.qza` and `--p-metrics faith_pd` for markers such as ITS where you cannot create a phylogenetic tree.
 
 __Important__: This command will take a long time. If this is the last command you run for today that is fine, go ahead and run it. Optionally, you can [copy the output](#cprarefaction) instead of running it.
 
@@ -1621,7 +1658,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>900px) plateaue?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateaue?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
@@ -1648,14 +1685,14 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 ![](figures/sum_blue.png){style="width:150px"}
 </center>
 
-For the next step we will use a rarefaction size of 34,583. We have chosen this depth because:
+For the next step we will use a rarefaction size of 34,584. We have chosen this depth because:
 
 - This will keep all the samples.
 - The group based rarefaction curves (__Location__ and __Place__) are plateauing at this depth.
 - Many of the individual samples (__BarcodeSequence__) have plateaued at this depth.
 - We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
 
-How do we know that the very exact number of 34,583 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the [`table-dada2.qzv`](#tabledada2qzv) visualisation we can see that the lowest depth of a sample is 34,583 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
+How do we know that the very exact number of 34,584 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the [`table-dada2.qzv`](#tabledada2qzv) visualisation we can see that the lowest depth of a sample is 34,584 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
 
 <!--chapter:end:12-Rarefaction.Rmd-->
 
@@ -1663,9 +1700,9 @@ How do we know that the very exact number of 34,583 will keep all the samples? L
 library(webexercises)
 ```
 # Diversity analysis {#diversity}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/diversity.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/diversity.png){style="width:200px; background:white; border-radius:5px"}
+</center>
 
 Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
 1948, Faith, 1992).
@@ -1673,9 +1710,9 @@ Alpha diversity is a representation of the diversity within a sample. There are 
 Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
 ## Diversity: run 
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_red.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_red.png){style="width:150px"}
+</center>
 
 QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2024.10/plugins/available/diversity/).
 
@@ -1683,28 +1720,28 @@ QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at 
 qiime diversity core-metrics-phylogenetic \
 --i-table table-dada2.qza \
 --i-phylogeny rooted-tree.qza \
---p-sampling-depth 34583 \
---output-dir dada2-diversity-34583 \
+--p-sampling-depth 34584 \
+--output-dir dada2-diversity-34584 \
 --m-metadata-file metadata.file.txt
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_red.png){style="width:100px"}
+</center>
 
 - __`--i-table`__: Input artifact containing the abundance table for the identified variants.
 - __`--i-phylogeny`__: Input artifact containing the rooted tree.
 - __`--p-sampling-depth`__: Sampling depth to rarefy the abundance data table to.
-- __`--output-dir`__: Output directory that will contain all the output files form the command.
+- __`--output-dir`__: Output directory that will contain all the output files from the command.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
 [QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2024.10/plugins/available/diversity/core-metrics-phylogenetic/)
 
 #### Output {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/output_file_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/output_file_red.png){style="width:100px"}
+</center>
 
 This command will produce all the results within the directory specified with the option `--output-dir`. 
 
@@ -1730,9 +1767,9 @@ In case of ITS or any marker for which it is not possible to obtain a phylogenet
 library(webexercises)
 ```
 # Alpha diveristy statistical analysis {#alpha_div_stats}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/alpha_div_2.png){style="width:200px"}
+</center>
 
 We can carry out some statistical analysis to compare the alpha diversity values between the different metadata data groups.
 
@@ -1742,15 +1779,15 @@ The QIIME2 pipeline offers two alternative choices:
 - Numerical metadata: Ranked Spearman (correlation) test.
 
 ## Alpha diversity: run 
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_purple.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_purple.png){style="width:150px"}
+</center>
 
 As we have categorical (Location & Place) and numeric (Floor) metadata columns we will carry out both types of tests. Let's do this for the shannon alpha diversity.
 
 ```{bash, eval=FALSE}
 #Change directory into the output directory
-cd dada2-diversity-34583
+cd dada2-diversity-34584
 # For the Kruskal-Wallis test
 qiime diversity alpha-group-significance \
 --i-alpha-diversity shannon_vector.qza \
@@ -1764,9 +1801,9 @@ qiime diversity alpha-correlation \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_purple.png){style="width:100px"}
+</center>
 
 Although we have used two different commands they both have the same parameters.
 
@@ -1779,9 +1816,9 @@ Although we have used two different commands they both have the same parameters.
 [QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-correlation/)
 
 ## Alpha diversity: visualise
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_purple.png){style="width:150px"}
+</center>
 
 Load the produced files (`shannon-group-significance.kw.qzv` & `shannon-group-significance.rs.qzv`) into QIIME2 view using 2 chrome tabs. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
 
@@ -1812,9 +1849,9 @@ The Ranked Spearman (`shannon-group-significance.rs.qzv`) visualisation artifact
 You can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
 
 ### Alpha diversity: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_purple.png){style="width:150px"}
+</center>
 
 ```{r, echo = FALSE}
 opts_p <- c("__Yes__", answer="__No__")
@@ -1871,9 +1908,9 @@ opts_p <- c("__Yes__", answer="__No__")
 6. Is there a statistical significance (P-value <0.05) when comparing the __Floors (1 vs 2 vs 3)__ when using __Faith's PD__? `r longmcq(opts_p)`
 
 ## Alpha diversity: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_purple.png){style="width:150px"}
+</center>
 
 We have viewed alpha diversity output but unfortunately found no significant differences between groups. Hopefully in your future projects you will have more samples and more luck. Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.
 
@@ -1885,16 +1922,16 @@ In the next chapter we will look at the beta diversity output and carry out some
 library(webexercises)
 ```
 # Beta diversity statistical analysis {#beta_stats}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/beta_div_2.png){style="width:300px"}
+</center>
 
 We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use __'PERMANOVA'__ analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
 ## Beta diveristy: PCoA
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/Scatterplot_2.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/Scatterplot_2.png){style="width:200px; background:white; border-radius:5px"}
+</center>
 
 Before running some statistical analysis let's look at one of the PCoA plots created in the the [`qiime diversity core-metrics-phylogenetic`](#diversity) command.
 
@@ -1905,11 +1942,11 @@ Before running some statistical analysis let's look at one of the PCoA plots cre
 We are able to visually separate these two groups in the plot, especially on Axis 2. However, will some statistics back this up?
 
 ## Beta diversity: run 
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/play_green.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/play_green.png){style="width:150px"}
+</center>
 
-To carry this out our first __'PERMANOVA'__ analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise __weighted unifrac__ dissimilarity distances.
+For our first __'PERMANOVA'__ analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise __weighted unifrac__ dissimilarity distances.
 
 The __'Location'__ metadata column with the __weighted UniFrac__ metric will be used as there appears to be a separation between the Corridor and Toilet samples.
 
@@ -1925,9 +1962,9 @@ qiime diversity beta-group-significance \
 ```
 
 #### Parameters {-}
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_green.png){style="width:100px"}
+</center>
 
 - __`--i-distance-matrix`__: Input artifact files containing the beta diversity values.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
@@ -1935,17 +1972,17 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 - __`--p-method`__: The group significance test to be applied.
   - `permanova` is the default. `anosim` and `permdisp` are the other 2 options.
 - __`--p-pairwise`__: This means all pairwise tests between all pairs of groups in addition to the test across all groups will be carried out.
-  - The other parameter choice is `--p-no-pairwise` meaning only the test across all groups will be carried out. This can be used if their are a lot of groups in the metadata column that may make the command take too long to run.
+  - The other parameter choice is `--p-no-pairwise` meaning only the test across all groups will be carried out. This can be used if there are a lot of groups in the metadata column that may make cause the command to take too long to run.
 - __`--p-permutations`__: The number of permutations to run when computing p-values.
   - The default is `999`.
-__`--o-visualization`__: The output artifact containing the visualisation.
+- __`--o-visualization`__: The output artifact containing the visualisation.
 
-[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2023.5/plugins/available/diversity/beta-group-significance/)
+[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2024.10/plugins/available/diversity/beta-group-significance/)
 
 ## Beta diversity: visualise
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_green.png){style="width:150px"}
+</center>
 
 Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) file in QIIME2 view. You will see the following sections:
 
@@ -1962,9 +1999,9 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
 [Example with more groups in the metadata column](https://view.qiime2.org/visualization/?type=html&src=https%3A%2F%2Fdocs.qiime2.org%2F2023.5%2Fdata%2Ftutorials%2Fmoving-pictures%2Fcore-metrics-results%2Funweighted-unifrac-body-site-significance.qzv)
 
 ### Beta diversity: MCQs
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_green.png){style="width:150px"}
+</center>
 
 Attempt the below questions.
 
@@ -1996,15 +2033,15 @@ opts_p <- c("__Yes__", answer="__No__")
 5. Is there a significant difference (q-value <0.05) between __Entrance and MainBuilding (Place)__ for the __Unweighted Unifrac__ distances when using __ANOSIM__? `r longmcq(opts_p)`
 
 ### Beta diversity: summary
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_green.png){style="width:150px"}
+</center>
 
 Viewing the beta diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.
 
 Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.
 
-If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin](https://docs.qiime2.org/2023.5/plugins/available/diversity/adonis/).
+If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin](https://docs.qiime2.org/2024.10/plugins/available/diversity/adonis/).
 
 We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.
 
@@ -2014,25 +2051,24 @@ We know there is a difference between Corridor and Toilet samples, but are there
 library(webexercises)
 ```
 # Differential abundance analysis {#differential}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/balance_scale.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/balance_scale.png){style="width:200px"}
+</center>
 
 The [ANCOM-BC](https://www.nature.com/articles/s41467-020-17041-7) method aims to identify differentially abundant taxa between sample groups. It is an improvement of the original ANCOM method but with added bias correction. This bias correction aims to account for the bias caused by the difference in sampling/depth across the samples.
 
-Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups. This can be used to detect organisms in high abundance in diseased states versus healthy states. This helps determine what are the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
+Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups. An example of its use is to detect organisms in high abundance in diseased states versus healthy states. This helps determine what are the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
 
-If you are still in 'dada2-diversity-34583' directory, please remember to move out:
+If you are still in 'dada2-diversity-34584' directory, please remember to move out:
 
 ```{bash, eval=FALSE}
 cd ..
 ```
 
 ## Taxa collapse
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/collapse.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/collapse.png){style="width:150px"}
+</center>
 
 First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose Greengenes2 level 5 which equates to family.
 
@@ -2045,10 +2081,9 @@ qiime taxa collapse \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_purple.png){style="width:100px"}
+</center>
 
 -   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) for the identified variants.
 -   **`--i-taxonomy`**: Input artifact containing the taxonomic classifications of the ASVs.
@@ -2059,10 +2094,9 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2024.10/plugins/available/taxa/collapse/)
 
 ## ANCOM-BC analysis
-
-```{r, fig.align = 'center',out.width= '300px', echo=FALSE }
-knitr::include_graphics(path = "figures/toilet_corridor.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/toilet_corridor.png){style="width:300px"}
+</center>
 
 With our family based abundance table we can carry out ANCOM-BC to produce the differentials file.
 
@@ -2075,10 +2109,9 @@ qiime composition ancombc \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_blue.png){style="width:100px"}
+</center>
 
 -   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.
 -   **`--m-metadata-file`**: [Metadata file](#metadata.file.txt) for our samples.
@@ -2090,9 +2123,9 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/)
 
 ## ANCOMBC tabulate
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/nice_table.png){style="width:150px"}
+</center>
 
 Next we can create a visualisation artifact containing tabular views of the ANCOM-BC output.
 
@@ -2103,10 +2136,9 @@ qiime composition tabulate \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_green.png){style="width:100px"}
+</center>
 
 -   **`--i-data`**: Input artifact files containing the calculated differentials. 
 - **`--o-visualization`**: The output artifact containing the tabular visualisations.
@@ -2114,10 +2146,9 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2024.10/plugins/available/composition/tabulate/)
 
 ### ANCOMBC tabulate: visualise
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_green.png){style="width:150px"}
+</center>
 
 Load the resulting visualisation (`l5-ancombc-Location.qzv`) file in QIIME2 view.
 
@@ -2154,9 +2185,9 @@ qiime composition ancombc \
     -   The further away from 0 this value is the more significant the feature is differentially abundant between groups.
 
 ## ANCOMBC bar plots
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/bar_chart_horizontal.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bar_chart_horizontal.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 Next we can create a visualisation artifact containing bar plots of the ANCOM-BC output.
 
@@ -2168,10 +2199,9 @@ qiime composition da-barplot \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_red.png){style="width:100px"}
+</center>
 
 -   **`--i-data`**: Input artifact file containing the calculated differentials.
 -   **`--o-visualization`**: The output artifact containing the bar plot visualisations.
@@ -2182,10 +2212,9 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2024.10/plugins/available/composition/da-barplot/)
 
 ### ANCOM-BC bar plots: visualise
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_red.png){style="width:150px"}
+</center>
 
 Load the resulting visualisation (`l5-ancombc-Location-barplot.qzv`) file in QIIME2 view.
 
@@ -2196,10 +2225,9 @@ This contains one large bar plot. This displays the LFC values (x-axis) against 
 You can hover over a bar to view more details on the biomarker (differentially abundant feature).
 
 ## ANCOM-BC: MCQs
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_red.png){style="width:150px"}
+</center>
 
 Attempt the below MCQs using the table and bar plot visualisation files.
 
@@ -2219,7 +2247,7 @@ opts_p <- c("__Clostridiaceae_222000__", "__Gemellaceae__", answer="__Weeksellac
 opts_p <- c("__Clostridiaceae_222000__", answer="__Gemellaceae__", "__Weeksellaceae__")
 ```
 
-3.  Which family has a W statistic of -1.080713? `r longmcq(opts_p)`
+3.  Which family has a W statistic of -1.119351? `r longmcq(opts_p)`
 
 Run ANCOM-BC analysis for genus level (level 6). You will have to start from the `qiime taxa collapse` command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.
 
@@ -2252,22 +2280,22 @@ qiime composition da-barplot \
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Chryseobacterium_796703__", answer="__Clostridium_T__",  "__Dialister__")
+opts_p <- c("__Microbacterium_A_383321__", answer="__Clostridium_T__",  "__Dialister_37762__")
 ```
 
 4.  Which genus has the highest positive LFC value? I.e. The genus with the highest enrichment in Toilet (comparison) compared to Corridor (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Chryseobacterium_796703__", "__Clostridium_T__",  "__Dialister__")
+opts_p <- c(answer="__Microbacterium_A_383321__", "__Clostridium_T__",  "__Dialister_37762__")
 ```
 
-5.  Which genus has the lowest negative LFC value? I.e. The genus with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
+5.  Which genus has the 2nd lowest negative LFC value? I.e. The genus with the 2nd highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Chryseobacterium_796703__", "__Clostridium_T__",  answer="__Dialister__")
+opts_p <- c("__Microbacterium_A_383321__", "__Clostridium_T__",  answer="__Dialister_37762__")
 ```
 
-6.  Which genus has a standard error of 0.582710? `r longmcq(opts_p)`
+6.  Which genus has a standard error of 0.581106? `r longmcq(opts_p)`
 
 Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed the taxa. Therefore you can rerun the commands from the `qiime composition ancombc` step with changed options. Try running these commands yourself before looking at the contents of the below box.
 
@@ -2292,28 +2320,27 @@ qiime composition da-barplot \
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Akkermansiaceae__", "__Pseudomonadaceae__" , "__Rhodospirillaceae__")
+opts_p <- c(answer="__Aristaeellaceae__", "__Pseudomonadaceae__" , "__Rhodospirillaceae__")
 ```
 
 7.  Which family has the 3rd highest positive LFC value? I.e. The family with the third highest enrichment in Main building (comparison) compared to Entrance (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Akkermansiaceae__", answer="__Pseudomonadaceae__" , "__Rhodospirillaceae__")
+opts_p <- c("__Aristaeellaceae__", answer="__Pseudomonadaceae__" , "__Rhodospirillaceae__")
 ```
 
-8.  Which family has the lowest negative LFC value? I.e. The family with the highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
+8.  Which family has the 2nd lowest negative LFC value? I.e. The family with the 2nd highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Akkermansiaceae__", "__Pseudomonadaceae__" , answer="__Rhodospirillaceae__")
+opts_p <- c("__Aristaeellaceae__", "__Pseudomonadaceae__" , answer="__Rhodospirillaceae__")
 ```
 
-9.  Which family has a LFC of -0.795598 `r longmcq(opts_p)`
+9.  Which family has a LFC of -0.804614 `r longmcq(opts_p)`
 
 ## ANCOM-BC: summary
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_red.png){style="width:150px"}
+</center>
 
 We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family *Clostridiaceae* was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.
 
@@ -2325,9 +2352,9 @@ That is the last of the analysis. There is only one more chapter on future consi
 library(webexercises)
 ```
 # Final consideration {#final}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/finish.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/finish.png){style="width:200px; background: white; border-radius:5px"}
+</center>
 
 Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, you can consider the following points.
 
@@ -2335,7 +2362,7 @@ Are there any missing taxa you know should be there? These taxa may be present b
 
 The failure could be right at the beginning of the project design. It is worth checking if the PCR primers you are using can amplify these species. Are the primers known to impose bias on the community you are amplifying? Are the primers unable to amplify some taxon whose 16S rRNA sequences are too distant from the rest of the community? The literature may be able to help you on this topic.
 
-If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are few other analyses you may want to approach:
+If you are happy with the composition, you can then explore the ecological differences among your samples. For this there are other analyses you may want to approach including:
 
 + Inferring ecological interaction networks (SPIEC-EASI).
 + More statistical analyses with STAMP.
@@ -2352,19 +2379,15 @@ library(webexercises)
 # (APPENDIX) Appendix {-}
 
 # Resources
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/resources.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/resources.png){style="width:200px"}
+</center>
 
 ## Suggested readings
 
 The QIIME2 tutorials page contains many useful protocols and possible usage for these scripts (https://docs.qiime2.org/2024.10/tutorials/).
 
 The QIIME scripts collection (http://qiime.org/scripts/index.html) includes many other useful scripts that we have not described, each script with its own description and tips for using it. We encourage you to explore this resource.
-
-A large resource containing links to literature on how easy it is to introduce bias into microbiome studies:
-
-http://www.opiniomics.org/the-unbearable-madness-of-microbiome/
 
 Diversity of 16S rRNA Genes within Individual Prokaryotic Genomes Anna Y. Pei, William E. Oberdorf, Carlos W. Nossa, Ankush Agarwal, Pooja Chokshi, Erika A. Gerz, Zhida Jin, Peng Lee, Liying Yang, Michael Poles, Stuart M. Brown, Steven Sotero, Todd DeSantis, Eoin Brodie, Karen Nelson, and Zhiheng Pei (2010) APPLIED AND ENVIRONMENTAL MICROBIOLOGY.
 
@@ -2380,6 +2403,10 @@ http://www.nature.com/ismej/journal/v9/n1/full/ismej2014117a.html
 De novo clustering methods outperform reference-based methods for assigning 16S rRNA gene sequences to operational taxonomic units Sarah L. Westcott and Patrick D. Schloss (2015) PeerJ
 
 http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4675110/
+
+To rarefy or not to rarefy: robustness and efficiency trade-offs of rarefying microbiome data, Johnny Hong, Ulas Karaoz, Perry de Valpine, William Fithian (2022) Oxford academic Bioinformatics
+
+https://academic.oup.com/bioinformatics/article/38/9/2389/6536959
 
 Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible. Paul J. McMurdie, Susan Holmes (2014) Plos ONE.
 
@@ -2403,7 +2430,7 @@ https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0470-z
 
 Denoising the Denoisers: An independent evaluation of microbiome 3 sequence error-correction methods. Nearing Jacob, Douglas Gavin, Comeau Andre, Langille Morngan
 
-https://peerj.com/preprints/26566.pdf
+https://peerj.com/articles/5364/
 
 Compositional data analysis of the microbiome: fundamentals, tools, and challenges. Tsilimigras, M.C. and Fodor, A.A.
 
@@ -2484,15 +2511,14 @@ __UniFrac__
 
 Lozupone, Hamady, Kelley & Knight. (2007). "Quantitative and qualitative (beta) diversity measures lead to different insights into factors that structure microbial communities." Appl Environ Microbiol 73 (5): 1576-85
 
-__ANCOM__
+__ANCOM-BC2__
 
-Mandal S, Van Treuren W, White RA., Eggesbø M., Knight R., and Peddada, S.D. (2015). Analysis of composition of microbiomes: a novel method for studying microbial composition. Microbial ecology in health and disease, 26(1), p.27663.
+Lin, H., & Peddada, S. D. (2024). Multigroup analysis of compositions of microbiomes with covariate adjustments and repeated measures. Nature Methods, 21(1), 83-91.
 
 # Mamba installs
-
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/mamba_logo.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/mamba_logo.png){style="width:200px; border-radius:5px"}
+</center>
 
 ## Mamba installation and environment {#mamba_install}
 
@@ -2510,25 +2536,22 @@ To create the mamba environment `qiime2-amplicon-2024.10` run the below commands
 
 ```{bash, eval=FALSE}
 #QIIME2
-conda env create -n qiime2-amplicon-2024.10 --file https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml
-
-#MATTHEW, DO YOU STILL NEED THIS HERE?
-pip install q2-greengenes2
+conda env create -n qiime2-amplicon-2024.10 \
+--file https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml
 ```
 
 __Note__: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: https://docs.qiime2.org/2024.10/install/native/. Ensure to follow the "QIIME 2 Amplicon Distribution" step if you are going to use QIIME2 for amplicon analysis.
 
-
-
 # Diversity metrics
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/metric_square.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/metric_square.png){style="width:200px"}
+</center>
 
 ## Alpha diversity metrics {#alphamet}
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/alpha_div.png", auto_pdf = TRUE)
-``` 
+
+<center>
+![](figures/alpha_div_2.png){style="width:200px"}
+</center>
 
 Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness. 
 
@@ -2551,9 +2574,9 @@ Faith's PD represents the minimum total branch length that covers all taxa withi
 
 A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
 
-```{r, fig.align = 'center',out.width= '600px', echo=FALSE }
-knitr::include_graphics(path = "figures/faith_pd.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/faith_pd.png){style="width:600px"}
+</center>
 
 ### Simpson {#simpson}
 
@@ -2607,9 +2630,9 @@ $$
 - N = Total feature abundance of sample
 
 ## Beta diversity metrics
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/beta_div.png", auto_pdf = TRUE)
-``` 
+<center>
+![](figures/beta_div_2.png){style="width:200px"}
+</center>
 
 Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:
 

@@ -1,23 +1,22 @@
 # Differential abundance analysis {#differential}
-```{r, fig.align = 'center',out.width= '200px', echo=FALSE }
-knitr::include_graphics(path = "figures/balance_scale.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/balance_scale.png){style="width:200px"}
+</center>
 
 The [ANCOM-BC](https://www.nature.com/articles/s41467-020-17041-7) method aims to identify differentially abundant taxa between sample groups. It is an improvement of the original ANCOM method but with added bias correction. This bias correction aims to account for the bias caused by the difference in sampling/depth across the samples.
 
-Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups. This can be used to detect organisms in high abundance in diseased states versus healthy states. This helps determine what are the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
+Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups. An example of its use is to detect organisms in high abundance in diseased states versus healthy states. This helps determine what are the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
 
-If you are still in 'dada2-diversity-34583' directory, please remember to move out:
+If you are still in 'dada2-diversity-34584' directory, please remember to move out:
 
 ```{bash, eval=FALSE}
 cd ..
 ```
 
 ## Taxa collapse
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/collapse.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/collapse.png){style="width:150px"}
+</center>
 
 First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose Greengenes2 level 5 which equates to family.
 
@@ -30,10 +29,9 @@ qiime taxa collapse \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_purple.png){style="width:100px"}
+</center>
 
 -   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) for the identified variants.
 -   **`--i-taxonomy`**: Input artifact containing the taxonomic classifications of the ASVs.
@@ -44,10 +42,9 @@ knitr::include_graphics(path = "figures/parameter_purple.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2024.10/plugins/available/taxa/collapse/)
 
 ## ANCOM-BC analysis
-
-```{r, fig.align = 'center',out.width= '300px', echo=FALSE }
-knitr::include_graphics(path = "figures/toilet_corridor.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/toilet_corridor.png){style="width:300px"}
+</center>
 
 With our family based abundance table we can carry out ANCOM-BC to produce the differentials file.
 
@@ -60,10 +57,9 @@ qiime composition ancombc \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_blue.png){style="width:100px"}
+</center>
 
 -   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.
 -   **`--m-metadata-file`**: [Metadata file](#metadata.file.txt) for our samples.
@@ -75,9 +71,9 @@ knitr::include_graphics(path = "figures/parameter_blue.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/)
 
 ## ANCOMBC tabulate
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/nice_table.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/nice_table.png){style="width:150px"}
+</center>
 
 Next we can create a visualisation artifact containing tabular views of the ANCOM-BC output.
 
@@ -88,10 +84,9 @@ qiime composition tabulate \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_green.png){style="width:100px"}
+</center>
 
 -   **`--i-data`**: Input artifact files containing the calculated differentials. 
 - **`--o-visualization`**: The output artifact containing the tabular visualisations.
@@ -99,10 +94,9 @@ knitr::include_graphics(path = "figures/parameter_green.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2024.10/plugins/available/composition/tabulate/)
 
 ### ANCOMBC tabulate: visualise
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_green.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_green.png){style="width:150px"}
+</center>
 
 Load the resulting visualisation (`l5-ancombc-Location.qzv`) file in QIIME2 view.
 
@@ -139,9 +133,9 @@ qiime composition ancombc \
     -   The further away from 0 this value is the more significant the feature is differentially abundant between groups.
 
 ## ANCOMBC bar plots
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/bar_chart_horizontal.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/bar_chart_horizontal.png){style="width:150px; background: white; border-radius:5px"}
+</center>
 
 Next we can create a visualisation artifact containing bar plots of the ANCOM-BC output.
 
@@ -153,10 +147,9 @@ qiime composition da-barplot \
 ```
 
 #### Parameters {.unnumbered}
-
-```{r, fig.align = 'center',out.width= '100px', echo=FALSE }
-knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/parameter_red.png){style="width:100px"}
+</center>
 
 -   **`--i-data`**: Input artifact file containing the calculated differentials.
 -   **`--o-visualization`**: The output artifact containing the bar plot visualisations.
@@ -167,10 +160,9 @@ knitr::include_graphics(path = "figures/parameter_red.png", auto_pdf = TRUE)
 [QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2024.10/plugins/available/composition/da-barplot/)
 
 ### ANCOM-BC bar plots: visualise
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/eye_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/eye_red.png){style="width:150px"}
+</center>
 
 Load the resulting visualisation (`l5-ancombc-Location-barplot.qzv`) file in QIIME2 view.
 
@@ -181,10 +173,9 @@ This contains one large bar plot. This displays the LFC values (x-axis) against 
 You can hover over a bar to view more details on the biomarker (differentially abundant feature).
 
 ## ANCOM-BC: MCQs
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/question_bubble_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/question_bubble_red.png){style="width:150px"}
+</center>
 
 Attempt the below MCQs using the table and bar plot visualisation files.
 
@@ -204,7 +195,7 @@ opts_p <- c("__Clostridiaceae_222000__", "__Gemellaceae__", answer="__Weeksellac
 opts_p <- c("__Clostridiaceae_222000__", answer="__Gemellaceae__", "__Weeksellaceae__")
 ```
 
-3.  Which family has a W statistic of -1.080713? `r longmcq(opts_p)`
+3.  Which family has a W statistic of -1.119351? `r longmcq(opts_p)`
 
 Run ANCOM-BC analysis for genus level (level 6). You will have to start from the `qiime taxa collapse` command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.
 
@@ -237,22 +228,22 @@ qiime composition da-barplot \
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Chryseobacterium_796703__", answer="__Clostridium_T__",  "__Dialister__")
+opts_p <- c("__Microbacterium_A_383321__", answer="__Clostridium_T__",  "__Dialister_37762__")
 ```
 
 4.  Which genus has the highest positive LFC value? I.e. The genus with the highest enrichment in Toilet (comparison) compared to Corridor (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Chryseobacterium_796703__", "__Clostridium_T__",  "__Dialister__")
+opts_p <- c(answer="__Microbacterium_A_383321__", "__Clostridium_T__",  "__Dialister_37762__")
 ```
 
-5.  Which genus has the lowest negative LFC value? I.e. The genus with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
+5.  Which genus has the 2nd lowest negative LFC value? I.e. The genus with the 2nd highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Chryseobacterium_796703__", "__Clostridium_T__",  answer="__Dialister__")
+opts_p <- c("__Microbacterium_A_383321__", "__Clostridium_T__",  answer="__Dialister_37762__")
 ```
 
-6.  Which genus has a standard error of 0.582710? `r longmcq(opts_p)`
+6.  Which genus has a standard error of 0.581106? `r longmcq(opts_p)`
 
 Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed the taxa. Therefore you can rerun the commands from the `qiime composition ancombc` step with changed options. Try running these commands yourself before looking at the contents of the below box.
 
@@ -277,28 +268,27 @@ qiime composition da-barplot \
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Akkermansiaceae__", "__Pseudomonadaceae__" , "__Rhodospirillaceae__")
+opts_p <- c(answer="__Aristaeellaceae__", "__Pseudomonadaceae__" , "__Rhodospirillaceae__")
 ```
 
 7.  Which family has the 3rd highest positive LFC value? I.e. The family with the third highest enrichment in Main building (comparison) compared to Entrance (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Akkermansiaceae__", answer="__Pseudomonadaceae__" , "__Rhodospirillaceae__")
+opts_p <- c("__Aristaeellaceae__", answer="__Pseudomonadaceae__" , "__Rhodospirillaceae__")
 ```
 
-8.  Which family has the lowest negative LFC value? I.e. The family with the highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
+8.  Which family has the 2nd lowest negative LFC value? I.e. The family with the 2nd highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Akkermansiaceae__", "__Pseudomonadaceae__" , answer="__Rhodospirillaceae__")
+opts_p <- c("__Aristaeellaceae__", "__Pseudomonadaceae__" , answer="__Rhodospirillaceae__")
 ```
 
-9.  Which family has a LFC of -0.795598 `r longmcq(opts_p)`
+9.  Which family has a LFC of -0.804614 `r longmcq(opts_p)`
 
 ## ANCOM-BC: summary
-
-```{r, fig.align = 'center',out.width= '150px', echo=FALSE }
-knitr::include_graphics(path = "figures/sum_red.png", auto_pdf = TRUE)
-```
+<center>
+![](figures/sum_red.png){style="width:150px"}
+</center>
 
 We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family *Clostridiaceae* was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.
 
