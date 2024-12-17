@@ -39,13 +39,14 @@ The sections in this supplement will cover:
 column_1 <- c(
  '[__Exporting QIIME2 artifacts__](#export)',
  '[![](figures/artefact_to_tsv.png){height="150"}](#differential)',
- '[__R packages for 16S rRNA analysis__](#rpackages)',
- '[![](figures/R.png){height="150"}](#resources)'
+ '[__Other QIIME2 resources__](#qiime2_resources)',
+ '[![](figures/resources.png){height="150"}](#qiime2_resources)'
 )
 column_2 <- c(
  '[__Handy QIIME2 commands__](#handy)',
  '[![](figures/tools.png){height="150"}](#final)',
- "",""
+ '[__R packages for 16S rRNA analysis__](#rpackages)',
+ '[![](figures/R.png){height="150"}](#resources)'
 )
 table_df <- data.frame(column_1, column_2)
 #Kable and kableextra libraries

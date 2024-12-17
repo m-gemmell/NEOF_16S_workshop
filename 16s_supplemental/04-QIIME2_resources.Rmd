@@ -1,0 +1,93 @@
+# Other QIIME2 resources {#qiime2_resources}
+<center>
+![](figures/resources.png){style="width:200px; background:white; border-radius:5px"}
+</center>
+
+## QIIME2 Plugins
+<center>
+![](figures/qiime2_plugin.png){style="width:200px; background:white; border-radius:5px"}
+</center>
+
+QIIME2 commands are grouped into "Plugins".
+All the base QIIME2 PLugins are listed in the following page.
+
+https://docs.qiime2.org/2024.10/plugins/
+
+Each Plugin can have a variety of "Pipelines", "Methods", and "Visualizers
+
+An example is the `diversity` plugin. Its page is below:
+
+https://docs.qiime2.org/2024.10/plugins/available/diversity/
+
+## QIIME2 tutorials
+<center>
+![](figures/computer_tutorial.png){style="width:200px; background:white; border-radius:5px"}
+</center>
+
+There are many QIIME2 tutorials online you can attempt.
+It is always good to practice with other data sets.
+
+- QIIME2 Tutorials main page: https://docs.qiime2.org/2024.10/tutorials/
+- "Moving Pictures": https://docs.qiime2.org/2024.10/tutorials/moving-pictures/
+- Fecal microbiota transplant (FMT) study: https://docs.qiime2.org/2024.10/tutorials/fmt/
+- “Atacama soil microbiome” tutorial: https://docs.qiime2.org/2024.10/tutorials/atacama-soils/
+- Parkinson’s Mouse Tutorial: https://docs.qiime2.org/2024.10/tutorials/pd-mice/
+
+## Fungal ITS
+<center>
+![](figures/fungal_its.png){style="width:200px"}
+</center>
+
+Carrying out analysis of Fungal ITS data has a lot of similar steps as 16S analysis.
+However there are some key changes.
+Below is a link for a tutorial on ITS analysis:
+
+https://forum.qiime2.org/t/q2-itsxpress-a-tutorial-on-a-qiime-2-plugin-to-trim-its-sequences/5780
+
+The UNITE database is used by many for fungal ITS classification.
+
+UNITE UNITE v10.0 v04.04.2024 for qiime2-2024.5 (ensure this is the latest version before use): https://github.com/colinbrislawn/unite-train/releases/tag/v10.0-v04.04.2024-qiime2-2024.5
+
+UNITE website: https://unite.ut.ee/repository.php
+
+## Longitudinal analysis
+<center>
+![](figures/calender.png){style="width:150px; background:white; border-radius:5px; border:white solid 5px"}
+</center>
+
+Analysis of a longitudinal 16S dataset can be carried out with the `q2-longitudinal` plugin.
+It is complicated and very stats heavy.
+Thankfully there is a tutorial.
+
+https://docs.qiime2.org/2024.10/tutorials/longitudinal/
+
+<center>
+![](figures/q2-longitudinal.png){style="width:800px; background:white; border-radius:5px"}
+</center>
+
+## Iterative rarefaction
+<center>
+![](figures/iterative_rarefaction.png){style="width:200px"}
+</center>
+
+The Plugin `q2-boots` works similar to the `diversity` Plugin, allowing for alpha and beta diversity analysis.
+However, instead of running only a single step of rarefaction it can run multiple iterations and produce averaged diversity values.
+
+It is currently in beta mode and you can see more info in the below link:
+
+https://forum.qiime2.org/t/q2-boots-bootstrapped-and-rarefaction-based-diversity-analysis/31134
+
+## Managaing reference databases
+<center>
+![](figures/rescript.png){style="width:200px; background:white; border-radius:5px; border:white solid 5px"}
+</center>
+
+You can work with non 16S metabarcodes in QIIME2.
+However, some of the non 16S databases were not created with QIIME2 analysis in mind.
+You will therefore need to manage and curate the databases, this can be carried out with `RESCRIPt`.
+
+The GitHub page: https://github.com/bokulich-lab/RESCRIPt
+
+QIIME2 rescript plugin page: https://docs.qiime2.org/2024.10/plugins/available/rescript/
+
+
