@@ -18,10 +18,6 @@ For example, if we rarefy to a depth of 2000 for all samples:
 
 Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively subsample from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
 
-<center>
-![](figures/rarefaction_example.png){style="width:800px"}
-</center>
-
 ```{r, echo=FALSE, eval=FALSE}
 #This is set to not run
 #Left here in case the resultant plots needs to be recreated or edited
