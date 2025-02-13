@@ -44,7 +44,7 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Moving pictures QIIME2 example
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/jRosVUMhieE" 
+<iframe src="https://www.youtube.com/embed/fL-qXO5-_Gw" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
@@ -53,7 +53,7 @@ frameborder="0" allowfullscreen class="video"></iframe>
 ## Other tutorials, tools, and methods
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/ofso3xtCsAU" 
+<iframe src="https://www.youtube.com/embed/_Cry2SBeors" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 

@@ -56,7 +56,7 @@ qiime alignment mask \
   - 1.0 was chosen as it is the default option. Unless you have good reason this is what you should use for your future 16S analysis.
 - __`--p-min-conservation`__: The minimum relative frequency of at least one non-gap character (e.g. A,G,C,T) in a column for that column to be retained.
   - This option is provided with a number from 0-1.
-  - 0.4 = A column will  be retained if it contains at least one character that is present in at least 400px of the sequences. 
+  - 0.4 = A column will  be retained if it contains at least one character that is present in at least 40% of the sequences. 
     - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
     - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
     - 0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
