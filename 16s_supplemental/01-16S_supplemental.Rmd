@@ -34,6 +34,18 @@ This bookdown is a supplement to the main one. It contains some workflows and to
 
 The sections in this supplement will cover:
 
+- [Exporting QIIME2 artifacts to text files](#export)
+- [Handy QIIME2 commands](#handy)
+- [Introduction to some R packages for 16S rRNA analysis](#rpackages)
+
+Ensure you have the QIIME2 environment activated for all of these materials. For convenience the command is:
+
+```{bash eval=FALSE}
+. useqiime2-amplicon-2024.10
+```
+
+## Table of contents {-}
+
 ```{r, echo=FALSE, align="centre"}
 #Create 2 coilumn dataframe
 column_1 <- c(
@@ -59,14 +71,6 @@ table_df %>%
   kable_styling(position = "center")
 ```
 
-- [Exporting QIIME2 artifacts to text files](#export)
-- [Handy QIIME2 commands](#handy)
-- [Introduction to some R packages for 16S rRNA analysis](#rpackages)
 
-Ensure you have the QIIME2 environment activated for all of these materials. For convenience the command is:
-
-```{bash eval=FALSE}
-. useqiime2-amplicon-2024.10
-```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
