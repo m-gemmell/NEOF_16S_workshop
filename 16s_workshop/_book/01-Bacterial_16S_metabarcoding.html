@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-02-13" />
+<meta name="date" content="2025-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,11 +56,20 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet" />
+<link href="libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet" />
+<link href="libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet" />
+<link href="libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet" />
+<script src="libs/tippyjs-3.2.0/tippy.all.min.js"></script>
+<script src="libs/tippy-binding-0.1.0/tippy.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +79,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -142,7 +151,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/neof_rounded_corners.png" width="250"></a></li>
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank">
+<img src="figures/neof_rounded_corners.png" width="250"></a></li>
 <li><a>Bacterial 16S metabarcoding</a></li>
 
 <li class="divider"></li>
@@ -346,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Bacterial 16S metabarcoding</h1>
 <p class="author"><em>Luca Lenzi and Matthew R. Gemmell</em></p>
-<p class="date"><em>2025-02-13</em></p>
+<p class="date"><em>2025-09-23</em></p>
 </div>
 <center>
 <img src="figures/neof_rounded_corners.png" style="width:300px" />
@@ -356,19 +366,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/intro_logo.png" style="width: 300px" />
 </center>
-<p>Sequencing of the 16S rRNA gene is a well established method of determining the bacterial taxonomic composition of microbiomes. This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments. This course will give you the ability to describe the advantages and disadvantages of 16S rRNA sequencing, and analyse 16S rRNA datasets with the QIIME2 bioinformatics platform.</p>
-<p>Sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book will contain theory and practice code. Multiple choice questions will guide the interpretation of results.</p>
+<p>Sequencing of the <u id='s_tip'>16S rRNA</u> gene is a well established method of determining the bacterial taxonomic composition of microbiomes.
+This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments.
+This course will give you the ability to describe the advantages and disadvantages of <u id='s_tip'>16S rRNA</u> sequencing, and analyse <u id='s_tip'>16S rRNA</u> datasets with the QIIME2 bioinformatics platform.</p>
+<p>Sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book.
+This book will contain theory and practice code. Multiple choice questions will guide the interpretation of results.</p>
 <p>At the end of the course learners will be able to:</p>
 <ul>
-<li>Utilise and understand the use of QIIME2 with 16S rRNA data.</li>
+<li>Utilise and understand the use of QIIME2 with <u id='s_tip'>16S rRNA</u> data.</li>
 <li>Import sequencing data and metadata into QIIME2 artifacts.</li>
-<li>Cluster and denoise 16S sequences with DADA2.</li>
-<li>Assign taxonomies to ASVs and produce a phylogenetic tree.</li>
+<li>Cluster and denoise <u id='s_tip'>16S</u> sequences with DADA2.</li>
+<li>Assign taxonomies to <u id='asv_tip'>ASVs</u> and produce a phylogenetic tree.</li>
 <li>Evaluate and normalise sequencing depth across their samples.</li>
-<li>Produce alpha and beta diversity metrics and statistics.</li>
+<li>Produce <u id='alpha_tip'>alpha</u> and <u id='beta_tip'>beta</u> diversity metrics and statistics.</li>
 <li>Carry out differential abundance analysis.</li>
 </ul>
-<p>There are <a href="https://neof-workshops.github.io/16S_yg84o9/Supplemental/01-16S_supplemental.html">supplementary materials</a> including exporting of QIIME2 artifacts, various handy QIIME2 commands, and introduction to some useful R packages. These can be run through after the course.</p>
+<p>There are <a href="https://neof-workshops.github.io/16S_yg84o9/Supplemental/01-16S_supplemental.html">supplementary materials</a> including exporting of QIIME2 <u id='artifact_tip'>artifacts</u>, various handy QIIME2 commands, and introduction to some useful R packages. These can be run through after the course.</p>
 <div id="table-of-contents" class="section level2 unnumbered hasAnchor">
 <h2>Table of contents<a href="01-Bacterial_16S_metabarcoding.html#table-of-contents" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
@@ -482,7 +495,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="16-Differential_abundance.html#differential"><img src="figures/balance_scale.png" height="150" /></a>
 </td>
 <td style="text-align:center;">
-<a href="17-Final_consideration.html#final"><img src="figures/finish.png" height="150" /></a>
+<a href="17-Final_consideration.html#final"><img src="figures/finish.png" style="height:150px" /></a>
 </td>
 </tr>
 <tr>
@@ -502,6 +515,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons Licence" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-57a95294e3792373fc16" width="672"></span>
+<script type="application/json" data-for="htmlwidget-57a95294e3792373fc16">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-60b748650f55a6f1f730" width="672"></span>
+<script type="application/json" data-for="htmlwidget-60b748650f55a6f1f730">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-38a5a7e0d8624a6cfa37" width="672"></span>
+<script type="application/json" data-for="htmlwidget-38a5a7e0d8624a6cfa37">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-3cd63c63e3919e87c114" width="672"></span>
+<script type="application/json" data-for="htmlwidget-3cd63c63e3919e87c114">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-17fe991e7b451fa2e3c2" width="672"></span>
+<script type="application/json" data-for="htmlwidget-17fe991e7b451fa2e3c2">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-24827ee3318857af6e3e" width="672"></span>
+<script type="application/json" data-for="htmlwidget-24827ee3318857af6e3e">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>
@@ -731,29 +756,29 @@ window.onload = function() {
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": null,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section"
-}
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
 });
 });
 </script>

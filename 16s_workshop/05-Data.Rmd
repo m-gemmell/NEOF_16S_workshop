@@ -93,18 +93,6 @@ The above link includes:
 - Info on column types and number formatting
 - More
 
-__Note__: All the QIIME2 links may be out of date and the below will appear:
-<center>
-![](figures/qiime2_website_out_of_date.png){style="width:800px"}
-</center>
-
-If this occurs click "Show me the content on this page".
-
-You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
-<center>
-![](figures/qiime2_version_box.png){style="width:200px"}
-</center>
-
 ## primers_seqs.fasta
 
 This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for the PCR trimming step (chapter 8) and the classifier training step (chapter 10).

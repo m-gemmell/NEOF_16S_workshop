@@ -39,21 +39,24 @@ knitr::opts_chunk$set(class.source="Rchunk")
 ![](figures/intro_logo.png){style="width: 300px"}
 </center>
 
-Sequencing of the 16S rRNA gene is a well established method of determining the bacterial taxonomic composition of microbiomes. This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments. This course will give you the ability to describe the advantages and disadvantages of 16S rRNA sequencing, and analyse 16S rRNA datasets with the QIIME2 bioinformatics platform.
+Sequencing of the <u id='s_tip'>16S rRNA</u> gene is a well established method of determining the bacterial taxonomic composition of microbiomes. 
+This has been used for human and animal body sites, soil, sewage, clouds, deserts, permafrost and many other environments. 
+This course will give you the ability to describe the advantages and disadvantages of <u id='s_tip'>16S rRNA</u> sequencing, and analyse <u id='s_tip'>16S rRNA</u> datasets with the QIIME2 bioinformatics platform.
 
-Sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. This book will contain theory and practice code. Multiple choice questions will guide the interpretation of results.
+Sessions will start with a brief presentation followed by self-paced computer practicals guided by this online interactive book. 
+This book will contain theory and practice code. Multiple choice questions will guide the interpretation of results.
 
 At the end of the course learners will be able to:
 
-- Utilise and understand the use of QIIME2 with 16S rRNA data.
+- Utilise and understand the use of QIIME2 with <u id='s_tip'>16S rRNA</u> data.
 - Import sequencing data and metadata into QIIME2 artifacts.
-- Cluster and denoise 16S sequences with DADA2.
-- Assign taxonomies to ASVs and produce a phylogenetic tree.
+- Cluster and denoise <u id='s_tip'>16S</u> sequences with DADA2.
+- Assign taxonomies to <u id='asv_tip'>ASVs</u> and produce a phylogenetic tree.
 - Evaluate and normalise sequencing depth across their samples.
-- Produce alpha and beta diversity metrics and statistics.
+- Produce <u id='alpha_tip'>alpha</u> and <u id='beta_tip'>beta</u> diversity metrics and statistics.
 - Carry out differential abundance analysis.
 
-There are [supplementary materials](https://neof-workshops.github.io/16S_yg84o9/Supplemental/01-16S_supplemental.html) including exporting of QIIME2 artifacts, various handy QIIME2 commands, and introduction to some useful R packages. These can be run through after the course.
+There are [supplementary materials](https://neof-workshops.github.io/16S_yg84o9/Supplemental/01-16S_supplemental.html) including exporting of QIIME2 <u id='artifact_tip'>artifacts</u>, various handy QIIME2 commands, and introduction to some useful R packages. These can be run through after the course.
 
 ## Table of contents {-}
 
@@ -91,7 +94,7 @@ column_2 <- c(
  '[**Alpha and beta diversity analysis**](#diversity)',
  '[![](figures/diversity.png){height="150"}](#diversity)',
  '[**Final considerations**](#final)',
- '[![](figures/finish.png){height="150"}](#final)',
+ '[![](figures/finish.png){style="height:150px"}](#final)',
  "",""
 )
 table_df <- data.frame(column_1, column_2)
@@ -106,3 +109,25 @@ table_df %>%
 ```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons Licence" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosoma RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+```

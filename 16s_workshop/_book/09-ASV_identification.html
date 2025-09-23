@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding</title>
   <meta name="description" content="NEOF book for the Bacterial 16S metabarcoding workshop" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 De-novo amplicon sequence variants identification | Bacterial 16S metabarcoding" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-02-13" />
+<meta name="date" content="2025-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,11 +56,20 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet" />
+<link href="libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet" />
+<link href="libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet" />
+<link href="libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet" />
+<script src="libs/tippyjs-3.2.0/tippy.all.min.js"></script>
+<script src="libs/tippy-binding-0.1.0/tippy.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +79,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -142,7 +151,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="toc-logo"><a href="https://neof.org.uk/" target="blank"><img src="figures/neof_rounded_corners.png" width="250"></a></li>
+<li class="toc-logo"><a href="https://neof.org.uk/" target="blank">
+<img src="figures/neof_rounded_corners.png" width="250"></a></li>
 <li><a>Bacterial 16S metabarcoding</a></li>
 
 <li class="divider"></li>
@@ -493,36 +503,36 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>How many ASVs (features) were detected in the dataset?
-<div id="radio_LQURNMLKZH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LQURNMLKZH" value="answer"></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LQURNMLKZH" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LQURNMLKZH" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_KTMPUZNUKV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KTMPUZNUKV" value="answer"></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KTMPUZNUKV" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KTMPUZNUKV" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>What is the median number of sequences per sample?
-<div id="radio_MOIUUWWQXN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MOIUUWWQXN" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOIUUWWQXN" value="answer"></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MOIUUWWQXN" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_FSGFZPGSPJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FSGFZPGSPJ" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FSGFZPGSPJ" value="answer"></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FSGFZPGSPJ" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>What is the maximum number of sequences per ASV?
-<div id="radio_UURUTICQXW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UURUTICQXW" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UURUTICQXW" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UURUTICQXW" value="answer"></input> <span><strong>258,440</strong></span></label>
+<div id="radio_QSDOALKASL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QSDOALKASL" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QSDOALKASL" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QSDOALKASL" value="answer"></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>How many samples have &gt;=100,000 sequences?
-<div id="radio_HXVRKBCOBO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HXVRKBCOBO" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HXVRKBCOBO" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HXVRKBCOBO" value="answer"></input> <span><strong>13</strong></span></label>
+<div id="radio_DAWBULKHHM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DAWBULKHHM" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DAWBULKHHM" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DAWBULKHHM" value="answer"></input> <span><strong>13</strong></span></label>
 </div></li>
 <li>How many Toilet (Metadata Category: Location) samples have &gt;=80,000 sequences?
-<div id="radio_VERRPOUKYB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VERRPOUKYB" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VERRPOUKYB" value="answer"></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VERRPOUKYB" value=""></input> <span><strong>13</strong></span></label>
+<div id="radio_CPHTUJJRBZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CPHTUJJRBZ" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPHTUJJRBZ" value="answer"></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPHTUJJRBZ" value=""></input> <span><strong>13</strong></span></label>
 </div></li>
 <li>How many MainBuilding (Metadata Category: Place) samples have &gt;=120,000 sequences?
-<div id="radio_XLATWHVROQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XLATWHVROQ" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XLATWHVROQ" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XLATWHVROQ" value=""></input> <span><strong>13</strong></span></label>
+<div id="radio_IZCNFMCCDT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_IZCNFMCCDT" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IZCNFMCCDT" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_IZCNFMCCDT" value=""></input> <span><strong>13</strong></span></label>
 </div></li>
 <li>How many sequences represent the second most abundant ASV?
-<div id="radio_YXQZLJEOXE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YXQZLJEOXE" value=""></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YXQZLJEOXE" value="answer"></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YXQZLJEOXE" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_OHYDTOAVZQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OHYDTOAVZQ" value=""></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OHYDTOAVZQ" value="answer"></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OHYDTOAVZQ" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>How many samples is the 10th most abundant ASV observed in?
-<div id="radio_ZYLLUQEGNR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZYLLUQEGNR" value="answer"></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZYLLUQEGNR" value=""></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZYLLUQEGNR" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_RPZQGJYFTB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RPZQGJYFTB" value="answer"></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RPZQGJYFTB" value=""></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RPZQGJYFTB" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -575,12 +585,12 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>In which DADA2 step were most of the sequences lost?
-<div id="radio_VUYRSPONNW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VUYRSPONNW" value="answer"></input> <span><strong>Filtering</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VUYRSPONNW" value=""></input> <span><strong>Denoising and merging</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VUYRSPONNW" value=""></input> <span><strong>Chimera removal</strong></span></label>
+<div id="radio_MELTUDTYPJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MELTUDTYPJ" value="answer"></input> <span><strong>Filtering</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MELTUDTYPJ" value=""></input> <span><strong>Denoising and merging</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MELTUDTYPJ" value=""></input> <span><strong>Chimera removal</strong></span></label>
 </div></li>
 <li>Which sample retained the smallest percentage of its input at the end (i.e. after filtering, denoising, merging, and chimera removal)?
-<div id="radio_FLFODSILIH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FLFODSILIH" value=""></input> <span><strong>1K1MB</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FLFODSILIH" value=""></input> <span><strong>1K1E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FLFODSILIH" value="answer"></input> <span><strong>1K2M</strong></span></label>
+<div id="radio_YAZPPTNOJA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YAZPPTNOJA" value=""></input> <span><strong>1K1MB</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YAZPPTNOJA" value=""></input> <span><strong>1K1E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YAZPPTNOJA" value="answer"></input> <span><strong>1K2M</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -821,29 +831,29 @@ window.onload = function() {
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": null,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "section"
-}
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
 });
 });
 </script>
