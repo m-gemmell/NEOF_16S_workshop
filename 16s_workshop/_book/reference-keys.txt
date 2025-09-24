@@ -21,7 +21,7 @@ logon-instructions
 the-terminal-window
 data
 manifestfile
-metadata.file.txt
+metadatafile
 primers_seqs.fasta
 q2workflow
 workflow-1

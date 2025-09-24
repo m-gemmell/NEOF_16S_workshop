@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-23" />
+<meta name="date" content="2025-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#manifestfile"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadatafile"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
 <li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
@@ -428,20 +428,20 @@ It is currently the preferred choice used to investigate biological communities 
 </ul></li>
 <li>Representation of the number of sequences obtained for a sample, showing that increasing the number of sequences increases the probability to retrieve low-abundant species in the samples. The main purpose for this analysis is to infer the number and type of species in the initial sampling site by the abundance of the sequences obtained by the sequencing experiment. In order to do this effectively, the use of mock communities and negative controls is strongly suggested to evaluate the effect of any possibly introduced bias. Additionally, normalisation of the data is absolutely necessary to compare the diversity between sample groups.</li>
 </ol>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-03082f6da8d696767287" width="672"></span>
-<script type="application/json" data-for="htmlwidget-03082f6da8d696767287">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-1eb80ae83c2d71382829" width="672"></span>
-<script type="application/json" data-for="htmlwidget-1eb80ae83c2d71382829">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6df13f49306e680cd790" width="672"></span>
-<script type="application/json" data-for="htmlwidget-6df13f49306e680cd790">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-fa51044271e0e08bc35e" width="672"></span>
-<script type="application/json" data-for="htmlwidget-fa51044271e0e08bc35e">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f0f75ba2a0671c2a6503" width="672"></span>
-<script type="application/json" data-for="htmlwidget-f0f75ba2a0671c2a6503">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-223dce6de25d8f044f2a" width="672"></span>
-<script type="application/json" data-for="htmlwidget-223dce6de25d8f044f2a">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6d77e578066eaadaad77" width="672"></span>
-<script type="application/json" data-for="htmlwidget-6d77e578066eaadaad77">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-b44fcd35ba14ec1595f5" width="672"></span>
+<script type="application/json" data-for="htmlwidget-b44fcd35ba14ec1595f5">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-d19e778829f856f707f4" width="672"></span>
+<script type="application/json" data-for="htmlwidget-d19e778829f856f707f4">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-9e622fe378895a6ee760" width="672"></span>
+<script type="application/json" data-for="htmlwidget-9e622fe378895a6ee760">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-9534041f9cfd2fcf118b" width="672"></span>
+<script type="application/json" data-for="htmlwidget-9534041f9cfd2fcf118b">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-ee09a27b95faa2d5a1ea" width="672"></span>
+<script type="application/json" data-for="htmlwidget-ee09a27b95faa2d5a1ea">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-d11f40e6ef9b45e26491" width="672"></span>
+<script type="application/json" data-for="htmlwidget-d11f40e6ef9b45e26491">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-2552b313331172f4a7be" width="672"></span>
+<script type="application/json" data-for="htmlwidget-2552b313331172f4a7be">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

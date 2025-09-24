@@ -10,11 +10,11 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 1. Import sequences into QIIME2 artifact
 2. Trim the PCR primer sequences
 3. De-novo amplicon sequence variants identifications
-4. Assign taxonomic classification to each ASV
-5. Create a phylogenetic tree of the identified ASVs
+4. Assign taxonomic classification to each <u id='asv_tip'>ASV</u>
+5. Create a phylogenetic tree of the identified <u id='asv_tip'>ASVs</u>
 6. Sequencing depth evaluation: rarefaction plot
-7. Diversity analysis: alpha and beta
-8. Differential abundance analysis of ASVs across different conditions
+7. Diversity analysis: <u id='alpha_tip'>alpha</u> and <u id='beta_tip'>beta</u>
+8. Differential abundance analysis of <u id='asv_tip'>ASVs</u> across different conditions
 
 ## Activate environment
 <center>
@@ -29,4 +29,17 @@ __Note__: Ensure you include the dot and space (`. `) at the start before `useqi
 . useqiime2-amplicon-2024.10
 ```
 
-Information on installing #mamba' and cretaing the environment are in the [appendix](#mamba_install)
+Information on installing `mamba` and creating the environment are in the [appendix](#mamba_install)
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+```

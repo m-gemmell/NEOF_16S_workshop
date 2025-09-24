@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-23" />
+<meta name="date" content="2025-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#manifestfile"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadatafile"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
 <li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Data<a href="05-Data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/data_files.png" style="width:200px" />
+<img src="figures/data_files.png" style="width:200px; background: white ; border-radius:5px; border: 5px white solid" />
 </center>
 <p>Prior to starting analysis you will need three files. To acquire these three files run the following commands.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb1-1"><a href="05-Data.html#cb1-1" tabindex="-1"></a><span class="co">#Change directory to home</span></span>
@@ -372,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="manifestfile" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> PairedEndFastqManifestPhred33.csv<a href="05-Data.html#manifestfile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/manifest.png" style="width:200px" />
+<img src="figures/manifest.png" style="width:200px; background: white ; border-radius:5px; border: 5px white solid" />
 </center>
 <p>This "manifest" file contains three columns that are separated by commas (.csv = comma separated values). This is vital for importing your sequencing data into QIIME2.</p>
 <p>Each column has a header and contains the following information:</p>
@@ -381,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>User specified sample-id.</li>
 <li>This is how the sample will be named in all downstream QIIME2 files.</li>
-<li>These must match the sample ids in the metadata file.</li>
+<li>These must match the sample ids in the <a href="07-Import_sequences_into_QIIME2.html#import">metadata file</a>.</li>
 <li>Recommendations for sample ids/identifiers can be found lower down in this bookdown page.</li>
 </ul></li>
 <li><strong>absolute-filepath</strong>
@@ -398,15 +398,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Have a look at the "manifest" file. You will see the header followed by all the forward reads then the reverse reads.</p>
 <p><strong>Tip</strong>: Type <code>q</code> to quit <code>less</code></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb3-1"><a href="05-Data.html#cb3-1" tabindex="-1"></a><span class="fu">less</span> PairedEndFastqManifestPhred33.csv</span></code></pre></div>
-<p>This file will be used in chapter 7.</p>
+<p>This file will be used in <a href="07-Import_sequences_into_QIIME2.html#import">chapter 7</a>.</p>
 </div>
-<div id="metadata.file.txt" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> metadata.file.txt<a href="05-Data.html#metadata.file.txt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="metadatafile" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> metadata.file.txt<a href="05-Data.html#metadatafile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/tags.png" style="width:200px" />
+<img src="figures/tags.png" style="width:200px; background: white ; border-radius:5px; border: 5px white solid" />
 </center>
 <p>This file contains metadata. It consists of columns separated by tabs.</p>
-<p>It is vital that the "sample-id" column contains the same info as the "sample-id" column in "PairedEndFastqManifestPhred33.csv".</p>
+<p>It is vital that the "sample-id" column contains the same info as the "sample-id" column in <a href="05-Data.html#manifestfile">"PairedEndFastqManifestPhred33.csv"</a>.</p>
 <p>This file can contain as many columns as you would like (minimum of 2). The first column must be the "sample-id" column.</p>
 <p>The first 2 rows must be:</p>
 <ol style="list-style-type: decimal">
@@ -440,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="primers_seqs.fasta" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> primers_seqs.fasta<a href="05-Data.html#primers_seqs.fasta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for the PCR trimming step (chapter 8) and the classifier training step (chapter 10).</p>
+<p>This is a fasta file containing the forward and reverse 16S rRNA primer sequences. These are needed for the PCR trimming step (<a href="08-Trim_PCR_sequences.html#pcrtrim">chapter 8</a>) and the classifier training step (<a href="10-Taxonomic_assignment.html#taxa">chapter 10</a>).</p>
 <p>This file has been provided so you can copy and paste the sequences from within the webVNC. It is never advisable to try to type sequences.</p>
 <p>For your own projects you will need to ask the lab that carried out the sequencing preparation for the primer sequences.</p>
 

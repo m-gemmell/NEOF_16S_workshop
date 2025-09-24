@@ -2,17 +2,17 @@
 
 # Sequence import {#import}
 <center>
-![](figures/import.png){style="width:200px"}
+![](figures/import.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-Before we can work with our data in QIIME2 we need to import the data into a QIIME2 artifact.
+Before we can work with our data in QIIME2 we need to import the data into a QIIME2 <u id='artifact_tip'>artifact</u>.
 
 ## Import: run
 <center>
-![](figures/play_green.png){style="width:150px"}
+![](figures/play_green.png){style="width:150px; background: white; border: white solid 5px; border-radius:5px"}
 </center>
 
-Import our read pairs into a QIIME2 artifact.
+Import our read pairs into a QIIME2 <u id='artifact_tip'>artifact</u>.
 
 __Note__: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.
 
@@ -28,26 +28,26 @@ qiime tools import \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_green.png){style="width:100px"}
+![](figures/parameter_green.png){style="width:100px; background: white; border: white solid 5px; border-radius:5px"}
 </center>
 
 - __`--type`__: The type of data being imported.
   - `'SampleData[PairedEndSequencesWithQuality]'` specifies we are importing Paired end sequence data that contains quality information. I.e. normal Illumina paired end fastq data.
 - __`--input-path`__: The input [manifest file](#manifestfile).
-- __`--output-path`__: Output QIIME2 artifact file containing your sequence data.
+- __`--output-path`__: Output QIIME2 <u id='artifact_tip'>artifact</u> file containing your sequence data.
   - The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples). 
-  - QIIME2 artifacts use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
+  - QIIME2 <u id='artifact_tip'>artifacts</u> use "-" as word separators in file names.  This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.
 - __`--input-format`__: The format of the input files.
-  - `PairedEndFastqManifestPhred33`: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
+  - `PairedEndFastqManifestPhred33`: Our input file is a [Manifest file](#manifestfile) with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
 [QIIME2 docs on importing data](https://docs.qiime2.org/2024.10/tutorials/importing/)
 
 ## Import: visualise {#chap7_vis}
 <center>
-![](figures/eye_green.png){style="width:200px"}
+![](figures/eye_green.png){style="width:200px; background: white; border: white solid 5px; border-radius:5px"}
 </center>
 
-To visualise the samples loaded, the following command will create a visualisation artifact.
+To visualise the samples loaded, the following command will create a visualisation <u id='artifact_tip'>artifact</u>.
 
 ```{bash, eval=FALSE}
 qiime demux summarize \
@@ -57,17 +57,17 @@ qiime demux summarize \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_green.png){style="width:100px"}
+![](figures/parameter_green.png){style="width:100px; background: white; border: white solid 5px; border-radius:5px"}
 </center>
 
-- __`--i-data`__: Input data artifact (`.qza`) to be summarised and visualised.
-- __`--o-visualization`__: Output visualisation artifact (`qzv`).
+- __`--i-data`__: Input data <u id='artifact_tip'>artifact</u> (`.qza`) to be summarised and visualised.
+- __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u> (`qzv`).
 
 [QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
 
 #### Firefox {-}
 <center>
-![](figures/firefox.png){style="width:100px"}
+![](figures/firefox.png){style="width:100px; background: white; border: white solid 5px; border-radius:5px"}
 </center>
 
 We have created our visualistion file, now we need to visualise it. We carry this out with the website [view.qiime2.org](https://view.qiime2.org).
@@ -99,7 +99,7 @@ The visualisation will have two tabs:
 
 ## Import: MCQs
 <center>
-![](figures/question_bubble_green.png){style="width:150px"}
+![](figures/question_bubble_green.png){style="width:150px; background: white; border: white solid 5px; border-radius:5px"}
 </center>
 
 ```{r, echo = FALSE}
@@ -139,7 +139,32 @@ opts_p <- c(answer="__TRUE__", "__FALSE__")
 
 ## Import: summary
 <center>
-![](figures/sum_green.png){style="width:150px"}
+![](figures/sum_green.png){style="width:150px; background: white; border: white solid 5px; border-radius:5px"}
 </center>
 
-We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.
+Brilliant! We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosoma RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```

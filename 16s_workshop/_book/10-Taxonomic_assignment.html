@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-23" />
+<meta name="date" content="2025-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#manifestfile"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadatafile"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
 <li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
@@ -530,7 +530,7 @@ Silva 16S rRNA database
 <ul>
 <li><strong><code>--i-table</code></strong>: Input artifact containing the ASV abundance table.</li>
 <li><strong><code>--i-taxonomy</code></strong>: Input artifact containing the taxonomic classifications of the ASVs.</li>
-<li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
+<li><strong><code>--m-metadata-file</code></strong>: <a href="#metadata.file.txt">Metadata file</a> for our samples.</li>
 <li><strong><code>--o-visualization</code></strong>: Output visualisation file containing an interactive taxonomy-abundance bar-chart.</li>
 </ul>
 <p>The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.</p>
@@ -545,27 +545,27 @@ Silva 16S rRNA database
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend)
-<div id="radio_WZTNBLFYMF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WZTNBLFYMF" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WZTNBLFYMF" value=""></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WZTNBLFYMF" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_KIWYPPQAXJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KIWYPPQAXJ" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KIWYPPQAXJ" value=""></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KIWYPPQAXJ" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 <li>At taxonomic level 5, what is the most abundant taxon for sample 1TE?
-<div id="radio_BAOKJBPMFC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BAOKJBPMFC" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BAOKJBPMFC" value="answer"></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BAOKJBPMFC" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_ZXPNYYJPCJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZXPNYYJPCJ" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZXPNYYJPCJ" value="answer"></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZXPNYYJPCJ" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 </ol>
 <p><strong>Note</strong>: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, right sample has the highest relative abundance) drop down to "Descending" may be useful.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Which sample has the highest relative abundance of the class Actinomycetes (Taxonomic level 3)?
-<div id="radio_QHIZPMWAHT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QHIZPMWAHT" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QHIZPMWAHT" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QHIZPMWAHT" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_VEUNARBQUR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VEUNARBQUR" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VEUNARBQUR" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VEUNARBQUR" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)?
-<div id="radio_XLKGLKSMKD" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XLKGLKSMKD" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XLKGLKSMKD" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XLKGLKSMKD" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_CLKUAFVMZR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CLKUAFVMZR" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CLKUAFVMZR" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CLKUAFVMZR" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the third highest relative abundance of the phylum Bacteroidota (Taxonomic level 2)?
-<div id="radio_ESALTXDKHO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ESALTXDKHO" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ESALTXDKHO" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ESALTXDKHO" value="answer"></input> <span><strong>3TM</strong></span></label>
+<div id="radio_UZOSLLUOCH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UZOSLLUOCH" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UZOSLLUOCH" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UZOSLLUOCH" value="answer"></input> <span><strong>3TM</strong></span></label>
 </div></li>
 </ol>
 </div>

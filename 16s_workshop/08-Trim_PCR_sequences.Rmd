@@ -1,6 +1,6 @@
 # Trim the PCR primer sequences {#pcrtrim}
 <center>
-![](figures/prepare.png){style="width:200px"}
+![](figures/prepare.png){style="width:200px; background: white; border-radius:5px; border: white solid 5px"}
 </center>
 
 Reads are paired-end (R1 and R2) and may overlap in the middle, depending on the size of the sequenced amplicon and the size of the paired reads. Our sequencing data is of the 16S rRNA V4 region (length: ~250bp). Therefore, our 250bp x 2 paired end reads should overlap. If R1 and R2 overlap, we can use this to reconstruct the V4 region by aligning and merging the forward and reverse reads of each pair.
@@ -14,7 +14,7 @@ However, before we carry this out we will need to remove any sequence data that 
 
 We will use the “cutadapt” (Martin, 2011) tool to remove the PCR primer sequences from R1 and R2.
 
-__Note__: You can copy and paste (using right click) the forward and reverse primer from the fasta file "primers_seqs.fasta"
+__Note__: You can copy and paste (using right click) the forward and reverse primer from the fasta file "primers_seqs.fasta".
 
 ```{bash, eval=FALSE}
 #Print primer sequences to screen for copying and pasting
@@ -36,7 +36,7 @@ qiime cutadapt trim-paired \
 - __`--i-demultiplexed-sequences`__: The input demultiplexed sequence artifact.
 - __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
 - __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
-- __`--o-trimmed-sequences`__: The output artifact containing the trimmed sequence data.
+- __`--o-trimmed-sequences`__: The output <u id='artifact_tip'>artifact</u> containing the trimmed sequence data.
 
 [QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2024.10/plugins/available/cutadapt/trim-paired/)
 
@@ -45,7 +45,7 @@ qiime cutadapt trim-paired \
 ![](figures/eye_brown.png){style="width:200px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-To visualise information on the trimmed samples, the following command will create a visualisation artifact associated with the main sample artifact. This is the same visualisation command as in [chapter 7](#chap7_vis) with a different input and output.
+To visualise information on the trimmed samples, the following command will create a visualisation <u id='artifact_tip'>artifact</u> associated with the main sample <u id='artifact_tip'>artifact</u>. This is the same visualisation command as in [chapter 7](#chap7_vis) with a different input and output.
 
 ```{bash, eval=FALSE}
 qiime demux summarize \
@@ -98,4 +98,11 @@ opts_p <- c(answer="__226__", "__230__", "__250__")
 ![](figures/sum_black.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=226. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.
+Superb! We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to >=226. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+```

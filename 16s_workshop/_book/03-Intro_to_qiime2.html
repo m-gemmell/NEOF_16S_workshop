@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-23" />
+<meta name="date" content="2025-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#manifestfile"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadatafile"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
 <li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
@@ -594,20 +594,20 @@ Therefore the unnormalised (i.e. pre rarefaction) abundance table shoudl be prov
 <li>Where are the rare <u id='asv_tip'>ASVs</u> present (if not sequencing error)?</li>
 <li><u id='asv_tip'>ASVs</u> correlation: is there a correlation between <u id='asv_tip'>ASVs</u> and other attributes of samples, like pH or other environmental conditions?</li>
 </ul>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-e8777911ffa8566896ed" width="672"></span>
-<script type="application/json" data-for="htmlwidget-e8777911ffa8566896ed">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-aaf27d0b84253d8fe1c5" width="672"></span>
-<script type="application/json" data-for="htmlwidget-aaf27d0b84253d8fe1c5">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-64da858c4e95a8abb335" width="672"></span>
-<script type="application/json" data-for="htmlwidget-64da858c4e95a8abb335">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-8520d1b77daf07b52368" width="672"></span>
-<script type="application/json" data-for="htmlwidget-8520d1b77daf07b52368">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0482d921f5da0278fbc4" width="672"></span>
-<script type="application/json" data-for="htmlwidget-0482d921f5da0278fbc4">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f133d0f409b6d5a1cc91" width="672"></span>
-<script type="application/json" data-for="htmlwidget-f133d0f409b6d5a1cc91">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-ab20bdd8f8696768c9f3" width="672"></span>
-<script type="application/json" data-for="htmlwidget-ab20bdd8f8696768c9f3">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0710aee70827766ccc77" width="672"></span>
+<script type="application/json" data-for="htmlwidget-0710aee70827766ccc77">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0317e561337eeec79e43" width="672"></span>
+<script type="application/json" data-for="htmlwidget-0317e561337eeec79e43">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-1b472d0e16c011b8f12a" width="672"></span>
+<script type="application/json" data-for="htmlwidget-1b472d0e16c011b8f12a">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-9db9b2c4aad0738af0c8" width="672"></span>
+<script type="application/json" data-for="htmlwidget-9db9b2c4aad0738af0c8">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-fc310d37a7859509801f" width="672"></span>
+<script type="application/json" data-for="htmlwidget-fc310d37a7859509801f">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-9c32274753498662df19" width="672"></span>
+<script type="application/json" data-for="htmlwidget-9c32274753498662df19">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-2276b11a8febeacd5b17" width="672"></span>
+<script type="application/json" data-for="htmlwidget-2276b11a8febeacd5b17">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

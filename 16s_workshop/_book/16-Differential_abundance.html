@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-23" />
+<meta name="date" content="2025-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#manifestfile"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadatafile"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
 <li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <ul>
 <li><strong><code>--i-table</code></strong>: Input artifact containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.</li>
-<li><strong><code>--m-metadata-file</code></strong>: <a href="05-Data.html#metadata.file.txt">Metadata file</a> for our samples.</li>
+<li><strong><code>--m-metadata-file</code></strong>: <a href="#metadata.file.txt">Metadata file</a> for our samples.</li>
 <li><strong><code>--p-formula</code></strong>: A formula for how the microbial absolute abundances for each taxon depend on the variables within the <code>metadata</code>.
 <ul>
 <li>In this case we are specifying the metadata column, Location, within the metadata file to use for the statistical analysis. We will therefore see if there is any differentially abundant features between Corridor and Toilet.</li>
@@ -530,16 +530,16 @@ Change reference group to Toilet
 <p>Attempt the below MCQs using the table and bar plot visualisation files.</p>
 <ol style="list-style-type: decimal">
 <li>Which family has the highest positive LFC value? I.e. The family with the highest enrichment in Toilet (comparison) compared to Corridor (reference).
-<div id="radio_UXGUJBISXK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UXGUJBISXK" value="answer"></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UXGUJBISXK" value=""></input> <span><strong>Gemellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UXGUJBISXK" value=""></input> <span><strong>Weeksellaceae</strong></span></label>
+<div id="radio_BLBAJYAIBE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BLBAJYAIBE" value="answer"></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BLBAJYAIBE" value=""></input> <span><strong>Gemellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BLBAJYAIBE" value=""></input> <span><strong>Weeksellaceae</strong></span></label>
 </div></li>
 <li>Which family has the lowest negative LFC value? I.e. The family with the highest enrichment in Corridor (reference) compared to Toilet (comparison).
-<div id="radio_ZXAQRVQVJT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZXAQRVQVJT" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZXAQRVQVJT" value=""></input> <span><strong>Gemellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZXAQRVQVJT" value="answer"></input> <span><strong>Weeksellaceae</strong></span></label>
+<div id="radio_VWFNGLGNBN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VWFNGLGNBN" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VWFNGLGNBN" value=""></input> <span><strong>Gemellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VWFNGLGNBN" value="answer"></input> <span><strong>Weeksellaceae</strong></span></label>
 </div></li>
 <li>Which family has a W statistic of -1.119351?
-<div id="radio_YUONSCTEGB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YUONSCTEGB" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YUONSCTEGB" value="answer"></input> <span><strong>Gemellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YUONSCTEGB" value=""></input> <span><strong>Weeksellaceae</strong></span></label>
+<div id="radio_WLVACYOHIF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WLVACYOHIF" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WLVACYOHIF" value="answer"></input> <span><strong>Gemellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WLVACYOHIF" value=""></input> <span><strong>Weeksellaceae</strong></span></label>
 </div></li>
 </ol>
 <p>Run ANCOM-BC analysis for genus level (level 6). You will have to start from the <code>qiime taxa collapse</code> command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.</p>
@@ -571,16 +571,16 @@ L6 ANCOM commands
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Which genus has the highest positive LFC value? I.e. The genus with the highest enrichment in Toilet (comparison) compared to Corridor (reference).
-<div id="radio_EIETQRFOPK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EIETQRFOPK" value=""></input> <span><strong>Microbacterium_A_383321</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EIETQRFOPK" value="answer"></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EIETQRFOPK" value=""></input> <span><strong>Dialister_37762</strong></span></label>
+<div id="radio_RDQYDSLDGR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RDQYDSLDGR" value=""></input> <span><strong>Microbacterium_A_383321</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RDQYDSLDGR" value="answer"></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RDQYDSLDGR" value=""></input> <span><strong>Dialister_37762</strong></span></label>
 </div></li>
 <li>Which genus has the 2nd lowest negative LFC value? I.e. The genus with the 2nd highest enrichment in Corridor (reference) compared to Toilet (comparison).
-<div id="radio_LQJYFBOYUS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LQJYFBOYUS" value="answer"></input> <span><strong>Microbacterium_A_383321</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LQJYFBOYUS" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LQJYFBOYUS" value=""></input> <span><strong>Dialister_37762</strong></span></label>
+<div id="radio_DFFMELVPGC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DFFMELVPGC" value="answer"></input> <span><strong>Microbacterium_A_383321</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DFFMELVPGC" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DFFMELVPGC" value=""></input> <span><strong>Dialister_37762</strong></span></label>
 </div></li>
 <li>Which genus has a standard error of 0.581106?
-<div id="radio_YMSOLTCOWF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YMSOLTCOWF" value=""></input> <span><strong>Microbacterium_A_383321</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YMSOLTCOWF" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YMSOLTCOWF" value="answer"></input> <span><strong>Dialister_37762</strong></span></label>
+<div id="radio_OUPLGBGKLO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OUPLGBGKLO" value=""></input> <span><strong>Microbacterium_A_383321</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OUPLGBGKLO" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OUPLGBGKLO" value="answer"></input> <span><strong>Dialister_37762</strong></span></label>
 </div></li>
 </ol>
 <p>Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed the taxa. Therefore you can rerun the commands from the <code>qiime composition ancombc</code> step with changed options. Try running these commands yourself before looking at the contents of the below box.</p>
@@ -606,16 +606,16 @@ Family ANCOM analysis with Place metadata comman
 </div>
 <ol start="7" style="list-style-type: decimal">
 <li>Which family has the 3rd highest positive LFC value? I.e. The family with the third highest enrichment in Main building (comparison) compared to Entrance (reference).
-<div id="radio_GEYQACTCZY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GEYQACTCZY" value="answer"></input> <span><strong>Aristaeellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GEYQACTCZY" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GEYQACTCZY" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label>
+<div id="radio_JNPOCFLMCX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JNPOCFLMCX" value="answer"></input> <span><strong>Aristaeellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JNPOCFLMCX" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JNPOCFLMCX" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label>
 </div></li>
 <li>Which family has the 2nd lowest negative LFC value? I.e. The family with the 2nd highest enrichment in Entrance (reference) compared to Main building (comparison).
-<div id="radio_GIHPRWWMGR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GIHPRWWMGR" value=""></input> <span><strong>Aristaeellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GIHPRWWMGR" value="answer"></input> <span><strong>Pseudomonadaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GIHPRWWMGR" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label>
+<div id="radio_ROQIDPVGEN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ROQIDPVGEN" value=""></input> <span><strong>Aristaeellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ROQIDPVGEN" value="answer"></input> <span><strong>Pseudomonadaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ROQIDPVGEN" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label>
 </div></li>
 <li>Which family has a LFC of -0.804614
-<div id="radio_DAWNWZGGDI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DAWNWZGGDI" value=""></input> <span><strong>Aristaeellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DAWNWZGGDI" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DAWNWZGGDI" value="answer"></input> <span><strong>Rhodospirillaceae</strong></span></label>
+<div id="radio_CBIKKRSVYN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CBIKKRSVYN" value=""></input> <span><strong>Aristaeellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CBIKKRSVYN" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CBIKKRSVYN" value="answer"></input> <span><strong>Rhodospirillaceae</strong></span></label>
 </div></li>
 </ol>
 </div>

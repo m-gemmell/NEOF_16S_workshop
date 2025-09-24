@@ -61,7 +61,7 @@ There are [supplementary materials](https://neof-workshops.github.io/16S_yg84o9/
 ## Table of contents {-}
 
 ```{r, echo=FALSE, align="centre"}
-#Create 2 coilumn dataframe
+#Create 2 column dataframe
 column_1 <- c(
  '[**Background on the biology**](#background)', 
  '[![](figures/background.png){height="150"}](#background)',

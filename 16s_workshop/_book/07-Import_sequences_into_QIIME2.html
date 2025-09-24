@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-23" />
+<meta name="date" content="2025-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -191,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="05-Data.html"><a href="05-Data.html"><i class="fa fa-check"></i><b>5</b> Data</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="05-Data.html"><a href="05-Data.html#manifestfile"><i class="fa fa-check"></i><b>5.1</b> PairedEndFastqManifestPhred33.csv</a></li>
-<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadata.file.txt"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
+<li class="chapter" data-level="5.2" data-path="05-Data.html"><a href="05-Data.html#metadatafile"><i class="fa fa-check"></i><b>5.2</b> metadata.file.txt</a></li>
 <li class="chapter" data-level="5.3" data-path="05-Data.html"><a href="05-Data.html#primers_seqs.fasta"><i class="fa fa-check"></i><b>5.3</b> primers_seqs.fasta</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="06-QIIME2_analysis_workflow.html"><a href="06-QIIME2_analysis_workflow.html"><i class="fa fa-check"></i><b>6</b> QIIME2 analysis workflow</a>
@@ -356,15 +356,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="import" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Sequence import<a href="07-Import_sequences_into_QIIME2.html#import" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/import.png" style="width:200px" />
+<img src="figures/import.png" style="width:200px; background: white; border-radius:5px" />
 </center>
-<p>Before we can work with our data in QIIME2 we need to import the data into a QIIME2 artifact.</p>
+<p>Before we can work with our data in QIIME2 we need to import the data into a QIIME2 <u id='artifact_tip'>artifact</u>.</p>
 <div id="import-run" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Import: run<a href="07-Import_sequences_into_QIIME2.html#import-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/play_green.png" style="width:150px" />
+<img src="figures/play_green.png" style="width:150px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
-<p>Import our read pairs into a QIIME2 artifact.</p>
+<p>Import our read pairs into a QIIME2 <u id='artifact_tip'>artifact</u>.</p>
 <p><strong>Note</strong>: It is quite easy to make typos in the following command. Ensure to read any errors carefully to try to figure out where a typo is, if any.</p>
 <p><strong>Note 2</strong>: If you are not familiar with the back slashes (<code>\</code>) in the below command please check our explanation of <strong><a href="https://neof-workshops.github.io/Unix_nxcdf7/Course/05-Tips_and_tricks.html#bash-escape">Bash escape</a></strong>. Please also ask for a demonstration if you would like or you can watch a <a href="https://www.youtube.com/watch?v=968QURuAplk&amp;t=607s">video demonstration on YouTube</a>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb6-1"><a href="07-Import_sequences_into_QIIME2.html#cb6-1" tabindex="-1"></a><span class="ex">qiime</span> tools import <span class="dt">\</span></span>
@@ -375,7 +375,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="parameters" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="07-Import_sequences_into_QIIME2.html#parameters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/parameter_green.png" style="width:100px" />
+<img src="figures/parameter_green.png" style="width:100px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
 <ul>
 <li><strong><code>--type</code></strong>: The type of data being imported.
@@ -383,14 +383,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>'SampleData[PairedEndSequencesWithQuality]'</code> specifies we are importing Paired end sequence data that contains quality information. I.e. normal Illumina paired end fastq data.</li>
 </ul></li>
 <li><strong><code>--input-path</code></strong>: The input <a href="05-Data.html#manifestfile">manifest file</a>.</li>
-<li><strong><code>--output-path</code></strong>: Output QIIME2 artifact file containing your sequence data.
+<li><strong><code>--output-path</code></strong>: Output QIIME2 <u id='artifact_tip'>artifact</u> file containing your sequence data.
 <ul>
 <li>The "demux" part of the file name indicates that the samples are already demultiplexed (i.e. sequences have been separated by samples).</li>
-<li>QIIME2 artifacts use "-" as word separators in file names. This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.</li>
+<li>QIIME2 <u id='artifact_tip'>artifacts</u> use "-" as word separators in file names. This is not mandatory but it is a good practice to keep consistent with the QIIME2 developers.</li>
 </ul></li>
 <li><strong><code>--input-format</code></strong>: The format of the input files.
 <ul>
-<li><code>PairedEndFastqManifestPhred33</code>: Our input file is a Manifest file with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on <a href="#https://en.wikipedia.org/wiki/FASTQ_format#Encoding">wikipedia</a>.</li>
+<li><code>PairedEndFastqManifestPhred33</code>: Our input file is a <a href="05-Data.html#manifestfile">Manifest file</a> with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on <a href="#https://en.wikipedia.org/wiki/FASTQ_format#Encoding">wikipedia</a>.</li>
 </ul></li>
 </ul>
 <p><a href="https://docs.qiime2.org/2024.10/tutorials/importing/">QIIME2 docs on importing data</a></p>
@@ -399,27 +399,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="chap7_vis" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Import: visualise<a href="07-Import_sequences_into_QIIME2.html#chap7_vis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/eye_green.png" style="width:200px" />
+<img src="figures/eye_green.png" style="width:200px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
-<p>To visualise the samples loaded, the following command will create a visualisation artifact.</p>
+<p>To visualise the samples loaded, the following command will create a visualisation <u id='artifact_tip'>artifact</u>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb7-1"><a href="07-Import_sequences_into_QIIME2.html#cb7-1" tabindex="-1"></a><span class="ex">qiime</span> demux summarize <span class="dt">\</span></span>
 <span id="cb7-2"><a href="07-Import_sequences_into_QIIME2.html#cb7-2" tabindex="-1"></a>--i-data paired-end-demux.qza <span class="dt">\</span></span>
 <span id="cb7-3"><a href="07-Import_sequences_into_QIIME2.html#cb7-3" tabindex="-1"></a>--o-visualization paired-end-demux.qzv</span></code></pre></div>
 <div id="parameters-1" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="07-Import_sequences_into_QIIME2.html#parameters-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/parameter_green.png" style="width:100px" />
+<img src="figures/parameter_green.png" style="width:100px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
 <ul>
-<li><strong><code>--i-data</code></strong>: Input data artifact (<code>.qza</code>) to be summarised and visualised.</li>
-<li><strong><code>--o-visualization</code></strong>: Output visualisation artifact (<code>qzv</code>).</li>
+<li><strong><code>--i-data</code></strong>: Input data <u id='artifact_tip'>artifact</u> (<code>.qza</code>) to be summarised and visualised.</li>
+<li><strong><code>--o-visualization</code></strong>: Output visualisation <u id='artifact_tip'>artifact</u> (<code>qzv</code>).</li>
 </ul>
 <p><a href="https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/">QIIME2 docs on <code>qiime demux summarize</code></a></p>
 </div>
 <div id="firefox" class="section level4 unnumbered hasAnchor">
 <h4>Firefox<a href="07-Import_sequences_into_QIIME2.html#firefox" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/firefox.png" style="width:100px" />
+<img src="figures/firefox.png" style="width:100px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
 <p>We have created our visualistion file, now we need to visualise it. We carry this out with the website <a href="https://view.qiime2.org">view.qiime2.org</a>.</p>
 <p>First we need to open up <code>Firefox</code>. Right click on the main screen (greyish background) and choose <code>firefox</code> from the dropdown menu.</p>
@@ -455,45 +455,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="import-mcqs" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Import: MCQs<a href="07-Import_sequences_into_QIIME2.html#import-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/question_bubble_green.png" style="width:150px" />
+<img src="figures/question_bubble_green.png" style="width:150px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
 <ol style="list-style-type: decimal">
 <li>What is the minimum number of forward reads across the samples?
-<div id="radio_RLPFORTXAV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RLPFORTXAV" value="answer"></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RLPFORTXAV" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RLPFORTXAV" value=""></input> <span><strong>174,951</strong></span></label>
+<div id="radio_QOTHOEEQVH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QOTHOEEQVH" value="answer"></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QOTHOEEQVH" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QOTHOEEQVH" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the maximum number of forward reads across the samples?
-<div id="radio_RYBEVNLFUW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RYBEVNLFUW" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RYBEVNLFUW" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RYBEVNLFUW" value="answer"></input> <span><strong>174,951</strong></span></label>
+<div id="radio_JVLPNLMXKZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JVLPNLMXKZ" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JVLPNLMXKZ" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JVLPNLMXKZ" value="answer"></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the mean number of forward reads across the samples?
-<div id="radio_TPTTKLPBTW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TPTTKLPBTW" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TPTTKLPBTW" value="answer"></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TPTTKLPBTW" value=""></input> <span><strong>174,951</strong></span></label>
+<div id="radio_OVGLWCERGY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OVGLWCERGY" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OVGLWCERGY" value="answer"></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OVGLWCERGY" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>Which sample has 134,737 forward reads?
-<div id="radio_VQKKUHJJQV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VQKKUHJJQV" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VQKKUHJJQV" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VQKKUHJJQV" value="answer"></input> <span><strong>3K1M</strong></span></label>
+<div id="radio_XQIOBCXHBY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XQIOBCXHBY" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XQIOBCXHBY" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XQIOBCXHBY" value="answer"></input> <span><strong>3K1M</strong></span></label>
 </div></li>
 <li>Which sample has 86,083 forward reads?
-<div id="radio_HNDKLEJETM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HNDKLEJETM" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HNDKLEJETM" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HNDKLEJETM" value=""></input> <span><strong>3K1M</strong></span></label>
+<div id="radio_NNEQMNDIOB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NNEQMNDIOB" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NNEQMNDIOB" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NNEQMNDIOB" value=""></input> <span><strong>3K1M</strong></span></label>
 </div></li>
 <li>Is most of the read quality for the forward reads above Q30?
-<div id="radio_UYJIVVQDAE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UYJIVVQDAE" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UYJIVVQDAE" value=""></input> <span><strong>FALSE</strong></span></label>
+<div id="radio_FDPDHZOUBF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FDPDHZOUBF" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FDPDHZOUBF" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 <li>Is most of the read quality for the reverse reads above Q30?
-<div id="radio_WRYISZEHHF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WRYISZEHHF" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WRYISZEHHF" value=""></input> <span><strong>FALSE</strong></span></label>
+<div id="radio_ICWPFUVDBS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ICWPFUVDBS" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ICWPFUVDBS" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 </ol>
 </div>
 <div id="import-summary" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Import: summary<a href="07-Import_sequences_into_QIIME2.html#import-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/sum_green.png" style="width:150px" />
+<img src="figures/sum_green.png" style="width:150px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
-<p>We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.</p>
+<p>Brilliant! We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.</p>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-701369e04165a05e5e62" width="672"></span>
+<script type="application/json" data-for="htmlwidget-701369e04165a05e5e62">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-a8dd4fca2d7947144270" width="672"></span>
+<script type="application/json" data-for="htmlwidget-a8dd4fca2d7947144270">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-613c061e248753788cdb" width="672"></span>
+<script type="application/json" data-for="htmlwidget-613c061e248753788cdb">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-aa898c6c318a8bf1eec0" width="672"></span>
+<script type="application/json" data-for="htmlwidget-aa898c6c318a8bf1eec0">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f70b7b93051ffab47678" width="672"></span>
+<script type="application/json" data-for="htmlwidget-f70b7b93051ffab47678">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0f3fd4b5cc18f6542468" width="672"></span>
+<script type="application/json" data-for="htmlwidget-0f3fd4b5cc18f6542468">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6b676a3bee5cdd13d75a" width="672"></span>
+<script type="application/json" data-for="htmlwidget-6b676a3bee5cdd13d75a">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

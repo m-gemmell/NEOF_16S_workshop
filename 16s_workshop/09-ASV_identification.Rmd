@@ -2,14 +2,14 @@
 
 # De-novo amplicon sequence variants identification {#dada2}
 <center>
-![](figures/clusters.png){style="width:200px"}
+![](figures/clusters.png){style="width:200px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-We will use DADA2 to denoise and identify the amplicon sequence variants (ASVs) among all the samples. 
+We will use DADA2 to denoise and identify the <u id='asv_tip'>ASVs</u> among all the samples. 
 
 ## DADA2: run
 <center>
-![](figures/play_purple.png){style="width:150px"}
+![](figures/play_purple.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
 To perform the variant sequence identification step with DADA2, the command is (__don't run this command, [see below command](#cpdada2)__):
@@ -27,32 +27,32 @@ qiime dada2 denoise-paired \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_purple.png){style="width:100px"}
+![](figures/parameter_purple.png){style="width:100px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-- __`--i-demultiplexed-seqs`__: Input artifact file containing the trimmed demultiplexed sequences.
+- __`--i-demultiplexed-seqs`__: Input <u id='artifact_tip'>artifact</u> file containing the trimmed demultiplexed sequences.
 - __`--p-trunc-len-f`__: This will truncate (trim) the forward sequences to retain only the first `220` bases.
 - __`--p-trunc-len-r`__: This will truncate (trim) the reverse sequences to retain only the first `220` bases.
-- __`--o-representative-sequences`__: Output artifact containing the identified sequence variants.
-- __`--o-table`__: Output artifact containing the abundance table for the identified variants.
-- __`--o-denoising-stats`__: Output artifact containing the sequence numbers pre- and post- trimming and denoising.
+- __`--o-representative-sequences`__: Output <u id='artifact_tip'>artifact</u> containing the identified sequence variants.
+- __`--o-table`__: Output <u id='artifact_tip'>artifact</u> containing the abundance table for the identified variants.
+- __`--o-denoising-stats`__: Output <u id='artifact_tip'>artifact</u> containing the sequence numbers pre- and post- trimming and denoising.
 - __`--verbose`__: Causes command to display verbose output to screen.
 
 [QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2024.10/plugins/available/dada2/denoise-paired/)
 
 ### Truncation length
 <center>
-![](figures/measuring_tape.png){style="width:150px"}
+![](figures/measuring_tape.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
 We chose `220` for `--p-trunc-len-f` & `--p-trunc-len-r` as the read quality was very good up to the 220 bp position for both the forward and reverse reads.
 Additionally, our amplicon length is ~291bp. The combined length of our forward and reverse reads is 440bp, therefore we would have an overlap greater than 100bp which is very good (440 - 291 = 149bp).
 
-As a reminder we are using the primer 515FB-806RB for the V4 16S rRNA gene. The name 515FB-806RB represents the location within an __E.coli__ 16S gene that the primers will hit (515 for the forward, 806 for the reverse). Therefore the amplicon length for __E.coli__ will be 806 - 515 = 291bp. As with all genes this size will vary in length across all the bacterial taxa but only by a few base pairs.
+As a reminder we are using the primer 515FB-806RB for the V4 <u id='s_tip'>16S rRNA</u> gene. The name 515FB-806RB represents the location within an __E.coli__ <u id='s_tip'>16S</u> gene that the primers will hit (515 for the forward, 806 for the reverse). Therefore the amplicon length for __E.coli__ will be 806 - 515 = 291bp. As with all genes this size will vary in length across all the bacterial taxa but only by a few base pairs.
 
 ### Copy DADA2 output {#cpdada2}
 <center>
-![](figures/copy.png){style="width:150px"}
+![](figures/copy.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
 The command will take a long time, so stop the command (ctrl+c), if you started it, and copy the final output files, which have been previously made, to your current directory:
@@ -64,25 +64,25 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_9/* ~/Metagenetics
 
 Through the above command you will now have the following three files:
 
-- `rep-seqs-dada2.qza`: Artifact containing the identified sequence variants.
-- `table-dada2.qza`: Artifact containing the ASV abundance table. 
-- `dada2-stats.qza`: Artifact which summarises the statistics after the denoising steps.
+- `rep-seqs-dada2.qza`: <u id='artifact_tip'>Artifact</u> containing the identified sequence variants.
+- `table-dada2.qza`: <u id='artifact_tip'>Artifact</u> containing the <u id='asv_tip'>ASV</u> abundance table. 
+- `dada2-stats.qza`: <u id='artifact_tip'>Artifact</u> which summarises the statistics after the denoising steps.
 
 ### DADA2 considerations
 <center>
 ![](figures/considerations.png){style="width:150px; background:white; border-radius:5px"}
 </center>
 
-This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many ASVs are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2024.10/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
+This may be one of the longest steps of the whole pipeline. The running time is proportional to the complexity of the sequences (how many <u id='asv_tip'>ASVs</u> are in the dataset) and to the quality of the sequences (how many errors are present). If this step is taking too long in one of your future projects, you may try to use [‘deblur’](https://docs.qiime2.org/2024.10/plugins/available/deblur/) to de-noise your data (after joining the reads with vsearch), which is generally faster.
 
 In the case of a marker gene with a high variability in amplicon sequence lengths, as in the case of ITS amplicon sequencing, a possible alternative denoising strategy is to disable the filtering by truncation length using the options: `--p-trunc-len-f 0` and `--p-trunc-len-r 0`. To exclude the low quality tails the `--p-trunc-q 20` option is now required, this option will trim all the sequences after the first base with quality below ‘20’ (this may be very stringent, so you may want to try with lower values as well). A further possibility may be to use only either the forward or reverse read file, for this the `qiime dada2 denoise-single` should be used instead of the above dada2 command.
 
 ## table-dada2.qzv {#tabledada2qzv}
 <center>
-![](figures/table.png){style="width:150px"}
+![](figures/table.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-To visualise information on the ASV table we will run:
+To visualise information on the <u id='asv_tip'>ASV</u> table we will run:
 
 ```{bash, eval=FALSE}
 qiime feature-table summarize \
@@ -93,11 +93,11 @@ qiime feature-table summarize \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_purple.png){style="width:100px"}
+![](figures/parameter_purple.png){style="width:100px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-- __`--i-table`__: Input artifact file containing the abundance table of the ASVs.
-- __`--o-visualization`__: Output visualisation artifact.
+- __`--i-table`__: Input <u id='artifact_tip'>artifact</u> file containing the abundance table of the <u id='asv_tip'>ASVs</u>.
+- __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u>.
 - __`--m-sample-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
 [QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2024.10/plugins/available/feature-table/summarize/)
@@ -114,14 +114,14 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
 1. __Overview__: An overview page with various information.
    - __Table summary__
       - __Number of samples__
-      - __Number of features__: In this case features are ASVs. If this was a taxa table features would be the number of taxa.
-      - __Total frequency__: Total number of sequences (i.e. total abundance across all samples and ASVs).
+      - __Number of features__: In this case features are <u id='asv_tip'>ASVs</u>. If this was a taxa table features would be the number of taxa.
+      - __Total frequency__: Total number of sequences (i.e. total abundance across all samples and <u id='asv_tip'>ASVs</u>).
    - __Frequency per sample__: Summary of number of sequences.
       - __IQR table__: Table showing the Interquartile range of sample frequencies.
       - __Histogram of frequency per sample__: This gives a rough view as the start and end of the histogram is based on the minimum and maximum sample frequencies.
-   - __Frequency per feature__: Summary of number of sequences per feature (ASV/taxa).
+   - __Frequency per feature__: Summary of number of sequences per feature (<u id='asv_tip'>ASV</u>/taxa).
       - __IQR table__: Table showing the Interquartile range of feature frequencies.
-      - __Histogram of frequency per sample__: This shows a rough view of the number of features (y axis) with different frequencies (x axis). Note that the scales are logarithmic. The left side of the plot shows how many rare ASVs there are (ASVs represented by a low amount of sequences, i.e. low abundance ASVs). The right side of the plot shows the amount of high abundance ASVs.
+      - __Histogram of frequency per sample__: This shows a rough view of the number of features (y axis) with different frequencies (x axis). Note that the scales are logarithmic. The left side of the plot shows how many rare <u id='asv_tip'>ASVs</u> there are (<u id='asv_tip'>ASVs</u> represented by a low amount of sequences, i.e. low abundance <u id='asv_tip'>ASVs</u>). The right side of the plot shows the amount of high abundance <u id='asv_tip'>ASVs</u>.
 2. __Interactive Sample Detail__: This interactive section allows you to explore sampling depth. Experiment using the Plot Controls.
    - __Plot__: This shows the number of samples per metadata category.
    - __Feature count table__: Table showing feature count per sample.
@@ -133,13 +133,13 @@ The page opened with `table-dada2.qzv` contains 3 tabs:
          - __Feature count table__: Samples with a lower depth than the sampling depth will be highlighted red.
          - __Plot Controls__: Below the controls is a section of text showing the number of features and samples retained by the chosen sampling depth.
 3. __Feature detail__: This is a table with 3 columns.
-   - 1st column: This is the ASV id. This ID represents the exact amplicon sequence variant. This is useful as if this ASV id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple ASV tables.
-   - __Frequency__: Number of sequences representing the ASV across all samples. I.e. the total abundance of the ASV.
-   - __# of Samples Observed in__: Number of samples the ASVs was detected in.
+   - 1st column: This is the <u id='asv_tip'>ASV</u> id. This ID represents the exact <u id='asv_tip'>ASV</u>. This is useful as if this <u id='asv_tip'>ASV</u> id is in another sequencing experiment it means they are identical between the two studies. This allows for easy merging of multiple <u id='asv_tip'>ASV</u> tables.
+   - __Frequency__: Number of sequences representing the <u id='asv_tip'>ASV</u> across all samples. I.e. the total abundance of the <u id='asv_tip'>ASV</u>.
+   - __# of Samples Observed in__: Number of samples the <u id='asv_tip'>ASVs</u> was detected in.
 
 ### table-dada2.qzv: MCQs
 <center>
-![](figures/question_bubble_purple.png){style="width:150px"}
+![](figures/question_bubble_purple.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
 Attempt the below MCQs.
@@ -199,11 +199,11 @@ qiime metadata tabulate \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_blue.png){style="width:100px"}
+![](figures/parameter_blue.png){style="width:100px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-- __`--m-input-file`__: Input artifact file containing the denoising stats from DADA2.
-- __`--o-visualization`__: Output visualisation artifact.
+- __`--m-input-file`__: Input <u id='artifact_tip'>artifact</u> file containing the denoising stats from DADA2.
+- __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u>.
 
 [QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2024.10/plugins/available/metadata/tabulate/)
 
@@ -230,7 +230,7 @@ This visualisation is very useful to see where our sequences are being filtered.
 
 ### dada2-stats.qzv: MCQs
 <center>
-![](figures/question_bubble_blue.png){style="width:150px"}
+![](figures/question_bubble_blue.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
 Attempt the below MCQs.
@@ -247,9 +247,34 @@ opts_p <- c("__1K1MB__", "__1K1E__", answer="__1K2M__")
 
 ## DADA2: summary
 <center>
-![](figures/sum_blue.png){style="width:150px"}
+![](figures/sum_blue.png){style="width:150px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-Our reads have been filtered, denoised, and merged. Additionally, chimeras have been removed. With this carried out we have an ASV abundance table, representative sequences, and stats on the various steps that have been carried out.
+Grand! Our reads have been filtered, denoised, and merged. Additionally, chimeras have been removed. With this carried out we have an <u id='asv_tip'>ASV</u> abundance table, representative sequences, and stats on the various steps that have been carried out.
 
 Through visualising the table and stats we can determine that there are a good amount of sequences per sample (>20,000) and there is a good amount of samples per sample group. We are therefore happy with our data and can continue on.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosoma RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```
