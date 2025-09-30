@@ -116,7 +116,7 @@ table_df %>%
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",
@@ -189,8 +189,6 @@ QIIME2 can be used to analyse ITS with a few steps and commands required which a
 In this tutorial, locations will be highlighted where you should consider a pipeline variation if you are using ITS. 
 In general, we recommend searching the literature so you can be aware of the state-of-the-art methods for the analysis of your marker of interest.
 
-
-
 ## Amplicon sequencing
 
 The use of high-throughput <u id='amplicon_tip'>amplicon</u>-sequencing has proven to be powerful and accurate for microbial community analysis. 
@@ -229,7 +227,7 @@ B) Representation of the number of sequences obtained for a sample, showing that
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",
@@ -265,19 +263,7 @@ Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et
 In the following practical we will use the QIIME2 version released on October 2024 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
 If you want to install QIIME2 on your own machine, please refer to: 
-https://docs.qiime2.org/2024.10/install/
-
-__Note__: All the QIIME2 links may be out of date, if so the below will appear:
-<center>
-![](figures/qiime2_website_out_of_date.png){style="width:600px; border-radius:5px"}
-</center>
-
-If this occurs click "Show me the content on this page".
-
-You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
-<center>
-![](figures/qiime2_version_box.png){style="width:200px; border-radius:5px"}
-</center>
+https://library.qiime2.org/quickstart/amplicon
 
 ## Artifacts
 <center>
@@ -296,7 +282,7 @@ These files can be loaded into the following web-site https://view.qiime2.org, w
 ![](figures/workflow.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
-The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2024.10/tutorials/.
+The steps for the analysis are listed below.
 
 <center>
 ![](figures/16_tutorial_diagram.png){style="width:800px; BORDER-RADIUS:5PX"}
@@ -328,7 +314,12 @@ You will be using a raw dataset as the tutorial data. It still includes low qual
 
 The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step. 
 
-If the analysis is based on a marker gene different than <u id='s_tip'>16S</u>, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. It can be found among the list of third-party QIIME2 available plug-ins (https://docs.qiime2.org/2024.5/plugins/available/).
+If the analysis is based on a marker gene different than <u id='s_tip'>16S</u>, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. Plugins page for `ITSxpress`: (https://old-library.qiime2.org/plugins/q2-itsxpress/8/)
+
+For all plugins see the following 2 pages:
+
+- Plugins webpage of new QIIME2 site (not all plugins transferred to new site): https://library.qiime2.org/pluginshttps://docs.qiime2.org/2024.5/plugins/available/.
+- Plugins webpage of old QIIME2 site (These should still work for newer version of QIIME2): https://old-library.qiime2.org/plugins/.
 
 ## Amplicon Sequence Variants identification
 
@@ -518,7 +509,7 @@ Examples of questions to answer:
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",
@@ -664,7 +655,7 @@ Each column has a header and contains the following information:
 1. __sample-id__
    - User specified sample-id. 
    - This is how the sample will be named in all downstream QIIME2 files.
-   - These must match the sample ids in the [metadata file](#import).
+   - These must match the sample ids in the [metadata file](#metadatafile).
    - Recommendations for sample ids/identifiers can be found lower down in this bookdown page.
 2. __absolute-filepath__
    - Full path of sequencing file.
@@ -713,7 +704,7 @@ Have a look at the top 10 lines of the metadata file:
 head metadata.file.txt
 ```
    
-For more information on QIIME2 metadata please see: https://docs.qiime2.org/2024.10/tutorials/metadata/
+For more information on QIIME2 metadata please see: https://use.qiime2.org/en/latest/references/metadata.html
 
 The above link includes:
 
@@ -761,10 +752,10 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 
 You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.
 
-__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-amplicon-2024.10`
+__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-amplicon-2025.7`
 
 ```{bash eval=FALSE}
-. useqiime2-amplicon-2024.10
+. useqiime2-amplicon-2025.7
 ```
 
 Information on installing `mamba` and creating the environment are in the [appendix](#mamba_install)
@@ -829,7 +820,7 @@ qiime tools import \
 - __`--input-format`__: The format of the input files.
   - `PairedEndFastqManifestPhred33`: Our input file is a [Manifest file](#manifestfile) with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
-[QIIME2 docs on importing data](https://docs.qiime2.org/2024.10/tutorials/importing/)
+[QIIME2 docs on importing data](https://amplicon-docs.qiime2.org/en/latest/how-to-guides/how-to-import.html)
 
 ## Import: visualise {#chap7_vis}
 <center>
@@ -852,7 +843,7 @@ qiime demux summarize \
 - __`--i-data`__: Input data <u id='artifact_tip'>artifact</u> (`.qza`) to be summarised and visualised.
 - __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u> (`qzv`).
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/demux.html#q2-action-demux-summarize)
 
 #### Firefox {-}
 <center>
@@ -936,7 +927,7 @@ Brilliant! We have imported our read data and checked the number of reads per sa
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",
@@ -1003,7 +994,7 @@ qiime cutadapt trim-paired \
 - __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
 - __`--o-trimmed-sequences`__: The output <u id='artifact_tip'>artifact</u> containing the trimmed sequence data.
 
-[QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2024.10/plugins/available/cutadapt/trim-paired/)
+[QIIME2 docs on `qiime cutadapt trim-paired`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/cutadapt.html#q2-action-cutadapt-trim-paired)
 
 ## Cutadapt: visualise
 <center>
@@ -1018,7 +1009,7 @@ qiime demux summarize \
 --o-visualization paired-end-demux.trim.qzv
 ```
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/demux.html#q2-action-demux-summarize)
 
 Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’ website.
 
@@ -1117,7 +1108,7 @@ qiime dada2 denoise-paired \
 - __`--o-denoising-stats`__: Output <u id='artifact_tip'>artifact</u> containing the sequence numbers pre- and post- trimming and denoising.
 - __`--verbose`__: Causes command to display verbose output to screen.
 
-[QIIME2 docs on `qiime dada2 denoise-paired`](https://docs.qiime2.org/2024.10/plugins/available/dada2/denoise-paired/)
+[QIIME2 docs on `qiime dada2 denoise-paired`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/dada2.html#q2-action-dada2-denoise-paired)
 
 ### Truncation length
 <center>
@@ -1179,7 +1170,7 @@ qiime feature-table summarize \
 - __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u>.
 - __`--m-sample-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime feature-table summarize`](https://docs.qiime2.org/2024.10/plugins/available/feature-table/summarize/)
+[QIIME2 docs on `qiime feature-table summarize`]((https://docs.qiime2.org/2024.10/plugins/available/feature-table/summarize/)https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-table.html#q2-action-feature-table-summarize)
 
 #### Output {-}
 <center>
@@ -1284,7 +1275,7 @@ qiime metadata tabulate \
 - __`--m-input-file`__: Input <u id='artifact_tip'>artifact</u> file containing the denoising stats from DADA2.
 - __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u>.
 
-[QIIME2 docs on `qiime metadata tabulate`](https://docs.qiime2.org/2024.10/plugins/available/metadata/tabulate/)
+[QIIME2 docs on `qiime metadata tabulate`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/metadata.html#q2-action-metadata-tabulate)
 
 #### Output {-}
 <center>
@@ -1336,7 +1327,7 @@ Through visualising the table and stats we can determine that there are a good a
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",
@@ -1397,7 +1388,7 @@ Greengenes2 is a database containing quality-controlled microbial sequence data.
 
 Greengenes2 can be used on shotgun metagenomic data. This can allow you to effectively compare taxonomic data from <u id='s_tip'>16S</u> and Shotgun metagenomic datasets. 
 
-[Tutorial on classifying shotgun metageonimc data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
+[Tutorial on classifying shotgun metagenomic data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
 
 For your future analysis you can download the database files from their [ftp site](https://ftp.microbio.me/greengenes_release/2024.09/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
 
@@ -1435,7 +1426,7 @@ qiime feature-classifier extract-reads \
 `r hide("Silva 16S rRNA database")`
 Another popular <u id='s_tip'>16S rRNA</u> database is [Silva](https://www.arb-silva.de/).
 
-You can download the required files for taxonomic classification from [here](https://docs.qiime2.org/2024.10/data-resources/#silva-16s-18s-rrna).
+You can download the required files for taxonomic classification from [here](https://library.qiime2.org/data-resources#naive-bayes-classifiers).
 `r unhide()`
 
 #### Parameters{-}
@@ -1453,7 +1444,7 @@ You can download the required files for taxonomic classification from [here](htt
 - __`--o-reads`__: The output read artifact containing our extracted <u id='s_tip'>16S</u> region as paired reads. This is needed for classifier training.
 - __`--p-n-jobs`__: Number of separate processes to use.
 
-[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/extract-reads/)
+[QIIME2 docs on `qiime feature-classifier extract-reads`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-extract-reads)
 
 #### Copy premade results {-}
 
@@ -1497,7 +1488,7 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza
   - This was downloaded from: https://ftp.microbio.me/greengenes_release/2024.09/2024.09.backbone.tax.qza.
 - __`--o-classifier`__: Output <u id='artifact_tip'>artifact</u> containing the trained classifier. This will be used for feature (<u id='asv_tip'>ASV</u>) taxonomy classification.
 
-[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
+[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-fit-classifier-naive-bayes)
 
 ## Taxonomy assignment
 <center>
@@ -1529,7 +1520,7 @@ qiime feature-classifier classify-sklearn \
 - __`--o-classification`__: Output <u id='artifact_tip'>artifact</u> containing the taxonomic assignments of the features (<u id='asv_tip'>ASVs</u>).
 - __`--p-n-jobs`__: Number of separate processes to use.
 
-[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/classify-sklearn/)
+[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-classify-sklearn)
 
 ## Taxonomy bar chart production {#taxabar}
 <center>
@@ -1558,7 +1549,7 @@ qiime taxa barplot \
 
 The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.
 
-[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2024.10/plugins/available/taxa/barplot/)
+[QIIME2 docs on `qiime taxa barplot`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/taxa.html#q2-action-taxa-barplot)
 
 ## Taxonomy: MCQs
 <center>
@@ -1611,7 +1602,7 @@ We are close to carrying out some biodiversity analysis. Before this we will pro
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",
@@ -1643,14 +1634,17 @@ library(webexercises)
 ![](figures/phylo_tree.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetically aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
+In this section we will obtain a phylogenetic tree of our <u id='asv_tip'>ASV</u> representative sequences. 
+The final rooted tree will be used to compute phylogenetically aware <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. 
+This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).
 
 ## MAFFT alignment
 <center>
 ![](figures/dna_alignment.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-The first step is to align our representative sequences against each other. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.
+The first step is to align our representative sequences against each other. 
+This is very straightforward as <u id='s_tip'>16S</u> amplicon sequences are relatively similar and short in length.
 
 ```{bash, eval=FALSE}
 qiime alignment mafft \
@@ -1660,13 +1654,13 @@ qiime alignment mafft \
 
 #### Parameters{-}
 <center>
-![](figures/parameter_red.png){style="width:100px"}
+![](figures/parameter_red.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-sequences`__: Input artifact containing the representative sequences of the features (ASVs) to be aligned.
-- __`--o-alignment`__: Output artifact containing the aligned representative sequences.
+- __`--i-sequences`__: Input <u id='artifact_tip'>artifact</u> containing the representative sequences of the features (<u id='asv_tip'>ASVs</u>) to be aligned.
+- __`--o-alignment`__: Output <u id='artifact_tip'>artifact</u> containing the aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mafft`](https://docs.qiime2.org/2024.10/plugins/available/alignment/mafft/)
+[QIIME2 docs on `qiime alignment mafft`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/alignment.html#q2-action-alignment-mafft)
 
 ## Masking
 <center>
@@ -1685,10 +1679,10 @@ qiime alignment mask \
 
 #### Parameters{-}
 <center>
-![](figures/parameter_blue.png){style="width:100px"}
+![](figures/parameter_blue.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-alignment`__: Input artifact containing aligned representative sequences.
+- __`--i-alignment`__: Input <u id='artifact_tip'>artifact</u> containing aligned representative sequences.
 - __`--p-max-gap-frequency`__: This determines the relative frequency of gap characters in an aligned column for the column to be retained.
   - This option is provided with a number from 0-1.
   - 0.0 = Columns consisting of <=0% gaps will be retained. I.e. a column must have no gaps to be retained.
@@ -1700,13 +1694,13 @@ qiime alignment mask \
     - E.g. a column consisting of 25% A, 25% G, 25% C, and 25% T will __not__ be retained.
     - A column consisting of 40% A, 20% G, 20% C, and 20% T __will__ be retained.
     - 0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.
-- __`--o-masked-alignment`__: Output artifact containing the masked aligned representative sequences.
+- __`--o-masked-alignment`__: Output <u id='artifact_tip'>artifact</u> containing the masked aligned representative sequences.
 
-[QIIME2 docs on `qiime alignment mask`](https://docs.qiime2.org/2024.10/plugins/available/alignment/mask/)
+[QIIME2 docs on `qiime alignment mask`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/alignment.html#q2-action-alignment-mask)
 
 ## Un-rooted tree creation with FASTTREE
 <center>
-![](figures/tree_unrooted.png){style="width:200px"}
+![](figures/tree_unrooted.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Create an un-rooted maximum-likelihood tree from our masked alignment with the Fasttree 2 tool. 
@@ -1719,13 +1713,13 @@ qiime phylogeny fasttree \
 
 #### Parameters{-}
 <center>
-![](figures/parameter_purple.png){style="width:100px"}
+![](figures/parameter_purple.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 - __`--i-alignment`__: Input artifact containing the masked aligned representative sequences.
 - __`--o-tree`__: Output artifact containing the un-rooted tree.
 
-[QIIME2 docs on `qiime phylogeny fasttree`](https://docs.qiime2.org/2024.10/plugins/available/phylogeny/fasttree/)
+[QIIME2 docs on `qiime phylogeny fasttree`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/phylogeny.html#q2-action-phylogeny-fasttree)
 
 ## Rooted tree creation
 <center>
@@ -1745,19 +1739,44 @@ qiime phylogeny midpoint-root \
 ![](figures/parameter_black.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-tree`__: Input artifact containing the un-rooted tree
-- __`--o-rooted-tree`__: Output artifact containing the rooted tree.
+- __`--i-tree`__: Input <u id='artifact_tip'>artifact</u> containing the un-rooted tree
+- __`--o-rooted-tree`__: Output <u id='artifact_tip'>artifact</u> containing the rooted tree.
 
-[QIIME2 docs on `qiime phylogeny midpoint-root`](https://docs.qiime2.org/2024.10/plugins/available/phylogeny/midpoint-root/)
+[QIIME2 docs on `qiime phylogeny midpoint-root`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/phylogeny.html#q2-action-phylogeny-midpoint-root)
 
 ## Phylogeny: summary
 <center>
 ![](figures/sum_black.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.
+All these steps should finish in approximately 3 minutes. The final <u id='artifact_tip'>artifact</u> for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.
 
 The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosoma RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```
 
 <!--chapter:end:11-Phylogentic_tree.Rmd-->
 
@@ -1768,12 +1787,14 @@ library(webexercises)
 
 # Sequencing depth evaluation {#rarefaction}
 <center>
-![](figures/rarefaction.png){style="width:200px"}
+![](figures/rarefaction.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
+The detected diversity partly depends on the sampling depths. 
+An incompletely sampled community will appear less diverse than a fully sampled community. 
 
-To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction. 
+To compare the diversity between samples we need to account for their different sampling depths. 
+This can be carried out with rarefaction. 
 Rarefaction is performed by reducing all the samples to the same sequence count, by random sub-sampling of the sequences.
 
 For example, if we rarefy to a depth of 2000 for all samples:
@@ -1782,7 +1803,10 @@ For example, if we rarefy to a depth of 2000 for all samples:
 - Samples with depths of 2000 will be unchanged.
 - Samples with depths of >2000 will have all reads removed except for a random subsample of 2000.
 
-Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively subsample from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+Equally sized subsamples are directly comparable among different samples. 
+Additionally, we can progressively subsample from a sample to draw a curve of estimated <u id='alpha_tip'>alpha</u> diversity. 
+The shape of this curve is informative. 
+If the curve plateaus, then increased sampling depth will not increase the estimate of <u id='alpha_tip'>alpha</u> diversity (the community is fully sampled). 
 
 ```{r, echo=FALSE, eval=FALSE}
 #This is set to not run
@@ -1818,16 +1842,17 @@ ggsave("./figures/rarefaction_ggplot.png", plot = gg_line,
        units = "mm", width = 300, height = 175, dpi = 300)
 ```
 <center>
-![](figures/rarefaction_ggplot.png){style="width:800px"}
+![](figures/rarefaction_ggplot.png){style="width:800px; border-radius:5px"}
 </center>
 Figure: Example rarefaction curve. We can see that S1 plateaus at ~6,000 sequences and S3 plateaus at ~16,000 sequences whilst S2 has not started to plateau.
 
 ## Rarefaction: run
 <center>
-![](figures/play_blue.png){style="width:150px"}
+![](figures/play_blue.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different <u id='alpha_tip'>alpha</u>-diversity metrics. 
+Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
 
 __Note__: See the [appendix](#alphamet) at the end of this bookdown for details on each metric.
 
@@ -1854,11 +1879,11 @@ qiime diversity alpha-rarefaction \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_blue.png){style="width:100px"}
+![](figures/parameter_blue.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-table`__: Input artifact containing the abundance table for the identified variants.
-- __`--i-phylogeny`__: Input artifact containing the rooted tree.
+- __`--i-table`__: Input <u id='artifact_tip'>artifact</u> containing the abundance table for the identified variants.
+- __`--i-phylogeny`__: Input <u id='artifact_tip'>artifact</u> containing the rooted tree.
 - __`--p-min-depth`__: Minimum depth to show in the plot (x-axis).
 - __`--p-max-depth`__: Maximum depth to show in the plot (x-axis).
   - The minimum and maximum depth are chosen based on your knowledge of the sample depths. This can be figured out from the ['table-dada2.qzv' file](#tabledada2qzv).
@@ -1870,15 +1895,15 @@ qiime diversity alpha-rarefaction \
   - Although a very large number would be very good it would also take a very long time. The number of iterations increase the time by that amount (i.e. 2 iterations takes 2 times more than 1 iteration).
   - Ten iterations is generally a good amount.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
-- __`--p-metrics`__: This parameter indicates which alpha diversity to use for rarefaction.
+- __`--p-metrics`__: This parameter indicates which <u id='alpha_tip'>alpha</u> diversity to use for rarefaction.
   - This parameter can be specified multiple times for different metrics.
-- __`--o-visualization`__: Output visualisation artifact containing the rarefaction plots. 
+- __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u> containing the rarefaction plots. 
 
-[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-rarefaction/)
+[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-alpha-rarefaction)
 
 ### Copy rarefaction output {#cprarefaction}
 <center>
-![](figures/copy.png){style="width:150px"}
+![](figures/copy.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Instead of running the command you can copy the output to your directory.
@@ -1890,14 +1915,15 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 
 ## Rarefaction: visualise
 <center>
-![](figures/eye_blue.png){style="width:200px"}
+![](figures/eye_blue.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the groupings (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the [__observed_features__](#obvs) metric is the best __Metric__ to view.
+Load the output visualisation <u id='artifact_tip'>artifact</u> into QIIME2 view. 
+You can select the <u id='alpha_tip'>alpha</u> diversity __Metric__ to visualise as well as the groupings (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the [__observed_features__](#obvs) metric is the best __Metric__ to view.
 
 The visualisation has two plots. 
 
-- __Top plot: Alpha rarefaction plot.__
+- __Top plot: <u id='alpha_tip'>Alpha</u> rarefaction plot.__
    - Primarily used to determine if the richness of the samples has been fully observed or sequenced.
    - If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected. 
    - If the lines in the observed feature plot do not level out:
@@ -1908,7 +1934,7 @@ The visualisation has two plots.
    - It illustrates the number of samples with different sequencing depths for the groups in the chosen __Sample Metadata Column__.
    - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding to a decrease in number of samples.
       - If the lost sample had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
-      - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
+      - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases.
 
 ### Rarefaction considerations
 <center>
@@ -1929,7 +1955,7 @@ Other considerations for rarefaction threshold:
 
 ### Rarefaction: MCQs
 <center>
-![](figures/question_bubble_blue.png){style="width:150px"}
+![](figures/question_bubble_blue.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Attempt the below MCQs.
@@ -1961,7 +1987,7 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 
 ## Rarefaction: summary
 <center>
-![](figures/sum_blue.png){style="width:150px"}
+![](figures/sum_blue.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 For the next step we will use a rarefaction size of 34,584. We have chosen this depth because:
@@ -1973,6 +1999,31 @@ For the next step we will use a rarefaction size of 34,584. We have chosen this 
 
 How do we know that the very exact number of 34,584 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the [`table-dada2.qzv`](#tabledada2qzv) visualisation we can see that the lowest depth of a sample is 34,584 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
 
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosomal RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```
+
 <!--chapter:end:12-Rarefaction.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
@@ -1983,17 +2034,18 @@ library(webexercises)
 ![](figures/diversity.png){style="width:200px; background:white; border-radius:5px"}
 </center>
 
-Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
+<u id='alpha_tip'>Alpha</u> diversity is a representation of the diversity within a sample. There are many possible metrics for estimating <u id='alpha_tip'>alpha</u> diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
 1948, Faith, 1992).
 
-Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
+<u id='beta_tip'>Beta</u> diversity is diversity among different communities. 
+There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
 ## Diversity: run 
 <center>
-![](figures/play_red.png){style="width:150px"}
+![](figures/play_red.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2024.10/plugins/available/diversity/).
+QIIME2 includes a wrapper script to co-investigate <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity at the same time. This script includes only a selected list of <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for <u id='alpha_tip'>alpha</u> and <u id='beta_tip'>beta-</u>diversity (https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html).
 
 ```{bash, eval=FALSE}
 qiime diversity core-metrics-phylogenetic \
@@ -2006,16 +2058,16 @@ qiime diversity core-metrics-phylogenetic \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_red.png){style="width:100px"}
+![](figures/parameter_red.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-table`__: Input artifact containing the abundance table for the identified variants.
-- __`--i-phylogeny`__: Input artifact containing the rooted tree.
+- __`--i-table`__: Input <u id='artifact_tip'>artifact</u> containing the abundance table for the identified variants.
+- __`--i-phylogeny`__: Input <u id='artifact_tip'>artifact</u> containing the rooted tree.
 - __`--p-sampling-depth`__: Sampling depth to rarefy the abundance data table to.
 - __`--output-dir`__: Output directory that will contain all the output files from the command.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2024.10/plugins/available/diversity/core-metrics-phylogenetic/)
+[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-core-metrics-phylogenetic)
 
 #### Output {-}
 <center>
@@ -2027,18 +2079,43 @@ This command will produce all the results within the directory specified with th
 These files include:
 
 - __`rarefied_table.qza`__: The abundance table normalised by rarefaction at the specified sampling size.
-- __`vector.qza`__: Artifact files containing the calculated alpha diversity values. 
-  - These will be used for alpha diversity statistical analysis in [chapter 14](#alpha_div_stats).
-- __`distance_matrix.qza`__: Artifact files containing the beta diversity values.
+- __`vector.qza`__: <u id='artifact_tip'>Artifact</u> files containing the calculated <u id='alpha_tip'>alpha</u> diversity values. 
+  - These will be used for <u id='alpha_tip'>alpha</u> diversity statistical analysis in [chapter 14](#alpha_div_stats).
+- __`distance_matrix.qza`__: <u id='artifact_tip'>Artifact</u> files containing the <u id='beta_tip'>beta</u> diversity values.
   - These values are in the form of a table containing all pair wise distances between samples.
-  - These will be used in beta diversity statistical analysis in [chapter 15](#beta_stats).
+  - These will be used in <u id='beta_tip'>beta</u> diversity statistical analysis in [chapter 15](#beta_stats).
 - __`pcoa_results.qza`__: PCoA results calculated from the `distance_matrix.qza` files.
   - These were used to create the `emperor.qza` files described below.
   - Generally you will not need these again.
-- __`emperor.qzv`__: Visualisation artifact files containing the beta-diversity ordination plots.
+- __`emperor.qzv`__: Visualisation <u id='artifact_tip'>artifact</u> files containing the <u id='beta_tip'>beta-</u>diversity ordination plots.
 
 In case of ITS or any marker for which it is not possible to obtain a phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
 `--i-phylogeny` option.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosomal RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```
 
 <!--chapter:end:13-Diversity_analysis.Rmd-->
 
@@ -2047,10 +2124,10 @@ library(webexercises)
 ```
 # Alpha diveristy statistical analysis {#alpha_div_stats}
 <center>
-![](figures/alpha_div_2.png){style="width:200px"}
+![](figures/alpha_div_2.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-We can carry out some statistical analysis to compare the alpha diversity values between the different metadata data groups.
+We can carry out some statistical analysis to compare the <u id='alpha_tip'>alpha</u> diversity values between the different metadata data groups.
 
 The QIIME2 pipeline offers two alternative choices: 
 
@@ -2059,10 +2136,10 @@ The QIIME2 pipeline offers two alternative choices:
 
 ## Alpha diversity: run 
 <center>
-![](figures/play_purple.png){style="width:150px"}
+![](figures/play_purple.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-As we have categorical (Location & Place) and numeric (Floor) metadata columns we will carry out both types of tests. Let's do this for the shannon alpha diversity.
+As we have categorical (Location & Place) and numeric (Floor) metadata columns we will carry out both types of tests. Let's do this for the shannon <u id='alpha_tip'>alpha</u> diversity.
 
 ```{bash, eval=FALSE}
 #Change directory into the output directory
@@ -2081,22 +2158,22 @@ qiime diversity alpha-correlation \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_purple.png){style="width:100px"}
+![](figures/parameter_purple.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Although we have used two different commands they both have the same parameters.
 
-- __`--i-alpha-diversity`__: Input artifact file containing the alpha diversity vectors (values).
+- __`--i-alpha-diversity`__: Input <u id='artifact_tip'>artifact</u> file containing the <u id='alpha_tip'>alpha</u> diversity vectors (values).
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
-- __`--o-visualization`__:  Output visualisation artifact containing the box plots and statistical table.
+- __`--o-visualization`__:  Output visualisation <u id='artifact_tip'>artifact</u> containing the box plots and statistical table.
 
-[QIIME2 docs on `qiime diversity alpha-group-significance`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-group-significance/)
+[QIIME2 docs on `qiime diversity alpha-group-significance`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-alpha-group-significance)
 
-[QIIME2 docs on `qiime diversity alpha-correlation`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-correlation/)
+[QIIME2 docs on `qiime diversity alpha-correlation`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-alpha-correlation)
 
 ## Alpha diversity: visualise
 <center>
-![](figures/eye_purple.png){style="width:150px"}
+![](figures/eye_purple.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Load the produced files (`shannon-group-significance.kw.qzv` & `shannon-group-significance.rs.qzv`) into QIIME2 view using 2 chrome tabs. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
@@ -2107,7 +2184,7 @@ At the top of both the outputs is a drop down menu labelled __"Column"__ that ca
 
 The Kruskal-Wallis (`shannon-group-significance.kw.qzv`) visualisation artifact contains:
 
-- __Alpha Diversity Boxplots__: Displays the alpha diversity values plotted as box plots comparing the chosen metadata column.
+- __Alpha Diversity Boxplots__: Displays the <u id='alpha_tip'>alpha</u> diversity values plotted as box plots comparing the chosen metadata column.
 - __Kruskal-Wallis (all groups)__: Displays the stats for the all groups comparison. 
   - These stats will be different to the pairwise comparisons if there are more than 2 groups.
 - __Kruskal-Wallis (pairwise)__: Displays the stats for the all the pairwise group comparison. 
@@ -2120,16 +2197,16 @@ To determine if there is a statistical difference between the groups it is best 
 
 The Ranked Spearman (`shannon-group-significance.rs.qzv`) visualisation artifact contains:
 
-- __Plot__: This plots the alpha diversity values as a scatterplot.
+- __Plot__: This plots the <u id='alpha_tip'>alpha</u> diversity values as a scatterplot.
   - The x-axis contains the numeric values form the metadata.
-  - The y-axis contains the alpha diversity values.
+  - The y-axis contains the <u id='alpha_tip'>alpha</u> diversity values.
 - __Stats table__: The Spearman ranked correlation statistics table. 
 
-You can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the alpha diversity metric.
+You can look at the p-value to determine if there is a statistical significant correlation between the numeric category and the <u id='alpha_tip'>alpha</u> diversity metric.
 
 ### Alpha diversity: MCQs
 <center>
-![](figures/question_bubble_purple.png){style="width:150px"}
+![](figures/question_bubble_purple.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 ```{r, echo = FALSE}
@@ -2147,7 +2224,7 @@ opts_p <- c("__Yes__", answer="__No__")
 ```
 3. Is there a statistical significance (P-value <0.05) when comparing the __Floors (1 vs 2 vs 3)__ when using __Shannon__ diversity? ? `r longmcq(opts_p)`
 
-For the below questions you will need to run some more `qiime diversity alpha-group-significance` and `qiime diversity alpha-correlation`. When creating and running these commands ensure you are giving the input and output artifacts the correct names.
+For the below questions you will need to run some more `qiime diversity alpha-group-significance` and `qiime diversity alpha-correlation`. When creating and running these commands ensure you are giving the input and output <u id='artifact_tip'>artifacts</u> the correct names.
 
 If you are are having issue knowing how to run the commands you can look at the box below for the commands.
 
@@ -2188,12 +2265,39 @@ opts_p <- c("__Yes__", answer="__No__")
 
 ## Alpha diversity: summary
 <center>
-![](figures/sum_purple.png){style="width:150px"}
+![](figures/sum_purple.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-We have viewed alpha diversity output but unfortunately found no significant differences between groups. Hopefully in your future projects you will have more samples and more luck. Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.
+We have viewed <u id='alpha_tip'>alpha</u> diversity output but unfortunately found no significant differences between groups. 
+Hopefully in your future projects you will have more samples and more luck. 
+Even though there was no significance difference we could see some patterns in the box plots such as the diversity being higher in one group than an other.
 
-In the next chapter we will look at the beta diversity output and carry out some more statistics.
+In the next chapter we will look at the <u id='beta_tip'>beta</u> diversity output and carry out some more statistics.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosomal RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```
 
 <!--chapter:end:14-Alpha_diversity.Rmd-->
 
@@ -2202,10 +2306,11 @@ library(webexercises)
 ```
 # Beta diversity statistical analysis {#beta_stats}
 <center>
-![](figures/beta_div_2.png){style="width:300px"}
+![](figures/beta_div_2.png){style="width:300px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use __'PERMANOVA'__ analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
+We'll now carry out statistical analysis of the <u id='beta_tip'>beta</u> diversity ordination plots. 
+We'll use __'PERMANOVA'__ analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.
 
 ## Beta diveristy: PCoA
 <center>
@@ -2222,7 +2327,7 @@ We are able to visually separate these two groups in the plot, especially on Axi
 
 ## Beta diversity: run 
 <center>
-![](figures/play_green.png){style="width:150px"}
+![](figures/play_green.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 For our first __'PERMANOVA'__ analysis we will use the `weighted_unifrac_distance_matrix.qza` file. It contains all the sample pairwise __weighted unifrac__ dissimilarity distances.
@@ -2242,10 +2347,10 @@ qiime diversity beta-group-significance \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_green.png){style="width:100px"}
+![](figures/parameter_green.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-distance-matrix`__: Input artifact files containing the beta diversity values.
+- __`--i-distance-matrix`__: Input <u id='artifact_tip'>artifact</u> files containing the <u id='beta_tip'>beta</u> diversity values.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 - __`--m-metadata-column`__: Metadata column within the metadata file to use for the statistical comparison.
 - __`--p-method`__: The group significance test to be applied.
@@ -2254,13 +2359,13 @@ qiime diversity beta-group-significance \
   - The other parameter choice is `--p-no-pairwise` meaning only the test across all groups will be carried out. This can be used if there are a lot of groups in the metadata column that may make cause the command to take too long to run.
 - __`--p-permutations`__: The number of permutations to run when computing p-values.
   - The default is `999`.
-- __`--o-visualization`__: The output artifact containing the visualisation.
+- __`--o-visualization`__: The output <u id='artifact_tip'>artifact</u> containing the visualisation.
 
-[QIIME2 docs on `qiime diversity beta-group-significance`](https://docs.qiime2.org/2024.10/plugins/available/diversity/beta-group-significance/)
+[QIIME2 docs on `qiime diversity beta-group-significance`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-beta-group-significance)
 
 ## Beta diversity: visualise
 <center>
-![](figures/eye_green.png){style="width:150px"}
+![](figures/eye_green.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) file in QIIME2 view. You will see the following sections:
@@ -2279,7 +2384,7 @@ Load the resulting visualisation (`weighted-unifrac-significance.location.qzv`) 
 
 ### Beta diversity: MCQs
 <center>
-![](figures/question_bubble_green.png){style="width:150px"}
+![](figures/question_bubble_green.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Attempt the below questions.
@@ -2313,16 +2418,41 @@ opts_p <- c("__Yes__", answer="__No__")
 
 ### Beta diversity: summary
 <center>
-![](figures/sum_green.png){style="width:150px"}
+![](figures/sum_green.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Viewing the beta diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.
+Viewing the <u id='beta_tip'>beta</u> diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.
 
 Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.
 
-If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin](https://docs.qiime2.org/2024.10/plugins/available/diversity/adonis/).
+If you want to carry out multi-way ADONIS tests you can use the [`qiime diversity adonis` plugin](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-adonis).
 
 We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosomal RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```
 
 <!--chapter:end:15-Beta_diversity_analysis.rmd-->
 
@@ -2331,12 +2461,12 @@ library(webexercises)
 ```
 # Differential abundance analysis {#differential}
 <center>
-![](figures/balance_scale.png){style="width:200px"}
+![](figures/balance_scale.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 The [ANCOM-BC](https://www.nature.com/articles/s41467-020-17041-7) method aims to identify differentially abundant taxa between sample groups. It is an improvement of the original ANCOM method but with added bias correction. This bias correction aims to account for the bias caused by the difference in sampling/depth across the samples.
 
-Differential abundance analysis aims to detect features (ASVs, taxa, etc.) that have different abundances between groups. An example of its use is to detect organisms in high abundance in diseased states versus healthy states. This helps determine what are the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
+Differential abundance analysis aims to detect features (<u id='asv_tip'>ASVs</u>, taxa, etc.) that have different abundances between groups. An example of its use is to detect organisms in high abundance in diseased states versus healthy states. This helps determine what are the disease causing organisms. However, it may also detect organisms that are able to survive in the environment rather than those that cause the difference in environment.
 
 If you are still in 'dada2-diversity-34584' directory, please remember to move out:
 
@@ -2346,10 +2476,11 @@ cd ..
 
 ## Taxa collapse
 <center>
-![](figures/collapse.png){style="width:150px"}
+![](figures/collapse.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-First, we need to collapse the ASVs into taxa. This is done as seeing which ASVs are differentially abundant with no taxonomic information is not very useful. Let us choose Greengenes2 level 5 which equates to family.
+First, we need to collapse the <u id='asv_tip'>ASVs</u> into taxa. 
+This is done as seeing which <u id='asv_tip'>ASVs</u> are differentially abundant with no taxonomic information is not very useful. Let us choose Greengenes2 level 5 which equates to family.
 
 ```{bash, eval=FALSE}
 qiime taxa collapse \
@@ -2361,72 +2492,75 @@ qiime taxa collapse \
 
 #### Parameters {.unnumbered}
 <center>
-![](figures/parameter_purple.png){style="width:100px"}
+![](figures/parameter_purple.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
--   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) for the identified variants.
--   **`--i-taxonomy`**: Input artifact containing the taxonomic classifications of the ASVs.
+-   **`--i-table`**: Input <u id='artifact_tip'>artifact</u> containing the abundance table (non-rarefied) for the identified variants.
+-   **`--i-taxonomy`**: Input <u id='artifact_tip'>artifact</u> containing the taxonomic classifications of the <u id='asv_tip'>ASVs</u>.
 -   **`--p-level`**: The taxonomic level at which the features should be collapsed.
     -   In this case the level refers to family. This can be checked via the [taxonomy bar plot artifact](#taxabar)
--   **`--o-collapsed-table`**: Output artifact containing the abundance table for the specified taxa level.
+-   **`--o-collapsed-table`**: Output <u id='artifact_tip'>artifact</u> containing the abundance table for the specified taxa level.
 
-[QIIME2 docs on `qiime taxa collapse`](https://docs.qiime2.org/2024.10/plugins/available/taxa/collapse/)
+[QIIME2 docs on `qiime taxa collapse`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/taxa.html#q2-action-taxa-collapse)
 
-## ANCOM-BC analysis
+## ANCOM-BC2 analysis
 <center>
-![](figures/toilet_corridor.png){style="width:300px"}
+![](figures/toilet_corridor.png){style="width:300px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-With our family based abundance table we can carry out ANCOM-BC to produce the differentials file.
+For our analysis we will use ANCOM-BC2.
+ANCOM-BC2 extends and efines ANCOM-BC but it is very similar with the same outptu stats and visualistions. 
+
+With our family based abundance table we can carry out ANCOM-BC2 to produce the differentials file.
 
 ```{bash, eval=FALSE}
-qiime composition ancombc \
+qiime composition ancombc2 \
 --i-table table-l5.qza \
 --m-metadata-file metadata.file.txt \
---p-formula Location \
---o-differentials l5-ancombc-Location.qza
+--p-fixed-effects-formula Location \
+--o-ancombc2-output l5-abc2-Location.qza
 ```
 
 #### Parameters {.unnumbered}
 <center>
-![](figures/parameter_blue.png){style="width:100px"}
+![](figures/parameter_blue.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
--   **`--i-table`**: Input artifact containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.
+-   **`--i-table`**: Input <u id='artifact_tip'>artifact</u> containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.
 -   **`--m-metadata-file`**: [Metadata file](#metadata.file.txt) for our samples.
 -   **`--p-formula`**: A formula for how the microbial absolute abundances for each taxon depend on the variables within the `metadata`.
     -   In this case we are specifying the metadata column, Location, within the metadata file to use for the statistical analysis. We will therefore see if there is any differentially abundant features between Corridor and Toilet.
     -   Multiple metadata columns and reference groups can be used with an example in the [documentation](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/).
--   **`--o-differentials`**: Output artifact containing the calculated differentials. This will be used to produce visualisation artifacts.
+-   **`--o-differentials`**: Output <u id='artifact_tip'>artifact</u> containing the calculated differentials. This will be used to produce visualisation <u id='artifact_tip'>artifacts</u>.
 
-[QIIME2 docs on `qiime composition ancombc`](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/)
+[QIIME2 docs on `qiime composition ancombc2`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/composition.html#q2-action-composition-ancombc2)
 
 ## ANCOMBC tabulate
 <center>
-![](figures/nice_table.png){style="width:150px"}
+![](figures/nice_table.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Next we can create a visualisation artifact containing tabular views of the ANCOM-BC output.
+Next we can create a visualisation <u id='artifact_tip'>artifact</u> containing tabular views of the ANCOM-BC output.
 
 ```{bash, eval=FALSE}
 qiime composition tabulate \
---i-data l5-ancombc-Location.qza \
---o-visualization l5-ancombc-Location.qzv
+--i-data l5-abc2-Location.qza \
+--o-visualization l5-abc2-Location.qzv
 ```
 
 #### Parameters {.unnumbered}
 <center>
-![](figures/parameter_green.png){style="width:100px"}
+![](figures/parameter_green.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
--   **`--i-data`**: Input artifact files containing the calculated differentials. 
-- **`--o-visualization`**: The output artifact containing the tabular visualisations.
+-   **`--i-data`**: Input <u id='artifact_tip'>artifact</u> files containing the calculated differentials. 
+- **`--o-visualization`**: The output <u id='artifact_tip'>artifact</u> containing the tabular visualisations.
 
-[QIIME2 docs on `qiime composition tabulate`](https://docs.qiime2.org/2024.10/plugins/available/composition/tabulate/)
+[QIIME2 docs on `qiime composition tabulate`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/composition.html#q2-action-composition-tabulate)
 
 ### ANCOMBC tabulate: visualise
 <center>
-![](figures/eye_green.png){style="width:150px"}
+![](figures/eye_green.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Load the resulting visualisation (`l5-ancombc-Location.qzv`) file in QIIME2 view.
@@ -2441,11 +2575,11 @@ In this case the program chose the reference group as the first group in alphabe
 `r hide("Change reference group to Toilet")` 
 For your interest, you could choose Toilet as the reference group by running the below command.
 ```{bash, eval=FALSE}
-qiime composition ancombc \
+qiime composition ancombc2 \
 --i-table table-l5.qza \
 --m-metadata-file metadata.file.txt \
---p-formula Location \
---o-differentials l5-ancombc-Location-Toilet.qza \
+--p-fixed-effect-formula Location \
+--o-ancombc2-output l5-ancombc-Location-Toilet.qza \
 --p-reference-levels Location::Toilet
 ```
 `r unhide()`
@@ -2468,36 +2602,34 @@ qiime composition ancombc \
 ![](figures/bar_chart_horizontal.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
-Next we can create a visualisation artifact containing bar plots of the ANCOM-BC output.
+Next we can create a visualisation <u id='artifact_tip'>artifact</u> containing bar plots of the ANCOM-BC output.
 
 ```{bash, eval=FALSE}
-qiime composition da-barplot \
---i-data l5-ancombc-Location.qza \
---o-visualization l5-ancombc-Location-barplot.qzv \
---p-level-delimiter ";"
+qiime composition ancombc2-visualizer \
+--i-data l5-abc2-Location.qza \
+--o-visualization l5-abc2-Location-barplot.qzv
 ```
 
 #### Parameters {.unnumbered}
 <center>
-![](figures/parameter_red.png){style="width:100px"}
+![](figures/parameter_red.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
--   **`--i-data`**: Input artifact file containing the calculated differentials.
--   **`--o-visualization`**: The output artifact containing the bar plot visualisations.
--   **`--p-level-delimiter`**: Splits levels of hierarchical taxonomic information.
-    -   We chose ";" as Greengenes2 splits the taxonomic levels with this delimiter.
-    -   You can check which delimiter is used in your [**"taxa-bar-plot.dada2.qzv" file**](#taxabar).
+-   **`--i-data`**: Input <u id='artifact_tip'>artifact</u> file containing the calculated differentials.
+-   **`--o-visualization`**: The output <u id='artifact_tip'>artifact</u> containing the bar plot visualisations.
 
-[QIIME2 docs on `qiime composition da-barplot`](https://docs.qiime2.org/2024.10/plugins/available/composition/da-barplot/)
+[QIIME2 docs on `qiime composition ancombc2-visualizer`](http://amplicon-docs.qiime2.org/en/latest/references/plugins/composition.html#q2-action-composition-ancombc2-visualizer)
 
 ### ANCOM-BC bar plots: visualise
 <center>
-![](figures/eye_red.png){style="width:150px"}
+![](figures/eye_red.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Load the resulting visualisation (`l5-ancombc-Location-barplot.qzv`) file in QIIME2 view.
+Load the resulting visualisation (`l5-abc2-Location-barplot.qzv`) file in QIIME2 view.
 
-This contains one large bar plot. This displays the LFC values (x-axis) against the features found as differentially abundant (y-axis). The LFC bars also display their standard error as black lines.
+This contains one large bar plot. 
+This displays the LFC values (x-axis) against the features found as differentially abundant (y-axis). 
+The LFC bars also display their standard error as black lines.
 
 **Reminder**: Just like in the tabular visualisation, positive values are in higher abundance in the comparison group (Toilet) compared to the reference group (Corridor). I.e. positive values are enriched in the comparison group compared to the reference group.
 
@@ -2505,7 +2637,7 @@ You can hover over a bar to view more details on the biomarker (differentially a
 
 ## ANCOM-BC: MCQs
 <center>
-![](figures/question_bubble_red.png){style="width:150px"}
+![](figures/question_bubble_red.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Attempt the below MCQs using the table and bar plot visualisation files.
@@ -2540,20 +2672,19 @@ qiime taxa collapse \
 --p-level 6 \
 --o-collapsed-table table-l6.qza
 #ANCOM-BC
-qiime composition ancombc \
+qiime composition ancombc2 \
 --i-table table-l6.qza \
 --m-metadata-file metadata.file.txt \
---p-formula Location \
---o-differentials l6-ancombc-Location.qza
+--p-fixed-effects-formula Location \
+--o-ancombc2-output l6-abc2-Location.qza
 #Tabulate
 qiime composition tabulate \
---i-data l6-ancombc-Location.qza \
---o-visualization l6-ancombc-Location.qzv
+--i-data l6-abc2-Location.qza \
+--o-visualization l6-abc2-Location.qzv
 #Bar plots
 qiime composition da-barplot \
---i-data l6-ancombc-Location.qza \
---o-visualization l6-ancombc-Location-barplot.qzv \
---p-level-delimiter ";"
+--i-data l6-abc2-Location.qza \
+--o-visualization l6-abc2-Location-barplot.qzv
 ```
 
 `r unhide()`
@@ -2576,7 +2707,10 @@ opts_p <- c("__Microbacterium_A_383321__", "__Clostridium_T__",  answer="__Diali
 
 6.  Which genus has a standard error of 0.581106? `r longmcq(opts_p)`
 
-Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). We have already collapsed the taxa. Therefore you can rerun the commands from the `qiime composition ancombc` step with changed options. Try running these commands yourself before looking at the contents of the below box.
+Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). 
+We have already collapsed the taxa. 
+Therefore you can rerun the commands from the `qiime composition ancombc` step with changed options. 
+Try running these commands yourself before looking at the contents of the below box.
 
 `r hide("Family ANCOM analysis with Place metadata comman")`
 ```{bash, eval=FALSE}
@@ -2584,17 +2718,16 @@ Run ANCOM analysis to compare the family abundances between the 2 places (Entran
 qiime composition ancombc \
 --i-table table-l5.qza \
 --m-metadata-file metadata.file.txt \
---p-formula Place \
---o-differentials l5-ancombc-Place.qza
+--p-fixed-effects-formula Place \
+--o-ancombc2-output l5-abc2-Place.qza
 #Tabulate
 qiime composition tabulate \
---i-data l5-ancombc-Place.qza \
---o-visualization l5-ancombc-Place.qzv
+--i-data l5-abc2-Place.qza \
+--o-visualization l5-abc2-Place.qzv
 #Bar plots
 qiime composition da-barplot \
---i-data l5-ancombc-Place.qza \
---o-visualization l5-ancombc-Place-barplot.qzv \
---p-level-delimiter ";"
+--i-data l5-abc2-Place.qza \
+--o-visualization l5-abc2-Place-barplot.qzv
 ```
 `r unhide()`
 
@@ -2618,12 +2751,40 @@ opts_p <- c("__Aristaeellaceae__", "__Pseudomonadaceae__" , answer="__Rhodospiri
 
 ## ANCOM-BC: summary
 <center>
-![](figures/sum_red.png){style="width:150px"}
+![](figures/sum_red.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. This matches the fact we saw a statistical difference between the beta diversity distances of these two groups. The family *Clostridiaceae* was found to be in higher abundance in the Toilet samples. This makes biological sense as this family is known to exist within the human gastrointestinal tract.
+We have detected biomarkers when comparing the 2 locations, Corridor and Toilet. 
+This matches the fact we saw a statistical difference between the <u id='beta_tip'>beta</u> diversity distances of these two groups. 
+The family *Clostridiaceae* was found to be in higher abundance in the Toilet samples. 
+This makes biological sense as this family is known to exist within the human gastrointestinal tract.
 
 That is the last of the analysis. There is only one more chapter on future considerations.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosomal RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```
 
 <!--chapter:end:16-Differential_abundance.Rmd-->
 
@@ -2635,7 +2796,10 @@ library(webexercises)
 ![](figures/finish.png){style="width:200px; background: white; border-radius:5px"}
 </center>
 
-Are the results you obtained with this pipeline making any sense? In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. If the answer is ‘no’, you can consider the following points.
+Are the results you obtained with this pipeline making any sense? 
+In a real scenario, you (as the owner of the dataset) are the one with the deepest knowledge of the dataset you are analysing, so it is upon you to answer this question. 
+This answer needs to be inferred by gathering all the information you can on the samples, from literature or biochemical. 
+If the answer is ‘no’, you can consider the following points.
 
 Are there any missing taxa you know should be there? These taxa may be present but are not being detected for a few reasons, first of all, are these represented in the taxonomical database you are using? If no, you should try with a different one (Greengenes2 or Silva). If they are, you can try with different taxonomical assignment methods. If this still does not work, you can change the method to pick up the representative sequence and/or the clustering at the earlier stages of the analysis. 
 
@@ -2659,7 +2823,7 @@ library(webexercises)
 
 # Resources
 <center>
-![](figures/resources.png){style="width:200px"}
+![](figures/resources.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 ## Suggested readings
@@ -2811,25 +2975,25 @@ Miniforge installation: <https://github.com/conda-forge/miniforge>
 
 Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
-To create the mamba environment `qiime2-amplicon-2024.10` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `qiime2-amplicon-2025.7` run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
 #QIIME2
-conda env create -n qiime2-amplicon-2024.10 \
---file https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml
+conda env create --name qiime2-amplicon-2025.7 \
+  --file https://raw.githubusercontent.com/qiime2/distributions/refs/heads/dev/2025.7/amplicon/released/qiime2-amplicon-ubuntu-latest-conda.yml
 ```
 
-__Note__: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: https://docs.qiime2.org/2024.10/install/native/. Ensure to follow the "QIIME 2 Amplicon Distribution" step if you are going to use QIIME2 for amplicon analysis.
+__Note__: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: https://library.qiime2.org/quickstart/amplicon.
 
 # Diversity metrics
 <center>
-![](figures/metric_square.png){style="width:200px"}
+![](figures/metric_square.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 ## Alpha diversity metrics {#alphamet}
 
 <center>
-![](figures/alpha_div_2.png){style="width:200px"}
+![](figures/alpha_div_2.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness. 
@@ -2854,7 +3018,7 @@ Faith's PD represents the minimum total branch length that covers all taxa withi
 A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.
 
 <center>
-![](figures/faith_pd.png){style="width:600px"}
+![](figures/faith_pd.png){style="width:600px; border-radius:5px"}
 </center>
 
 ### Simpson {#simpson}
@@ -2910,7 +3074,7 @@ $$
 
 ## Beta diversity metrics
 <center>
-![](figures/beta_div_2.png){style="width:200px"}
+![](figures/beta_div_2.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:

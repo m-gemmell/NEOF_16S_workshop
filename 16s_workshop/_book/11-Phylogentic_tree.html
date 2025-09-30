@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -358,26 +358,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/phylo_tree.png" style="width:200px; background: white; border-radius:5px" />
 </center>
-<p>In this section we will obtain a phylogenetic tree of our ASV representative sequences. The final rooted tree will be used to compute phylogenetically aware alpha- and beta-diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances. This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).</p>
+<p>In this section we will obtain a phylogenetic tree of our <u id='asv_tip'>ASV</u> representative sequences.
+The final rooted tree will be used to compute phylogenetically aware <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity metrics such as Faith’s Phylogenetic Distance (Faith’s PD) and UniFrac distances.
+This is only carried out on marker regions for which this is possible (therefore excluding ITS and others).</p>
 <div id="mafft-alignment" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> MAFFT alignment<a href="11-Phylogentic_tree.html#mafft-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
 <img src="figures/dna_alignment.png" style="width:200px; background: white; border-radius:5px" />
 </center>
-<p>The first step is to align our representative sequences against each other. This is very straightforward as 16S amplicon sequences are relatively similar and short in length.</p>
+<p>The first step is to align our representative sequences against each other.
+This is very straightforward as <u id='s_tip'>16S</u> amplicon sequences are relatively similar and short in length.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb21-1"><a href="11-Phylogentic_tree.html#cb21-1" tabindex="-1"></a><span class="ex">qiime</span> alignment mafft <span class="dt">\</span></span>
 <span id="cb21-2"><a href="11-Phylogentic_tree.html#cb21-2" tabindex="-1"></a>--i-sequences rep-seqs-dada2.qza <span class="dt">\</span></span>
 <span id="cb21-3"><a href="11-Phylogentic_tree.html#cb21-3" tabindex="-1"></a>--o-alignment aligned-rep-seqs.qza</span></code></pre></div>
 <div id="parameters-10" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="11-Phylogentic_tree.html#parameters-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/parameter_red.png" style="width:100px" />
+<img src="figures/parameter_red.png" style="width:100px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <ul>
-<li><strong><code>--i-sequences</code></strong>: Input artifact containing the representative sequences of the features (ASVs) to be aligned.</li>
-<li><strong><code>--o-alignment</code></strong>: Output artifact containing the aligned representative sequences.</li>
+<li><strong><code>--i-sequences</code></strong>: Input <u id='artifact_tip'>artifact</u> containing the representative sequences of the features (<u id='asv_tip'>ASVs</u>) to be aligned.</li>
+<li><strong><code>--o-alignment</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the aligned representative sequences.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/alignment/mafft/">QIIME2 docs on <code>qiime alignment mafft</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/alignment.html#q2-action-alignment-mafft">QIIME2 docs on <code>qiime alignment mafft</code></a></p>
 </div>
 </div>
 <div id="masking" class="section level2 hasAnchor" number="11.2">
@@ -394,10 +397,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="parameters-11" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="11-Phylogentic_tree.html#parameters-11" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/parameter_blue.png" style="width:100px" />
+<img src="figures/parameter_blue.png" style="width:100px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <ul>
-<li><strong><code>--i-alignment</code></strong>: Input artifact containing aligned representative sequences.</li>
+<li><strong><code>--i-alignment</code></strong>: Input <u id='artifact_tip'>artifact</u> containing aligned representative sequences.</li>
 <li><strong><code>--p-max-gap-frequency</code></strong>: This determines the relative frequency of gap characters in an aligned column for the column to be retained.
 <ul>
 <li>This option is provided with a number from 0-1.</li>
@@ -415,15 +418,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>0.4 was chosen as it is the default. Unless you have good reason this is what you should use for your future 16S analysis.</li>
 </ul></li>
 </ul></li>
-<li><strong><code>--o-masked-alignment</code></strong>: Output artifact containing the masked aligned representative sequences.</li>
+<li><strong><code>--o-masked-alignment</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the masked aligned representative sequences.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/alignment/mask/">QIIME2 docs on <code>qiime alignment mask</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/alignment.html#q2-action-alignment-mask">QIIME2 docs on <code>qiime alignment mask</code></a></p>
 </div>
 </div>
 <div id="un-rooted-tree-creation-with-fasttree" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> Un-rooted tree creation with FASTTREE<a href="11-Phylogentic_tree.html#un-rooted-tree-creation-with-fasttree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/tree_unrooted.png" style="width:200px" />
+<img src="figures/tree_unrooted.png" style="width:200px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <p>Create an un-rooted maximum-likelihood tree from our masked alignment with the Fasttree 2 tool.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb23-1"><a href="11-Phylogentic_tree.html#cb23-1" tabindex="-1"></a><span class="ex">qiime</span> phylogeny fasttree <span class="dt">\</span></span>
@@ -432,13 +435,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="parameters-12" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="11-Phylogentic_tree.html#parameters-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/parameter_purple.png" style="width:100px" />
+<img src="figures/parameter_purple.png" style="width:100px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <ul>
 <li><strong><code>--i-alignment</code></strong>: Input artifact containing the masked aligned representative sequences.</li>
 <li><strong><code>--o-tree</code></strong>: Output artifact containing the un-rooted tree.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/phylogeny/fasttree/">QIIME2 docs on <code>qiime phylogeny fasttree</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/phylogeny.html#q2-action-phylogeny-fasttree">QIIME2 docs on <code>qiime phylogeny fasttree</code></a></p>
 </div>
 </div>
 <div id="rooted-tree-creation" class="section level2 hasAnchor" number="11.4">
@@ -456,10 +459,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figures/parameter_black.png" style="width:100px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <ul>
-<li><strong><code>--i-tree</code></strong>: Input artifact containing the un-rooted tree</li>
-<li><strong><code>--o-rooted-tree</code></strong>: Output artifact containing the rooted tree.</li>
+<li><strong><code>--i-tree</code></strong>: Input <u id='artifact_tip'>artifact</u> containing the un-rooted tree</li>
+<li><strong><code>--o-rooted-tree</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the rooted tree.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/phylogeny/midpoint-root/">QIIME2 docs on <code>qiime phylogeny midpoint-root</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/phylogeny.html#q2-action-phylogeny-midpoint-root">QIIME2 docs on <code>qiime phylogeny midpoint-root</code></a></p>
 </div>
 </div>
 <div id="phylogeny-summary" class="section level2 hasAnchor" number="11.5">
@@ -467,8 +470,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/sum_black.png" style="width:100px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
-<p>All these steps should finish in approximately 3 minutes. The final artifact for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.</p>
+<p>All these steps should finish in approximately 3 minutes. The final <u id='artifact_tip'>artifact</u> for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.</p>
 <p>The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported to a newick file. This is covered in the <a href="http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export">supplemental book</a>.</p>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-be97b5f4d32f01e94a19" width="672"></span>
+<script type="application/json" data-for="htmlwidget-be97b5f4d32f01e94a19">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-a658d8a938f4dc882dc7" width="672"></span>
+<script type="application/json" data-for="htmlwidget-a658d8a938f4dc882dc7">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0c176be5448983340789" width="672"></span>
+<script type="application/json" data-for="htmlwidget-0c176be5448983340789">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-fb905b770ffdd71888f9" width="672"></span>
+<script type="application/json" data-for="htmlwidget-fb905b770ffdd71888f9">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-3fa0024333d1f0ddccb5" width="672"></span>
+<script type="application/json" data-for="htmlwidget-3fa0024333d1f0ddccb5">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6efd71c45fe3ba7775da" width="672"></span>
+<script type="application/json" data-for="htmlwidget-6efd71c45fe3ba7775da">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f9c5beb42a80fa265c22" width="672"></span>
+<script type="application/json" data-for="htmlwidget-f9c5beb42a80fa265c22">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

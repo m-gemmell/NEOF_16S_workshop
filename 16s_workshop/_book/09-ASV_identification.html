@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -387,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><code>--o-denoising-stats</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the sequence numbers pre- and post- trimming and denoising.</li>
 <li><strong><code>--verbose</code></strong>: Causes command to display verbose output to screen.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/dada2/denoise-paired/">QIIME2 docs on <code>qiime dada2 denoise-paired</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/dada2.html#q2-action-dada2-denoise-paired">QIIME2 docs on <code>qiime dada2 denoise-paired</code></a></p>
 </div>
 <div id="truncation-length" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Truncation length<a href="09-ASV_identification.html#truncation-length" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -442,7 +442,7 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 <li><strong><code>--o-visualization</code></strong>: Output visualisation <u id='artifact_tip'>artifact</u>.</li>
 <li><strong><code>--m-sample-metadata-file</code></strong>: <a href="#metadata.file.txt">Metadata file</a> for our samples.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/feature-table/summarize/">QIIME2 docs on <code>qiime feature-table summarize</code></a></p>
+<p><a href="(https://docs.qiime2.org/2024.10/plugins/available/feature-table/summarize/)https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-table.html#q2-action-feature-table-summarize">QIIME2 docs on <code>qiime feature-table summarize</code></a></p>
 </div>
 <div id="output" class="section level4 unnumbered hasAnchor">
 <h4>Output<a href="09-ASV_identification.html#output" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -503,36 +503,36 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>How many ASVs (features) were detected in the dataset?
-<div id="radio_ZFPRHOWNXK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZFPRHOWNXK" value="answer"></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZFPRHOWNXK" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZFPRHOWNXK" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_MHYBTVSNKZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MHYBTVSNKZ" value="answer"></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MHYBTVSNKZ" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MHYBTVSNKZ" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>What is the median number of sequences per sample?
-<div id="radio_SCIXFDZGGI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SCIXFDZGGI" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SCIXFDZGGI" value="answer"></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SCIXFDZGGI" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_VGMGLXWGJL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VGMGLXWGJL" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VGMGLXWGJL" value="answer"></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VGMGLXWGJL" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>What is the maximum number of sequences per ASV?
-<div id="radio_WFNTYYIWVI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WFNTYYIWVI" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WFNTYYIWVI" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WFNTYYIWVI" value="answer"></input> <span><strong>258,440</strong></span></label>
+<div id="radio_KBEZSLBNMM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KBEZSLBNMM" value=""></input> <span><strong>2,138</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KBEZSLBNMM" value=""></input> <span><strong>118,704</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KBEZSLBNMM" value="answer"></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>How many samples have &gt;=100,000 sequences?
-<div id="radio_KMRFMIJOTW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KMRFMIJOTW" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMRFMIJOTW" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMRFMIJOTW" value="answer"></input> <span><strong>13</strong></span></label>
+<div id="radio_FDIIEPXBXA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FDIIEPXBXA" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FDIIEPXBXA" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FDIIEPXBXA" value="answer"></input> <span><strong>13</strong></span></label>
 </div></li>
 <li>How many Toilet (Metadata Category: Location) samples have &gt;=80,000 sequences?
-<div id="radio_QUKQRWAYYM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QUKQRWAYYM" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QUKQRWAYYM" value="answer"></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QUKQRWAYYM" value=""></input> <span><strong>13</strong></span></label>
+<div id="radio_KMVUCZDGVF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KMVUCZDGVF" value=""></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMVUCZDGVF" value="answer"></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KMVUCZDGVF" value=""></input> <span><strong>13</strong></span></label>
 </div></li>
 <li>How many MainBuilding (Metadata Category: Place) samples have &gt;=120,000 sequences?
-<div id="radio_DDAOVLTTHF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DDAOVLTTHF" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DDAOVLTTHF" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DDAOVLTTHF" value=""></input> <span><strong>13</strong></span></label>
+<div id="radio_VVPNPUTUPE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VVPNPUTUPE" value="answer"></input> <span><strong>4</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VVPNPUTUPE" value=""></input> <span><strong>5</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VVPNPUTUPE" value=""></input> <span><strong>13</strong></span></label>
 </div></li>
 <li>How many sequences represent the second most abundant ASV?
-<div id="radio_RPNEDRCKWX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RPNEDRCKWX" value=""></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RPNEDRCKWX" value="answer"></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RPNEDRCKWX" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_QKEBZBNMIF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QKEBZBNMIF" value=""></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QKEBZBNMIF" value="answer"></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QKEBZBNMIF" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 <li>How many samples is the 10th most abundant ASV observed in?
-<div id="radio_HYKZFDWUXQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HYKZFDWUXQ" value="answer"></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HYKZFDWUXQ" value=""></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HYKZFDWUXQ" value=""></input> <span><strong>258,440</strong></span></label>
+<div id="radio_VFUQKSBFSL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VFUQKSBFSL" value="answer"></input> <span><strong>15</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VFUQKSBFSL" value=""></input> <span><strong>225,752</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VFUQKSBFSL" value=""></input> <span><strong>258,440</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -555,7 +555,7 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 <li><strong><code>--m-input-file</code></strong>: Input <u id='artifact_tip'>artifact</u> file containing the denoising stats from DADA2.</li>
 <li><strong><code>--o-visualization</code></strong>: Output visualisation <u id='artifact_tip'>artifact</u>.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/metadata/tabulate/">QIIME2 docs on <code>qiime metadata tabulate</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/metadata.html#q2-action-metadata-tabulate">QIIME2 docs on <code>qiime metadata tabulate</code></a></p>
 </div>
 <div id="output-1" class="section level4 unnumbered hasAnchor">
 <h4>Output<a href="09-ASV_identification.html#output-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -585,12 +585,12 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>In which DADA2 step were most of the sequences lost?
-<div id="radio_USTKUFVNGQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_USTKUFVNGQ" value="answer"></input> <span><strong>Filtering</strong></span></label><label><input type="radio" autocomplete="off" name="radio_USTKUFVNGQ" value=""></input> <span><strong>Denoising and merging</strong></span></label><label><input type="radio" autocomplete="off" name="radio_USTKUFVNGQ" value=""></input> <span><strong>Chimera removal</strong></span></label>
+<div id="radio_FNULVEMJQK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FNULVEMJQK" value="answer"></input> <span><strong>Filtering</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FNULVEMJQK" value=""></input> <span><strong>Denoising and merging</strong></span></label><label><input type="radio" autocomplete="off" name="radio_FNULVEMJQK" value=""></input> <span><strong>Chimera removal</strong></span></label>
 </div></li>
 <li>Which sample retained the smallest percentage of its input at the end (i.e. after filtering, denoising, merging, and chimera removal)?
-<div id="radio_AKGYANUWNE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AKGYANUWNE" value=""></input> <span><strong>1K1MB</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AKGYANUWNE" value=""></input> <span><strong>1K1E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AKGYANUWNE" value="answer"></input> <span><strong>1K2M</strong></span></label>
+<div id="radio_UWCDGLOMWP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UWCDGLOMWP" value=""></input> <span><strong>1K1MB</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UWCDGLOMWP" value=""></input> <span><strong>1K1E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UWCDGLOMWP" value="answer"></input> <span><strong>1K2M</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -602,20 +602,20 @@ Additionally, our amplicon length is ~291bp. The combined length of our forward 
 </center>
 <p>Grand! Our reads have been filtered, denoised, and merged. Additionally, chimeras have been removed. With this carried out we have an <u id='asv_tip'>ASV</u> abundance table, representative sequences, and stats on the various steps that have been carried out.</p>
 <p>Through visualising the table and stats we can determine that there are a good amount of sequences per sample (&gt;20,000) and there is a good amount of samples per sample group. We are therefore happy with our data and can continue on.</p>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-4635fdc595959e8f2d4f" width="672"></span>
-<script type="application/json" data-for="htmlwidget-4635fdc595959e8f2d4f">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-9bd45d33d40f6430ca24" width="672"></span>
-<script type="application/json" data-for="htmlwidget-9bd45d33d40f6430ca24">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-e1f941ed2c486535055a" width="672"></span>
-<script type="application/json" data-for="htmlwidget-e1f941ed2c486535055a">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f4900a32e1057a52cb45" width="672"></span>
-<script type="application/json" data-for="htmlwidget-f4900a32e1057a52cb45">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-ad148bd51c5ee48cc9d0" width="672"></span>
-<script type="application/json" data-for="htmlwidget-ad148bd51c5ee48cc9d0">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-9aea941662a3063d6b4e" width="672"></span>
-<script type="application/json" data-for="htmlwidget-9aea941662a3063d6b4e">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6cbd76cf0f0ed7a7949e" width="672"></span>
-<script type="application/json" data-for="htmlwidget-6cbd76cf0f0ed7a7949e">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-4a063a69151222d80bcf" width="672"></span>
+<script type="application/json" data-for="htmlwidget-4a063a69151222d80bcf">{"x":{"element":"s_tip","opts":{"content":"16S ribosomal RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0c5eb8943dfd389430fc" width="672"></span>
+<script type="application/json" data-for="htmlwidget-0c5eb8943dfd389430fc">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-a6c812a47eb264a67902" width="672"></span>
+<script type="application/json" data-for="htmlwidget-a6c812a47eb264a67902">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6bf7d78a4c39c9a7af52" width="672"></span>
+<script type="application/json" data-for="htmlwidget-6bf7d78a4c39c9a7af52">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-3394e30dce2ef739421d" width="672"></span>
+<script type="application/json" data-for="htmlwidget-3394e30dce2ef739421d">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-01d420cd66b756f416fe" width="672"></span>
+<script type="application/json" data-for="htmlwidget-01d420cd66b756f416fe">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-bcd56373102d4b72ae3f" width="672"></span>
+<script type="application/json" data-for="htmlwidget-bcd56373102d4b72ae3f">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

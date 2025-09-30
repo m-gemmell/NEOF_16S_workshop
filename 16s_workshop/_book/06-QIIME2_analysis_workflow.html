@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -378,15 +378,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figures/mamba_logo.png" style="width:200px; border-radius:5px" />
 </center>
 <p>You will need to activate the QIIME2 <code>mamba</code> environment before continuing. Carry this out with the following command.</p>
-<p><strong>Note</strong>: Ensure you include the dot and space (<code>.</code>) at the start before <code>useqiime2-amplicon-2024.10</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb5-1"><a href="06-QIIME2_analysis_workflow.html#cb5-1" tabindex="-1"></a><span class="bu">.</span> useqiime2-amplicon-2024.10</span></code></pre></div>
+<p><strong>Note</strong>: Ensure you include the dot and space (<code>.</code>) at the start before <code>useqiime2-amplicon-2025.7</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb5-1"><a href="06-QIIME2_analysis_workflow.html#cb5-1" tabindex="-1"></a><span class="bu">.</span> useqiime2-amplicon-2025.7</span></code></pre></div>
 <p>Information on installing <code>mamba</code> and creating the environment are in the <a href="18-Appendix.html#mamba_install">appendix</a></p>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-23dc7d5fea9828ba130c" width="672"></span>
-<script type="application/json" data-for="htmlwidget-23dc7d5fea9828ba130c">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-d0adf6d1da2c3cfd73e1" width="672"></span>
-<script type="application/json" data-for="htmlwidget-d0adf6d1da2c3cfd73e1">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-b25850e218b6b652a55b" width="672"></span>
-<script type="application/json" data-for="htmlwidget-b25850e218b6b652a55b">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-eecb32ed07ddda806040" width="672"></span>
+<script type="application/json" data-for="htmlwidget-eecb32ed07ddda806040">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0abbe24bb266a0bce08a" width="672"></span>
+<script type="application/json" data-for="htmlwidget-0abbe24bb266a0bce08a">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-979da61f3e3a9be051dd" width="672"></span>
+<script type="application/json" data-for="htmlwidget-979da61f3e3a9be051dd">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

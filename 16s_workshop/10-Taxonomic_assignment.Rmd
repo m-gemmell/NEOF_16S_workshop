@@ -32,7 +32,7 @@ Greengenes2 is a database containing quality-controlled microbial sequence data.
 
 Greengenes2 can be used on shotgun metagenomic data. This can allow you to effectively compare taxonomic data from <u id='s_tip'>16S</u> and Shotgun metagenomic datasets. 
 
-[Tutorial on classifying shotgun metageonimc data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
+[Tutorial on classifying shotgun metagenomic data with Greengenes2](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6).
 
 For your future analysis you can download the database files from their [ftp site](https://ftp.microbio.me/greengenes_release/2024.09/). However it is also good to check [this site page](http://ftp.microbio.me/greengenes_release/) to see if they have a more recent version when you are analysing your data.
 
@@ -70,7 +70,7 @@ qiime feature-classifier extract-reads \
 `r hide("Silva 16S rRNA database")`
 Another popular <u id='s_tip'>16S rRNA</u> database is [Silva](https://www.arb-silva.de/).
 
-You can download the required files for taxonomic classification from [here](https://docs.qiime2.org/2024.10/data-resources/#silva-16s-18s-rrna).
+You can download the required files for taxonomic classification from [here](https://library.qiime2.org/data-resources#naive-bayes-classifiers).
 `r unhide()`
 
 #### Parameters{-}
@@ -88,7 +88,7 @@ You can download the required files for taxonomic classification from [here](htt
 - __`--o-reads`__: The output read artifact containing our extracted <u id='s_tip'>16S</u> region as paired reads. This is needed for classifier training.
 - __`--p-n-jobs`__: Number of separate processes to use.
 
-[QIIME2 docs on `qiime feature-classifier extract-reads`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/extract-reads/)
+[QIIME2 docs on `qiime feature-classifier extract-reads`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-extract-reads)
 
 #### Copy premade results {-}
 
@@ -132,7 +132,7 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/greengenes2/gg2-v4.classifier.trained.qza
   - This was downloaded from: https://ftp.microbio.me/greengenes_release/2024.09/2024.09.backbone.tax.qza.
 - __`--o-classifier`__: Output <u id='artifact_tip'>artifact</u> containing the trained classifier. This will be used for feature (<u id='asv_tip'>ASV</u>) taxonomy classification.
 
-[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/fit-classifier-naive-bayes/)
+[QIIME2 docs on `qiime feature-classifier fit-classifier-naive-bayes`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-fit-classifier-naive-bayes)
 
 ## Taxonomy assignment
 <center>
@@ -164,7 +164,7 @@ qiime feature-classifier classify-sklearn \
 - __`--o-classification`__: Output <u id='artifact_tip'>artifact</u> containing the taxonomic assignments of the features (<u id='asv_tip'>ASVs</u>).
 - __`--p-n-jobs`__: Number of separate processes to use.
 
-[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/classify-sklearn/)
+[QIIME2 docs on `qiime feature-classifier classify-sklearn`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-classify-sklearn)
 
 ## Taxonomy bar chart production {#taxabar}
 <center>
@@ -193,7 +193,7 @@ qiime taxa barplot \
 
 The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.
 
-[QIIME2 docs on `qiime taxa barplot`](https://docs.qiime2.org/2024.10/plugins/available/taxa/barplot/)
+[QIIME2 docs on `qiime taxa barplot`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/taxa.html#q2-action-taxa-barplot)
 
 ## Taxonomy: MCQs
 <center>
@@ -246,7 +246,7 @@ We are close to carrying out some biodiversity analysis. Before this we will pro
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",

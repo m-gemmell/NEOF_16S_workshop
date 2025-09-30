@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -358,15 +358,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="figures/diversity.png" style="width:200px; background:white; border-radius:5px" />
 </center>
-<p>Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the <a href="18-Appendix.html#shannon">“Shannon” metric</a>, the number of <a href="18-Appendix.html#obvs">observed features</a> and <a href="18-Appendix.html#faith">Faith’s phylogenetic distance</a> (Shannon,
+<p><u id='alpha_tip'>Alpha</u> diversity is a representation of the diversity within a sample. There are many possible metrics for estimating <u id='alpha_tip'>alpha</u> diversity (QIIME2 allows 30 metrics to be estimated), including the <a href="18-Appendix.html#shannon">“Shannon” metric</a>, the number of <a href="18-Appendix.html#obvs">observed features</a> and <a href="18-Appendix.html#faith">Faith’s phylogenetic distance</a> (Shannon,
 1948, Faith, 1992).</p>
-<p>Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the <a href="18-Appendix.html#unifrac_explanation">weighted and unweighted UniFrac metrics</a> (Lozupone and Knight, 2005, Lozupone et al., 2007) and the <a href="18-Appendix.html#bray_explanation">Bray-Curtis metric</a> (Bray and Curtis, 1957) (More info on these metrics in the appendix).</p>
+<p><u id='beta_tip'>Beta</u> diversity is diversity among different communities.
+There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the <a href="18-Appendix.html#unifrac_explanation">weighted and unweighted UniFrac metrics</a> (Lozupone and Knight, 2005, Lozupone et al., 2007) and the <a href="18-Appendix.html#bray_explanation">Bray-Curtis metric</a> (Bray and Curtis, 1957) (More info on these metrics in the appendix).</p>
 <div id="diversity-run" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Diversity: run<a href="13-Diversity_analysis.html#diversity-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/play_red.png" style="width:150px" />
+<img src="figures/play_red.png" style="width:150px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
-<p>QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (<a href="https://docs.qiime2.org/2024.10/plugins/available/diversity/" class="uri">https://docs.qiime2.org/2024.10/plugins/available/diversity/</a>).</p>
+<p>QIIME2 includes a wrapper script to co-investigate <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity at the same time. This script includes only a selected list of <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for <u id='alpha_tip'>alpha</u> and <u id='beta_tip'>beta-</u>diversity (<a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html" class="uri">https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html</a>).</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb27-1"><a href="13-Diversity_analysis.html#cb27-1" tabindex="-1"></a><span class="ex">qiime</span> diversity core-metrics-phylogenetic <span class="dt">\</span></span>
 <span id="cb27-2"><a href="13-Diversity_analysis.html#cb27-2" tabindex="-1"></a>--i-table table-dada2.qza <span class="dt">\</span></span>
 <span id="cb27-3"><a href="13-Diversity_analysis.html#cb27-3" tabindex="-1"></a>--i-phylogeny rooted-tree.qza <span class="dt">\</span></span>
@@ -376,16 +377,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="parameters-15" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="13-Diversity_analysis.html#parameters-15" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/parameter_red.png" style="width:100px" />
+<img src="figures/parameter_red.png" style="width:100px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <ul>
-<li><strong><code>--i-table</code></strong>: Input artifact containing the abundance table for the identified variants.</li>
-<li><strong><code>--i-phylogeny</code></strong>: Input artifact containing the rooted tree.</li>
+<li><strong><code>--i-table</code></strong>: Input <u id='artifact_tip'>artifact</u> containing the abundance table for the identified variants.</li>
+<li><strong><code>--i-phylogeny</code></strong>: Input <u id='artifact_tip'>artifact</u> containing the rooted tree.</li>
 <li><strong><code>--p-sampling-depth</code></strong>: Sampling depth to rarefy the abundance data table to.</li>
 <li><strong><code>--output-dir</code></strong>: Output directory that will contain all the output files from the command.</li>
 <li><strong><code>--m-metadata-file</code></strong>: <a href="#metadata.file.txt">Metadata file</a> for our samples.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/diversity/core-metrics-phylogenetic/">QIIME2 docs on <code>qiime diversity core-metrics-phylogenetic</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-core-metrics-phylogenetic">QIIME2 docs on <code>qiime diversity core-metrics-phylogenetic</code></a></p>
 </div>
 <div id="output-2" class="section level4 unnumbered hasAnchor">
 <h4>Output<a href="13-Diversity_analysis.html#output-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -396,24 +397,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>These files include:</p>
 <ul>
 <li><strong><code>rarefied_table.qza</code></strong>: The abundance table normalised by rarefaction at the specified sampling size.</li>
-<li><strong><code>vector.qza</code></strong>: Artifact files containing the calculated alpha diversity values.
+<li><strong><code>vector.qza</code></strong>: <u id='artifact_tip'>Artifact</u> files containing the calculated <u id='alpha_tip'>alpha</u> diversity values.
 <ul>
-<li>These will be used for alpha diversity statistical analysis in <a href="14-Alpha_diversity.html#alpha_div_stats">chapter 14</a>.</li>
+<li>These will be used for <u id='alpha_tip'>alpha</u> diversity statistical analysis in <a href="14-Alpha_diversity.html#alpha_div_stats">chapter 14</a>.</li>
 </ul></li>
-<li><strong><code>distance_matrix.qza</code></strong>: Artifact files containing the beta diversity values.
+<li><strong><code>distance_matrix.qza</code></strong>: <u id='artifact_tip'>Artifact</u> files containing the <u id='beta_tip'>beta</u> diversity values.
 <ul>
 <li>These values are in the form of a table containing all pair wise distances between samples.</li>
-<li>These will be used in beta diversity statistical analysis in <a href="15-Beta_diversity_analysis.html#beta_stats">chapter 15</a>.</li>
+<li>These will be used in <u id='beta_tip'>beta</u> diversity statistical analysis in <a href="15-Beta_diversity_analysis.html#beta_stats">chapter 15</a>.</li>
 </ul></li>
 <li><strong><code>pcoa_results.qza</code></strong>: PCoA results calculated from the <code>distance_matrix.qza</code> files.
 <ul>
 <li>These were used to create the <code>emperor.qza</code> files described below.</li>
 <li>Generally you will not need these again.</li>
 </ul></li>
-<li><strong><code>emperor.qzv</code></strong>: Visualisation artifact files containing the beta-diversity ordination plots.</li>
+<li><strong><code>emperor.qzv</code></strong>: Visualisation <u id='artifact_tip'>artifact</u> files containing the <u id='beta_tip'>beta-</u>diversity ordination plots.</li>
 </ul>
 <p>In case of ITS or any marker for which it is not possible to obtain a phylogenetic tree, the alternative command to use for the diversity analysis is: <code>qiime diversity core-metrics</code>, which lacks the
 <code>--i-phylogeny</code> option.</p>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-5cf984280839e282f0d2" width="672"></span>
+<script type="application/json" data-for="htmlwidget-5cf984280839e282f0d2">{"x":{"element":"s_tip","opts":{"content":"16S ribosomal RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-7d4e4bb86a854269ad6f" width="672"></span>
+<script type="application/json" data-for="htmlwidget-7d4e4bb86a854269ad6f">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-a5a3ef6522efdbe69217" width="672"></span>
+<script type="application/json" data-for="htmlwidget-a5a3ef6522efdbe69217">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-d194ba85cf1922be2939" width="672"></span>
+<script type="application/json" data-for="htmlwidget-d194ba85cf1922be2939">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-1f6a123fccad8a5d53a9" width="672"></span>
+<script type="application/json" data-for="htmlwidget-1f6a123fccad8a5d53a9">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-bcd21bbc9211b9301300" width="672"></span>
+<script type="application/json" data-for="htmlwidget-bcd21bbc9211b9301300">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-d407a092d15d1eb149e6" width="672"></span>
+<script type="application/json" data-for="htmlwidget-d407a092d15d1eb149e6">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

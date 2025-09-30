@@ -2,12 +2,14 @@
 
 # Sequencing depth evaluation {#rarefaction}
 <center>
-![](figures/rarefaction.png){style="width:200px"}
+![](figures/rarefaction.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-The detected diversity partly depends on the sampling depths. An incompletely sampled community will appear less diverse than a fully sampled community. 
+The detected diversity partly depends on the sampling depths. 
+An incompletely sampled community will appear less diverse than a fully sampled community. 
 
-To compare the diversity between samples we need to account for their different sampling depths. This can be carried out with rarefaction. 
+To compare the diversity between samples we need to account for their different sampling depths. 
+This can be carried out with rarefaction. 
 Rarefaction is performed by reducing all the samples to the same sequence count, by random sub-sampling of the sequences.
 
 For example, if we rarefy to a depth of 2000 for all samples:
@@ -16,7 +18,10 @@ For example, if we rarefy to a depth of 2000 for all samples:
 - Samples with depths of 2000 will be unchanged.
 - Samples with depths of >2000 will have all reads removed except for a random subsample of 2000.
 
-Equally sized subsamples are directly comparable among different samples. Additionally, we can progressively subsample from a sample to draw a curve of estimated alpha diversity. The shape of this curve is informative. If the curve plateaus, then increased sampling depth will not increase the estimate of alpha diversity (the community is fully sampled). 
+Equally sized subsamples are directly comparable among different samples. 
+Additionally, we can progressively subsample from a sample to draw a curve of estimated <u id='alpha_tip'>alpha</u> diversity. 
+The shape of this curve is informative. 
+If the curve plateaus, then increased sampling depth will not increase the estimate of <u id='alpha_tip'>alpha</u> diversity (the community is fully sampled). 
 
 ```{r, echo=FALSE, eval=FALSE}
 #This is set to not run
@@ -52,16 +57,17 @@ ggsave("./figures/rarefaction_ggplot.png", plot = gg_line,
        units = "mm", width = 300, height = 175, dpi = 300)
 ```
 <center>
-![](figures/rarefaction_ggplot.png){style="width:800px"}
+![](figures/rarefaction_ggplot.png){style="width:800px; border-radius:5px"}
 </center>
 Figure: Example rarefaction curve. We can see that S1 plateaus at ~6,000 sequences and S3 plateaus at ~16,000 sequences whilst S2 has not started to plateau.
 
 ## Rarefaction: run
 <center>
-![](figures/play_blue.png){style="width:150px"}
+![](figures/play_blue.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different alpha-diversity metrics. Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
+Given an abundance table (and a phylogenetic tree for calculating phylogenetic distance), we can plot rarefaction curves using different <u id='alpha_tip'>alpha</u>-diversity metrics. 
+Here, we will use diversity metrics ([observed features](#obvs), [Simpson](#simpson), [Shannon](#shannon), [Faith’s PD](#faith)) as well as an evenness metric ([Simpson’s evenness](#simpsone)).
 
 __Note__: See the [appendix](#alphamet) at the end of this bookdown for details on each metric.
 
@@ -88,11 +94,11 @@ qiime diversity alpha-rarefaction \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_blue.png){style="width:100px"}
+![](figures/parameter_blue.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-table`__: Input artifact containing the abundance table for the identified variants.
-- __`--i-phylogeny`__: Input artifact containing the rooted tree.
+- __`--i-table`__: Input <u id='artifact_tip'>artifact</u> containing the abundance table for the identified variants.
+- __`--i-phylogeny`__: Input <u id='artifact_tip'>artifact</u> containing the rooted tree.
 - __`--p-min-depth`__: Minimum depth to show in the plot (x-axis).
 - __`--p-max-depth`__: Maximum depth to show in the plot (x-axis).
   - The minimum and maximum depth are chosen based on your knowledge of the sample depths. This can be figured out from the ['table-dada2.qzv' file](#tabledada2qzv).
@@ -104,15 +110,15 @@ qiime diversity alpha-rarefaction \
   - Although a very large number would be very good it would also take a very long time. The number of iterations increase the time by that amount (i.e. 2 iterations takes 2 times more than 1 iteration).
   - Ten iterations is generally a good amount.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
-- __`--p-metrics`__: This parameter indicates which alpha diversity to use for rarefaction.
+- __`--p-metrics`__: This parameter indicates which <u id='alpha_tip'>alpha</u> diversity to use for rarefaction.
   - This parameter can be specified multiple times for different metrics.
-- __`--o-visualization`__: Output visualisation artifact containing the rarefaction plots. 
+- __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u> containing the rarefaction plots. 
 
-[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://docs.qiime2.org/2024.10/plugins/available/diversity/alpha-rarefaction/)
+[QIIME2 docs on `qiime diversity alpha-rarefaction`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-alpha-rarefaction)
 
 ### Copy rarefaction output {#cprarefaction}
 <center>
-![](figures/copy.png){style="width:150px"}
+![](figures/copy.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Instead of running the command you can copy the output to your directory.
@@ -124,14 +130,15 @@ cp /pub14/tea/nsc206/NEOF/16s_workshop/chapter_12/rarefaction-curve.qzv .
 
 ## Rarefaction: visualise
 <center>
-![](figures/eye_blue.png){style="width:200px"}
+![](figures/eye_blue.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Load the output visualisation artifact into QIIME2 view. You can select the alpha diversity __Metric__ to visualise as well as the groupings (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the [__observed_features__](#obvs) metric is the best __Metric__ to view.
+Load the output visualisation <u id='artifact_tip'>artifact</u> into QIIME2 view. 
+You can select the <u id='alpha_tip'>alpha</u> diversity __Metric__ to visualise as well as the groupings (__Sample Metadata Column__, where each __BarcodeSequence__ represents a sample). Generally the [__observed_features__](#obvs) metric is the best __Metric__ to view.
 
 The visualisation has two plots. 
 
-- __Top plot: Alpha rarefaction plot.__
+- __Top plot: <u id='alpha_tip'>Alpha</u> rarefaction plot.__
    - Primarily used to determine if the richness of the samples has been fully observed or sequenced.
    - If the lines in the plot appear to "plateau" (i.e., becoming a horizontal line), this suggests that collecting additional sequences beyond that sampling depth will not effect the measured metric. E.g. a plateaued observed feature curve indicates there are no more feature to be detected. 
    - If the lines in the observed feature plot do not level out:
@@ -142,7 +149,7 @@ The visualisation has two plots.
    - It illustrates the number of samples with different sequencing depths for the groups in the chosen __Sample Metadata Column__.
    - This is useful as when a sample's sequencing depth is lower than the sequencing depth in the rarefaction plot it will no longer be considered in the rarefaction calculation. This can be seen as jitters in the rarefaction curve corresponding to a decrease in number of samples.
       - If the lost sample had a lower value than the average of the group the curve will jitter upwards, as the group average increases. 
-      - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases. 
+      - If the lost sample had a higher value than the average of the group the curve will jitter downwards, as the group average decreases.
 
 ### Rarefaction considerations
 <center>
@@ -163,7 +170,7 @@ Other considerations for rarefaction threshold:
 
 ### Rarefaction: MCQs
 <center>
-![](figures/question_bubble_blue.png){style="width:150px"}
+![](figures/question_bubble_blue.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 Attempt the below MCQs.
@@ -195,7 +202,7 @@ opts_p <- c("__70,000__", "__90,000__", answer="__115,000__")
 
 ## Rarefaction: summary
 <center>
-![](figures/sum_blue.png){style="width:150px"}
+![](figures/sum_blue.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
 For the next step we will use a rarefaction size of 34,584. We have chosen this depth because:
@@ -206,3 +213,28 @@ For the next step we will use a rarefaction size of 34,584. We have chosen this 
 - We do not have a lot of samples so we have prioritised keeping them rather than removing samples for a relatively small gain.
 
 How do we know that the very exact number of 34,584 will keep all the samples? Looking at the __Interactive Sample Detail__ section of the [`table-dada2.qzv`](#tabledada2qzv) visualisation we can see that the lowest depth of a sample is 34,584 (3K1E). Generally people will use the depth of a sample as the rarefaction threshold. E.g. if we were going to choose a rarefaction threshold of >50k we'd pick 58,605 as the exact threshold, this is the lowest sample depth >50k (from sample 1K2M). This allows us to use the maximum amount of sequences per sample.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosomal RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```

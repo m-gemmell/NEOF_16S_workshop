@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -393,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>PairedEndFastqManifestPhred33</code>: Our input file is a <a href="05-Data.html#manifestfile">Manifest file</a> with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on <a href="#https://en.wikipedia.org/wiki/FASTQ_format#Encoding">wikipedia</a>.</li>
 </ul></li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/tutorials/importing/">QIIME2 docs on importing data</a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/how-to-guides/how-to-import.html">QIIME2 docs on importing data</a></p>
 </div>
 </div>
 <div id="chap7_vis" class="section level2 hasAnchor" number="7.2">
@@ -414,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><code>--i-data</code></strong>: Input data <u id='artifact_tip'>artifact</u> (<code>.qza</code>) to be summarised and visualised.</li>
 <li><strong><code>--o-visualization</code></strong>: Output visualisation <u id='artifact_tip'>artifact</u> (<code>qzv</code>).</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/">QIIME2 docs on <code>qiime demux summarize</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/demux.html#q2-action-demux-summarize">QIIME2 docs on <code>qiime demux summarize</code></a></p>
 </div>
 <div id="firefox" class="section level4 unnumbered hasAnchor">
 <h4>Firefox<a href="07-Import_sequences_into_QIIME2.html#firefox" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -459,32 +459,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <ol style="list-style-type: decimal">
 <li>What is the minimum number of forward reads across the samples?
-<div id="radio_KECJQZLWZR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KECJQZLWZR" value="answer"></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KECJQZLWZR" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KECJQZLWZR" value=""></input> <span><strong>174,951</strong></span></label>
+<div id="radio_XYUMODRHBD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XYUMODRHBD" value="answer"></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XYUMODRHBD" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XYUMODRHBD" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the maximum number of forward reads across the samples?
-<div id="radio_HKOFUVYFYI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HKOFUVYFYI" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HKOFUVYFYI" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HKOFUVYFYI" value="answer"></input> <span><strong>174,951</strong></span></label>
+<div id="radio_MNIMBIZKLQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MNIMBIZKLQ" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MNIMBIZKLQ" value=""></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MNIMBIZKLQ" value="answer"></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>What is the mean number of forward reads across the samples?
-<div id="radio_RABGLQTMTN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RABGLQTMTN" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RABGLQTMTN" value="answer"></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_RABGLQTMTN" value=""></input> <span><strong>174,951</strong></span></label>
+<div id="radio_AIGPFQDANT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AIGPFQDANT" value=""></input> <span><strong>42,853</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AIGPFQDANT" value="answer"></input> <span><strong>126,670</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AIGPFQDANT" value=""></input> <span><strong>174,951</strong></span></label>
 </div></li>
 <li>Which sample has 134,737 forward reads?
-<div id="radio_DRAIXMBSAJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DRAIXMBSAJ" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DRAIXMBSAJ" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DRAIXMBSAJ" value="answer"></input> <span><strong>3K1M</strong></span></label>
+<div id="radio_MWODWIPHXL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MWODWIPHXL" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MWODWIPHXL" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MWODWIPHXL" value="answer"></input> <span><strong>3K1M</strong></span></label>
 </div></li>
 <li>Which sample has 86,083 forward reads?
-<div id="radio_HEOVZXRVTU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HEOVZXRVTU" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HEOVZXRVTU" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_HEOVZXRVTU" value=""></input> <span><strong>3K1M</strong></span></label>
+<div id="radio_YCJKVAVYIN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YCJKVAVYIN" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YCJKVAVYIN" value=""></input> <span><strong>3K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YCJKVAVYIN" value=""></input> <span><strong>3K1M</strong></span></label>
 </div></li>
 <li>Is most of the read quality for the forward reads above Q30?
-<div id="radio_UMITGBLLUK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UMITGBLLUK" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UMITGBLLUK" value=""></input> <span><strong>FALSE</strong></span></label>
+<div id="radio_ECHWVJBKCU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ECHWVJBKCU" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ECHWVJBKCU" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 <li>Is most of the read quality for the reverse reads above Q30?
-<div id="radio_VOFDERVWMX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VOFDERVWMX" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_VOFDERVWMX" value=""></input> <span><strong>FALSE</strong></span></label>
+<div id="radio_AKHLQAZUZQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AKHLQAZUZQ" value="answer"></input> <span><strong>TRUE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AKHLQAZUZQ" value=""></input> <span><strong>FALSE</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -494,20 +494,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figures/sum_green.png" style="width:150px; background: white; border: white solid 5px; border-radius:5px" />
 </center>
 <p>Brilliant! We have imported our read data and checked the number of reads per sample which looks good. The next step is to remove data from the sequence data we do not need any more.</p>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-4b9ad479646249c7c86b" width="672"></span>
-<script type="application/json" data-for="htmlwidget-4b9ad479646249c7c86b">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-35b788883b6509f3c7c1" width="672"></span>
-<script type="application/json" data-for="htmlwidget-35b788883b6509f3c7c1">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-ecdf47b861f3555c728d" width="672"></span>
-<script type="application/json" data-for="htmlwidget-ecdf47b861f3555c728d">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6af9b5a64cff266bf71e" width="672"></span>
-<script type="application/json" data-for="htmlwidget-6af9b5a64cff266bf71e">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-1686c9cbea01e499bc1e" width="672"></span>
-<script type="application/json" data-for="htmlwidget-1686c9cbea01e499bc1e">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f2eb41bc6d0c9dcc0583" width="672"></span>
-<script type="application/json" data-for="htmlwidget-f2eb41bc6d0c9dcc0583">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-df9d1e1c2848a44f9761" width="672"></span>
-<script type="application/json" data-for="htmlwidget-df9d1e1c2848a44f9761">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-eab91af46e69b292baee" width="672"></span>
+<script type="application/json" data-for="htmlwidget-eab91af46e69b292baee">{"x":{"element":"s_tip","opts":{"content":"16S ribosomal RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-137c84d1d6ce7fe1cc29" width="672"></span>
+<script type="application/json" data-for="htmlwidget-137c84d1d6ce7fe1cc29">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f04708cf48bb50a24853" width="672"></span>
+<script type="application/json" data-for="htmlwidget-f04708cf48bb50a24853">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-972d3279d193233c4f01" width="672"></span>
+<script type="application/json" data-for="htmlwidget-972d3279d193233c4f01">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-cad12146ee7a95ec5ddb" width="672"></span>
+<script type="application/json" data-for="htmlwidget-cad12146ee7a95ec5ddb">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-a9a118a4b1c993c9b21d" width="672"></span>
+<script type="application/json" data-for="htmlwidget-a9a118a4b1c993c9b21d">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-03820a4f00415f794eca" width="672"></span>
+<script type="application/json" data-for="htmlwidget-03820a4f00415f794eca">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figures/greengenes2_phylogeny_tree.png" style="width:600px; border: 5px white solid; border-radius:5px" />
 </center>
 <p>Greengenes2 can be used on shotgun metagenomic data. This can allow you to effectively compare taxonomic data from <u id='s_tip'>16S</u> and Shotgun metagenomic datasets.</p>
-<p><a href="https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6">Tutorial on classifying shotgun metageonimc data with Greengenes2</a>.</p>
+<p><a href="https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291#if-you-have-shotgun-metagenomic-data-6">Tutorial on classifying shotgun metagenomic data with Greengenes2</a>.</p>
 <p>For your future analysis you can download the database files from their <a href="https://ftp.microbio.me/greengenes_release/2024.09/">ftp site</a>. However it is also good to check <a href="http://ftp.microbio.me/greengenes_release/">this site page</a> to see if they have a more recent version when you are analysing your data.</p>
 <div class="webex-solution">
 <button>
@@ -421,7 +421,7 @@ This is carried out by using the amplicon primer sequences. These are the same w
 Silva 16S rRNA database
 </button>
 <p>Another popular <u id='s_tip'>16S rRNA</u> database is <a href="https://www.arb-silva.de/">Silva</a>.</p>
-<p>You can download the required files for taxonomic classification from <a href="https://docs.qiime2.org/2024.10/data-resources/#silva-16s-18s-rrna">here</a>.</p>
+<p>You can download the required files for taxonomic classification from <a href="https://library.qiime2.org/data-resources#naive-bayes-classifiers">here</a>.</p>
 </div>
 <div id="parameters-6" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="10-Taxonomic_assignment.html#parameters-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -443,7 +443,7 @@ Silva 16S rRNA database
 <li><strong><code>--o-reads</code></strong>: The output read artifact containing our extracted <u id='s_tip'>16S</u> region as paired reads. This is needed for classifier training.</li>
 <li><strong><code>--p-n-jobs</code></strong>: Number of separate processes to use.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/extract-reads/">QIIME2 docs on <code>qiime feature-classifier extract-reads</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-extract-reads">QIIME2 docs on <code>qiime feature-classifier extract-reads</code></a></p>
 </div>
 <div id="copy-premade-results" class="section level4 unnumbered hasAnchor">
 <h4>Copy premade results<a href="10-Taxonomic_assignment.html#copy-premade-results" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -478,7 +478,7 @@ Silva 16S rRNA database
 </ul></li>
 <li><strong><code>--o-classifier</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the trained classifier. This will be used for feature (<u id='asv_tip'>ASV</u>) taxonomy classification.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/fit-classifier-naive-bayes/">QIIME2 docs on <code>qiime feature-classifier fit-classifier-naive-bayes</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-fit-classifier-naive-bayes">QIIME2 docs on <code>qiime feature-classifier fit-classifier-naive-bayes</code></a></p>
 </div>
 </div>
 <div id="taxonomy-assignment" class="section level2 hasAnchor" number="10.4">
@@ -510,7 +510,7 @@ Silva 16S rRNA database
 <li><strong><code>--o-classification</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the taxonomic assignments of the features (<u id='asv_tip'>ASVs</u>).</li>
 <li><strong><code>--p-n-jobs</code></strong>: Number of separate processes to use.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/feature-classifier/classify-sklearn/">QIIME2 docs on <code>qiime feature-classifier classify-sklearn</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/feature-classifier.html#q2-action-feature-classifier-classify-sklearn">QIIME2 docs on <code>qiime feature-classifier classify-sklearn</code></a></p>
 </div>
 </div>
 <div id="taxabar" class="section level2 hasAnchor" number="10.5">
@@ -536,7 +536,7 @@ Silva 16S rRNA database
 <li><strong><code>--o-visualization</code></strong>: Output visualisation file containing an interactive taxonomy-abundance bar-chart.</li>
 </ul>
 <p>The visualisation consists of an interactive taxonomy bar chart. You can specify the taxonomic level to look at, as well as a few sorting and colouring options. Experiment with it and then continue to the MCQ section.</p>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/taxa/barplot/">QIIME2 docs on <code>qiime taxa barplot</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/taxa.html#q2-action-taxa-barplot">QIIME2 docs on <code>qiime taxa barplot</code></a></p>
 </div>
 </div>
 <div id="taxonomy-mcqs" class="section level2 hasAnchor" number="10.6">
@@ -547,27 +547,27 @@ Silva 16S rRNA database
 <p>Attempt the below MCQs.</p>
 <ol style="list-style-type: decimal">
 <li>At taxonomic level 5, what is the taxon with the highest relative abundance across all the samples? (Note: taxa are ordered form most to least abundant in the legend)
-<div id="radio_WLDVPGTSKL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WLDVPGTSKL" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WLDVPGTSKL" value=""></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WLDVPGTSKL" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_POXHUHIJUN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_POXHUHIJUN" value="answer"></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_POXHUHIJUN" value=""></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_POXHUHIJUN" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 <li>At taxonomic level 5, what is the most abundant taxon for sample 1TE?
-<div id="radio_EMSOZCWVIS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EMSOZCWVIS" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EMSOZCWVIS" value="answer"></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EMSOZCWVIS" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
+<div id="radio_BGPGICENGR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BGPGICENGR" value=""></input> <span><strong>Moraxellaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BGPGICENGR" value="answer"></input> <span><strong>Mycobacteriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BGPGICENGR" value=""></input> <span><strong>Pseudomonadaceae</strong></span></label>
 </div></li>
 </ol>
 <p><strong>Note</strong>: The "Sort Samples By" drop down will be useful for the following questions. Additionally, switching the "Ascending" (low to high, right sample has the highest relative abundance) drop down to "Descending" may be useful.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Which sample has the highest relative abundance of the class Actinomycetes (Taxonomic level 3)?
-<div id="radio_DTEGQEZVHW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DTEGQEZVHW" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTEGQEZVHW" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DTEGQEZVHW" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_PAUTBDDGUR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PAUTBDDGUR" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PAUTBDDGUR" value="answer"></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PAUTBDDGUR" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the lowest relative abundance of the genus Corynebacterium (Taxonomic level 6)?
-<div id="radio_QZMRNJSQXA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QZMRNJSQXA" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QZMRNJSQXA" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QZMRNJSQXA" value=""></input> <span><strong>3TM</strong></span></label>
+<div id="radio_ZCAIQSAQDY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZCAIQSAQDY" value="answer"></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZCAIQSAQDY" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZCAIQSAQDY" value=""></input> <span><strong>3TM</strong></span></label>
 </div></li>
 <li>Which sample has the third highest relative abundance of the phylum Bacteroidota (Taxonomic level 2)?
-<div id="radio_TYVZVFISDP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TYVZVFISDP" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TYVZVFISDP" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TYVZVFISDP" value="answer"></input> <span><strong>3TM</strong></span></label>
+<div id="radio_WYIJNWHPYB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WYIJNWHPYB" value=""></input> <span><strong>1K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WYIJNWHPYB" value=""></input> <span><strong>1TM</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WYIJNWHPYB" value="answer"></input> <span><strong>3TM</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -582,20 +582,20 @@ Do they contain what you expect?
 You may want to change some steps and/or settings of what you have done so far if the composition does not match what you expect. For example, change the de-noising tool or apply more quality filters to further improve the quality of the sequence under examination.</p>
 <p>We are close to carrying out some biodiversity analysis. Before this we will produce a phylogenetic tree in the next chapter.</p>
 <p><a href="https://docs.qiime2.org/2024.10/tutorials/feature-classifier/">QIIME2 documents on training feature classifiers</a></p>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-e7a8a9146ddd61460f66" width="672"></span>
-<script type="application/json" data-for="htmlwidget-e7a8a9146ddd61460f66">{"x":{"element":"s_tip","opts":{"content":"16S ribosoma RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-e83f3e2204edff3ea691" width="672"></span>
-<script type="application/json" data-for="htmlwidget-e83f3e2204edff3ea691">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-4f609b54f34123dbdc63" width="672"></span>
-<script type="application/json" data-for="htmlwidget-4f609b54f34123dbdc63">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-3a663411b95c42a0a830" width="672"></span>
-<script type="application/json" data-for="htmlwidget-3a663411b95c42a0a830">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-72a0b083d85b1cdef638" width="672"></span>
-<script type="application/json" data-for="htmlwidget-72a0b083d85b1cdef638">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-2889dd8d16c73c2f38bd" width="672"></span>
-<script type="application/json" data-for="htmlwidget-2889dd8d16c73c2f38bd">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-9d5e8186397f162f0c55" width="672"></span>
-<script type="application/json" data-for="htmlwidget-9d5e8186397f162f0c55">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-1ca55f404656ca756527" width="672"></span>
+<script type="application/json" data-for="htmlwidget-1ca55f404656ca756527">{"x":{"element":"s_tip","opts":{"content":"16S ribosomal RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-d508bbbecf6a633dddd0" width="672"></span>
+<script type="application/json" data-for="htmlwidget-d508bbbecf6a633dddd0">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-0fd9320e9a808a89f673" width="672"></span>
+<script type="application/json" data-for="htmlwidget-0fd9320e9a808a89f673">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-06192f250e8e506bac62" width="672"></span>
+<script type="application/json" data-for="htmlwidget-06192f250e8e506bac62">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6be25106ea138754a741" width="672"></span>
+<script type="application/json" data-for="htmlwidget-6be25106ea138754a741">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f8fa3b89375c73a7ae8d" width="672"></span>
+<script type="application/json" data-for="htmlwidget-f8fa3b89375c73a7ae8d">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-784f3c7da25cfaf1e479" width="672"></span>
+<script type="application/json" data-for="htmlwidget-784f3c7da25cfaf1e479">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

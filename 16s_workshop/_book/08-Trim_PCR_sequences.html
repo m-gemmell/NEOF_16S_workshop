@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -387,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><code>--p-front-r</code></strong>: Sequence for the reverse primer (<code>r</code>). The sequence is ligated to the 5 prime end (<code>front</code>), this is normal.</li>
 <li><strong><code>--o-trimmed-sequences</code></strong>: The output <u id='artifact_tip'>artifact</u> containing the trimmed sequence data.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/cutadapt/trim-paired/">QIIME2 docs on <code>qiime cutadapt trim-paired</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/cutadapt.html#q2-action-cutadapt-trim-paired">QIIME2 docs on <code>qiime cutadapt trim-paired</code></a></p>
 </div>
 </div>
 <div id="cutadapt-visualise" class="section level2 hasAnchor" number="8.2">
@@ -399,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb9-1"><a href="08-Trim_PCR_sequences.html#cb9-1" tabindex="-1"></a><span class="ex">qiime</span> demux summarize <span class="dt">\</span></span>
 <span id="cb9-2"><a href="08-Trim_PCR_sequences.html#cb9-2" tabindex="-1"></a>--i-data paired-end-demux.trim.qza <span class="dt">\</span></span>
 <span id="cb9-3"><a href="08-Trim_PCR_sequences.html#cb9-3" tabindex="-1"></a>--o-visualization paired-end-demux.trim.qzv</span></code></pre></div>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/">QIIME2 docs on <code>qiime demux summarize</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/demux.html#q2-action-demux-summarize">QIIME2 docs on <code>qiime demux summarize</code></a></p>
 <p>Now load the obtained <code>paired-end-demux.trim.qzv</code> into the ‘view.qiime2.org’ website.</p>
 <p>This visualisation contains the same sections as <a href="07-Import_sequences_into_QIIME2.html#chap7output"><code>paired-end-demux.qzv</code></a> but contains information on the PCR trimmed data.</p>
 <p>If you are working with the ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: <a href="https://github.com/USDA-ARS-GBRU/itsxpress/tree/main" class="uri">https://github.com/USDA-ARS-GBRU/itsxpress/tree/main</a></p>
@@ -412,24 +412,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <ol style="list-style-type: decimal">
 <li>Which sample has the lowest number of forward reads?
-<div id="radio_KTASOCCUZT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KTASOCCUZT" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KTASOCCUZT" value=""></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KTASOCCUZT" value="answer"></input> <span><strong>3K1E</strong></span></label>
+<div id="radio_NZCDHOURWG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NZCDHOURWG" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NZCDHOURWG" value=""></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NZCDHOURWG" value="answer"></input> <span><strong>3K1E</strong></span></label>
 </div></li>
 <li>Which sample has the highest number of forward reads?
-<div id="radio_TWRWRFSMGK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TWRWRFSMGK" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TWRWRFSMGK" value="answer"></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_TWRWRFSMGK" value=""></input> <span><strong>3K1E</strong></span></label>
+<div id="radio_DKYITMQNWR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DKYITMQNWR" value=""></input> <span><strong>1TE</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DKYITMQNWR" value="answer"></input> <span><strong>2K2E</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DKYITMQNWR" value=""></input> <span><strong>3K1E</strong></span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the forward reads (thick bars drop below Q20)?
-<div id="radio_LTUGUWUAJW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LTUGUWUAJW" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LTUGUWUAJW" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LTUGUWUAJW" value="answer"></input> <span><strong>&gt;220</strong></span></label>
+<div id="radio_MTBSYQCYWW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MTBSYQCYWW" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MTBSYQCYWW" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MTBSYQCYWW" value="answer"></input> <span><strong>&gt;220</strong></span></label>
 </div></li>
 <li>Approximately, at which base position do you see a drastic drop of quality in the reverse reads (thick bars drop below Q20)?
-<div id="radio_WPEERDWLXI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WPEERDWLXI" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WPEERDWLXI" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WPEERDWLXI" value="answer"></input> <span><strong>&gt;220</strong></span></label>
+<div id="radio_SFLUZECJHI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SFLUZECJHI" value=""></input> <span><strong>&lt;200</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SFLUZECJHI" value=""></input> <span><strong>200-220</strong></span></label><label><input type="radio" autocomplete="off" name="radio_SFLUZECJHI" value="answer"></input> <span><strong>&gt;220</strong></span></label>
 </div></li>
 <li>What is the median length of the forward reads?
-<div id="radio_DETYIEUHVO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DETYIEUHVO" value="answer"></input> <span><strong>226</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DETYIEUHVO" value=""></input> <span><strong>230</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DETYIEUHVO" value=""></input> <span><strong>250</strong></span></label>
+<div id="radio_LVXIIFJTHB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LVXIIFJTHB" value="answer"></input> <span><strong>226</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LVXIIFJTHB" value=""></input> <span><strong>230</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LVXIIFJTHB" value=""></input> <span><strong>250</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -439,8 +439,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figures/sum_black.png" style="width:150px; background:white; border-radius:5px; border:5px white solid" />
 </center>
 <p>Superb! We have trimmed the adapters from our sequences. This has made the majority of reads shorter going from a length of 250 to &gt;=226. This is expected. We have also kept a good amount of reads and the quality looks good so we can move to denoising.</p>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-d7a06a0c3594e2bfb943" width="672"></span>
-<script type="application/json" data-for="htmlwidget-d7a06a0c3594e2bfb943">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-b27a29522e134abaf38e" width="672"></span>
+<script type="application/json" data-for="htmlwidget-b27a29522e134abaf38e">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

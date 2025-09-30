@@ -82,7 +82,7 @@ beta-diversity-mcqs
 beta-diversity-summary
 differential
 taxa-collapse
-ancom-bc-analysis
+ancom-bc2-analysis
 ancombc-tabulate
 ancombc-tabulate-visualise
 ancombc-bar-plots

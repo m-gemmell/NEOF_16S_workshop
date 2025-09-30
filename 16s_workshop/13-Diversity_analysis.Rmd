@@ -3,17 +3,18 @@
 ![](figures/diversity.png){style="width:200px; background:white; border-radius:5px"}
 </center>
 
-Alpha diversity is a representation of the diversity within a sample. There are many possible metrics for estimating alpha diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
+<u id='alpha_tip'>Alpha</u> diversity is a representation of the diversity within a sample. There are many possible metrics for estimating <u id='alpha_tip'>alpha</u> diversity (QIIME2 allows 30 metrics to be estimated), including the [“Shannon” metric](#shannon), the number of [observed features](#obvs) and [Faith’s phylogenetic distance](#faith) (Shannon,
 1948, Faith, 1992).
 
-Beta diversity is diversity among different communities. There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
+<u id='beta_tip'>Beta</u> diversity is diversity among different communities. 
+There are many possible metrics to represent the distance among samples (QIIME2 allows 34 to be estimated). We will use the [weighted and unweighted UniFrac metrics](#unifrac_explanation) (Lozupone and Knight, 2005, Lozupone et al., 2007) and the [Bray-Curtis metric](#bray_explanation) (Bray and Curtis, 1957) (More info on these metrics in the appendix).
 
 ## Diversity: run 
 <center>
-![](figures/play_red.png){style="width:150px"}
+![](figures/play_red.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-QIIME2 includes a wrapper script to co-investigate alpha- and beta-diversity at the same time. This script includes only a selected list of alpha- and beta-diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for alpha and beta-diversity (https://docs.qiime2.org/2024.10/plugins/available/diversity/).
+QIIME2 includes a wrapper script to co-investigate <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity at the same time. This script includes only a selected list of <u id='alpha_tip'>alpha-</u> and <u id='beta_tip'>beta-</u>diversity metrics, but these are usually enough to investigate the dataset. It is possible to use different metrics using the single scripts for <u id='alpha_tip'>alpha</u> and <u id='beta_tip'>beta-</u>diversity (https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html).
 
 ```{bash, eval=FALSE}
 qiime diversity core-metrics-phylogenetic \
@@ -26,16 +27,16 @@ qiime diversity core-metrics-phylogenetic \
 
 #### Parameters {-}
 <center>
-![](figures/parameter_red.png){style="width:100px"}
+![](figures/parameter_red.png){style="width:100px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-- __`--i-table`__: Input artifact containing the abundance table for the identified variants.
-- __`--i-phylogeny`__: Input artifact containing the rooted tree.
+- __`--i-table`__: Input <u id='artifact_tip'>artifact</u> containing the abundance table for the identified variants.
+- __`--i-phylogeny`__: Input <u id='artifact_tip'>artifact</u> containing the rooted tree.
 - __`--p-sampling-depth`__: Sampling depth to rarefy the abundance data table to.
 - __`--output-dir`__: Output directory that will contain all the output files from the command.
 - __`--m-metadata-file`__: [Metadata file](#metadata.file.txt) for our samples.
 
-[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://docs.qiime2.org/2024.10/plugins/available/diversity/core-metrics-phylogenetic/)
+[QIIME2 docs on `qiime diversity core-metrics-phylogenetic`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-core-metrics-phylogenetic)
 
 #### Output {-}
 <center>
@@ -47,15 +48,40 @@ This command will produce all the results within the directory specified with th
 These files include:
 
 - __`rarefied_table.qza`__: The abundance table normalised by rarefaction at the specified sampling size.
-- __`vector.qza`__: Artifact files containing the calculated alpha diversity values. 
-  - These will be used for alpha diversity statistical analysis in [chapter 14](#alpha_div_stats).
-- __`distance_matrix.qza`__: Artifact files containing the beta diversity values.
+- __`vector.qza`__: <u id='artifact_tip'>Artifact</u> files containing the calculated <u id='alpha_tip'>alpha</u> diversity values. 
+  - These will be used for <u id='alpha_tip'>alpha</u> diversity statistical analysis in [chapter 14](#alpha_div_stats).
+- __`distance_matrix.qza`__: <u id='artifact_tip'>Artifact</u> files containing the <u id='beta_tip'>beta</u> diversity values.
   - These values are in the form of a table containing all pair wise distances between samples.
-  - These will be used in beta diversity statistical analysis in [chapter 15](#beta_stats).
+  - These will be used in <u id='beta_tip'>beta</u> diversity statistical analysis in [chapter 15](#beta_stats).
 - __`pcoa_results.qza`__: PCoA results calculated from the `distance_matrix.qza` files.
   - These were used to create the `emperor.qza` files described below.
   - Generally you will not need these again.
-- __`emperor.qzv`__: Visualisation artifact files containing the beta-diversity ordination plots.
+- __`emperor.qzv`__: Visualisation <u id='artifact_tip'>artifact</u> files containing the <u id='beta_tip'>beta-</u>diversity ordination plots.
 
 In case of ITS or any marker for which it is not possible to obtain a phylogenetic tree, the alternative command to use for the diversity analysis is: `qiime diversity core-metrics`, which lacks the
 `--i-phylogeny` option.
+
+```{r, echo=FALSE}
+#Tippy tooltips
+tippy::tippy_this(elementId = "s_tip", 
+                  tooltip = "16S ribosomal RNA",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "otu_tip", 
+                  tooltip = "Operational Taxonomy Unit",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "asv_tip", 
+                  tooltip = "Amplicon Sequence Variant",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "alpha_tip", 
+                  tooltip = "Alpha diversity values are based on single samples",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "beta_tip", 
+                  tooltip = "Beta diversity values based on pairwise comparisons",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "artifact_tip", 
+                  tooltip = "Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)",
+                  arrow = TRUE, placement = "bottom")
+tippy::tippy_this(elementId = "amplicon_tip", 
+                  tooltip = "Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)",
+                  arrow = TRUE, placement = "bottom")
+```

@@ -40,7 +40,7 @@ qiime tools import \
 - __`--input-format`__: The format of the input files.
   - `PairedEndFastqManifestPhred33`: Our input file is a [Manifest file](#manifestfile) with information on paired fastq files. Our fastq files have quality encoding of Phred33, the most commonly used for Illumina data now. More information about fastq quality encoding can be found on [wikipedia](#https://en.wikipedia.org/wiki/FASTQ_format#Encoding).
  
-[QIIME2 docs on importing data](https://docs.qiime2.org/2024.10/tutorials/importing/)
+[QIIME2 docs on importing data](https://amplicon-docs.qiime2.org/en/latest/how-to-guides/how-to-import.html)
 
 ## Import: visualise {#chap7_vis}
 <center>
@@ -63,7 +63,7 @@ qiime demux summarize \
 - __`--i-data`__: Input data <u id='artifact_tip'>artifact</u> (`.qza`) to be summarised and visualised.
 - __`--o-visualization`__: Output visualisation <u id='artifact_tip'>artifact</u> (`qzv`).
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/demux.html#q2-action-demux-summarize)
 
 #### Firefox {-}
 <center>
@@ -147,7 +147,7 @@ Brilliant! We have imported our read data and checked the number of reads per sa
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",

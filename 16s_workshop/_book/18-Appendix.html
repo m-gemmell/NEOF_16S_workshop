@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="resources" class="section level1 hasAnchor" number="18">
 <h1><span class="header-section-number">A</span> Resources<a href="18-Appendix.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/resources.png" style="width:200px" />
+<img src="figures/resources.png" style="width:200px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <div id="suggested-readings" class="section level2 hasAnchor" number="18.1">
 <h2><span class="header-section-number">A.1</span> Suggested readings<a href="18-Appendix.html#suggested-readings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -450,22 +450,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The best way to use Mamba is to install Miniforge. It has both Conda and Mamba commands.</p>
 <p>Miniforge installation: <a href="https://github.com/conda-forge/miniforge" class="uri">https://github.com/conda-forge/miniforge</a></p>
 <p>Mamba guide: <a href="https://mamba.readthedocs.io/en/latest/user_guide/mamba.html" class="uri">https://mamba.readthedocs.io/en/latest/user_guide/mamba.html</a></p>
-<p>To create the mamba environment <code>qiime2-amplicon-2024.10</code> run the below commands in your bash. You will need to have installed <code>mamba</code> first.</p>
+<p>To create the mamba environment <code>qiime2-amplicon-2025.7</code> run the below commands in your bash. You will need to have installed <code>mamba</code> first.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb39-1"><a href="18-Appendix.html#cb39-1" tabindex="-1"></a><span class="co">#QIIME2</span></span>
-<span id="cb39-2"><a href="18-Appendix.html#cb39-2" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-n</span> qiime2-amplicon-2024.10 <span class="dt">\</span></span>
-<span id="cb39-3"><a href="18-Appendix.html#cb39-3" tabindex="-1"></a>--file https://data.qiime2.org/distro/amplicon/qiime2-amplicon-2024.10-py310-linux-conda.yml</span></code></pre></div>
-<p><strong>Note</strong>: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: <a href="https://docs.qiime2.org/2024.10/install/native/" class="uri">https://docs.qiime2.org/2024.10/install/native/</a>. Ensure to follow the "QIIME 2 Amplicon Distribution" step if you are going to use QIIME2 for amplicon analysis.</p>
+<span id="cb39-2"><a href="18-Appendix.html#cb39-2" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">--name</span> qiime2-amplicon-2025.7 <span class="dt">\</span></span>
+<span id="cb39-3"><a href="18-Appendix.html#cb39-3" tabindex="-1"></a>  <span class="at">--file</span> https://raw.githubusercontent.com/qiime2/distributions/refs/heads/dev/2025.7/amplicon/released/qiime2-amplicon-ubuntu-latest-conda.yml</span></code></pre></div>
+<p><strong>Note</strong>: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: <a href="https://library.qiime2.org/quickstart/amplicon" class="uri">https://library.qiime2.org/quickstart/amplicon</a>.</p>
 </div>
 </div>
 <div id="diversity-metrics" class="section level1 hasAnchor" number="20">
 <h1><span class="header-section-number">C</span> Diversity metrics<a href="18-Appendix.html#diversity-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/metric_square.png" style="width:200px" />
+<img src="figures/metric_square.png" style="width:200px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <div id="alphamet" class="section level2 hasAnchor" number="20.1">
 <h2><span class="header-section-number">C.1</span> Alpha diversity metrics<a href="18-Appendix.html#alphamet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/alpha_div_2.png" style="width:200px" />
+<img src="figures/alpha_div_2.png" style="width:200px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <p>Alpha diversity measures assess the diversity of each sample separately. Generally a higher value of these indexes/measures indicates higher diversity/evenness.</p>
 <div id="obvs" class="section level3 hasAnchor" number="20.1.1">
@@ -486,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Faith's PD represents the minimum total branch length that covers all taxa within the sample on a phylogenetic tree (Faith, 1992). A smaller PD value indicates a reduced expected taxonomic diversity whilst a large PD value indicates a higher expected diversity.</p>
 <p>A sample with 10 ASVs could have a lower Faith's PD than a sample with only 2 ASVs. This could occur if the 10 ASV sample only has ASVs from one genus whilst the 2 ASV samples consists of ASVs from 2 different Families.</p>
 <center>
-<img src="figures/faith_pd.png" style="width:600px" />
+<img src="figures/faith_pd.png" style="width:600px; border-radius:5px" />
 </center>
 </div>
 <div id="simpson" class="section level3 hasAnchor" number="20.1.4">
@@ -542,7 +542,7 @@ H =
 <div id="beta-diversity-metrics" class="section level2 hasAnchor" number="20.2">
 <h2><span class="header-section-number">C.2</span> Beta diversity metrics<a href="18-Appendix.html#beta-diversity-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/beta_div_2.png" style="width:200px" />
+<img src="figures/beta_div_2.png" style="width:200px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <p>Beta diversity compares 2 samples at a time. This is measured in terms of dissimilarity:</p>
 <ul>

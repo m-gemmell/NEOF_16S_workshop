@@ -113,7 +113,7 @@ table_df %>%
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",

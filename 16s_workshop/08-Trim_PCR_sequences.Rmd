@@ -38,7 +38,7 @@ qiime cutadapt trim-paired \
 - __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
 - __`--o-trimmed-sequences`__: The output <u id='artifact_tip'>artifact</u> containing the trimmed sequence data.
 
-[QIIME2 docs on `qiime cutadapt trim-paired`](https://docs.qiime2.org/2024.10/plugins/available/cutadapt/trim-paired/)
+[QIIME2 docs on `qiime cutadapt trim-paired`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/cutadapt.html#q2-action-cutadapt-trim-paired)
 
 ## Cutadapt: visualise
 <center>
@@ -53,7 +53,7 @@ qiime demux summarize \
 --o-visualization paired-end-demux.trim.qzv
 ```
 
-[QIIME2 docs on `qiime demux summarize`](https://docs.qiime2.org/2024.10/plugins/available/demux/summarize/)
+[QIIME2 docs on `qiime demux summarize`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/demux.html#q2-action-demux-summarize)
 
 Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’ website.
 

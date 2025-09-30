@@ -7,19 +7,7 @@ Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et
 In the following practical we will use the QIIME2 version released on October 2024 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
 If you want to install QIIME2 on your own machine, please refer to: 
-https://docs.qiime2.org/2024.10/install/
-
-__Note__: All the QIIME2 links may be out of date, if so the below will appear:
-<center>
-![](figures/qiime2_website_out_of_date.png){style="width:600px; border-radius:5px"}
-</center>
-
-If this occurs click "Show me the content on this page".
-
-You can then click the version box on the top left (above the table of contents, pictured below) and choose the version you would like. This would be either the version you are using or the latest version.
-<center>
-![](figures/qiime2_version_box.png){style="width:200px; border-radius:5px"}
-</center>
+https://library.qiime2.org/quickstart/amplicon
 
 ## Artifacts
 <center>
@@ -38,7 +26,7 @@ These files can be loaded into the following web-site https://view.qiime2.org, w
 ![](figures/workflow.png){style="width:150px; background: white; border-radius:5px"}
 </center>
 
-The steps for the analysis are listed below, mainly taken from https://docs.qiime2.org/2024.10/tutorials/.
+The steps for the analysis are listed below.
 
 <center>
 ![](figures/16_tutorial_diagram.png){style="width:800px; BORDER-RADIUS:5PX"}
@@ -70,7 +58,12 @@ You will be using a raw dataset as the tutorial data. It still includes low qual
 
 The PCR primers used for the amplification may have degenerate positions (required for annealing to the large variety of species in the samples). This adds 'random' variability outside the target region. These unknown sequences may affect the subsequent taxonomy identification as well as the error-correction step. We will use Cutadapt to remove the PCR primers before any other step. 
 
-If the analysis is based on a marker gene different than <u id='s_tip'>16S</u>, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. It can be found among the list of third-party QIIME2 available plug-ins (https://docs.qiime2.org/2024.5/plugins/available/).
+If the analysis is based on a marker gene different than <u id='s_tip'>16S</u>, other quality trimming may be required. In the case of the ITS marker gene, the common practice is to trim off the conserved regions (SSU, 5.8S or LSU) that may be contained in the final amplicon. The ‘ITSxpress’ software (Rivers _et al_., 2018) is designed for this specific task and it is available as a QIIME2 plug-in,  though it requires specific installation steps because it is not installed with the basic (core) installation process. Plugins page for `ITSxpress`: (https://old-library.qiime2.org/plugins/q2-itsxpress/8/)
+
+For all plugins see the following 2 pages:
+
+- Plugins webpage of new QIIME2 site (not all plugins transferred to new site): https://library.qiime2.org/pluginshttps://docs.qiime2.org/2024.5/plugins/available/.
+- Plugins webpage of old QIIME2 site (These should still work for newer version of QIIME2): https://old-library.qiime2.org/plugins/.
 
 ## Amplicon Sequence Variants identification
 
@@ -260,7 +253,7 @@ Examples of questions to answer:
 ```{r, echo=FALSE}
 #Tippy tooltips
 tippy::tippy_this(elementId = "s_tip", 
-                  tooltip = "16S ribosoma RNA",
+                  tooltip = "16S ribosomal RNA",
                   arrow = TRUE, placement = "bottom")
 tippy::tippy_this(elementId = "otu_tip", 
                   tooltip = "Operational Taxonomy Unit",

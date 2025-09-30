@@ -34,7 +34,7 @@ Each column has a header and contains the following information:
 1. __sample-id__
    - User specified sample-id. 
    - This is how the sample will be named in all downstream QIIME2 files.
-   - These must match the sample ids in the [metadata file](#import).
+   - These must match the sample ids in the [metadata file](#metadatafile).
    - Recommendations for sample ids/identifiers can be found lower down in this bookdown page.
 2. __absolute-filepath__
    - Full path of sequencing file.
@@ -83,7 +83,7 @@ Have a look at the top 10 lines of the metadata file:
 head metadata.file.txt
 ```
    
-For more information on QIIME2 metadata please see: https://docs.qiime2.org/2024.10/tutorials/metadata/
+For more information on QIIME2 metadata please see: https://use.qiime2.org/en/latest/references/metadata.html
 
 The above link includes:
 

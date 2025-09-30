@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2025-09-25" />
+<meta name="date" content="2025-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html"><i class="fa fa-check"></i><b>16</b> Differential abundance analysis</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#taxa-collapse"><i class="fa fa-check"></i><b>16.1</b> Taxa collapse</a></li>
-<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancom-bc2-analysis"><i class="fa fa-check"></i><b>16.2</b> ANCOM-BC2 analysis</a></li>
 <li class="chapter" data-level="16.3" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate"><i class="fa fa-check"></i><b>16.3</b> ANCOMBC tabulate</a>
 <ul>
 <li class="chapter" data-level="16.3.1" data-path="16-Differential_abundance.html"><a href="16-Differential_abundance.html#ancombc-tabulate-visualise"><i class="fa fa-check"></i><b>16.3.1</b> ANCOMBC tabulate: visualise</a></li>
@@ -356,9 +356,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta_stats" class="section level1 hasAnchor" number="15">
 <h1><span class="header-section-number">Chapter 15</span> Beta diversity statistical analysis<a href="15-Beta_diversity_analysis.html#beta_stats" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <center>
-<img src="figures/beta_div_2.png" style="width:300px" />
+<img src="figures/beta_div_2.png" style="width:300px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
-<p>We'll now carry out statistical analysis of the beta diversity ordination plots. We'll use <strong>'PERMANOVA'</strong> analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.</p>
+<p>We'll now carry out statistical analysis of the <u id='beta_tip'>beta</u> diversity ordination plots.
+We'll use <strong>'PERMANOVA'</strong> analysis to determine if the separation of samples by metadata groups has statistical significance or if it may have just originated by chance.</p>
 <div id="beta-diveristy-pcoa" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Beta diveristy: PCoA<a href="15-Beta_diversity_analysis.html#beta-diveristy-pcoa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
@@ -375,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta-diversity-run" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> Beta diversity: run<a href="15-Beta_diversity_analysis.html#beta-diversity-run" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/play_green.png" style="width:150px" />
+<img src="figures/play_green.png" style="width:150px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <p>For our first <strong>'PERMANOVA'</strong> analysis we will use the <code>weighted_unifrac_distance_matrix.qza</code> file. It contains all the sample pairwise <strong>weighted unifrac</strong> dissimilarity distances.</p>
 <p>The <strong>'Location'</strong> metadata column with the <strong>weighted UniFrac</strong> metric will be used as there appears to be a separation between the Corridor and Toilet samples.</p>
@@ -390,10 +391,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="parameters-17" class="section level4 unnumbered hasAnchor">
 <h4>Parameters<a href="15-Beta_diversity_analysis.html#parameters-17" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <center>
-<img src="figures/parameter_green.png" style="width:100px" />
+<img src="figures/parameter_green.png" style="width:100px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <ul>
-<li><strong><code>--i-distance-matrix</code></strong>: Input artifact files containing the beta diversity values.</li>
+<li><strong><code>--i-distance-matrix</code></strong>: Input <u id='artifact_tip'>artifact</u> files containing the <u id='beta_tip'>beta</u> diversity values.</li>
 <li><strong><code>--m-metadata-file</code></strong>: <a href="#metadata.file.txt">Metadata file</a> for our samples.</li>
 <li><strong><code>--m-metadata-column</code></strong>: Metadata column within the metadata file to use for the statistical comparison.</li>
 <li><strong><code>--p-method</code></strong>: The group significance test to be applied.
@@ -408,15 +409,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The default is <code>999</code>.</li>
 </ul></li>
-<li><strong><code>--o-visualization</code></strong>: The output artifact containing the visualisation.</li>
+<li><strong><code>--o-visualization</code></strong>: The output <u id='artifact_tip'>artifact</u> containing the visualisation.</li>
 </ul>
-<p><a href="https://docs.qiime2.org/2024.10/plugins/available/diversity/beta-group-significance/">QIIME2 docs on <code>qiime diversity beta-group-significance</code></a></p>
+<p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-beta-group-significance">QIIME2 docs on <code>qiime diversity beta-group-significance</code></a></p>
 </div>
 </div>
 <div id="beta-diversity-visualise" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> Beta diversity: visualise<a href="15-Beta_diversity_analysis.html#beta-diversity-visualise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
-<img src="figures/eye_green.png" style="width:150px" />
+<img src="figures/eye_green.png" style="width:150px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <p>Load the resulting visualisation (<code>weighted-unifrac-significance.location.qzv</code>) file in QIIME2 view. You will see the following sections:</p>
 <ul>
@@ -440,42 +441,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="beta-diversity-mcqs" class="section level3 hasAnchor" number="15.3.1">
 <h3><span class="header-section-number">15.3.1</span> Beta diversity: MCQs<a href="15-Beta_diversity_analysis.html#beta-diversity-mcqs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <center>
-<img src="figures/question_bubble_green.png" style="width:150px" />
+<img src="figures/question_bubble_green.png" style="width:150px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
 <p>Attempt the below questions.</p>
 <p><strong>Note</strong>: You will need to run the <code>qiime diversity beta-group-significance</code> with different options and view the new files to answer some of the questions.</p>
 <ol style="list-style-type: decimal">
 <li>Is there a significant difference (q-value &lt;0.05) between <strong>Corridor and Toilet (Location)</strong> for the <strong>weighted unifrac</strong> distances when using <strong>PERMANOVA</strong>?
-<div id="radio_KPABZOKSJS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KPABZOKSJS" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KPABZOKSJS" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_CPNWEKFRBA" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CPNWEKFRBA" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CPNWEKFRBA" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Which sample group, Corridor or Toilet, has larger <strong>weighted unifrac</strong> distances within the group? I.e. which boxplot has the IQR with the largest values: "Distances to Corridor" - "Corridor" box plot, or "Distances to Toilet", "Toilet" box plot?
-<div id="radio_OTKTOKGJVS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OTKTOKGJVS" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OTKTOKGJVS" value="answer"></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_OJNKJQCHPX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OJNKJQCHPX" value=""></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OJNKJQCHPX" value="answer"></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>In the <strong>weighted unifrac</strong> distances "Distances to Corridor" box plots, which box plot has lower values?
-<div id="radio_CYLPMYUYUQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CYLPMYUYUQ" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_CYLPMYUYUQ" value=""></input> <span><strong>Toilet</strong></span></label>
+<div id="radio_DMZHVYXGMQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DMZHVYXGMQ" value="answer"></input> <span><strong>Corridor</strong></span></label><label><input type="radio" autocomplete="off" name="radio_DMZHVYXGMQ" value=""></input> <span><strong>Toilet</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between <strong>Corridor and Toilet (Location)</strong> for the <strong>Bray Curtis</strong> distances when using <strong>PERMANOVA</strong>?
-<div id="radio_GISESEGZCL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GISESEGZCL" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_GISESEGZCL" value=""></input> <span><strong>No</strong></span></label>
+<div id="radio_QOUFRYOSKM" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QOUFRYOSKM" value="answer"></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QOUFRYOSKM" value=""></input> <span><strong>No</strong></span></label>
 </div></li>
 <li>Is there a significant difference (q-value &lt;0.05) between <strong>Entrance and MainBuilding (Place)</strong> for the <strong>Unweighted Unifrac</strong> distances when using <strong>ANOSIM</strong>?
-<div id="radio_XXKMZJHPST" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_XXKMZJHPST" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_XXKMZJHPST" value="answer"></input> <span><strong>No</strong></span></label>
+<div id="radio_WUYMFGUWEY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WUYMFGUWEY" value=""></input> <span><strong>Yes</strong></span></label><label><input type="radio" autocomplete="off" name="radio_WUYMFGUWEY" value="answer"></input> <span><strong>No</strong></span></label>
 </div></li>
 </ol>
 </div>
 <div id="beta-diversity-summary" class="section level3 hasAnchor" number="15.3.2">
 <h3><span class="header-section-number">15.3.2</span> Beta diversity: summary<a href="15-Beta_diversity_analysis.html#beta-diversity-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <center>
-<img src="figures/sum_green.png" style="width:150px" />
+<img src="figures/sum_green.png" style="width:150px; border-radius: 5px ; background: white; border: 5px solid white" />
 </center>
-<p>Viewing the beta diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.</p>
+<p>Viewing the <u id='beta_tip'>beta</u> diversity ordination plots and the statistical output we can see there is a difference between the Corridor and Toilet samples. However, there does not appear to be a difference between the Entrance and MainBuilding samples from our quick look.</p>
 <p>Additionally, the distances within the Corridor samples are smaller than the distances within the Toilet samples. This indicates that the Corridor samples have less variation than the Toilet samples.</p>
-<p>If you want to carry out multi-way ADONIS tests you can use the <a href="https://docs.qiime2.org/2024.10/plugins/available/diversity/adonis/"><code>qiime diversity adonis</code> plugin</a>.</p>
+<p>If you want to carry out multi-way ADONIS tests you can use the <a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/diversity.html#q2-action-diversity-adonis"><code>qiime diversity adonis</code> plugin</a>.</p>
 <p>We know there is a difference between Corridor and Toilet samples, but are there particular organisms associated with this difference? We are going to try to determine that in the next chapter.</p>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-086c3431086ced311dc0" width="672"></span>
+<script type="application/json" data-for="htmlwidget-086c3431086ced311dc0">{"x":{"element":"s_tip","opts":{"content":"16S ribosomal RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6070afc7f2468bfc6760" width="672"></span>
+<script type="application/json" data-for="htmlwidget-6070afc7f2468bfc6760">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-42a74adc16d2c4a67d6a" width="672"></span>
+<script type="application/json" data-for="htmlwidget-42a74adc16d2c4a67d6a">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-fd8a2aa22240ff05c1cf" width="672"></span>
+<script type="application/json" data-for="htmlwidget-fd8a2aa22240ff05c1cf">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-4cc1ec6a949613d6d3d2" width="672"></span>
+<script type="application/json" data-for="htmlwidget-4cc1ec6a949613d6d3d2">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-3d3e4bab0c10ad2e93bb" width="672"></span>
+<script type="application/json" data-for="htmlwidget-3d3e4bab0c10ad2e93bb">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-5b19b423146d8fcaa6c3" width="672"></span>
+<script type="application/json" data-for="htmlwidget-5b19b423146d8fcaa6c3">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>
