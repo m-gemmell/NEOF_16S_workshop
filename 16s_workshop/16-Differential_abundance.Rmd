@@ -48,7 +48,7 @@ qiime taxa collapse \
 </center>
 
 For our analysis we will use ANCOM-BC2.
-ANCOM-BC2 extends and efines ANCOM-BC but it is very similar with the same outptu stats and visualistions. 
+ANCOM-BC2 extends and efines ANCOM-BC but it is very similar with the same output stats and visualistions. 
 
 With our family based abundance table we can carry out ANCOM-BC2 to produce the differentials file.
 
