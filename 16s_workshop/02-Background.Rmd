@@ -1,6 +1,6 @@
 # Background {#background}
 <center>
-![](figures/background.png){style="width:200px"}
+![](figures/background.png){style="width:200px; border-radius:15px; background:white; border: white solid 5px"}
 </center>
 
 One of the most common aims of metagenomic analyses is to quantify the composition and diversity of a community (usually a community of prokaryotes). This can be done in several ways. A common approach is high-throughput <u id='amplicon_tip'>amplicon</u> sequencing, usually of a region of the bacterial <u id='s_tip'>16S SSU rRNA</u> gene. 
@@ -36,7 +36,7 @@ Secondary structure of <u id='s_tip'>16S rRNA</u> of Esherichia coli (Yarza _et 
 
 ## ITS and other possible marker genes
 <center>
-![](figures/ITS.png){style="width: 200px"}
+![](figures/ITS.png){style="width: 200px; border-radius:15px; background:white; border: white solid 5px"}
 </center>
   
 It is very common to perform analysis with marker genes other than <u id='s_tip'>16S</u>, e.g. to study communities of fungi, insects or other eukaryote species. 

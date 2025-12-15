@@ -181,23 +181,25 @@ You can hover over a bar to view more details on the biomarker (differentially a
 
 Attempt the below MCQs using the table and bar plot visualisation files.
 
+__Note:__ The bar plot is not very user friendly and you will most likely need to zoom out to see the whole name of the taxa when hovering over a bar.
+
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Clostridiaceae_222000__", "__Gemellaceae__", "__Weeksellaceae__")
+opts_p <- c("__Azospirillaceae_507917__", answer="__Clostridiaceae_222000__", "__Gemellaceae__")
 ```
 
 1.  Which family has the highest positive LFC value? I.e. The family with the highest enrichment in Toilet (comparison) compared to Corridor (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Clostridiaceae_222000__", "__Gemellaceae__", answer="__Weeksellaceae__")
+opts_p <- c(answer="__Azospirillaceae_507917__", "__Clostridiaceae_222000__", "__Gemellaceae__")
 ```
 
 2.  Which family has the lowest negative LFC value? I.e. The family with the highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Clostridiaceae_222000__", answer="__Gemellaceae__", "__Weeksellaceae__")
+opts_p <- c("__Azospirillaceae_507917__", "__Clostridiaceae_222000__", answer="__Gemellaceae__")
 ```
 
-3.  Which family has a W statistic of -1.119351? `r longmcq(opts_p)`
+3.  Which family has a W statistic of -1.728954? `r longmcq(opts_p)`
 
 Run ANCOM-BC analysis for genus level (level 6). You will have to start from the `qiime taxa collapse` command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.
 
@@ -229,22 +231,22 @@ qiime composition da-barplot \
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Microbacterium_A_383321__", answer="__Clostridium_T__",  "__Dialister_37762__")
+opts_p <- c(answer="__Clostridium_T__",  "__Dialister_37762__","__Hymenobacter_910554__")
 ```
 
 4.  Which genus has the highest positive LFC value? I.e. The genus with the highest enrichment in Toilet (comparison) compared to Corridor (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Microbacterium_A_383321__", "__Clostridium_T__",  "__Dialister_37762__")
+opts_p <- c("__Clostridium_T__",  "__Dialister_37762__", answer="__Hymenobacter_910554__")
 ```
 
 5.  Which genus has the 2nd lowest negative LFC value? I.e. The genus with the 2nd highest enrichment in Corridor (reference) compared to Toilet (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Microbacterium_A_383321__", "__Clostridium_T__",  answer="__Dialister_37762__")
+opts_p <- c("__Clostridium_T__",  answer="__Dialister_37762__", "__Hymenobacter_910554__")
 ```
 
-6.  Which genus has a standard error of 0.581106? `r longmcq(opts_p)`
+6.  Which genus has a standard error of 0.343097? `r longmcq(opts_p)`
 
 Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding). 
 We have already collapsed the taxa. 
@@ -271,22 +273,22 @@ qiime composition da-barplot \
 `r unhide()`
 
 ```{r, echo = FALSE}
-opts_p <- c(answer="__Aristaeellaceae__", "__Pseudomonadaceae__" , "__Rhodospirillaceae__")
+opts_p <- c("__Listeriaceae__" , "__Rhodospirillaceae__", answer="__Solirubrobacteraceae__")
 ```
 
 7.  Which family has the 3rd highest positive LFC value? I.e. The family with the third highest enrichment in Main building (comparison) compared to Entrance (reference). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Aristaeellaceae__", answer="__Pseudomonadaceae__" , "__Rhodospirillaceae__")
+opts_p <- c(answer="__Listeriaceae__" , "__Rhodospirillaceae__", "__Solirubrobacteraceae__")
 ```
 
 8.  Which family has the 2nd lowest negative LFC value? I.e. The family with the 2nd highest enrichment in Entrance (reference) compared to Main building (comparison). `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
-opts_p <- c("__Aristaeellaceae__", "__Pseudomonadaceae__" , answer="__Rhodospirillaceae__")
+opts_p <- c("__Listeriaceae__" , answer="__Rhodospirillaceae__", "__Solirubrobacteraceae__")
 ```
 
-9.  Which family has a LFC of -0.804614 `r longmcq(opts_p)`
+9.  Which family has a LFC of -1.162399 `r longmcq(opts_p)`
 
 ## ANCOM-BC: summary
 <center>
