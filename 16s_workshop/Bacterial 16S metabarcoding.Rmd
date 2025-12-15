@@ -1092,6 +1092,7 @@ qiime dada2 denoise-paired \
 --o-representative-sequences rep-seqs-dada2.qza \
 --o-table table-dada2.qza \
 --o-denoising-stats dada2-stats.qza \
+--o-base-transition-stats dada2-base-transition-stats.qza \
 --verbose
 ```
 
@@ -1106,6 +1107,7 @@ qiime dada2 denoise-paired \
 - __`--o-representative-sequences`__: Output <u id='artifact_tip'>artifact</u> containing the identified sequence variants.
 - __`--o-table`__: Output <u id='artifact_tip'>artifact</u> containing the abundance table for the identified variants.
 - __`--o-denoising-stats`__: Output <u id='artifact_tip'>artifact</u> containing the sequence numbers pre- and post- trimming and denoising.
+- __`--base-transition-stats`__: Output <u id='artifact_tip'>artifact</u> containing a table listing the transition rates of each ordered pair of nucleotides at each quality score.
 - __`--verbose`__: Causes command to display verbose output to screen.
 
 [QIIME2 docs on `qiime dada2 denoise-paired`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/dada2.html#q2-action-dada2-denoise-paired)
