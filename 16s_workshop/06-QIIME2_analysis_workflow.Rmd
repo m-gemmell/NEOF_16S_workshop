@@ -23,10 +23,10 @@ The 'QIIME2' analysis workflow comprises of nine steps:
 
 You will need to activate the QIIME2 `mamba` environment before continuing. Carry this out with the following command.
 
-__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-amplicon-2025.7`
+__Note__: Ensure you include the dot and space (`. `) at the start before `useqiime2-amplicon-2025.10`
 
 ```{bash eval=FALSE}
-. useqiime2-amplicon-2025.7
+. useqiime2-amplicon-2025.10
 ```
 
 Information on installing `mamba` and creating the environment are in the [appendix](#mamba_install)

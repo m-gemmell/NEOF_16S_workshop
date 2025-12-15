@@ -41,7 +41,7 @@ The sections in this supplement will cover:
 Ensure you have the QIIME2 environment activated for all of these materials. For convenience the command is:
 
 ```{bash eval=FALSE}
-. useqiime2-amplicon-2024.10
+. useqiime2-amplicon-2025.10
 ```
 
 ## Table of contents {-}

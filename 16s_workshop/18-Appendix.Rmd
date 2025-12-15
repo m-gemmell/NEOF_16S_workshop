@@ -167,12 +167,13 @@ Miniforge installation: <https://github.com/conda-forge/miniforge>
 
 Mamba guide: <https://mamba.readthedocs.io/en/latest/user_guide/mamba.html>
 
-To create the mamba environment `qiime2-amplicon-2025.7` run the below commands in your bash. You will need to have installed `mamba` first.
+To create the mamba environment `qiime2-amplicon-2025.10` run the below commands in your bash. You will need to have installed `mamba` first.
 
 ```{bash, eval=FALSE}
 #QIIME2
-conda env create --name qiime2-amplicon-2025.7 \
-  --file https://raw.githubusercontent.com/qiime2/distributions/refs/heads/dev/2025.7/amplicon/released/qiime2-amplicon-ubuntu-latest-conda.yml
+conda env create \
+  --name qiime2-amplicon-2025.10 \
+  --file https://raw.githubusercontent.com/qiime2/distributions/refs/heads/dev/2025.10/amplicon/released/qiime2-amplicon-ubuntu-latest-conda.yml
 ```
 
 __Note__: You may want to install the most recent version of QIIME2. Please see the following page for installation instructions: https://library.qiime2.org/quickstart/amplicon.
