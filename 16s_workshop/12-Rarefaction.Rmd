@@ -178,7 +178,7 @@ Attempt the below MCQs.
 ```{r, echo = FALSE}
 opts_p <- c("__10,000__", "__25,000__", answer="__50,000__")
 ```
-1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateaue?  `r longmcq(opts_p)`
+1. At approximately what sequencing depth do the rarefaction curves of most of the samples (>90%) plateau?  `r longmcq(opts_p)`
 
 ```{r, echo = FALSE}
 opts_p <- c(answer="__Corridor__", "__Toilet__")
