@@ -4,7 +4,7 @@
 </center>
 
 Since January 2018, the QIIME project released the QIIME2 (qiime2.org, Bolyen et al., 2018) pipeline to analyse <u id='amplicon_tip'>amplicon</u> sequencing data.
-In the following practical we will use the QIIME2 version released on October 2024 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
+In the following practical we will use the QIIME2 version released on October 2025 (given the active development on the tool this may not be the most recent release at the time of this workshop). 
 
 If you want to install QIIME2 on your own machine, please refer to: 
 https://library.qiime2.org/quickstart/amplicon
@@ -14,10 +14,10 @@ https://library.qiime2.org/quickstart/amplicon
 ![](figures/artefact.png){style="width:150px; background:white; border-radius:5px"}
 </center>
 
-The QIIME2 pipeline produces and uses <u id='artifcat_tip'>artifact</u> files. 
+The QIIME2 pipeline produces and uses <u id='artifact_tip'>artifact</u> files. 
 These contain data and metadata and may be of two types: result or visualisation. 
 
-- __Result files (.qza)__: This file type contains the results of a method, which accepts other <u id='artifact_tip'>artifacts</u> and specific settings as input, in order to apply a procedure creating a new <u id='s_tip'>artifact</u> (e.g. loading sequences, error correction, <u id='alpha_tip'>alpha-</u> or <u id='beta_tip'>beta</u>-diversity).
+- __Result files (.qza)__: This file type contains the results of a method, which accepts other <u id='artifact_tip'>artifacts</u> and specific settings as input, in order to apply a procedure creating a new <u id='artifact_tip'>artifact</u> (e.g. loading sequences, error correction, <u id='alpha_tip'>alpha-</u> or <u id='beta_tip'>beta</u>-diversity).
 - __Visualisation files (.qzv)__: This file type contains the results of a specific procedure to obtain an object that can only be used to visualize the results. 
 These files can be loaded into the following web-site https://view.qiime2.org, where the interactive visualisations can be viewed. Please note that only chrome and Firefox are supported by this QIIME2 view website.
 
@@ -62,7 +62,7 @@ If the analysis is based on a marker gene different than <u id='s_tip'>16S</u>, 
 
 For all plugins see the following 2 pages:
 
-- Plugins webpage of new QIIME2 site (not all plugins transferred to new site): https://library.qiime2.org/pluginshttps://docs.qiime2.org/2024.5/plugins/available/.
+- Plugins webpage of new QIIME2 site (not all plugins transferred to new site): https://library.qiime2.org/plugins.
 - Plugins webpage of old QIIME2 site (These should still work for newer version of QIIME2): https://old-library.qiime2.org/plugins/.
 
 ## Amplicon Sequence Variants identification
@@ -164,14 +164,14 @@ Any further analyses to compare the identified <u id='asv_tip'>ASVs</u> among sa
 
 A normalisation step for the data is required to mitigate these effects and to allow easier data interpretation. The most used normalisation methods are: 
 
-a. Normalisation by rarefaction. This is performed by reducing all the samples at the same sequence count, by random sub-sampling of the sequences.
+a. Normalisation by rarefaction. This is performed by reducing all the samples to the same sequence count, by random sub-sampling of the sequences.
     - This method may lead to a potential reduction of the species in your dataset (<u id='alpha_tip'>alpha-diversity</u>) and to the exclusion of any samples not reaching the selected total count per sample.
 b. DESeq method (borrowed from transcriptomic research)
 c. Scaling the abundance table by a fixed value or proportion.
 d. Applying a log-ratio transformation proposed by Aitchinson (1982) in analogy of compositional dataset. 
     - This is aimed to convert the abundance data into scales on which it is possible to apply conventional statistical procedures.
     
-Methods b-d convert the abundance table in a normalised-abundance table with different strengths and pitfalls, therefore they can affect results for <u id='beta_tip'>beta-diversity</u> and differential abundant analysis.
+Methods b-d convert the abundance table into a normalised-abundance table with different strengths and pitfalls, therefore they can affect results for <u id='beta_tip'>beta-diversity</u> and differential abundant analysis.
 
 These normalisation methods were compared by Weiss and colleagues (2017), but their simulations show that different methods may result in different sensitivity and different false discovery rates.
 
@@ -197,6 +197,8 @@ The Chao1 metric, as one example for this, uses the number of singletons in the 
 However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. 
 A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
+More dteails of alpha diversity measures can be found in the [apendix](#alphamet).
+
 ## Beta-diversity
 <center>
 ![](figures/beta_div.png){style="width:200px; background: white; border-radius:5px"}
@@ -221,6 +223,8 @@ The choice of the <u id='beta_tip'>beta-diversity</u> distance metric to use wil
 Therefore it is common practice to compare the results obtained with different metrics. 
 Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
+More dteails of beta diversity measures can be found in the [apendix](#betamet).
+
 ## Differential Abundance Analysis
 <center>
 ![](figures/comparison.png){style="width:200px; background: white; border-radius:5px"}
@@ -233,14 +237,14 @@ Both methods are based on the conversion of the abundance values using the clr-t
 Because the conversion is based on a logarithmic transformation, all the values in the abundance table will be increased by ‘1’ to avoid ‘0’ counts (adding pseudo-counts). 
 These methods may therefore artificially increase the <u id='alpha_tip'>alpha-diversity</u> for the samples as well as decrease the <u id='beta_tip'>beta-diversity</u> distances in the dataset. 
 
-In this analysis we will use the ANCOM-BC method following the current QIIME2 tutorial. 
+In this analysis we will use the ANCOM-BC2 method following the current QIIME2 tutorial. 
 This method computes the log-ratio for every possible pair of the identified taxa (using the mean group values for the clr-transformed abundance) and reports how many times the hypothesis “H 0 = X is not differentially abundant” is rejected for each taxa ‘X’. 
 That is the ‘W’ statistic, the higher this value is the more significant the <u id='asv_tip'>ASV</u>/taxa X is differentially abundant between the tested groups. 
 This test assumes that a large number of <u id='asv_tip'>ASVs</u> did not change in abundances between groups. 
-If, in the results, more than 25% of the <u id='asv_tip'>ASVs</u> changes in the examined contrasts, the underlying hypothesis for the ANCOM-BC test may be not fulfilled, and there is the chance that the results may be misleading.
+If, in the results, more than 25% of the <u id='asv_tip'>ASVs</u> changes in the examined contrasts, the underlying hypothesis for the ANCOM-BC2 test may be not fulfilled, and there is the chance that the results may be misleading.
 
-Important to note is that ANCOM-BC has its own sample-wise normalisation.
-Therefore the unnormalised (i.e. pre rarefaction) abundance table shoudl be provided to ANCOM-BC.
+Important to note is that ANCOM-BC2 has its own sample-wise normalisation.
+Therefore the unnormalised (i.e. pre rarefaction) abundance table shoudd be provided to ANCOM-BC2.
 
 Examples of questions to answer:
 

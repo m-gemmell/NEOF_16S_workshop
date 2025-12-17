@@ -33,7 +33,7 @@ qiime cutadapt trim-paired \
 ![](figures/parameter_black.png){style="width:100px; background:white; border-radius:5px; border:5px white solid"}
 </center>
 
-- __`--i-demultiplexed-sequences`__: The input demultiplexed sequence artifact.
+- __`--i-demultiplexed-sequences`__: The input demultiplexed sequence <u id='artifact_tip'>artifact</u>.
 - __`--p-front-f`__: Sequence for the forward primer (`f`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
 - __`--p-front-r`__: Sequence for the reverse primer (`r`). The sequence is ligated to the 5 prime end (`front`), this is normal. 
 - __`--o-trimmed-sequences`__: The output <u id='artifact_tip'>artifact</u> containing the trimmed sequence data.

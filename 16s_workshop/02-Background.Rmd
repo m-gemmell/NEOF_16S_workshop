@@ -19,7 +19,7 @@ Please check our [training page](https://neof.org.uk/training/) to see if regist
 
 ## 16S rRNA
 
-<u id='s_tip'>16S ribosomal RNA</u> is a structural RNA which is a component of the prokaryotic ribosome. Ribosomes are the site of protein synthesis, therefore all prokaryotes have at least a <u id='s_tip'>16S rRNA</u> gene that codes for the <u id='s_tip'>16S ribosomal RNA</u>.
+16S ribosomal RNA is a structural RNA which is a component of the prokaryotic ribosome. Ribosomes are the site of protein synthesis, therefore all prokaryotes have at least a <u id='s_tip'>16S rRNA</u> gene that codes for the <u id='s_tip'>16S ribosomal RNA</u>.
 
 The <u id='s_tip'>16S rRNA</u> gene is utilised in reconstructing phylogenies due to its slow rate of evolution, its size and its functional constancy. 
 If the function of <u id='s_tip'>16S rRNA</u> changed then the cell could not synthesise proteins correctly and so will not survive.
@@ -43,7 +43,7 @@ It is very common to perform analysis with marker genes other than <u id='s_tip'
 From the perspective of the bioinformatics analysis, the same overall pipeline can be used for most of the marker genes. 
 
 ITS (Internal Transcribed Spacer) is a commonly used marker alternative to <u id='s_tip'>16S</u>. 
-QIIME2 can be used to analyse ITS with a few steps and commands required which are unnecessary for 16S rRNA data. 
+QIIME2 can be used to analyse ITS with a few steps and commands required which are unnecessary for <u id='s_tip'>16S rRNA</u> data. 
 In this tutorial, locations will be highlighted where you should consider a pipeline variation if you are using ITS. 
 In general, we recommend searching the literature so you can be aware of the state-of-the-art methods for the analysis of your marker of interest.
 

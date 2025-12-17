@@ -26,6 +26,17 @@ qiime tools import \
 --input-format PairedEndFastqManifestPhred33
 ```
 
+### QIIME2 warning {-}
+
+When you run the QIIME2 commands  in this book you will get the below warning for every/most commands.
+The commands are still functioning and we can ignore this warning.
+
+`/pub14/tea/nsc206/miniforge3/envs/qiime2-amplicon-2025.10/lib/python3.10/site-packages/emperor/__init__.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources`
+
+The warning is due to a deprecated, but still functioning, tool in the conda/mamba installation.
+This conda environment was created by the QIIME2 developers who will hopefully fix the issue in a future version. 
+
 #### Parameters {-}
 <center>
 ![](figures/parameter_green.png){style="width:100px; background: white; border: white solid 5px; border-radius:5px"}

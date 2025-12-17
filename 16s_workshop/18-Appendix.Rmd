@@ -265,7 +265,7 @@ $$
 - n = Abundance of feature
 - N = Total feature abundance of sample
 
-## Beta diversity metrics
+## Beta diversity metrics {#betamet}
 <center>
 ![](figures/beta_div_2.png){style="width:200px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
