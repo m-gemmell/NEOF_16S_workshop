@@ -453,7 +453,7 @@ The Chao1 metric, as one example for this, uses the number of singletons in the 
 However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. 
 A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
-More dteails of alpha diversity measures can be found in the [apendix](#alphamet).
+More details of alpha diversity measures can be found in the [appendix](#alphamet).
 
 ## Beta-diversity
 <center>
@@ -479,7 +479,7 @@ The choice of the <u id='beta_tip'>beta-diversity</u> distance metric to use wil
 Therefore it is common practice to compare the results obtained with different metrics. 
 Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
-More dteails of beta diversity measures can be found in the [apendix](#betamet).
+More details of beta diversity measures can be found in the [appendix](#betamet).
 
 ## Differential Abundance Analysis
 <center>
@@ -1030,7 +1030,7 @@ Now load the obtained `paired-end-demux.trim.qzv` into the ‘view.qiime2.org’
 
 This visualisation contains the same sections as [`paired-end-demux.qzv`](#chap7output) but contains information on the PCR trimmed data.
 
-If you are working with the ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itxpress’ plug in. To install and use this plug-in, please see its specific manual: https://github.com/USDA-ARS-GBRU/itsxpress/tree/main
+If you are working with the ITS region, to trim off the conserved regions from the sequences you can use the ‘q2-itsxpress’ plug in. To install and use this plug-in, please see its specific manual: https://github.com/USDA-ARS-GBRU/itsxpress/tree/main
 
 Depending on your experimental design, you may have to perform the trimming of the PCR primer, sequencing adapters and/or using the conserved region using the ‘itsxpress’ trimming only.
 
@@ -1768,7 +1768,7 @@ qiime phylogeny midpoint-root \
 
 All these steps should finish in approximately 3 minutes. The final <u id='artifact_tip'>artifact</u> for later use is ‘rooted-tree.qza’. This is a rooted tree that will be used for some biodiversity measures that require phylogenetic information.
 
-The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported to a newick file. This is covered in the [supplemental book](http://www.cgr.liv.ac.uk/illum/NEOFworkshops_5bfa93ca0482d69d/16S/16s_supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).
+The file ‘rooted-tree.qza’ contains a phylogenetic tree that can be exported to a newick file. This is covered in the [supplemental book](https://neof-workshops.github.io/16S_yg84o9/Supplemental/02-Exporting_artifacts.html#phylogenetic-tree-export).
 
 ```{r, echo=FALSE}
 #Tippy tooltips

@@ -197,7 +197,7 @@ The Chao1 metric, as one example for this, uses the number of singletons in the 
 However, the DADA2 denoising step excludes ‘singletons’ from the final output, making Chao1 measures not applicable to its resulting abundance tables. 
 A second consideration regards if the phylogenetic tree is available enabling the use of the Faith’s Phylogenetic Diversity metric, for markers such as ITS this metric would not be possible.
 
-More dteails of alpha diversity measures can be found in the [apendix](#alphamet).
+More details of alpha diversity measures can be found in the [appendix](#alphamet).
 
 ## Beta-diversity
 <center>
@@ -223,7 +223,7 @@ The choice of the <u id='beta_tip'>beta-diversity</u> distance metric to use wil
 Therefore it is common practice to compare the results obtained with different metrics. 
 Again, not all the metrics may be applicable to all the marker genes. E.g. the UniFrac distances could not be easily used in the case of ITS, because ITS sequences are quite difficult to align onto phylogenetic trees.
 
-More dteails of beta diversity measures can be found in the [apendix](#betamet).
+More details of beta diversity measures can be found in the [appendix](#betamet).
 
 ## Differential Abundance Analysis
 <center>
