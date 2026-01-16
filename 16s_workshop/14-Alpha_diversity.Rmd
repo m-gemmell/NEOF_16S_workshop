@@ -52,7 +52,7 @@ Although we have used two different commands they both have the same parameters.
 ![](figures/eye_purple.png){style="width:150px; border-radius: 5px ; background: white; border: 5px solid white"}
 </center>
 
-Load the produced files (`shannon-group-significance.kw.qzv` & `shannon-group-significance.rs.qzv`) into QIIME2 view using 2 chrome tabs. At this point I will remind you to have only one chrome window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
+Load the produced files (`shannon-group-significance.kw.qzv` & `shannon-group-significance.rs.qzv`) into QIIME2 view using 2 firefox tabs. At this point I will remind you to have only one firefox window open which is to be left open. Also make sure to close tabs you don't need any more (always leaving one open).
 
 At the top of both the outputs is a drop down menu labelled __"Column"__ that can be used to display the plot and stats of your chosen metadata grouping. As there was only one numeric column (Floors) there will only be one option in the Ranked Spearman output.
 

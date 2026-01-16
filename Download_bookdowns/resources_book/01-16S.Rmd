@@ -13,6 +13,14 @@ description: NEOF book for the Bacterial 16S metabarcoding resources
 cover-image: "figures/NEOF.png"
 ---
 
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'webexercises'
+), 'packages.bib')
+```
+
 <center>
 ![](figures/neof_rounded_corners.png){style="width:300px"}
 </center>
@@ -26,38 +34,68 @@ knitr::include_graphics(path = "figures/intro_logo.png", auto_pdf = TRUE)
 ## Intro
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/Ec41-QmCZ_0" 
+<iframe src="https://www.youtube.com/embed/P2ZnxOZCGVU" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
-[__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16S_intro.pdf)
+`r hide("11 February 2025")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/Ec41-QmCZ_0" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
+[__Slides__](https://docs.google.com/presentation/d/1_9Uw7vp11j2xJHS-BssRIDPoa9yeiIi1LECPO8sbZ7I/edit?usp=sharing)
 
 ## Diversity analysis
 
 <div class="container">
+<iframe src="https://www.youtube.com/embed/D7_YdR8IMfk" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+`r hide("11 February 2025")`
+<div class="container">
 <iframe src="https://www.youtube.com/embed/elGRwbShIhc" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
+`r unhide()`
 
 [__Slides__](https://docs.google.com/presentation/d/1tIAi5U5hg1YP51eS9lXBwZ7RSFoOOn-7sB-wlUBFup8/edit?usp=sharing)
 
 ## Moving pictures QIIME2 example
 
 <div class="container">
-<iframe src="https://www.youtube.com/embed/fL-qXO5-_Gw" 
+<iframe src="https://www.youtube.com/embed/hFFDHR7XdK8" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
 
-[__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16s_moving_pictures.pdf)
+`r hide("11 February 2025")`
+<div class="container">
+<iframe src="https://www.youtube.com/embed/fL-qXO5-_Gw" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+`r unhide()`
+
+[__Slides__](https://docs.google.com/presentation/d/1MZP-sLXkb5qF73wG98MhBg1I7m6nlAp1XZxLk3Fcb4o/edit?usp=sharing)
 
 ## Other tutorials, tools, and methods
 
+gx4HoMo0fjA
+
+<div class="container">
+<iframe src="https://www.youtube.com/embed/gx4HoMo0fjA" 
+frameborder="0" allowfullscreen class="video"></iframe>
+</div>
+
+`r hide("11 February 2025")`
 <div class="container">
 <iframe src="https://www.youtube.com/embed/_Cry2SBeors" 
 frameborder="0" allowfullscreen class="video"></iframe>
 </div>
+`r unhide()`
 
-[__Slides__](https://neof-workshops.github.io/16S_yg84o9/resources/Slides/16s_other-tools.pdf)
+[__Slides__](https://docs.google.com/presentation/d/1DW0ZEIWwky29TLxGS_7dSQjo8HgygWU7byoh8_atnSw/edit?usp=sharing)
 
 ## Workshop files
 

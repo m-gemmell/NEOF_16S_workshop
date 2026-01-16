@@ -67,10 +67,10 @@ qiime composition ancombc2 \
 
 -   **`--i-table`**: Input <u id='artifact_tip'>artifact</u> containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.
 -   **`--m-metadata-file`**: [Metadata file](#metadata.file.txt) for our samples.
--   **`--p-formula`**: A formula for how the microbial absolute abundances for each taxon depend on the variables within the `metadata`.
+-   **`--p-fixed-effects-formula`**: A formula for how the microbial absolute abundances for each taxon depend on the fixed effects of variables within the `metadata`.
     -   In this case we are specifying the metadata column, Location, within the metadata file to use for the statistical analysis. We will therefore see if there is any differentially abundant features between Corridor and Toilet.
     -   Multiple metadata columns and reference groups can be used with an example in the [documentation](https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/).
--   **`--o-differentials`**: Output <u id='artifact_tip'>artifact</u> containing the calculated differentials. This will be used to produce visualisation <u id='artifact_tip'>artifacts</u>.
+-   **`--o-ancombc2-output`**: Output <u id='artifact_tip'>artifact</u> containing the estimated log fold changes and their standard errors for the variables included in the mixed effects model. This will be used to produce visualisation <u id='artifact_tip'>artifacts</u>.
 
 [QIIME2 docs on `qiime composition ancombc2`](https://amplicon-docs.qiime2.org/en/latest/references/plugins/composition.html#q2-action-composition-ancombc2)
 
@@ -117,7 +117,7 @@ For your interest, you could choose Toilet as the reference group by running the
 qiime composition ancombc2 \
 --i-table table-l5.qza \
 --m-metadata-file metadata.file.txt \
---p-fixed-effect-formula Location \
+--p-fixed-effects-formula Location \
 --o-ancombc2-output l5-ancombc-Location-Toilet.qza \
 --p-reference-levels Location::Toilet
 ```
@@ -223,7 +223,7 @@ qiime composition tabulate \
 --i-data l6-abc2-Location.qza \
 --o-visualization l6-abc2-Location.qzv
 #Bar plots
-qiime composition da-barplot \
+qiime composition ancombc2-visualizer \
 --i-data l6-abc2-Location.qza \
 --o-visualization l6-abc2-Location-barplot.qzv
 ```
@@ -256,17 +256,16 @@ Try running these commands yourself before looking at the contents of the below 
 `r hide("Family ANCOM analysis with Place metadata comman")`
 ```{bash, eval=FALSE}
 #ANCOM-BC
-qiime composition ancombc \
+qiime composition ancombc2 \
 --i-table table-l5.qza \
 --m-metadata-file metadata.file.txt \
 --p-fixed-effects-formula Place \
 --o-ancombc2-output l5-abc2-Place.qza
-#Tabulate
 qiime composition tabulate \
 --i-data l5-abc2-Place.qza \
 --o-visualization l5-abc2-Place.qzv
 #Bar plots
-qiime composition da-barplot \
+qiime composition ancombc2-visualizer \
 --i-data l5-abc2-Place.qza \
 --o-visualization l5-abc2-Place-barplot.qzv
 ```

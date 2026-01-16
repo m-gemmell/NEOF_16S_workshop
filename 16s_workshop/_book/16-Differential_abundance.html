@@ -23,7 +23,7 @@
 <meta name="author" content="Luca Lenzi and Matthew R. Gemmell" />
 
 
-<meta name="date" content="2026-01-13" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -416,12 +416,12 @@ ANCOM-BC2 extends and efines ANCOM-BC but it is very similar with the same outpu
 <ul>
 <li><strong><code>--i-table</code></strong>: Input <u id='artifact_tip'>artifact</u> containing the abundance table (non-rarefied) we want to carry out ANCOM-BC on.</li>
 <li><strong><code>--m-metadata-file</code></strong>: <a href="#metadata.file.txt">Metadata file</a> for our samples.</li>
-<li><strong><code>--p-formula</code></strong>: A formula for how the microbial absolute abundances for each taxon depend on the variables within the <code>metadata</code>.
+<li><strong><code>--p-fixed-effects-formula</code></strong>: A formula for how the microbial absolute abundances for each taxon depend on the fixed effects of variables within the <code>metadata</code>.
 <ul>
 <li>In this case we are specifying the metadata column, Location, within the metadata file to use for the statistical analysis. We will therefore see if there is any differentially abundant features between Corridor and Toilet.</li>
 <li>Multiple metadata columns and reference groups can be used with an example in the <a href="https://docs.qiime2.org/2024.10/plugins/available/composition/ancombc/">documentation</a>.</li>
 </ul></li>
-<li><strong><code>--o-differentials</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the calculated differentials. This will be used to produce visualisation <u id='artifact_tip'>artifacts</u>.</li>
+<li><strong><code>--o-ancombc2-output</code></strong>: Output <u id='artifact_tip'>artifact</u> containing the estimated log fold changes and their standard errors for the variables included in the mixed effects model. This will be used to produce visualisation <u id='artifact_tip'>artifacts</u>.</li>
 </ul>
 <p><a href="https://amplicon-docs.qiime2.org/en/latest/references/plugins/composition.html#q2-action-composition-ancombc2">QIIME2 docs on <code>qiime composition ancombc2</code></a></p>
 </div>
@@ -466,7 +466,7 @@ Change reference group to Toilet
 <div class="sourceCode" id="cb35"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb35-1"><a href="16-Differential_abundance.html#cb35-1" tabindex="-1"></a><span class="ex">qiime</span> composition ancombc2 <span class="dt">\</span></span>
 <span id="cb35-2"><a href="16-Differential_abundance.html#cb35-2" tabindex="-1"></a>--i-table table-l5.qza <span class="dt">\</span></span>
 <span id="cb35-3"><a href="16-Differential_abundance.html#cb35-3" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
-<span id="cb35-4"><a href="16-Differential_abundance.html#cb35-4" tabindex="-1"></a>--p-fixed-effect-formula Location <span class="dt">\</span></span>
+<span id="cb35-4"><a href="16-Differential_abundance.html#cb35-4" tabindex="-1"></a>--p-fixed-effects-formula Location <span class="dt">\</span></span>
 <span id="cb35-5"><a href="16-Differential_abundance.html#cb35-5" tabindex="-1"></a>--o-ancombc2-output l5-ancombc-Location-Toilet.qza <span class="dt">\</span></span>
 <span id="cb35-6"><a href="16-Differential_abundance.html#cb35-6" tabindex="-1"></a>--p-reference-levels Location::Toilet</span></code></pre></div>
 </div>
@@ -534,16 +534,16 @@ The LFC bars also display their standard error as black lines.</p>
 <p><strong>Note:</strong> The bar plot is not very user friendly and you will most likely need to zoom out to see the whole name of the taxa when hovering over a bar.</p>
 <ol style="list-style-type: decimal">
 <li>Which family has the highest positive LFC value? I.e. The family with the highest enrichment in Toilet (comparison) compared to Corridor (reference).
-<div id="radio_YMBMKIMTHY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YMBMKIMTHY" value=""></input> <span><strong>Azospirillaceae_507917</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YMBMKIMTHY" value="answer"></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YMBMKIMTHY" value=""></input> <span><strong>Gemellaceae</strong></span></label>
+<div id="radio_UIGUJATLIU" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UIGUJATLIU" value=""></input> <span><strong>Azospirillaceae_507917</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UIGUJATLIU" value="answer"></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_UIGUJATLIU" value=""></input> <span><strong>Gemellaceae</strong></span></label>
 </div></li>
 <li>Which family has the lowest negative LFC value? I.e. The family with the highest enrichment in Corridor (reference) compared to Toilet (comparison).
-<div id="radio_AUMIGGFYEM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AUMIGGFYEM" value="answer"></input> <span><strong>Azospirillaceae_507917</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AUMIGGFYEM" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_AUMIGGFYEM" value=""></input> <span><strong>Gemellaceae</strong></span></label>
+<div id="radio_JEZUXJFSOQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JEZUXJFSOQ" value="answer"></input> <span><strong>Azospirillaceae_507917</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JEZUXJFSOQ" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JEZUXJFSOQ" value=""></input> <span><strong>Gemellaceae</strong></span></label>
 </div></li>
 <li>Which family has a W statistic of -1.728954?
-<div id="radio_ZPDCQODJWZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZPDCQODJWZ" value=""></input> <span><strong>Azospirillaceae_507917</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZPDCQODJWZ" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_ZPDCQODJWZ" value="answer"></input> <span><strong>Gemellaceae</strong></span></label>
+<div id="radio_NXPESODYMI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NXPESODYMI" value=""></input> <span><strong>Azospirillaceae_507917</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NXPESODYMI" value=""></input> <span><strong>Clostridiaceae_222000</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NXPESODYMI" value="answer"></input> <span><strong>Gemellaceae</strong></span></label>
 </div></li>
 </ol>
 <p>Run ANCOM-BC analysis for genus level (level 6). You will have to start from the <code>qiime taxa collapse</code> command. You can press the up arrow key to go to previous commands and edit them. If you do this remember to change the input and output options. Try running these commands yourself before looking at the contents of the below box.</p>
@@ -568,22 +568,22 @@ L6 ANCOM commands
 <span id="cb37-15"><a href="16-Differential_abundance.html#cb37-15" tabindex="-1"></a>--i-data l6-abc2-Location.qza <span class="dt">\</span></span>
 <span id="cb37-16"><a href="16-Differential_abundance.html#cb37-16" tabindex="-1"></a>--o-visualization l6-abc2-Location.qzv</span>
 <span id="cb37-17"><a href="16-Differential_abundance.html#cb37-17" tabindex="-1"></a><span class="co">#Bar plots</span></span>
-<span id="cb37-18"><a href="16-Differential_abundance.html#cb37-18" tabindex="-1"></a><span class="ex">qiime</span> composition da-barplot <span class="dt">\</span></span>
+<span id="cb37-18"><a href="16-Differential_abundance.html#cb37-18" tabindex="-1"></a><span class="ex">qiime</span> composition ancombc2-visualizer <span class="dt">\</span></span>
 <span id="cb37-19"><a href="16-Differential_abundance.html#cb37-19" tabindex="-1"></a>--i-data l6-abc2-Location.qza <span class="dt">\</span></span>
 <span id="cb37-20"><a href="16-Differential_abundance.html#cb37-20" tabindex="-1"></a>--o-visualization l6-abc2-Location-barplot.qzv</span></code></pre></div>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>Which genus has the highest positive LFC value? I.e. The genus with the highest enrichment in Toilet (comparison) compared to Corridor (reference).
-<div id="radio_EAYJOGIYQV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EAYJOGIYQV" value="answer"></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EAYJOGIYQV" value=""></input> <span><strong>Dialister_37762</strong></span></label><label><input type="radio" autocomplete="off" name="radio_EAYJOGIYQV" value=""></input> <span><strong>Hymenobacter_910554</strong></span></label>
+<div id="radio_BSAINAEPUR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BSAINAEPUR" value="answer"></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BSAINAEPUR" value=""></input> <span><strong>Dialister_37762</strong></span></label><label><input type="radio" autocomplete="off" name="radio_BSAINAEPUR" value=""></input> <span><strong>Hymenobacter_910554</strong></span></label>
 </div></li>
 <li>Which genus has the 2nd lowest negative LFC value? I.e. The genus with the 2nd highest enrichment in Corridor (reference) compared to Toilet (comparison).
-<div id="radio_QBYTRFPOJK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QBYTRFPOJK" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QBYTRFPOJK" value=""></input> <span><strong>Dialister_37762</strong></span></label><label><input type="radio" autocomplete="off" name="radio_QBYTRFPOJK" value="answer"></input> <span><strong>Hymenobacter_910554</strong></span></label>
+<div id="radio_JLMPRABEJD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JLMPRABEJD" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JLMPRABEJD" value=""></input> <span><strong>Dialister_37762</strong></span></label><label><input type="radio" autocomplete="off" name="radio_JLMPRABEJD" value="answer"></input> <span><strong>Hymenobacter_910554</strong></span></label>
 </div></li>
 <li>Which genus has a standard error of 0.343097?
-<div id="radio_KZRXPKMPEK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KZRXPKMPEK" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KZRXPKMPEK" value="answer"></input> <span><strong>Dialister_37762</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KZRXPKMPEK" value=""></input> <span><strong>Hymenobacter_910554</strong></span></label>
+<div id="radio_YXVTSNAOMN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YXVTSNAOMN" value=""></input> <span><strong>Clostridium_T</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YXVTSNAOMN" value="answer"></input> <span><strong>Dialister_37762</strong></span></label><label><input type="radio" autocomplete="off" name="radio_YXVTSNAOMN" value=""></input> <span><strong>Hymenobacter_910554</strong></span></label>
 </div></li>
 </ol>
 <p>Run ANCOM analysis to compare the family abundances between the 2 places (Entrance vs MainBuilding).
@@ -595,32 +595,31 @@ Try running these commands yourself before looking at the contents of the below 
 Family ANCOM analysis with Place metadata comman
 </button>
 <div class="sourceCode" id="cb38"><pre class="sourceCode bash Rchunk"><code class="sourceCode bash"><span id="cb38-1"><a href="16-Differential_abundance.html#cb38-1" tabindex="-1"></a><span class="co">#ANCOM-BC</span></span>
-<span id="cb38-2"><a href="16-Differential_abundance.html#cb38-2" tabindex="-1"></a><span class="ex">qiime</span> composition ancombc <span class="dt">\</span></span>
+<span id="cb38-2"><a href="16-Differential_abundance.html#cb38-2" tabindex="-1"></a><span class="ex">qiime</span> composition ancombc2 <span class="dt">\</span></span>
 <span id="cb38-3"><a href="16-Differential_abundance.html#cb38-3" tabindex="-1"></a>--i-table table-l5.qza <span class="dt">\</span></span>
 <span id="cb38-4"><a href="16-Differential_abundance.html#cb38-4" tabindex="-1"></a>--m-metadata-file metadata.file.txt <span class="dt">\</span></span>
 <span id="cb38-5"><a href="16-Differential_abundance.html#cb38-5" tabindex="-1"></a>--p-fixed-effects-formula Place <span class="dt">\</span></span>
 <span id="cb38-6"><a href="16-Differential_abundance.html#cb38-6" tabindex="-1"></a>--o-ancombc2-output l5-abc2-Place.qza</span>
-<span id="cb38-7"><a href="16-Differential_abundance.html#cb38-7" tabindex="-1"></a><span class="co">#Tabulate</span></span>
-<span id="cb38-8"><a href="16-Differential_abundance.html#cb38-8" tabindex="-1"></a><span class="ex">qiime</span> composition tabulate <span class="dt">\</span></span>
-<span id="cb38-9"><a href="16-Differential_abundance.html#cb38-9" tabindex="-1"></a>--i-data l5-abc2-Place.qza <span class="dt">\</span></span>
-<span id="cb38-10"><a href="16-Differential_abundance.html#cb38-10" tabindex="-1"></a>--o-visualization l5-abc2-Place.qzv</span>
-<span id="cb38-11"><a href="16-Differential_abundance.html#cb38-11" tabindex="-1"></a><span class="co">#Bar plots</span></span>
-<span id="cb38-12"><a href="16-Differential_abundance.html#cb38-12" tabindex="-1"></a><span class="ex">qiime</span> composition da-barplot <span class="dt">\</span></span>
-<span id="cb38-13"><a href="16-Differential_abundance.html#cb38-13" tabindex="-1"></a>--i-data l5-abc2-Place.qza <span class="dt">\</span></span>
-<span id="cb38-14"><a href="16-Differential_abundance.html#cb38-14" tabindex="-1"></a>--o-visualization l5-abc2-Place-barplot.qzv</span></code></pre></div>
+<span id="cb38-7"><a href="16-Differential_abundance.html#cb38-7" tabindex="-1"></a><span class="ex">qiime</span> composition tabulate <span class="dt">\</span></span>
+<span id="cb38-8"><a href="16-Differential_abundance.html#cb38-8" tabindex="-1"></a>--i-data l5-abc2-Place.qza <span class="dt">\</span></span>
+<span id="cb38-9"><a href="16-Differential_abundance.html#cb38-9" tabindex="-1"></a>--o-visualization l5-abc2-Place.qzv</span>
+<span id="cb38-10"><a href="16-Differential_abundance.html#cb38-10" tabindex="-1"></a><span class="co">#Bar plots</span></span>
+<span id="cb38-11"><a href="16-Differential_abundance.html#cb38-11" tabindex="-1"></a><span class="ex">qiime</span> composition ancombc2-visualizer <span class="dt">\</span></span>
+<span id="cb38-12"><a href="16-Differential_abundance.html#cb38-12" tabindex="-1"></a>--i-data l5-abc2-Place.qza <span class="dt">\</span></span>
+<span id="cb38-13"><a href="16-Differential_abundance.html#cb38-13" tabindex="-1"></a>--o-visualization l5-abc2-Place-barplot.qzv</span></code></pre></div>
 </div>
 <ol start="7" style="list-style-type: decimal">
 <li>Which family has the 3rd highest positive LFC value? I.e. The family with the third highest enrichment in Main building (comparison) compared to Entrance (reference).
-<div id="radio_LMOLYEDDVV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LMOLYEDDVV" value=""></input> <span><strong>Listeriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LMOLYEDDVV" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_LMOLYEDDVV" value="answer"></input> <span><strong>Solirubrobacteraceae</strong></span></label>
+<div id="radio_OLXUZZTHSR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OLXUZZTHSR" value=""></input> <span><strong>Listeriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OLXUZZTHSR" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_OLXUZZTHSR" value="answer"></input> <span><strong>Solirubrobacteraceae</strong></span></label>
 </div></li>
 <li>Which family has the 2nd lowest negative LFC value? I.e. The family with the 2nd highest enrichment in Entrance (reference) compared to Main building (comparison).
-<div id="radio_NYJMKVWFHV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NYJMKVWFHV" value="answer"></input> <span><strong>Listeriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NYJMKVWFHV" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_NYJMKVWFHV" value=""></input> <span><strong>Solirubrobacteraceae</strong></span></label>
+<div id="radio_MGRJMQRNWE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MGRJMQRNWE" value="answer"></input> <span><strong>Listeriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MGRJMQRNWE" value=""></input> <span><strong>Rhodospirillaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_MGRJMQRNWE" value=""></input> <span><strong>Solirubrobacteraceae</strong></span></label>
 </div></li>
 <li>Which family has a LFC of -1.162399
-<div id="radio_KSXCKWZPGO" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KSXCKWZPGO" value=""></input> <span><strong>Listeriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KSXCKWZPGO" value="answer"></input> <span><strong>Rhodospirillaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_KSXCKWZPGO" value=""></input> <span><strong>Solirubrobacteraceae</strong></span></label>
+<div id="radio_PEXWTXZSGX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PEXWTXZSGX" value=""></input> <span><strong>Listeriaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PEXWTXZSGX" value="answer"></input> <span><strong>Rhodospirillaceae</strong></span></label><label><input type="radio" autocomplete="off" name="radio_PEXWTXZSGX" value=""></input> <span><strong>Solirubrobacteraceae</strong></span></label>
 </div></li>
 </ol>
 </div>
@@ -634,20 +633,20 @@ This matches the fact we saw a statistical difference between the <u id='beta_ti
 The family <em>Clostridiaceae</em> was found to be in higher abundance in the Toilet samples.
 This makes biological sense as this family is known to exist within the human gastrointestinal tract.</p>
 <p>That is the last of the analysis. There is only one more chapter on future considerations.</p>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-16b55d9f989dc29dd3aa" width="672"></span>
-<script type="application/json" data-for="htmlwidget-16b55d9f989dc29dd3aa">{"x":{"element":"s_tip","opts":{"content":"16S ribosomal RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-44a5cb9a1351a0c36d2c" width="672"></span>
-<script type="application/json" data-for="htmlwidget-44a5cb9a1351a0c36d2c">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-dd2ede5f4fa08b74c575" width="672"></span>
-<script type="application/json" data-for="htmlwidget-dd2ede5f4fa08b74c575">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-f79946416678c4ffce3f" width="672"></span>
-<script type="application/json" data-for="htmlwidget-f79946416678c4ffce3f">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-b1d19e0f340609a0059c" width="672"></span>
-<script type="application/json" data-for="htmlwidget-b1d19e0f340609a0059c">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-060bdb9b794fe50c58bd" width="672"></span>
-<script type="application/json" data-for="htmlwidget-060bdb9b794fe50c58bd">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
-<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-630984ff0d6d51de0a1e" width="672"></span>
-<script type="application/json" data-for="htmlwidget-630984ff0d6d51de0a1e">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-6dadd801fabf5f5e4359" width="672"></span>
+<script type="application/json" data-for="htmlwidget-6dadd801fabf5f5e4359">{"x":{"element":"s_tip","opts":{"content":"16S ribosomal RNA","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-3c0215ac132e5ca9639b" width="672"></span>
+<script type="application/json" data-for="htmlwidget-3c0215ac132e5ca9639b">{"x":{"element":"otu_tip","opts":{"content":"Operational Taxonomy Unit","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-ca780c234f48f35ff039" width="672"></span>
+<script type="application/json" data-for="htmlwidget-ca780c234f48f35ff039">{"x":{"element":"asv_tip","opts":{"content":"Amplicon Sequence Variant","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-85972eca8e204803f35d" width="672"></span>
+<script type="application/json" data-for="htmlwidget-85972eca8e204803f35d">{"x":{"element":"alpha_tip","opts":{"content":"Alpha diversity values are based on single samples","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-43b8faf29f91c6b888ac" width="672"></span>
+<script type="application/json" data-for="htmlwidget-43b8faf29f91c6b888ac">{"x":{"element":"beta_tip","opts":{"content":"Beta diversity values based on pairwise comparisons","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-7a94aeea3ba14e6726fb" width="672"></span>
+<script type="application/json" data-for="htmlwidget-7a94aeea3ba14e6726fb">{"x":{"element":"artifact_tip","opts":{"content":"Artifact files are specific to QIIME2 and can contain data (.qza) or visualisations (.qzv)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="480" id="htmlwidget-741cb6220947886e6029" width="672"></span>
+<script type="application/json" data-for="htmlwidget-741cb6220947886e6029">{"x":{"element":"amplicon_tip","opts":{"content":"Sequences created by amplifying (e.g. PCR) and sequencing (e.g. Illumina) a targeted region of DNA (e.g. 16S rRNA region)","arrow":true,"placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>
